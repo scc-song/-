@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* 兼容 webview 网关把端口放在路径前缀（如 /8000/）的访问方式：
+   自动识别前缀，让 /api/ 与 /static/ 请求、下载链接都带正确前缀 */
+(function(){
+  var p = location.pathname || '/';
+  var m = p.match(/^(\/\d+)\//);
+  window.__BASE__ = m ? m[1] : '';
+  var _f = window.fetch ? window.fetch.bind(window) : null;
+  if(_f){ window.fetch = function(u, o){ if(typeof u === 'string' && u.charAt(0) === '/'){ u = window.__BASE__ + u; } return _f(u, o); }; }
+  function fixLinks(){
+    var els = document.querySelectorAll('a[href^="/static/"], a[href^="/api/"]');
+    for(var i=0;i<els.length;i++){ var h = els[i].getAttribute('href'); if(h && h.charAt(0)==='/'){ els[i].href = window.__BASE__ + h; } }
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', fixLinks); } else { fixLinks(); }
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>ResumeAuto · 简历分析 + 匹配投递</title>
+<style>
+  :root { --bg:#070b18; --bg-soft:#0e1530; --card:#131c3a; --line:#25365f; --text:#eaf0fb; --muted:#93a2c4; --brand:#5b8cff; --brand-2:#8b5cf6; --accent:#2dd4bf; --ok:#34d399; --danger:#fb7185; --warn:#fbbf24; --radius:16px; --grad:linear-gradient(135deg,#5b8cff,#8b5cf6 52%,#2dd4bf); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:radial-gradient(1100px 560px at 82% -8%,rgba(91,140,255,.20),transparent 60%),radial-gradient(900px 520px at -8% 8%,rgba(139,92,246,.18),transparent 55%),var(--bg); color:var(--text); line-height:1.65; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 22px; }
+  nav { position:sticky; top:0; z-index:60; backdrop-filter:blur(14px); background:rgba(7,11,24,.72); border-bottom:1px solid var(--line); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; height:62px; }
+  .logo { display:flex; align-items:center; gap:10px; font-weight:800; }
+  .logo .dot { width:14px; height:14px; border-radius:50%; background:var(--grad); box-shadow:0 0 16px rgba(91,140,255,.85); }
+  .nav-links { display:flex; gap:18px; font-size:14px; color:var(--muted); }
+  .nav-links a:hover { color:var(--text); }
+  @media(max-width:820px){ .nav-links{display:none;} }
+  header.hero { padding:66px 0 44px; }
+  .tag { display:inline-flex; gap:8px; align-items:center; font-size:13px; color:var(--accent); border:1px solid var(--line); padding:6px 14px; border-radius:999px; margin-bottom:18px; }
+  h1 { font-size:42px; line-height:1.15; font-weight:850; }
+  h1 .hl { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub { color:var(--muted); font-size:17px; max-width:780px; margin:18px 0; }
+  section { padding:50px 0; }
+  .sec-kicker { color:var(--brand); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+  .sec-title { font-size:28px; font-weight:800; margin-top:8px; }
+  .sec-desc { color:var(--muted); max-width:820px; margin-top:10px; }
+  .flow { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:18px; color:var(--muted); font-size:14px; }
+  .flow b { color:var(--text); } .flow .ar { color:var(--brand); font-weight:800; }
+
+  .match-grid { display:grid; grid-template-columns:0.85fr 1.15fr; gap:22px; align-items:start; }
+  @media(max-width:920px){ .match-grid{ grid-template-columns:1fr; } }
+  .ra { background:linear-gradient(180deg,var(--card),var(--bg-soft)); border:1px solid var(--line); border-radius:var(--radius); padding:20px; box-shadow:0 18px 50px rgba(0,0,0,.45); }
+  .ra-h { font-weight:800; font-size:16px; margin-bottom:14px; }
+  .ra-row { display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
+  .ra-row span { color:var(--muted); white-space:nowrap; }
+  .ra-row b { text-align:right; }
+  .ra-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .ra-tags span { font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--line); }
+  .tag-ok { color:var(--ok); } .tag-warn { color:var(--warn); }
+  .dl { display:inline-block; margin-top:16px; background:var(--grad); color:#fff; padding:11px 18px; border-radius:12px; font-weight:700; font-size:14px; }
+  .ra-in { background:var(--bg-soft); border:1px solid var(--line); border-radius:8px; color:var(--text); padding:5px 8px; font-size:13px; width:64%; text-align:right; }
+  .ra-row input.ra-in:focus { outline:none; border-color:var(--brand); }
+
+  .pm-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:680px){ .pm-grid{ grid-template-columns:1fr; } }
+  .pm { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .pm-top { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .logo-box { width:42px; height:42px; border-radius:12px; display:grid; place-items:center; font-size:19px; font-weight:800; }
+  .pm-top b { font-size:16px; display:block; } .pm-top small { color:var(--muted); font-size:12px; }
+  .pm-keys { display:flex; flex-wrap:wrap; gap:8px; }
+  .kbtn { background:var(--bg-soft); border:1px solid var(--line); color:var(--text); padding:8px 12px; border-radius:10px; font-size:13px; font-weight:600; transition:all .15s; }
+  .kbtn:hover { border-color:var(--brand); color:var(--brand); transform:translateY(-2px); }
+
+  .gap-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media(max-width:820px){ .gap-grid{grid-template-columns:1fr;} }
+  .gap-col { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .gap-col.ok { border-left:3px solid var(--ok); } .gap-col.warn { border-left:3px solid var(--warn); }
+  .gap-col h4 { font-size:16px; margin-bottom:10px; }
+  .gap-col ul { list-style:none; display:grid; gap:10px; }
+  .gap-col li { font-size:13.5px; color:var(--muted); padding-left:14px; position:relative; }
+  .gap-col li::before { content:"•"; position:absolute; left:0; color:var(--brand); }
+  .gap-col li b { color:var(--text); }
+
+  .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+  @media(max-width:820px){ .kpi-grid{grid-template-columns:repeat(2,1fr);} }
+  .kpi { background:linear-gradient(180deg,var(--card),var(--bg-soft)); border:1px solid var(--line); border-radius:var(--radius); padding:20px; }
+  .kpi .ic { font-size:22px; } .kpi .val { font-size:32px; font-weight:850; margin:6px 0 2px; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .kpi .lbl { color:var(--muted); font-size:13px; }
+  .jobs { display:grid; gap:12px; }
+  .job { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; flex-wrap:wrap; }
+  .job.done { border-color:var(--ok); }
+  .job-title { font-size:15px; font-weight:700; } .job-meta { display:flex; gap:10px; margin-top:4px; font-size:12px; color:var(--muted); align-items:center; }
+  .job-actions { display:flex; align-items:center; gap:14px; }
+  .go { background:var(--grad); color:#fff; padding:8px 14px; border-radius:10px; font-size:13px; font-weight:700; white-space:nowrap; }
+  .fb { display:flex; gap:6px; }
+  .fb button { background:var(--bg-soft); border:1px solid var(--line); color:var(--muted); padding:6px 10px; border-radius:8px; cursor:pointer; font-size:12px; }
+  .fb button.on-read { color:var(--brand); border-color:var(--brand); } .fb button.on-invite { color:var(--ok); border-color:var(--ok); } .fb button.on-reject { color:var(--danger); border-color:var(--danger); }
+  .pill { font-size:11px; padding:2px 9px; border-radius:999px; border:1px solid var(--line); }
+  .pill.p-BOSS直聘 { color:var(--brand); } .pill.p-智联招聘 { color:var(--brand-2); } .pill.p-猎聘 { color:var(--warn); } .pill.p-前程无忧 { color:var(--accent); }
+  .pill.p-tag { color:var(--accent); border-color:var(--accent); }
+  .soe-list { display:grid; gap:12px; max-height:560px; overflow:auto; }
+  .soe { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; flex-wrap:wrap; }
+  .soe-title { font-size:14.5px; font-weight:700; }
+  .soe-meta { display:flex; gap:10px; margin-top:4px; font-size:12px; color:var(--muted); align-items:center; }
+  .note { background:var(--card); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:12px; padding:14px 16px; color:var(--muted); font-size:13.5px; margin-top:18px; }
+  .note b { color:var(--text); }
+  .auth-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; }
+  @media(max-width:920px){ .auth-grid{ grid-template-columns:1fr; } }
+  .auth-col { background:linear-gradient(180deg,var(--card),var(--bg-soft)); border:1px solid var(--line); border-radius:var(--radius); padding:20px; box-shadow:0 18px 50px rgba(0,0,0,.45); }
+  .auth-col h4 { font-size:16px; margin-bottom:10px; }
+  .auth-col .mut { color:var(--muted); font-size:13px; }
+  .ck-row { display:grid; grid-template-columns:88px 1fr; gap:10px; align-items:center; margin:10px 0; }
+  .ck-row label { font-size:13px; color:var(--muted); }
+  .ck-row textarea { width:100%; height:46px; resize:vertical; background:var(--bg-soft); border:1px solid var(--line); border-radius:10px; color:var(--text); padding:8px 10px; font-size:12px; font-family:monospace; }
+  .track-list { display:grid; gap:10px; margin-top:14px; max-height:340px; overflow:auto; }
+  .tl-plat { background:var(--bg-soft); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+  .tl-plat b { font-size:14px; }
+  .tl-row { display:flex; justify-content:space-between; gap:10px; font-size:12.5px; color:var(--muted); padding:3px 0; }
+  .opt-box { display:grid; gap:10px; margin-top:14px; }
+  .opt-box .ob { background:var(--bg-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:13.5px; color:var(--text); }
+  .live-badge { position:fixed; right:18px; bottom:18px; z-index:80; background:linear-gradient(180deg,var(--card),var(--bg-soft)); border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-size:12.5px; color:var(--muted); box-shadow:0 10px 30px rgba(0,0,0,.5); display:flex; align-items:center; gap:8px; }
+  .live-badge .dot { width:9px; height:9px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 0 rgba(52,211,153,.7); animation:pulse 2s infinite; }
+  .live-badge b { color:var(--text); font-weight:700; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(52,211,153,.6);} 70%{box-shadow:0 0 0 9px rgba(52,211,153,0);} 100%{box-shadow:0 0 0 0 rgba(52,211,153,0);} }
+  footer { border-top:1px solid var(--line); padding:28px 0; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <div class="logo"><span class="dot"></span> ResumeAuto</div>
+  <div class="nav-links"><a href="#match">分析+匹配</a><a href="#jobs">实时岗位</a><a href="#soe">国企/央企</a><a href="#gap">缺口分析</a><a href="#track">自动跟踪</a></div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="tag">● 真实模式 · 简历已解析 · 链接按你的方向匹配</div>
+  <h1>给我简历，<span class="hl">分析 + 生成匹配投递链接</span></h1>
+  <p class="sub">左侧是系统对你真实简历的分析，右侧按你指定的方向（光伏 / 风能 / 新能源 / 储能）给每个主流平台生成<b>已匹配好关键词</b>的投递链接。点链接直接跳到该平台的对应搜索页，登录账号即可投递。</p>
+  <div class="flow"><b>① 上传简历</b><span class="ar">→</span><b>② 系统分析</b><span class="ar">→</span><b>③ 生成匹配链接</b><span class="ar">→</span><b>④ 点链接跳平台</b><span class="ar">→</span><b>⑤ 登录投递</b><span class="ar">→</span><b>⑥ 反馈回流优化</b></div>
+</div></header>
+
+<section id="match"><div class="wrap">
+  <div class="sec-kicker">Analyze & Match</div>
+  <div class="sec-title">简历分析 + 匹配投递入口</div>
+  <p class="sec-desc">左：你的真实简历画像与优化要点。右：六大平台按你的方向生成的匹配搜索链接，点一个就跳一个。</p>
+  <div class="match-grid" style="margin-top:26px">
+    
+  <div class="ra">
+    <div class="ra-h">简历画像（真实解析 - 可编辑）</div>
+    <div class="ra-row"><span>姓名</span><input id="ra-name" class="ra-in" value="宋创创"></div>
+    <div class="ra-row"><span>求职方向</span><input id="ra-dir" class="ra-in" value="新能源 · 光伏 / 风能 / 储能"></div>
+    <div class="ra-row"><span>教育</span><input id="ra-edu" class="ra-in" value="专科阶段 | 学院宣传部部长；本科阶段 | 班级班长；结合低压电工专业知识，参与店内电气系统故障排查与新能源汽车高压安全相关辅助工作"></div>
+    <div class="ra-row"><span>证书</span><input id="ra-cert" class="ra-in" value="行业资质：高级汽车维修工（国家职业资格）、低压电工证（特种作业操作证）；其他：驾驶证、普通话证；结合低压电工专业知识，参与店内电气系统故障排查与新能源汽车高压安全相关辅助工作"></div>
+    <div class="ra-row"><span>实践</span><input id="ra-exp" class="ra-in" value="专科阶段 | 学院宣传部部长；本科阶段 | 班级班长；结合低压电工专业知识，参与店内电气系统故障排查与新能源汽车高压安全相关辅助工作"></div>
+    <div class="ra-tags">
+      <span class="tag-ok">低压电工证（运维硬门槛）</span><span class="tag-ok">电气相关背景</span><span class="tag-ok">新能源方向对口</span><span class="tag-ok">学历背景达标</span><span class="tag-ok">持证（详见证书栏）</span>
+      <span class="tag-warn">缺登高证（风电运维硬性）</span><span class="tag-warn">缺领域关键词（逆变器/汇流箱/变压器等）</span><span class="tag-warn">建议补充高压电工证</span>
+    </div>
+    <a class="dl" href="/static/优化版简历_宋创创_v2_新能源.docx" download>下载优化版简历（.docx）</a>
+    <button id="saveProfile" class="dl" style="margin-top:14px;background:var(--bg-soft);border:1px solid var(--line);color:var(--text)">保存画像修改</button>
+    <div id="profileMsg" style="margin-top:8px;font-size:12px;color:var(--muted)"></div>
+    <button id="changeResume" class="dl" style="margin-top:14px;background:var(--bg-soft);border:1px solid var(--line);color:var(--text)">更换简历（上传新 .docx）</button>
+    <input id="resumeFile" type="file" accept=".docx" style="display:none" />
+    <div id="uploadMsg" style="margin-top:8px;font-size:12px;color:var(--muted)"></div>
+    <div style="margin-top:8px;font-size:11px;color:var(--muted)">字段可直接改后点“保存画像修改”；或上传新 .docx 简历重新分析。最后更新：2026-07-27 17:34</div>
+  </div>
+
+    <div>
+      <div class="pm-grid">
+  <div class="pm">
+    <div class="pm-top">
+      <div class="logo-box" style="background:#5b8cff">🤖</div>
+      <div><b>BOSS直聘</b><small>点关键词 → 跳平台搜索页 → 登录投递</small></div>
+    </div>
+    <div class="pm-keys">
+      <a class="kbtn" href="https://www.zhipin.com/web/geek/job?query=%E5%85%89%E4%BC%8F%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 光伏运维</a><a class="kbtn" href="https://www.zhipin.com/web/geek/job?query=%E9%A3%8E%E7%94%B5%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 风电运维</a><a class="kbtn" href="https://www.zhipin.com/web/geek/job?query=%E6%96%B0%E8%83%BD%E6%BA%90%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 新能源运维</a><a class="kbtn" href="https://www.zhipin.com/web/geek/job?query=%E5%82%A8%E8%83%BD" target="_blank" rel="noopener">🔗 储能</a>
+    </div>
+  </div>
+
+  <div class="pm">
+    <div class="pm-top">
+      <div class="logo-box" style="background:#fbbf24">🦊</div>
+      <div><b>猎聘</b><small>点关键词 → 跳平台搜索页 → 登录投递</small></div>
+    </div>
+    <div class="pm-keys">
+      <a class="kbtn" href="https://www.liepin.com/zhaopin/?key=%E5%85%89%E4%BC%8F%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 光伏运维</a><a class="kbtn" href="https://www.liepin.com/zhaopin/?key=%E9%A3%8E%E7%94%B5%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 风电运维</a><a class="kbtn" href="https://www.liepin.com/zhaopin/?key=%E6%96%B0%E8%83%BD%E6%BA%90%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 新能源运维</a><a class="kbtn" href="https://www.liepin.com/zhaopin/?key=%E5%82%A8%E8%83%BD" target="_blank" rel="noopener">🔗 储能</a>
+    </div>
+  </div>
+
+  <div class="pm">
+    <div class="pm-top">
+      <div class="logo-box" style="background:#8b5cf6">🧭</div>
+      <div><b>智联招聘</b><small>点关键词 → 跳平台搜索页 → 登录投递</small></div>
+    </div>
+    <div class="pm-keys">
+      <a class="kbtn" href="https://www.zhaopin.com/sou?kw=%E5%85%89%E4%BC%8F%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 光伏运维</a><a class="kbtn" href="https://www.zhaopin.com/sou?kw=%E9%A3%8E%E7%94%B5%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 风电运维</a><a class="kbtn" href="https://www.zhaopin.com/sou?kw=%E6%96%B0%E8%83%BD%E6%BA%90%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 新能源运维</a><a class="kbtn" href="https://www.zhaopin.com/sou?kw=%E5%82%A8%E8%83%BD" target="_blank" rel="noopener">🔗 储能</a>
+    </div>
+  </div>
+
+  <div class="pm">
+    <div class="pm-top">
+      <div class="logo-box" style="background:#2dd4bf">💼</div>
+      <div><b>前程无忧</b><small>点关键词 → 跳平台搜索页 → 登录投递</small></div>
+    </div>
+    <div class="pm-keys">
+      <a class="kbtn" href="https://www.51job.com/list/000000,000000,0000,00,9,99,%E5%85%89%E4%BC%8F%E8%BF%90%E7%BB%B4,2,1.html" target="_blank" rel="noopener">🔗 光伏运维</a><a class="kbtn" href="https://www.51job.com/list/000000,000000,0000,00,9,99,%E9%A3%8E%E7%94%B5%E8%BF%90%E7%BB%B4,2,1.html" target="_blank" rel="noopener">🔗 风电运维</a><a class="kbtn" href="https://www.51job.com/list/000000,000000,0000,00,9,99,%E6%96%B0%E8%83%BD%E6%BA%90%E8%BF%90%E7%BB%B4,2,1.html" target="_blank" rel="noopener">🔗 新能源运维</a><a class="kbtn" href="https://www.51job.com/list/000000,000000,0000,00,9,99,%E5%82%A8%E8%83%BD,2,1.html" target="_blank" rel="noopener">🔗 储能</a>
+    </div>
+  </div>
+
+  <div class="pm">
+    <div class="pm-top">
+      <div class="logo-box" style="background:#fb7185">🎯</div>
+      <div><b>拉勾</b><small>点关键词 → 跳平台搜索页 → 登录投递</small></div>
+    </div>
+    <div class="pm-keys">
+      <a class="kbtn" href="https://www.lagou.com/wn/jobs?kd=%E5%85%89%E4%BC%8F%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 光伏运维</a><a class="kbtn" href="https://www.lagou.com/wn/jobs?kd=%E9%A3%8E%E7%94%B5%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 风电运维</a><a class="kbtn" href="https://www.lagou.com/wn/jobs?kd=%E6%96%B0%E8%83%BD%E6%BA%90%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 新能源运维</a><a class="kbtn" href="https://www.lagou.com/wn/jobs?kd=%E5%82%A8%E8%83%BD" target="_blank" rel="noopener">🔗 储能</a>
+    </div>
+  </div>
+
+  <div class="pm">
+    <div class="pm-top">
+      <div class="logo-box" style="background:#34d399">🌱</div>
+      <div><b>实习僧</b><small>点关键词 → 跳平台搜索页 → 登录投递</small></div>
+    </div>
+    <div class="pm-keys">
+      <a class="kbtn" href="https://www.shixiseng.com/search?k=%E5%85%89%E4%BC%8F%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 光伏运维</a><a class="kbtn" href="https://www.shixiseng.com/search?k=%E9%A3%8E%E7%94%B5%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 风电运维</a><a class="kbtn" href="https://www.shixiseng.com/search?k=%E6%96%B0%E8%83%BD%E6%BA%90%E8%BF%90%E7%BB%B4" target="_blank" rel="noopener">🔗 新能源运维</a><a class="kbtn" href="https://www.shixiseng.com/search?k=%E5%82%A8%E8%83%BD" target="_blank" rel="noopener">🔗 储能</a>
+    </div>
+  </div></div>
+      <div class="note">每个关键词按钮 = 该平台已按此词筛选的搜索页。点开后在平台登录，搜索结果就是匹配你方向的岗位，直接「沟通 / 申请」即可。</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="jobs"><div class="wrap">
+  <div class="sec-kicker">Live Energy Jobs</div>
+  <div class="sec-title">实时抓取的真实能源岗位（48 条）</div>
+  <p class="sec-desc">额外附上刚从猎聘 / 智联实时抓取的能源岗位，每条带真实投递链接，作为上面匹配入口的补充。</p>
+  <div class="jobs" id="jobList" style="margin-top:22px">
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1492247250J40830335307.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">光伏工艺助理工程师（湿法方向）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1492247250J40830335307.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC199232620J40771216816.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">光伏电站站长</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC199232620J40771216816.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1460995940J40868848603.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">光伏业务销售员</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1460995940J40868848603.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1492247250J40834155907.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">研发工程师（光伏 TOPCon / TBC 电池）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1492247250J40834155907.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC581307430J40833276311.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">光伏新能源投标专员</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC581307430J40833276311.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1460995940J40779820003.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">工商业光伏发电业务开发经理</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1460995940J40779820003.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1492247250J40867562607.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">光伏湿法研发工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1492247250J40867562607.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC199232620J40771217016.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">光伏电站站长</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC199232620J40771217016.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC696133780J40634745605.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">光伏售后运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC696133780J40634745605.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC677096020J40939112508.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">商务主管-欧洲区域（光伏组件）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC677096020J40939112508.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC199232620J40753891416.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">急招电工-五险一金-包住</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC199232620J40753891416.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1362071830J40867249807.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b">
+    <div class="job-main"><div class="job-title">资深浆料研发工程师（光伏行业）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：光伏</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1362071830J40867249807.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1509860860J41009585904.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">市场总监（风能方向）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1509860860J41009585904.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC634659930J40897186703.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">风能资源设计岗（社招校招不限）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC634659930J40897186703.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC346610010J40779655202.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">市场开拓岗（风能发电工程施工）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC346610010J40779655202.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1509860860J41010851604.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">市场拓展总监（风能方向）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1509860860J41010851604.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1354809480J40820191409.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">风能风电电气工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1354809480J40820191409.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC840900840J41018668804.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">天津明阳风能叶片技术有限公司+天津+技工</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC840900840J41018668804.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1509860860J41009634004.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">市场总监（风能方向）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1509860860J41009634004.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC540459720J40858445411.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">阳光风能事业部 电气工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC540459720J40858445411.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC696533430J40874792705.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">组件销售（新能源光伏风能）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC696533430J40874792705.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1509860860J41024120304.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">业务总经理（风能方向）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1509860860J41024120304.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1390976390J40821313316.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">天津明阳风能叶片技术有限公司+天津+普工</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1390976390J40821313316.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC840900840J41011371204.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be">
+    <div class="job-main"><div class="job-title">天津明阳风能叶片9000到13000包进</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：风能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC840900840J41011371204.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1523296750J40813400816.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1523296750J40813400816.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1281857260J40733642501.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维值长（山西省内）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1281857260J40733642501.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1359966640J40837275814.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1359966640J40837275814.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1523296750J40827049616.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1523296750J40827049616.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1481476440J41019930904.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维人员（广东）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1481476440J41019930904.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1359966640J40837504014.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1359966640J40837504014.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1525646950J40874305214.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1525646950J40874305214.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1481476440J40970199804.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维经理（急招）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1481476440J40970199804.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1359966640J40840786614.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1359966640J40840786614.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1518737590J40862754901.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1518737590J40862754901.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1523296750J40813396416.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">企业招聘新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1523296750J40813396416.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1359966640J40840816714.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48">
+    <div class="job-main"><div class="job-title">新能源运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：新能源运维</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1359966640J40840816714.htm?refcode=4019&srccode=401903&preactionid=dd923682-68dd-4985-a05b-bf5197ffbc48" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1390520150J40921004508.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">系统集成结构工程师（液流储能）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1390520150J40921004508.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC827017820J40852947109.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">储能电站值班员</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC827017820J40852947109.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1468464810J40766079316.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">储能电站值班员</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1468464810J40766079316.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1390520150J40906389908.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">电控工程师（液流储能）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1390520150J40906389908.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1512198990J40751200806.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">电气工程师（储能行业）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1512198990J40751200806.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1468464810J40713818916.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">储能电站运维工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1468464810J40713818916.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC827017820J40877063209.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">宁夏储能电站站长</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC827017820J40877063209.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1512198990J40751211106.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">储能系统工程师</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1512198990J40751211106.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1468464810J40834283716.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">电站值班员（储能）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1468464810J40834283716.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CC827017820J40878131309.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">宁夏储能运维站长</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CC827017820J40878131309.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1390520150J40944165208.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">解决方案经理（全钒液流储能）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1390520150J40944165208.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div>
+
+  <div class="job" data-url="http://www.zhaopin.com/jobdetail/CCL1468464810J40834281916.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb">
+    <div class="job-main"><div class="job-title">主值班员（储能）</div>
+      <div class="job-meta"><span class="pill p-智联招聘">智联招聘</span><span>方向：储能</span></div></div>
+    <div class="job-actions"><a class="go" href="http://www.zhaopin.com/jobdetail/CCL1468464810J40834281916.htm?refcode=4019&srccode=401903&preactionid=84601315-fd0a-42a6-90e1-bba7ee98bcdb" target="_blank" rel="noopener">去投递 ↗</a>
+      <div class="fb"><button data-s="read">已读</button><button data-s="invite">邀约</button><button data-s="reject">拒绝</button></div></div>
+  </div></div>
+</div></section>
+
+<section id="soe"><div class="wrap">
+  <div class="sec-kicker">SOE & Central Enterprises</div>
+  <div class="sec-title">国企 / 央企招聘公告（实时抓取）</div>
+  <p class="sec-desc">来自中国公共招聘网"重点行业"频道、国家大学生就业网等官方渠道的真实招聘公告，含航天/中交/华能/中铁/中国电科/中储粮/国家能源集团等。点"看公告"直达官方公告页。</p>
+  <div class="soe-list" id="soeList" style="margin-top:22px">
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">重点行业重点企业招聘专栏</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="http://job.mohrss.gov.cn/zdqyzpxx/index.jhtml" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">兵器未来科学家·2027届博士招聘提前批正式启动</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/m2oWNM6Nve0u6izstEBgyQ" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国航天科技集团五院502所2027届校园招聘提前批正式启动</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/fgsXd6d76Xq0Cz8DsBIa_Q" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中交集团社会招聘扬帆启航</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/BQi6nA6CUODVBEePURfnmg" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">华能核能技术研究院有限公司2026年社会招聘公告</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/Qaf2HV8vw2L9dUjzDS6k7Q" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中铁十一局集团有限公司公开招聘公告</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/2UpoavJtLlq8ITBj3Twm-Q" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国空空导弹研究院2027届毕业生暑期开放日报名开始啦</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/aJQ2O6xzRo-fl0ch1QGwIw" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国电科电科院2026届校园招聘开启</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/HJQGIEA5RPDuR_tYxHz2dw" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国储备粮管理集团有限公司2026年度夏季招聘公告</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/4pYccvS4MC5tdUDoI_InvA" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国电信人工智能研究院（TeleAI）Top Talent 2027全球人才招募</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/FgQF86IZPmqW979euKRueg" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">航空工业通飞2026及2027届校园招聘正式启动</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/goNJDvftZP-NIJbHxIUDgA" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中核环保有限公司本部2026年春季校园招聘</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/GJXlhePBv2gbiViY3fLufQ" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国黄金集团有限公司所属企业2026年度招聘公告</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/r2H04aOYDbPY92kaqFbdfQ" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国稀土集团有限公司及所属企业招聘公告</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/dfJUQCq5vIY2hWMWkblzrQ" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国矿产资源集团所属单位2026届校园招聘公告</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/FQuwCRRkVyNL5_GizaO2bQ" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中石化经纬有限公司博士后招聘</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/gxDQ-6M0AQSLuB4uM257Tg" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">旋翼飞行器制造业创新中心2026年春季招聘正式启动</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/p4q0OkSYkVZbgK3LNn60yQ" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">国家能源集团2026春季校园招聘</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/ykwpbhDklXSHNKfsY7nP4A" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国铝业集团有限公司2026年春季招聘（第二批）</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>中国公共招聘网·重点行业</span></div>
+    </div>
+    <a class="go" href="https://mp.weixin.qq.com/s/IYr6fN10t65GZzMlIW46gQ" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">国务院印发《实施就业优先战略“十五五”规划》</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/ncss/jydt/yw/202606/20260623/2293840478.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">丁薛祥在全国高校毕业生等青年就业创业工作视频会议上强调 促进高校毕业生高质量充分就业 更好服务大局、服务民生、服务发展</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/ncss/jydt/yw/202603/20260319/2293451069.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">促进2026届高校毕业生就业，教育部启动“百日冲刺”行动</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/ncss/jydt/yw/202606/20260609/2293711457.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">人力资源社会保障部 教育部启动“就业公共服务进校园百日行动”</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/ncss/jydt/yw/202604/20260407/2293461477.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">国务院就业促进和劳动保护工作领导小组办公室印发通知在全国范围内开展2026年清理整顿人力资源市场秩序专项行动</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/ncss/jydt/yw/202605/20260513/2293471540.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国（教育部）留学服务中心 2026年度上半年公开招聘公告 （非事业编制）</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/7HZbMj7xyJ4kwbSCic1wks/detail.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">建德市资投酒店管理有限公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/BRLBtQsUeuVkRd2UPp89hF/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">苏州文博商务旅游发展有限公司智选假日酒店分公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/56XnRoi55PsPBoWhvpawmq/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国轻工集团高级技工学校（中国轻工机电工程学校）</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/JGRb6hLzNyYS6oE27VCRSH/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">银行实习生岗位+包住</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/5LURa1GE2k4pXddeHiLYD2/detail.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">昆山瀚海信息科技有限公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/da110983e4fd41dc97ef0b758f17d755/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">庆虹电子（苏州）有限公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/SqL3AjEY1XhnXQWh6Cx1wR/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">安徽保进建设工程有限公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/6rmeAniGbp1Y3jXBgRwRRD/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">比亚迪股份有限公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/4c846b587dde4d08845d50269c107f67/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">中国光大银行股份有限公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/7987cc53df884f09bb23068716f054dc/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">烽火通信科技股份有限公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/da4563768f074b8282afe43d1f961f7c/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">智能服务经营岗（银行网络客服9-13W）</div>
+      <div class="soe-meta"><span class="pill p-tag">招聘公告</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/PDxhujShKdTwwee6g36Zc7/detail.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">招商银行股份有限公司信用卡中心</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/090406758b91442993e3df0327e6d9d3/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div>
+
+  <div class="soe">
+    <div class="soe-main">
+      <div class="soe-title">安徽凯泽新材料有限公司</div>
+      <div class="soe-meta"><span class="pill p-tag">国企·央企</span><span>国家大学生就业网</span></div>
+    </div>
+    <a class="go" href="https://www.ncss.cn/student/jobs/4m4gAWgFFp82cCgQxr88tf/corp.html" target="_blank" rel="noopener">看公告 ↗</a>
+  </div></div>
+</div></section>
+
+<section id="gap"><div class="wrap">
+  <div class="sec-kicker">Real Gap Analysis</div>
+  <div class="sec-title">真实缺口分析（基于真实 JD）</div>
+  <p class="sec-desc">对照光伏/风电/储能运维岗真实任职要求，得出匹配与缺口。</p>
+  <div style="margin-top:20px">
+  <div class="gap-grid">
+    <div class="gap-col ok"><h4>✅ 已具备（对齐真实 JD）</h4><ul>
+      <li><b>低压电工证</b> —— 光伏/风电/储能运维硬性准入，多家 JD 明文要求</li>
+      <li><b>能源类专业对口</b> —— 热力学/传热学可迁移至光伏光热与储能热管理</li>
+      <li><b>新能源电气一线</b> —— 4S店高压安全+电气排查，对应电气设备运维</li>
+      <li><b>差异化内容力</b> —— 1.2亿播放，适配新能源企业技术传播</li></ul></div>
+    <div class="gap-col warn"><h4>⚠️ 真实缺口</h4><ul>
+      <li><b>领域关键词缺失</b> —— 逆变器/汇流箱/变压器/风电机组/PCS/BMS 未出现</li>
+      <li><b>登高证</b> —— 风电运维硬性要求</li>
+      <li><b>电站运维 SOP</b> —— 缺光伏/风电/储能运维流程化表述</li>
+      <li><b>简历偏"汽车+内容"</b> —— 能源关键词密度低，需重构主线</li></ul></div>
+  </div>
+</div>
+</div></section>
+
+<section id="track"><div class="wrap">
+  <div class="sec-kicker">Auto Track & Optimize</div>
+  <div class="sec-title">自动跟踪 + 自动优化</div>
+  <p class="sec-desc">你投完之后，把各平台登录后的会话 cookie 粘进来，系统会尝试自动读取"我的投递"真实状态。由于招聘平台有反爬拦截，自动跟踪可能失败；若看板未更新，请直接在职位卡片点 <b>已读/邀约/拒绝</b> 手动反馈，同样会进入自动优化。</p>
+  <div class="auth-grid" style="margin-top:24px">
+    <div class="auth-col">
+      <h4>① 授权自动跟踪</h4>
+      <p class="mut">登录平台后，用浏览器开发者工具或扩展（EditThisCookie 等）复制 <b>Cookie 请求头 / JSON 数组</b> 粘到对应框。cookie 仅存本地沙箱，用于自动读取"我的投递"状态。</p>
+      <div class="ck-row"><label>BOSS直聘</label><textarea id="ck-boss" placeholder="粘贴 BOSS 的 cookie"></textarea></div>
+      <div class="ck-row"><label>猎聘</label><textarea id="ck-liepin" placeholder="粘贴 猎聘 的 cookie"></textarea></div>
+      <div class="ck-row"><label>智联招聘</label><textarea id="ck-zhaopin" placeholder="粘贴 智联 的 cookie"></textarea></div>
+      <div class="ck-row"><label>前程无忧</label><textarea id="ck-job51" placeholder="粘贴 51job 的 cookie"></textarea></div>
+      <div class="ck-row"><label>拉勾</label><textarea id="ck-lagou" placeholder="粘贴 拉勾 的 cookie"></textarea></div>
+      <div class="ck-row"><label>实习僧</label><textarea id="ck-shixiseng" placeholder="粘贴 实习僧 的 cookie"></textarea></div>
+      <button id="saveTrack" class="dl">保存并启动自动跟踪</button>
+      <div id="authMsg" class="mut" style="margin-top:10px"></div>
+    </div>
+    <div class="auth-col">
+      <h4>② 跟踪看板（真实状态）</h4>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="ic">📨</div><div class="val" id="fSent">0</div><div class="lbl">已投递</div></div>
+        <div class="kpi"><div class="ic">👁️</div><div class="val" id="fRead">0</div><div class="lbl">已读</div></div>
+        <div class="kpi"><div class="ic">💬</div><div class="val" id="fInvite">0</div><div class="lbl">面试邀约</div></div>
+        <div class="kpi"><div class="ic">🚫</div><div class="val" id="fReject">0</div><div class="lbl">被拒绝</div></div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">上次跟踪：<span id="trackUpdated">—</span> · 异常：<b id="fError" style="color:var(--warn)">0</b></div>
+      <div id="trackList" class="track-list"></div>
+    </div>
+  </div>
+  <div class="note">③ 自动优化：系统按上方真实反馈，在沙箱存活期间<b>每 20 分钟自动重跑跟踪</b>并生成下一轮优化建议。也可点下方按钮立即生成。
+    <button id="optBtn" class="dl" style="margin-left:10px">立即生成优化建议</button></div>
+  <div id="optBox" class="opt-box"></div>
+  <a class="dl" href="/static/优化版简历_宋创创_v2_新能源.docx" download style="margin-top:14px;display:inline-block"><span id="optRegen" style="margin-left:10px;color:var(--accent);font-size:13px"></span>⬇ 下载优化版简历</a>
+</div></section>
+
+<footer><div class="wrap">ResumeAuto · 简历分析 + 匹配投递 · 简历已解析、链接按方向匹配、投递由用户本人完成</div></footer>
+<div class="live-badge"><span class="dot"></span> 招聘数据实时更新 · 最后更新：<b id="dataTs">加载中…</b></div>
+
+<script>
+  var KEY = 'resumeauto_feedback';
+  var fb = JSON.parse(localStorage.getItem(KEY) || '{}');
+  function save(){ localStorage.setItem(KEY, JSON.stringify(fb)); }
+  function refresh(){
+    document.querySelectorAll('.job').forEach(function(job){
+      var url = job.dataset.url; var st = fb[url];
+      job.classList.toggle('done', !!st);
+      var btns = job.querySelectorAll('.fb button');
+      btns.forEach(function(b){ var s=b.dataset.s; b.className=''; if(st===s) b.classList.add('on-'+s); });
+    });
+  }
+  function syncFeedback(url, status){
+    fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url,status:status})}).catch(function(e){ console.log(e); });
+  }
+  document.querySelectorAll('.job .fb button').forEach(function(b){
+    b.onclick = function(){
+      var job = b.closest('.job'); var url = job.dataset.url; var s = b.dataset.s;
+      var next = (fb[url]===s) ? null : s;
+      if(next) fb[url]=next; else delete fb[url];
+      save(); refresh(); syncFeedback(url, next);
+    };
+  });
+  refresh();
+
+  // ---- 自动跟踪 + 优化 ----
+  var PLAT_NAME = {boss:"BOSS直聘", liepin:"猎聘", zhaopin:"智联招聘", job51:"前程无忧", lagou:"拉勾", shixiseng:"实习僧"};
+  var lastOptFile = '';
+  function loadStatus(){
+    fetch('/api/status').then(function(r){return r.json();}).then(function(d){
+      var s = (d.opt && d.opt.summary) || (d.track && d.track.summary) || {};
+      document.getElementById('fSent').textContent = s.sent||0;
+      document.getElementById('fRead').textContent = s.read||0;
+      document.getElementById('fInvite').textContent = s.invite||0;
+      document.getElementById('fReject').textContent = s.reject||0;
+      document.getElementById('fError').textContent = s.errors||0;
+      document.getElementById('trackUpdated').textContent = (d.track && d.track.updated) || '—';
+      // 合并服务器手动反馈到本地，刷新按钮高亮
+      if(d.feedback){ var fk; for(fk in d.feedback){ fb[fk]=d.feedback[fk]; } save(); refresh(); }
+      var box = document.getElementById('trackList'); box.innerHTML='';
+      var plats = (d.track && d.track.platforms) || {};
+      var hasAny = false;
+      Object.keys(plats).forEach(function(p){
+        var rows = plats[p]; if(!rows.length) return;
+        hasAny = true;
+        var div = document.createElement('div'); div.className='tl-plat';
+        var errs = rows.filter(function(r){ return r.status==='error'; });
+        var h = '<b>'+(PLAT_NAME[p]||p)+'</b>';
+        if(errs.length) h += ' <span style="color:var(--warn);font-size:12px">('+errs.length+' 项异常)</span>';
+        var rs = rows.slice(0,15).map(function(r){
+          var st = r.status||'sent';
+          var lbl = {sent:'已投递',read:'已读',invite:'邀约',reject:'拒绝',error:'异常'}[st]||'已投递';
+          var style = st==='error' ? ' style="color:var(--warn)"' : '';
+          return '<div class="tl-row"'+style+'><span>'+(r.job||'')+'</span><span class="pill p-'+(PLAT_NAME[p]||'智联招聘')+'">'+lbl+'</span></div>';
+        }).join('');
+        div.innerHTML = h + rs; box.appendChild(div);
+      });
+      if(!hasAny) box.innerHTML = '<div class="mut" style="color:var(--muted);font-size:13px">暂无跟踪数据。粘贴 cookie 并点"保存并启动自动跟踪"。</div>';
+      if(d.opt && d.opt.opt_file){
+        var link = (window.__BASE__ || '') + '/static/' + d.opt.opt_file;
+        document.querySelectorAll('a.dl[download]').forEach(function(a){ if(a.textContent.indexOf('下载')>=0) a.href = link; });
+        var rg = document.getElementById('optRegen');
+        if(rg){
+          if(d.opt.opt_file && lastOptFile && d.opt.opt_file !== lastOptFile){
+            rg.textContent = '🆕 已按反馈生成新版本（' + d.opt.opt_file + '），点击左侧/下方下载';
+          }
+          if(d.opt.opt_file) lastOptFile = d.opt.opt_file;
+        }
+      }
+      if(d.opt && d.opt.suggestions){
+        var ob = document.getElementById('optBox'); ob.innerHTML='';
+        d.opt.suggestions.forEach(function(t){ var e=document.createElement('div'); e.className='ob'; e.textContent=t; ob.appendChild(e); });
+      }
+    }).catch(function(e){ console.log(e); });
+  }
+  document.getElementById('saveTrack').onclick = function(){
+    var ids = {boss:'ck-boss', liepin:'ck-liepin', zhaopin:'ck-zhaopin', job51:'ck-job51', lagou:'ck-lagou', shixiseng:'ck-shixiseng'};
+    var data = {};
+    Object.keys(ids).forEach(function(k){ var v=document.getElementById(ids[k]).value.trim(); if(v) data[k]=v; });
+    if(!Object.keys(data).length){ document.getElementById('authMsg').textContent='请至少粘贴一个平台的 cookie。'; return; }
+    document.getElementById('authMsg').textContent='保存中…';
+    fetch('/api/cookies',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(function(){ return fetch('/api/track',{method:'POST'}); })
+      .then(function(){
+        document.getElementById('authMsg').textContent='⏳ 自动跟踪已在后台启动，约需 20-60 秒。看板会每 30 秒自动刷新，启动后 90 秒内每 10 秒额外刷新。';
+        loadStatus();
+        var n=0, iv=setInterval(function(){ n++; loadStatus(); if(n>=9) clearInterval(iv); }, 10000);
+      })
+      .catch(function(e){ document.getElementById('authMsg').textContent='保存失败：'+e; });
+  };
+  document.getElementById('optBtn').onclick = function(){
+    fetch('/api/optimize').then(function(r){return r.json();}).then(function(d){
+      var ob=document.getElementById('optBox'); ob.innerHTML='';
+      (d.suggestions||[]).forEach(function(t){ var e=document.createElement('div'); e.className='ob'; e.textContent=t; ob.appendChild(e); });
+    });
+  };
+  loadStatus();
+  setInterval(loadStatus, 30000);
+
+  // ---- 招聘数据实时更新轮询 ----
+  var lastTs = "";
+  function checkVersion(){
+    fetch('/api/version').then(function(r){return r.json();}).then(function(d){
+      document.getElementById('dataTs').textContent = d.ts || '—';
+      if(lastTs && d.ts && d.ts !== lastTs){ location.reload(); }
+      lastTs = d.ts || "";
+    }).catch(function(){});
+  }
+  checkVersion();
+  setInterval(checkVersion, 30000);
+
+  // ---- 更换简历 / 编辑画像 ----
+  var chg = document.getElementById('changeResume');
+  if (chg) chg.onclick = function(){ document.getElementById('resumeFile').click(); };
+  var rf = document.getElementById('resumeFile');
+  if (rf) rf.onchange = function(){
+    var f = this.files[0]; if(!f) return;
+    var msg = document.getElementById('uploadMsg');
+    if(!/\.docx$/i.test(f.name)){ msg.textContent='请上传 .docx 格式的简历'; return; }
+    msg.textContent='解析中...';
+    var fd = new FormData(); fd.append('file', f);
+    fetch('/api/upload_resume',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+      if(d.ok){ msg.textContent='已重新分析：'+(d.profile&&d.profile.name||'')+'，页面刷新中...'; setTimeout(function(){location.reload();},900); }
+      else { msg.textContent='处理失败：'+(d.detail||'未知错误'); }
+    }).catch(function(e){ msg.textContent='上传失败：'+e; });
+  };
+  var sp = document.getElementById('saveProfile');
+  if (sp) sp.onclick = function(){
+    var msg = document.getElementById('profileMsg');
+    var data = {
+      name: document.getElementById('ra-name').value.trim(),
+      direction: document.getElementById('ra-dir').value.trim(),
+      education: document.getElementById('ra-edu').value.trim(),
+      certificates: document.getElementById('ra-cert').value.trim(),
+      experience: document.getElementById('ra-exp').value.trim()
+    };
+    msg.textContent='保存中...';
+    fetch('/api/resume_profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json();}).then(function(d){
+        if(d.ok){ msg.textContent='已保存，页面刷新中...'; setTimeout(function(){location.reload();},800); }
+        else { msg.textContent='保存失败：'+(d.detail||'未知错误'); }
+      }).catch(function(e){ msg.textContent='保存失败：'+e; });
+  };
+</script>
+</body>
+</html>
