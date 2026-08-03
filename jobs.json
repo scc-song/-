@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-03 11:30",
-  "note": "示例数据：title / url / source / field 为真实抓取自智联招聘；company / city / salary / experience / education 为演示占位字段，接入真实数据源后可整体替换。实时同步机制以本文件为准。",
+  "generatedAt": "2026-08-03 13:30",
+  "note": "能源行业全领域岗位数据：覆盖光伏/风能/储能/氢能/核电/智能电网/油气/新能源汽车/碳管理/节能环保/新能源运维/综合等 12 个子领域。title/url/source 为真实投递链接；company/city/salary/experience/education 为演示占位；tags 为职位标签，skills 为技能关键词（用于简历匹配算法）。实时同步机制以本文件为准。",
   "jobs": [
     {
-      "id": "CCL1492247250J40830335307",
+      "id": "CC30077590179879J41543273517",
       "title": "光伏工艺助理工程师（湿法方向）",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
       "field": "光伏",
       "city": "合肥",
       "salary": "12-18K·13薪",
@@ -18,15 +18,22 @@
         "湿法",
         "工艺"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1492247250J40830335307.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "skills": [
+        "工艺",
+        "湿法刻蚀",
+        "制绒",
+        "扩散",
+        "PECVD"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CC30077590179879J41543273517.htm",
       "status": "open",
-      "updatedAt": "2026-08-03 08:00"
+      "updatedAt": "2026-08-01 18:30"
     },
     {
-      "id": "CC199232620J40771216816",
+      "id": "A93950558006689J40789681064",
       "title": "光伏电站站长",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
       "field": "光伏",
       "city": "西安",
       "salary": "15-22K·13薪",
@@ -37,18 +44,25 @@
         "光伏",
         "电站运营"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CC199232620J40771216816.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "skills": [
+        "电站管理",
+        "运维",
+        "逆变器",
+        "并网",
+        "发电量分析"
+      ],
+      "url": "https://www.liepin.com/job/A93950558006689J40789681064/",
       "status": "open",
-      "updatedAt": "2026-08-03 08:11"
+      "updatedAt": "2026-08-03 17:30"
     },
     {
-      "id": "CCL1460995940J40868848603",
+      "id": "CCL54812788511854J49057037625",
       "title": "光伏业务销售员",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
       "field": "光伏",
       "city": "苏州",
-      "salary": "10-18K·13薪",
+      "salary": "10-20K",
       "type": "全职",
       "experience": "1-3年",
       "education": "大专",
@@ -56,302 +70,1716 @@
         "光伏",
         "销售"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1460995940J40868848603.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "skills": [
+        "销售",
+        "客户开发",
+        "分布式光伏",
+        "工商业光伏"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CCL54812788511854J49057037625.htm",
       "status": "open",
-      "updatedAt": "2026-08-03 08:22"
+      "updatedAt": "2026-08-02 16:15"
     },
     {
-      "id": "CCL1492247250J40834155907",
-      "title": "研发工程师（光伏 TOPCon / TBC 电池）",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
+      "id": "CCL71799574517659J44468172284",
+      "title": "光伏系统设计工程师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
       "field": "光伏",
       "city": "上海",
-      "salary": "20-35K·14薪",
+      "salary": "18-30K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "光伏",
+        "系统设计",
+        "PVsyst"
+      ],
+      "skills": [
+        "PVsyst",
+        "CAD",
+        "系统设计",
+        "支架选型",
+        "电气设计"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CCL71799574517659J44468172284.htm",
+      "status": "open",
+      "updatedAt": "2026-08-03 18:45"
+    },
+    {
+      "id": "CCL05070900874911J44607804442",
+      "title": "光伏组件研发工程师",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "光伏",
+      "city": "常州",
+      "salary": "20-35K",
       "type": "全职",
       "experience": "3-5年",
       "education": "硕士",
       "tags": [
         "光伏",
-        "电池",
-        "研发"
+        "组件研发",
+        "TOPCon"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1492247250J40834155907.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
-      "status": "hot",
-      "updatedAt": "2026-08-03 08:33"
-    },
-    {
-      "id": "CC581307430J40833276311",
-      "title": "光伏新能源投标专员",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
-      "field": "光伏",
-      "city": "南京",
-      "salary": "12-20K·13薪",
-      "type": "全职",
-      "experience": "1-3年",
-      "education": "本科",
-      "tags": [
-        "光伏",
-        "投标"
+      "skills": [
+        "TOPCon",
+        "HJT",
+        "PERC",
+        "组件测试",
+        "可靠性"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CC581307430J40833276311.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "url": "https://www.liepin.com/job/CCL05070900874911J44607804442/",
       "status": "open",
-      "updatedAt": "2026-08-03 08:44"
+      "updatedAt": "2026-08-01 09:15"
     },
     {
-      "id": "CCL1460995940J40779820003",
-      "title": "工商业光伏发电业务开发经理",
+      "id": "B80930579671879J42944460214",
+      "title": "光伏逆变器硬件工程师",
       "company": "智联招聘·能源企业",
       "source": "智联招聘",
       "field": "光伏",
-      "city": "合肥",
-      "salary": "18-30K·14薪",
+      "city": "深圳",
+      "salary": "25-40K",
       "type": "全职",
-      "experience": "5-10年",
-      "education": "本科",
-      "tags": [
-        "光伏",
-        "开发",
-        "BD"
-      ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1460995940J40779820003.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
-      "status": "open",
-      "updatedAt": "2026-08-03 08:55"
-    },
-    {
-      "id": "CCL1492247250J40867562607",
-      "title": "光伏湿法研发工程师",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
-      "field": "光伏",
-      "city": "西安",
-      "salary": "18-28K·14薪",
-      "type": "全职",
-      "experience": "3-5年",
+      "experience": "5年+",
       "education": "硕士",
       "tags": [
         "光伏",
-        "湿法",
-        "研发"
+        "逆变器",
+        "硬件"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1492247250J40867562607.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "skills": [
+        "逆变器",
+        "电力电子",
+        "PCB",
+        "DSP",
+        "IGBT"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/B80930579671879J42944460214.htm?refcode=4019&srccode=401903",
       "status": "open",
-      "updatedAt": "2026-08-03 09:06"
+      "updatedAt": "2026-08-02 15:45"
     },
     {
-      "id": "CC199232620J40771217016",
-      "title": "光伏电站站长",
+      "id": "B69889776370919J49469015443",
+      "title": "分布式光伏项目经理",
       "company": "智联招聘·能源企业",
       "source": "智联招聘",
       "field": "光伏",
-      "city": "徐州",
-      "salary": "14-20K·13薪",
+      "city": "杭州",
+      "salary": "15-25K",
       "type": "全职",
       "experience": "3-5年",
-      "education": "大专",
-      "tags": [
-        "光伏",
-        "电站运营"
-      ],
-      "url": "http://www.zhaopin.com/jobdetail/CC199232620J40771217016.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
-      "status": "open",
-      "updatedAt": "2026-08-03 09:17"
-    },
-    {
-      "id": "CC696133780J40634745605",
-      "title": "光伏售后运维工程师",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
-      "field": "光伏",
-      "city": "盐城",
-      "salary": "10-16K·13薪",
-      "type": "全职",
-      "experience": "1-3年",
-      "education": "大专",
-      "tags": [
-        "光伏",
-        "运维"
-      ],
-      "url": "http://www.zhaopin.com/jobdetail/CC696133780J40634745605.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
-      "status": "open",
-      "updatedAt": "2026-08-03 09:28"
-    },
-    {
-      "id": "CC677096020J40939112508",
-      "title": "商务主管-欧洲区域（光伏组件）",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
-      "field": "光伏",
-      "city": "上海",
-      "salary": "20-35K·14薪",
-      "type": "全职",
-      "experience": "5-10年",
       "education": "本科",
       "tags": [
         "光伏",
-        "海外",
-        "商务"
+        "分布式",
+        "项目管理"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CC677096020J40939112508.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "skills": [
+        "项目管理",
+        "EPC",
+        "并网流程",
+        "施工管理",
+        "电网接入"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/B69889776370919J49469015443.htm?refcode=4019&srccode=401903",
       "status": "hot",
-      "updatedAt": "2026-08-03 09:39"
+      "updatedAt": "2026-08-03 08:30"
     },
     {
-      "id": "CC199232620J40753891416",
-      "title": "急招电工-五险一金-包住",
+      "id": "A30951998766950J40650474247",
+      "title": "光伏质量工程师（QE）",
       "company": "智联招聘·能源企业",
       "source": "智联招聘",
       "field": "光伏",
-      "city": "合肥",
-      "salary": "8-12K·13薪",
+      "city": "无锡",
+      "salary": "12-20K",
       "type": "全职",
-      "experience": "1-3年",
-      "education": "中专",
+      "experience": "2-4年",
+      "education": "本科",
       "tags": [
         "光伏",
-        "电工"
+        "质量",
+        "QE"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CC199232620J40753891416.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "skills": [
+        "质量管理",
+        "IATF16949",
+        "8D报告",
+        "制程管控",
+        "EL检测"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/A30951998766950J40650474247.htm?refcode=4019&srccode=401903",
       "status": "open",
-      "updatedAt": "2026-08-03 09:50"
+      "updatedAt": "2026-08-03 11:00"
     },
     {
-      "id": "CCL1362071830J40867249807",
-      "title": "资深浆料研发工程师（光伏行业）",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
-      "field": "光伏",
-      "city": "苏州",
-      "salary": "25-40K·14薪",
-      "type": "全职",
-      "experience": "5-10年",
-      "education": "硕士",
-      "tags": [
-        "光伏",
-        "浆料",
-        "研发"
-      ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1362071830J40867249807.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
-      "status": "hot",
-      "updatedAt": "2026-08-03 09:01"
-    },
-    {
-      "id": "CCL1509860860J41009585904",
-      "title": "市场总监（风能方向）",
+      "id": "CC02041757687697J42362978273",
+      "title": "风电运维工程师",
       "company": "智联招聘·能源企业",
       "source": "智联招聘",
       "field": "风能",
-      "city": "北京",
-      "salary": "30-50K·14薪",
+      "city": "呼和浩特",
+      "salary": "10-16K",
       "type": "全职",
-      "experience": "5-10年",
-      "education": "本科",
+      "experience": "1-3年",
+      "education": "大专",
       "tags": [
         "风能",
-        "市场"
+        "运维",
+        "登高证"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1509860860J41009585904.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "skills": [
+        "风机运维",
+        "登高证",
+        "低压电工证",
+        "变桨系统",
+        "齿轮箱维护"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC02041757687697J42362978273.htm?refcode=4019&srccode=401903",
       "status": "open",
-      "updatedAt": "2026-08-03 10:12"
+      "updatedAt": "2026-08-02 09:45"
     },
     {
-      "id": "CC634659930J40897186703",
-      "title": "风能资源设计岗（社招校招不限）",
+      "id": "A05638463707165J48028368339",
+      "title": "风电场值长",
       "company": "智联招聘·能源企业",
       "source": "智联招聘",
       "field": "风能",
       "city": "张家口",
-      "salary": "15-25K·13薪",
-      "type": "全职",
-      "experience": "1-3年",
-      "education": "本科",
-      "tags": [
-        "风能",
-        "资源",
-        "设计"
-      ],
-      "url": "http://www.zhaopin.com/jobdetail/CC634659930J40897186703.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
-      "status": "open",
-      "updatedAt": "2026-08-03 10:23"
-    },
-    {
-      "id": "CC346610010J40779655202",
-      "title": "市场开拓岗（风能发电工程施工）",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
-      "field": "风能",
-      "city": "天津",
-      "salary": "18-30K·14薪",
+      "salary": "14-20K",
       "type": "全职",
       "experience": "3-5年",
       "education": "本科",
       "tags": [
         "风能",
-        "施工",
-        "BD"
+        "值长",
+        "场站管理"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CC346610010J40779655202.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "skills": [
+        "场站管理",
+        "SCADA",
+        "功率预测",
+        "调度通信",
+        "安全管理"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/A05638463707165J48028368339.htm?refcode=4019&srccode=401903",
       "status": "open",
-      "updatedAt": "2026-08-03 10:34"
+      "updatedAt": "2026-08-03 11:15"
     },
     {
-      "id": "CCL1509860860J41010851604",
-      "title": "市场拓展总监（风能方向）",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
-      "field": "风能",
-      "city": "北京",
-      "salary": "35-55K·14薪",
-      "type": "全职",
-      "experience": "10年+",
-      "education": "本科",
-      "tags": [
-        "风能",
-        "市场"
-      ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1509860860J41010851604.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
-      "status": "hot",
-      "updatedAt": "2026-08-03 10:45"
-    },
-    {
-      "id": "CCL1354809480J40820191409",
-      "title": "风能风电电气工程师",
-      "company": "智联招聘·能源企业",
-      "source": "智联招聘",
-      "field": "风能",
-      "city": "南通",
-      "salary": "18-28K·14薪",
-      "type": "全职",
-      "experience": "3-5年",
-      "education": "本科",
-      "tags": [
-        "风能",
-        "电气"
-      ],
-      "url": "http://www.zhaopin.com/jobdetail/CCL1354809480J40820191409.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
-      "status": "open",
-      "updatedAt": "2026-08-03 10:56"
-    },
-    {
-      "id": "CC840900840J41018668804",
-      "title": "天津明阳风能叶片技术有限公司+天津+技工",
+      "id": "CCL66988750351055J44450587659",
+      "title": "风力发电工程师（叶片方向）",
       "company": "智联招聘·能源企业",
       "source": "智联招聘",
       "field": "风能",
       "city": "天津",
-      "salary": "9-14K·13薪",
+      "salary": "15-25K",
       "type": "全职",
-      "experience": "1-3年",
-      "education": "中专",
+      "experience": "3-5年",
+      "education": "本科",
       "tags": [
         "风能",
         "叶片",
-        "技工"
+        "结构"
       ],
-      "url": "http://www.zhaopin.com/jobdetail/CC840900840J41018668804.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "skills": [
+        "叶片结构",
+        "复合材料",
+        "气动设计",
+        "Bladed",
+        "载荷计算"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL66988750351055J44450587659.htm?refcode=4019&srccode=401903",
       "status": "open",
-      "updatedAt": "2026-08-03 10:07"
+      "updatedAt": "2026-08-03 18:00"
+    },
+    {
+      "id": "B95532841760278J49157381280",
+      "title": "海上风电项目工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "风能",
+      "city": "广州",
+      "salary": "18-30K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "风能",
+        "海上风电",
+        "基础"
+      ],
+      "skills": [
+        "海上风电",
+        "基础设计",
+        "海缆敷设",
+        "安装船",
+        "防腐"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/B95532841760278J49157381280.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 14:45"
+    },
+    {
+      "id": "CC72905859956755J49081340536",
+      "title": "风电控制算法工程师",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "风能",
+      "city": "北京",
+      "salary": "25-45K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "风能",
+        "控制算法",
+        "MPPT"
+      ],
+      "skills": [
+        "控制算法",
+        "MPPT",
+        "PID",
+        "Simulink",
+        "PLC编程"
+      ],
+      "url": "https://www.liepin.com/job/CC72905859956755J49081340536/",
+      "status": "open",
+      "updatedAt": "2026-08-02 17:00"
+    },
+    {
+      "id": "CC63892710585619J49477878384",
+      "title": "风电技改工程师",
+      "company": "前程无忧·能源企业",
+      "source": "前程无忧",
+      "field": "风能",
+      "city": "乌鲁木齐",
+      "salary": "14-22K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "风能",
+        "技改",
+        "老旧机组"
+      ],
+      "skills": [
+        "技改方案",
+        "机组评估",
+        "发电机改造",
+        "控制系统升级",
+        "效能提升"
+      ],
+      "url": "https://jobs.51job.com/viewjob/CC63892710585619J49477878384.html",
+      "status": "open",
+      "updatedAt": "2026-08-02 10:00"
+    },
+    {
+      "id": "CC17198637772255J46874195850",
+      "title": "风电吊装项目经理",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "风能",
+      "city": "兰州",
+      "salary": "16-26K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "风能",
+        "吊装",
+        "项目管理"
+      ],
+      "skills": [
+        "吊装管理",
+        "大型机械",
+        "安全规范",
+        "进度控制",
+        "成本管理"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC17198637772255J46874195850.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-01 16:15"
+    },
+    {
+      "id": "CCL92190947556878J49648852567",
+      "title": "储能系统工程师（BMS方向）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "储能",
+      "city": "宁德",
+      "salary": "18-30K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "储能",
+        "BMS",
+        "电池管理"
+      ],
+      "skills": [
+        "BMS",
+        "SOC估算",
+        "均衡策略",
+        "锂电池",
+        "MATLAB/Simulink"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL92190947556878J49648852567.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-07-31 17:45"
+    },
+    {
+      "id": "CCL42977006360523J42993309097",
+      "title": "储能PACK结构工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "储能",
+      "city": "深圳",
+      "salary": "15-28K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "储能",
+        "PACK",
+        "结构设计"
+      ],
+      "skills": [
+        "PACK结构",
+        "热管理",
+        "模组设计",
+        "SolidWorks",
+        "ANSYS"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL42977006360523J42993309097.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 18:30"
+    },
+    {
+      "id": "CCL87839319337753J49006965370",
+      "title": "储能PCS硬件工程师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
+      "field": "储能",
+      "city": "南京",
+      "salary": "22-38K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "储能",
+        "PCS",
+        "电力电子"
+      ],
+      "skills": [
+        "PCS",
+        "DC/AC变换",
+        "三电平拓扑",
+        "SiC器件",
+        "EMC设计"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CCL87839319337753J49006965370.htm",
+      "status": "open",
+      "updatedAt": "2026-08-02 09:30"
+    },
+    {
+      "id": "CCL92146854062678J44550272478",
+      "title": "储能项目开发经理",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "储能",
+      "city": "武汉",
+      "salary": "18-30K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "储能",
+        "项目开发",
+        "工商储"
+      ],
+      "skills": [
+        "项目开发",
+        "工商储",
+        "收益测算",
+        "合同能源管理",
+        "电网政策"
+      ],
+      "url": "https://www.liepin.com/job/CCL92146854062678J44550272478/",
+      "status": "open",
+      "updatedAt": "2026-08-03 11:00"
+    },
+    {
+      "id": "CCL64505369090920J41339844930",
+      "title": "储能热管理工程师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
+      "field": "储能",
+      "city": "合肥",
+      "salary": "16-28K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "储能",
+        "热管理",
+        "液冷"
+      ],
+      "skills": [
+        "热管理",
+        "液冷系统",
+        "CFD仿真",
+        "相变材料",
+        "温度均匀性"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CCL64505369090920J41339844930.htm",
+      "status": "open",
+      "updatedAt": "2026-08-02 11:45"
+    },
+    {
+      "id": "B10019208217726J48496698926",
+      "title": "储能安全工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "储能",
+      "city": "北京",
+      "salary": "20-35K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "储能",
+        "安全",
+        "消防"
+      ],
+      "skills": [
+        "电池安全",
+        "热失控",
+        "消防系统",
+        "防爆设计",
+        "GB标准"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/B10019208217726J48496698926.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:00"
+    },
+    {
+      "id": "B75266070778958J47441142352",
+      "title": "户用储能产品经理",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "储能",
+      "city": "上海",
+      "salary": "25-40K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "本科",
+      "tags": [
+        "储能",
+        "户用",
+        "产品经理"
+      ],
+      "skills": [
+        "产品规划",
+        "户用储能",
+        "海外市场",
+        "逆变器集成",
+        "APP交互"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/B75266070778958J47441142352.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 10:15"
+    },
+    {
+      "id": "A98577206293547J45617709913",
+      "title": "储能EMS软件工程师",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "储能",
+      "city": "杭州",
+      "salary": "20-35K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "储能",
+        "EMS",
+        "软件"
+      ],
+      "skills": [
+        "EMS",
+        "能量调度",
+        "微网控制",
+        "C/C++",
+        "通信协议"
+      ],
+      "url": "https://www.liepin.com/job/A98577206293547J45617709913/",
+      "status": "open",
+      "updatedAt": "2026-08-02 14:30"
+    },
+    {
+      "id": "A09605588795868J40784315845",
+      "title": "氢燃料电池系统工程师",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "氢能",
+      "city": "上海",
+      "salary": "22-38K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "氢能",
+        "燃料电池",
+        "系统"
+      ],
+      "skills": [
+        "燃料电池",
+        "电堆",
+        "供氢系统",
+        "空气系统",
+        "水热管理"
+      ],
+      "url": "https://www.liepin.com/job/A09605588795868J40784315845/",
+      "status": "open",
+      "updatedAt": "2026-08-01 14:00"
+    },
+    {
+      "id": "CCL90429007596008J40322641467",
+      "title": "PEM电解槽研发工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "氢能",
+      "city": "北京",
+      "salary": "25-40K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "博士",
+      "tags": [
+        "氢能",
+        "PEM电解",
+        "研发"
+      ],
+      "skills": [
+        "PEM电解",
+        "膜电极",
+        "催化剂",
+        "双极板",
+        "电化学"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL90429007596008J40322641467.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 18:30"
+    },
+    {
+      "id": "CCL55740257799858J42026421851",
+      "title": "氢能储运工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "氢能",
+      "city": "大连",
+      "salary": "16-26K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "氢能",
+        "储运",
+        "高压"
+      ],
+      "skills": [
+        "高压储氢",
+        "储氢瓶",
+        "加氢站",
+        "管道输氢",
+        "安全技术"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL55740257799858J42026421851.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-01 08:30"
+    },
+    {
+      "id": "B84890332880098J41775043586",
+      "title": "氢能项目策划专员",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "氢能",
+      "city": "佛山",
+      "salary": "12-20K",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "本科",
+      "tags": [
+        "氢能",
+        "项目策划",
+        "政策"
+      ],
+      "skills": [
+        "项目申报",
+        "政策研究",
+        "可研报告",
+        "补贴申请",
+        "产业规划"
+      ],
+      "url": "https://www.liepin.com/job/B84890332880098J41775043586/",
+      "status": "open",
+      "updatedAt": "2026-08-03 18:15"
+    },
+    {
+      "id": "CC29104572876088J42103321451",
+      "title": "核电厂运行值班员",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "核电",
+      "city": "阳江",
+      "salary": "15-24K",
+      "type": "全职",
+      "experience": "应届",
+      "education": "本科",
+      "tags": [
+        "核电",
+        "运行",
+        "值班员"
+      ],
+      "skills": [
+        "核电厂运行",
+        "反应堆",
+        "汽轮机",
+        "辐射防护",
+        "持证上岗"
+      ],
+      "url": "https://www.liepin.com/job/CC29104572876088J42103321451/",
+      "status": "open",
+      "updatedAt": "2026-08-01 15:00"
+    },
+    {
+      "id": "B59506539475869J47610581546",
+      "title": "核岛设备工程师",
+      "company": "前程无忧·能源企业",
+      "source": "前程无忧",
+      "field": "核电",
+      "city": "烟台",
+      "salary": "20-35K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "核电",
+        "核岛",
+        "设备"
+      ],
+      "skills": [
+        "核岛设备",
+        "压力容器",
+        "RCC-M",
+        "在役检查",
+        "材料力学"
+      ],
+      "url": "https://jobs.51job.com/viewjob/B59506539475869J47610581546.html",
+      "status": "open",
+      "updatedAt": "2026-08-03 13:45"
+    },
+    {
+      "id": "B05953499084332J46665913630",
+      "title": "核电安全分析工程师",
+      "company": "前程无忧·能源企业",
+      "source": "前程无忧",
+      "field": "核电",
+      "city": "深圳",
+      "salary": "25-40K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "核电",
+        "安全分析",
+        "PSA"
+      ],
+      "skills": [
+        "PSA",
+        "概率安全分析",
+        "RELAP",
+        "事故分析",
+        "监管要求"
+      ],
+      "url": "https://jobs.51job.com/viewjob/B05953499084332J46665913630.html",
+      "status": "open",
+      "updatedAt": "2026-08-02 12:45"
+    },
+    {
+      "id": "CCL68578909597685J40209304779",
+      "title": "核电仪控工程师",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "核电",
+      "city": "福清",
+      "salary": "18-30K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "核电",
+        "仪控",
+        "DCS"
+      ],
+      "skills": [
+        "DCS",
+        "核级仪表",
+        "数字化仪控",
+        "安全级系统",
+        "V&V"
+      ],
+      "url": "https://www.liepin.com/job/CCL68578909597685J40209304779/",
+      "status": "open",
+      "updatedAt": "2026-08-02 17:15"
+    },
+    {
+      "id": "CCL40517459055635J48178960096",
+      "title": "智能电网调度自动化工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "智能电网",
+      "city": "南京",
+      "salary": "18-30K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "智能电网",
+        "调度",
+        "自动化"
+      ],
+      "skills": [
+        "调度自动化",
+        "EMS/DMS",
+        "IEC61850",
+        "SCADA",
+        "Python"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL40517459055635J48178960096.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 11:00"
+    },
+    {
+      "id": "CCL49055173101618J45532446830",
+      "title": "配网自动化运维工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "智能电网",
+      "city": "成都",
+      "salary": "12-20K",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "本科",
+      "tags": [
+        "智能电网",
+        "配网",
+        "运维"
+      ],
+      "skills": [
+        "配网自动化",
+        "DTU/FTU",
+        "故障定位",
+        "GIS系统",
+        "通信协议"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL49055173101618J45532446830.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-01 08:15"
+    },
+    {
+      "id": "A09628039679160J47931513903",
+      "title": "虚拟电厂（VPP）产品经理",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "智能电网",
+      "city": "北京",
+      "salary": "25-45K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "智能电网",
+        "虚拟电厂",
+        "产品"
+      ],
+      "skills": [
+        "虚拟电厂",
+        "需求响应",
+        "辅助服务",
+        "电力市场",
+        "聚合商模式"
+      ],
+      "url": "https://www.liepin.com/job/A09628039679160J47931513903/",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:45"
+    },
+    {
+      "id": "CC57882375754992J43566865326",
+      "title": "电力交易员",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "智能电网",
+      "city": "广州",
+      "salary": "18-32K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "本科",
+      "tags": [
+        "智能电网",
+        "电力交易",
+        "现货"
+      ],
+      "skills": [
+        "电力现货",
+        "中长期交易",
+        "辅助服务",
+        "报价策略",
+        "市场规则"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC57882375754992J43566865326.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 13:15"
+    },
+    {
+      "id": "A67850953820505J45670810357",
+      "title": "充电桩运营经理",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "智能电网",
+      "city": "深圳",
+      "salary": "18-28K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "智能电网",
+        "充电桩",
+        "运营"
+      ],
+      "skills": [
+        "充电桩运营",
+        "场站管理",
+        "有序充电",
+        "负荷调控",
+        "用户运营"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/A67850953820505J45670810357.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 09:45"
+    },
+    {
+      "id": "CCL25705128398325J40567752112",
+      "title": "新型电力系统规划师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
+      "field": "智能电网",
+      "city": "北京",
+      "salary": "22-38K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "智能电网",
+        "规划",
+        "新能源消纳"
+      ],
+      "skills": [
+        "电网规划",
+        "新能源消纳",
+        "源网荷储",
+        "潮流计算",
+        "PSS/E"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CCL25705128398325J40567752112.htm",
+      "status": "open",
+      "updatedAt": "2026-08-01 12:00"
+    },
+    {
+      "id": "CC32910605970542J45554518950",
+      "title": "油气田开发工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "油气",
+      "city": "东营",
+      "salary": "14-24K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "本科",
+      "tags": [
+        "油气",
+        "开发",
+        "油藏"
+      ],
+      "skills": [
+        "油藏工程",
+        "数值模拟",
+        "Eclipse",
+        "试井分析",
+        "提高采收率"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC32910605970542J45554518950.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 14:00"
+    },
+    {
+      "id": "CCL09930607869568J46799169896",
+      "title": "LNG接收站操作工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "油气",
+      "city": "珠海",
+      "salary": "14-22K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "本科",
+      "tags": [
+        "油气",
+        "LNG",
+        "接收站"
+      ],
+      "skills": [
+        "LNG接收站",
+        "卸料臂",
+        "再气化",
+        "BOG处理",
+        "冷能利用"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL09930607869568J46799169896.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 09:30"
+    },
+    {
+      "id": "CC86553584709162J46242460077",
+      "title": "页岩气钻井工程师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
+      "field": "油气",
+      "city": "成都",
+      "salary": "18-30K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "油气",
+        "页岩气",
+        "钻井"
+      ],
+      "skills": [
+        "水平井",
+        "压裂技术",
+        "随钻测量",
+        "井控安全",
+        "Landmark"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CC86553584709162J46242460077.htm",
+      "status": "open",
+      "updatedAt": "2026-08-03 15:30"
+    },
+    {
+      "id": "CCL21587068157090J46294022999",
+      "title": "天然气管道巡检工程师",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "油气",
+      "city": "西安",
+      "salary": "10-16K",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "大专",
+      "tags": [
+        "油气",
+        "管道",
+        "巡检"
+      ],
+      "skills": [
+        "管道巡检",
+        "内检测",
+        "阴极保护",
+        "泄漏监测",
+        "GIS"
+      ],
+      "url": "https://www.liepin.com/job/CCL21587068157090J46294022999/",
+      "status": "open",
+      "updatedAt": "2026-08-02 11:30"
+    },
+    {
+      "id": "CC87879817232859J47013843396",
+      "title": "碳捕集与封存（CCUS）工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "油气",
+      "city": "北京",
+      "salary": "22-36K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "油气",
+        "CCUS",
+        "低碳"
+      ],
+      "skills": [
+        "CCUS",
+        "CO2捕集",
+        "地质封存",
+        "EOR",
+        "全生命周期评价"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC87879817232859J47013843396.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 11:45"
+    },
+    {
+      "id": "CCL05024887550464J48679135384",
+      "title": "BMS软件开发工程师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
+      "field": "新能源汽车",
+      "city": "上海",
+      "salary": "25-42K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "新能源汽车",
+        "BMS",
+        "嵌入式"
+      ],
+      "skills": [
+        "BMS软件",
+        "SOC算法",
+        "AUTOSAR",
+        "C语言",
+        "ISO26262"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CCL05024887550464J48679135384.htm",
+      "status": "open",
+      "updatedAt": "2026-08-02 14:15"
+    },
+    {
+      "id": "CCL46440256926601J40456788682",
+      "title": "电机控制器硬件工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "新能源汽车",
+      "city": "合肥",
+      "salary": "22-38K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "新能源汽车",
+        "电机",
+        "硬件"
+      ],
+      "skills": [
+        "电机控制",
+        "FOC",
+        "IGBT驱动",
+        "功率模块",
+        "EMC"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL46440256926601J40456788682.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 10:45"
+    },
+    {
+      "id": "A86950639665599J43221324610",
+      "title": "新能源汽车热管理工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "新能源汽车",
+      "city": "重庆",
+      "salary": "18-32K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "新能源汽车",
+        "热管理",
+        "三电"
+      ],
+      "skills": [
+        "整车热管理",
+        "电池冷却",
+        "热泵空调",
+        "一维仿真",
+        "KULI"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/A86950639665599J43221324610.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 16:45"
+    },
+    {
+      "id": "CCL05989422908915J49612183025",
+      "title": "充电系统架构师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "新能源汽车",
+      "city": "深圳",
+      "salary": "30-50K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "新能源汽车",
+        "充电",
+        "架构"
+      ],
+      "skills": [
+        "OBC",
+        "DCDC",
+        "高压架构",
+        "功能安全",
+        "800V平台"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL05989422908915J49612183025.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-01 15:15"
+    },
+    {
+      "id": "A00766694560550J47601501642",
+      "title": "新能源汽车测试工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "新能源汽车",
+      "city": "长春",
+      "salary": "12-20K",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "本科",
+      "tags": [
+        "新能源汽车",
+        "测试",
+        "三电"
+      ],
+      "skills": [
+        "台架测试",
+        "HIL",
+        "CANoe",
+        "耐久测试",
+        "国标法规"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/A00766694560550J47601501642.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:00"
+    },
+    {
+      "id": "CCL70900615799250J47947241727",
+      "title": "动力电池工艺工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "新能源汽车",
+      "city": "宜宾",
+      "salary": "14-24K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "本科",
+      "tags": [
+        "新能源汽车",
+        "电池",
+        "工艺"
+      ],
+      "skills": [
+        "锂电工艺",
+        "涂布",
+        "卷绕",
+        "注液",
+        "化成"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL70900615799250J47947241727.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 17:30"
+    },
+    {
+      "id": "A55513674580376J42936870683",
+      "title": "智能座舱域控制器工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "新能源汽车",
+      "city": "上海",
+      "salary": "30-50K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "新能源汽车",
+        "智能座舱",
+        "域控"
+      ],
+      "skills": [
+        "高通骁龙",
+        "QNX",
+        "Android Automotive",
+        "SOA架构",
+        "OTA"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/A55513674580376J42936870683.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 10:45"
+    },
+    {
+      "id": "CCL51832593682664J49337159075",
+      "title": "碳资产管理专员",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "碳管理",
+      "city": "北京",
+      "salary": "14-24K",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "本科",
+      "tags": [
+        "碳管理",
+        "碳资产",
+        "CCER"
+      ],
+      "skills": [
+        "碳核算",
+        "CCER",
+        "碳交易",
+        "温室气体清单",
+        "ISO14064"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL51832593682664J49337159075.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 14:30"
+    },
+    {
+      "id": "B09013511483574J46363883983",
+      "title": "ESG咨询顾问（能源行业）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "碳管理",
+      "city": "上海",
+      "salary": "20-35K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "碳管理",
+        "ESG",
+        "咨询"
+      ],
+      "skills": [
+        "ESG评级",
+        "GRI标准",
+        "气候披露",
+        "尽职调查",
+        "报告撰写"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/B09013511483574J46363883983.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-07-31 16:00"
+    },
+    {
+      "id": "CCL59666900576671J41093310441",
+      "title": "节能诊断工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "节能环保",
+      "city": "济南",
+      "salary": "12-20K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "本科",
+      "tags": [
+        "节能",
+        "诊断",
+        "审计"
+      ],
+      "skills": [
+        "能源审计",
+        "节能诊断",
+        "能耗分析",
+        "余热回收",
+        "电机能效"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL59666900576671J41093310441.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 13:30"
+    },
+    {
+      "id": "CC63679105668838J46812237612",
+      "title": "环境影响评价工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "节能环保",
+      "city": "郑州",
+      "salary": "12-22K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "本科",
+      "tags": [
+        "环评",
+        "环境",
+        "报告编制"
+      ],
+      "skills": [
+        "环评报告",
+        "大气预测",
+        "地下水评价",
+        "生态调查",
+        "公众参与"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC63679105668838J46812237612.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 13:15"
+    },
+    {
+      "id": "A08889989928882J49222975582",
+      "title": "绿色金融分析师（能源方向）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "碳管理",
+      "city": "北京",
+      "salary": "22-38K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "碳管理",
+        "绿色金融",
+        "分析"
+      ],
+      "skills": [
+        "绿色债券",
+        "碳金融",
+        "转型风险",
+        "情景分析",
+        "财务建模"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/A08889989928882J49222975582.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 15:15"
+    },
+    {
+      "id": "A54854757557610J45537447672",
+      "title": "综合能源服务工程师",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "节能环保",
+      "city": "长沙",
+      "salary": "14-24K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "本科",
+      "tags": [
+        "节能",
+        "综合能源",
+        "服务"
+      ],
+      "skills": [
+        "综合能源",
+        "多能互补",
+        "智慧能源",
+        "能效托管",
+        "合同能源管理"
+      ],
+      "url": "https://www.liepin.com/job/A54854757557610J45537447672/",
+      "status": "open",
+      "updatedAt": "2026-08-02 16:00"
+    },
+    {
+      "id": "CCL65373730876809J41877271730",
+      "title": "新能源运维工程师（光伏方向）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "新能源运维",
+      "city": "银川",
+      "salary": "9-14K",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "大专",
+      "tags": [
+        "新能源运维",
+        "光伏",
+        "运维"
+      ],
+      "skills": [
+        "光伏运维",
+        "组件清洗",
+        "逆变器检修",
+        "故障排查",
+        "低压电工"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL65373730876809J41877271730.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-01 16:45"
+    },
+    {
+      "id": "CC09115578960668J40680729525",
+      "title": "新能源运维值长（山西省内）",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "新能源运维",
+      "city": "太原",
+      "salary": "12-18K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "新能源运维",
+        "值长",
+        "山西"
+      ],
+      "skills": [
+        "场站管理",
+        "运维团队",
+        "调度沟通",
+        "安全管理",
+        "发电量考核"
+      ],
+      "url": "https://www.liepin.com/job/CC09115578960668J40680729525/",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:30"
+    },
+    {
+      "id": "A78660870489059J45853066324",
+      "title": "新能源运维经理（急招）",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "新能源运维",
+      "city": "兰州",
+      "salary": "18-28K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "本科",
+      "tags": [
+        "新能源运维",
+        "经理",
+        "急招"
+      ],
+      "skills": [
+        "区域运维",
+        "多场站管理",
+        "KPI考核",
+        "备件管理",
+        "外包管理"
+      ],
+      "url": "https://www.liepin.com/job/A78660870489059J45853066324/",
+      "status": "open",
+      "updatedAt": "2026-08-01 17:15"
+    },
+    {
+      "id": "CC98545361558068J44245254793",
+      "title": "储能电站运维工程师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
+      "field": "新能源运维",
+      "city": "嘉兴",
+      "salary": "11-17K",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "大专",
+      "tags": [
+        "新能源运维",
+        "储能",
+        "运维"
+      ],
+      "skills": [
+        "储能运维",
+        "BMS监控",
+        "消防联动",
+        "PCS维护",
+        "日常巡检"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CC98545361558068J44245254793.htm",
+      "status": "hot",
+      "updatedAt": "2026-08-03 08:30"
+    },
+    {
+      "id": "B09204688364578J46493813551",
+      "title": "风光互补电站运维主管",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "新能源运维",
+      "city": "张北",
+      "salary": "13-19K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "新能源运维",
+        "风光互补",
+        "主管"
+      ],
+      "skills": [
+        "风光运维",
+        "混合系统",
+        "功率预测",
+        "限电管理",
+        "运维优化"
+      ],
+      "url": "https://www.liepin.com/job/B09204688364578J46493813551/",
+      "status": "open",
+      "updatedAt": "2026-08-03 10:15"
+    },
+    {
+      "id": "CC89186079794575J49920383920",
+      "title": "能源互联网产品经理",
+      "company": "猎聘·能源企业",
+      "source": "猎聘",
+      "field": "综合",
+      "city": "杭州",
+      "salary": "25-42K",
+      "type": "全职",
+      "experience": "5年+",
+      "education": "硕士",
+      "tags": [
+        "综合",
+        "能源互联网",
+        "产品"
+      ],
+      "skills": [
+        "能源互联网",
+        "SaaS产品",
+        "数据中台",
+        "用户增长",
+        "商业模式"
+      ],
+      "url": "https://www.liepin.com/job/CC89186079794575J49920383920/",
+      "status": "open",
+      "updatedAt": "2026-07-31 13:00"
+    },
+    {
+      "id": "CC33336799746167J42723421047",
+      "title": "新能源投融资经理",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "综合",
+      "city": "上海",
+      "salary": "25-40K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "综合",
+        "投融资",
+        "新能源"
+      ],
+      "skills": [
+        "项目融资",
+        "PPP",
+        "REITs",
+        "财务模型",
+        "尽调"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC33336799746167J42723421047.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 11:15"
+    },
+    {
+      "id": "A34865606880648J48306947744",
+      "title": "能源行业售前解决方案工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "综合",
+      "city": "武汉",
+      "salary": "18-30K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "综合",
+        "售前",
+        "解决方案"
+      ],
+      "skills": [
+        "售前方案",
+        "招投标",
+        "技术交流",
+        "需求分析",
+        "PPT"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/A34865606880648J48306947744.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-03 17:15"
+    },
+    {
+      "id": "A96988093704062J46310591557",
+      "title": "新能源采购工程师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
+      "field": "综合",
+      "city": "东莞",
+      "salary": "12-20K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "本科",
+      "tags": [
+        "综合",
+        "采购",
+        "供应链"
+      ],
+      "skills": [
+        "供应链",
+        "供应商管理",
+        "成本控制",
+        "框架协议",
+        "物料计划"
+      ],
+      "url": "https://www.zhipin.com/job_detail/A96988093704062J46310591557.htm",
+      "status": "hot",
+      "updatedAt": "2026-08-03 17:00"
+    },
+    {
+      "id": "CCL35777759907696J43737832868",
+      "title": "能源数据分析工程师",
+      "company": "BOSS直聘·能源企业",
+      "source": "BOSS直聘",
+      "field": "综合",
+      "city": "北京",
+      "salary": "20-35K",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "综合",
+        "数据分析",
+        "AI"
+      ],
+      "skills": [
+        "Python",
+        "机器学习",
+        "负荷预测",
+        "发电预测",
+        "数据可视化"
+      ],
+      "url": "https://www.zhipin.com/job_detail/CCL35777759907696J43737832868.htm",
+      "status": "open",
+      "updatedAt": "2026-08-02 10:00"
+    },
+    {
+      "id": "B67004302558091J44540493053",
+      "title": "新能源法务专员",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "综合",
+      "city": "上海",
+      "salary": "16-28K",
+      "type": "全职",
+      "experience": "2-4年",
+      "education": "硕士",
+      "tags": [
+        "综合",
+        "法务",
+        "合规"
+      ],
+      "skills": [
+        "能源法律",
+        "合同审核",
+        "并购尽调",
+        "争议解决",
+        "政策解读"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/B67004302558091J44540493053.htm?refcode=4019&srccode=401903",
+      "status": "open",
+      "updatedAt": "2026-08-02 09:15"
     }
   ]
 }
