@@ -1,0 +1,348 @@
+{
+  "generatedAt": "2026-08-03 11:57",
+  "note": "真实公告数据：title / url / tag / source 抓取自中国公共招聘网·重点行业等官方渠道，url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为公告日期占位。实时同步机制以本文件为准——后台更新 soe.json 并提交后，正在浏览的访客 30 秒内自动看到最新公告。",
+  "announcements": [
+    {
+      "id": "SOE001",
+      "title": "重点行业重点企业招聘专栏",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "http://job.mohrss.gov.cn/zdqyzpxx/index.jhtml",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE002",
+      "title": "兵器未来科学家·2027届博士招聘提前批正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/m2oWNM6Nve0u6izstEBgyQ",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE003",
+      "title": "中国航天科技集团五院502所2027届校园招聘提前批正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/fgsXd6d76Xq0Cz8DsBIa_Q",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE004",
+      "title": "中交集团社会招聘扬帆启航",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/BQi6nA6CUODVBEePURfnmg",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE005",
+      "title": "华能核能技术研究院有限公司2026年社会招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/Qaf2HV8vw2L9dUjzDS6k7Q",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE006",
+      "title": "中铁十一局集团有限公司公开招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/2UpoavJtLlq8ITBj3Twm-Q",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE007",
+      "title": "中国空空导弹研究院2027届毕业生暑期开放日报名开始啦",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/aJQ2O6xzRo-fl0ch1QGwIw",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE008",
+      "title": "中国电科电科院2026届校园招聘开启",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/HJQGIEA5RPDuR_tYxHz2dw",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE009",
+      "title": "中国储备粮管理集团有限公司2026年度夏季招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/4pYccvS4MC5tdUDoI_InvA",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE010",
+      "title": "中国电信人工智能研究院（TeleAI）Top Talent 2027全球人才招募",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/FgQF86IZPmqW979euKRueg",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE011",
+      "title": "航空工业通飞2026及2027届校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/goNJDvftZP-NIJbHxIUDgA",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE012",
+      "title": "中核环保有限公司本部2026年春季校园招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/GJXlhePBv2gbiViY3fLufQ",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE013",
+      "title": "中国黄金集团有限公司所属企业2026年度招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/r2H04aOYDbPY92kaqFbdfQ",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE014",
+      "title": "中国稀土集团有限公司及所属企业招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/dfJUQCq5vIY2hWMWkblzrQ",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE015",
+      "title": "中国矿产资源集团所属单位2026届校园招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/FQuwCRRkVyNL5_GizaO2bQ",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE016",
+      "title": "中石化经纬有限公司博士后招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/gxDQ-6M0AQSLuB4uM257Tg",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE017",
+      "title": "旋翼飞行器制造业创新中心2026年春季招聘正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/p4q0OkSYkVZbgK3LNn60yQ",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE018",
+      "title": "国家能源集团2026春季校园招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/ykwpbhDklXSHNKfsY7nP4A",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE019",
+      "title": "中国铝业集团有限公司2026年春季招聘（第二批）",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/IYr6fN10t65GZzMlIW46gQ",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE020",
+      "title": "国务院印发《实施就业优先战略“十五五”规划》",
+      "tag": "招聘公告",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/ncss/jydt/yw/202606/20260623/2293840478.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE021",
+      "title": "丁薛祥在全国高校毕业生等青年就业创业工作视频会议上强调 促进高校毕业生高质量充分就业 更好服务大局、服务民生、服务发展",
+      "tag": "招聘公告",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/ncss/jydt/yw/202603/20260319/2293451069.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE022",
+      "title": "促进2026届高校毕业生就业，教育部启动“百日冲刺”行动",
+      "tag": "招聘公告",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/ncss/jydt/yw/202606/20260609/2293711457.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE023",
+      "title": "人力资源社会保障部 教育部启动“就业公共服务进校园百日行动”",
+      "tag": "招聘公告",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/ncss/jydt/yw/202604/20260407/2293461477.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE024",
+      "title": "国务院就业促进和劳动保护工作领导小组办公室印发通知在全国范围内开展2026年清理整顿人力资源市场秩序专项行动",
+      "tag": "招聘公告",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/ncss/jydt/yw/202605/20260513/2293471540.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE025",
+      "title": "中国（教育部）留学服务中心 2026年度上半年公开招聘公告 （非事业编制）",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/7HZbMj7xyJ4kwbSCic1wks/detail.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE026",
+      "title": "建德市资投酒店管理有限公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/BRLBtQsUeuVkRd2UPp89hF/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE027",
+      "title": "苏州文博商务旅游发展有限公司智选假日酒店分公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/56XnRoi55PsPBoWhvpawmq/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE028",
+      "title": "中国轻工集团高级技工学校（中国轻工机电工程学校）",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/JGRb6hLzNyYS6oE27VCRSH/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE029",
+      "title": "银行实习生岗位+包住",
+      "tag": "招聘公告",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/5LURa1GE2k4pXddeHiLYD2/detail.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE030",
+      "title": "昆山瀚海信息科技有限公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/da110983e4fd41dc97ef0b758f17d755/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE031",
+      "title": "庆虹电子（苏州）有限公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/SqL3AjEY1XhnXQWh6Cx1wR/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE032",
+      "title": "安徽保进建设工程有限公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/6rmeAniGbp1Y3jXBgRwRRD/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE033",
+      "title": "比亚迪股份有限公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/4c846b587dde4d08845d50269c107f67/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE034",
+      "title": "中国光大银行股份有限公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/7987cc53df884f09bb23068716f054dc/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE035",
+      "title": "烽火通信科技股份有限公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/da4563768f074b8282afe43d1f961f7c/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE036",
+      "title": "智能服务经营岗（银行网络客服9-13W）",
+      "tag": "招聘公告",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/PDxhujShKdTwwee6g36Zc7/detail.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE037",
+      "title": "招商银行股份有限公司信用卡中心",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/090406758b91442993e3df0327e6d9d3/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "SOE038",
+      "title": "安徽凯泽新材料有限公司",
+      "tag": "国企·央企",
+      "source": "国家大学生就业网",
+      "url": "https://www.ncss.cn/student/jobs/4m4gAWgFFp82cCgQxr88tf/corp.html",
+      "status": "open",
+      "updatedAt": "2026-08-03"
+    }
+  ]
+}

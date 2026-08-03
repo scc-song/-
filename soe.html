@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<script>
+/* 兼容 webview 网关把端口放在路径前缀（如 /8000/）的访问方式：
+   自动识别前缀，让 /api/ 与 /static/ 请求、下载链接都带正确前缀 */
+(function(){
+  var p = location.pathname || '/';
+  var m = p.match(/^(\/\d+)\//);
+  window.__BASE__ = m ? m[1] : '';
+  var _f = window.fetch ? window.fetch.bind(window) : null;
+  if(_f){ window.fetch = function(u, o){ if(typeof u === 'string' && u.charAt(0) === '/'){ u = window.__BASE__ + u; } return _f(u, o); }; }
+  function fixLinks(){
+    var els = document.querySelectorAll('a[href^="/static/"], a[href^="/api/"]');
+    for(var i=0;i<els.length;i++){ var h = els[i].getAttribute('href'); if(h && h.charAt(0)==='/'){ els[i].href = window.__BASE__ + h; } }
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', fixLinks); } else { fixLinks(); }
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>ResumeAuto · 国企/央企招聘公告（实时同步）</title>
+<style>
+  :root { --bg:#070b18; --bg-soft:#0e1530; --card:#131c3a; --line:#25365f; --text:#eaf0fb; --muted:#93a2c4; --brand:#5b8cff; --brand-2:#8b5cf6; --accent:#2dd4bf; --ok:#34d399; --danger:#fb7185; --warn:#fbbf24; --radius:16px; --grad:linear-gradient(135deg,#5b8cff,#8b5cf6 52%,#2dd4bf); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:radial-gradient(1100px 560px at 82% -8%,rgba(91,140,255,.20),transparent 60%),radial-gradient(900px 520px at -8% 8%,rgba(139,92,246,.18),transparent 55%),var(--bg); color:var(--text); line-height:1.65; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 22px; }
+  nav { position:sticky; top:0; z-index:60; backdrop-filter:blur(14px); background:rgba(7,11,24,.72); border-bottom:1px solid var(--line); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; height:62px; }
+  .logo { display:flex; align-items:center; gap:10px; font-weight:800; }
+  .logo .dot { width:14px; height:14px; border-radius:50%; background:var(--grad); box-shadow:0 0 16px rgba(91,140,255,.85); }
+  .nav-links { display:flex; gap:18px; font-size:14px; color:var(--muted); }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--text); border-bottom:2px solid var(--brand); padding-bottom:4px; }
+  @media(max-width:820px){ .nav-links{display:none;} }
+  header.hero { padding:54px 0 30px; }
+  .tag { display:inline-flex; gap:8px; align-items:center; font-size:13px; color:var(--accent); border:1px solid var(--line); padding:6px 14px; border-radius:999px; margin-bottom:18px; }
+  h1 { font-size:38px; line-height:1.15; font-weight:850; }
+  h1 .hl { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub { color:var(--muted); font-size:16px; max-width:780px; margin:14px 0 6px; }
+  section { padding:26px 0; }
+  .sample-flag { display:inline-block; font-size:12px; color:var(--warn); border:1px solid var(--warn); padding:2px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+
+  /* controls */
+  .controls { display:flex; gap:12px; flex-wrap:wrap; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-top:8px; }
+  .search { flex:1 1 280px; min-width:200px; background:var(--bg-soft); border:1px solid var(--line); color:var(--text); padding:10px 14px; border-radius:10px; font-size:14px; }
+  .search:focus { outline:none; border-color:var(--brand); }
+  .select { background:var(--bg-soft); border:1px solid var(--line); color:var(--text); padding:10px 12px; border-radius:10px; font-size:13px; }
+  .select:focus { outline:none; border-color:var(--brand); }
+  .btn { background:var(--grad); color:#fff; border:none; padding:10px 16px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer; display:inline-flex; align-items:center; gap:8px; }
+  .btn:disabled { opacity:.6; cursor:default; }
+  .sync { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-left:auto; }
+  .dot { width:9px; height:9px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 0 rgba(52,211,153,.7); animation:pulse 2s infinite; }
+  .dot.syncing { background:var(--brand); animation:spin 1s linear infinite; box-shadow:none; }
+  .dot.offline { background:var(--danger); animation:none; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(52,211,153,.6);} 70%{box-shadow:0 0 0 9px rgba(52,211,153,0);} 100%{box-shadow:0 0 0 0 rgba(52,211,153,0);} }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* kpi */
+  .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:18px 0; }
+  @media(max-width:820px){ .kpi-grid{ grid-template-columns:repeat(2,1fr);} }
+  .kpi { background:linear-gradient(180deg,var(--card),var(--bg-soft)); border:1px solid var(--line); border-radius:var(--radius); padding:18px; }
+  .kpi .ic { font-size:20px; } .kpi .val { font-size:30px; font-weight:850; margin:4px 0 2px; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .kpi .lbl { color:var(--muted); font-size:13px; }
+
+  /* soe list (与 index.html 同源样式) */
+  .soe-list { display:grid; gap:12px; }
+  .soe { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; flex-wrap:wrap; transition:border-color .2s, box-shadow .2s; }
+  .soe.soe-new { border-color:var(--brand); box-shadow:0 0 0 2px rgba(91,140,255,.25); }
+  .soe.soe-upd { border-color:var(--warn); }
+  .soe-title { font-size:15px; font-weight:700; }
+  .soe-meta { display:flex; gap:10px; margin-top:6px; font-size:12px; color:var(--muted); align-items:center; flex-wrap:wrap; }
+  .soe-actions { display:flex; align-items:center; gap:12px; }
+  .go { background:var(--grad); color:#fff; padding:8px 14px; border-radius:10px; font-size:13px; font-weight:700; white-space:nowrap; }
+  .go:hover { transform:translateY(-1px); }
+  .pill { font-size:11px; padding:2px 9px; border-radius:999px; border:1px solid var(--line); white-space:nowrap; }
+  .pill.p-tag { color:var(--accent); border-color:var(--accent); }
+  .pill.p-new { color:#fff; background:var(--brand); border-color:var(--brand); }
+  .pill.p-upd { color:var(--warn); border-color:var(--warn); }
+  .pill.p-open { color:var(--ok); border-color:var(--ok); }
+  .empty { color:var(--muted); text-align:center; padding:40px 0; font-size:14px; }
+
+  /* toast */
+  #toast { position:fixed; left:50%; top:78px; transform:translateX(-50%) translateY(-20px); background:linear-gradient(180deg,var(--card),var(--bg-soft)); border:1px solid var(--brand); color:var(--text); padding:11px 20px; border-radius:999px; font-size:13.5px; font-weight:600; box-shadow:0 12px 34px rgba(0,0,0,.5); opacity:0; pointer-events:none; transition:all .35s; z-index:90; }
+  #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+  .live-badge { position:fixed; right:18px; bottom:18px; z-index:80; background:linear-gradient(180deg,var(--card),var(--bg-soft)); border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-size:12.5px; color:var(--muted); box-shadow:0 10px 30px rgba(0,0,0,.5); display:flex; align-items:center; gap:8px; }
+  .live-badge .dot { width:9px; height:9px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 0 rgba(52,211,153,.7); animation:pulse 2s infinite; }
+  .live-badge b { color:var(--text); font-weight:700; }
+  footer { border-top:1px solid var(--line); padding:28px 0; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <a class="logo" href="index.html"><span class="dot"></span> ResumeAuto</a>
+  <div class="nav-links"><a href="index.html">首页</a><a href="jobs.html">招聘职位</a><a href="soe.html" class="active">国企/央企</a></div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="tag">🔴 实时同步 · 打开即最新</span>
+  <h1>国企 / 央企 <span class="hl">招聘公告</span><span class="sample-flag">官方直达</span></h1>
+  <p class="sub">页面每 30 秒自动拉取最新公告数据；后台新增 / 修改 / 下架公告后，正在浏览的访客无需刷新即可在数秒内看到更新。每条「看公告」按钮均<b>直达官方公告页</b>，无任何中间跳转或额外加载。</p>
+</div></header>
+
+<section><div class="wrap">
+  <div class="controls">
+    <input id="search" class="search" type="search" placeholder="搜索公告标题 / 单位 / 关键词…" />
+    <select id="tagSel" class="select"><option value="">全部类别</option></select>
+    <button id="refreshBtn" class="btn">↻ 立即刷新</button>
+    <div class="sync"><span id="syncDot" class="dot"></span><span id="syncText">初始化…</span></div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="ic">📋</div><div class="val" id="kpiTotal">—</div><div class="lbl">当前公告数</div></div>
+    <div class="kpi"><div class="ic">🔎</div><div class="val" id="kpiShown">—</div><div class="lbl">当前筛选结果</div></div>
+    <div class="kpi"><div class="ic">🆕</div><div class="val" id="kpiToday">—</div><div class="lbl">今日更新</div></div>
+    <div class="kpi"><div class="ic">🟢</div><div class="val" style="font-size:18px;padding-top:8px">实时在线</div><div class="lbl">自动同步状态</div></div>
+  </div>
+
+  <div class="soe-list" id="soeList"><div class="empty">正在加载公告数据…</div></div>
+</div></section>
+
+<div id="toast"></div>
+
+<div class="live-badge"><span class="dot"></span> 公告数据实时更新 · 最后更新：<b id="dataTs">—</b></div>
+
+<footer><div class="wrap">ResumeAuto · 国企/央企招聘公告实时同步模块 ｜ 数据每 30 秒自动刷新，点击「看公告」直达官方页面。</div></footer>
+
+<script>
+(function(){
+  var POLL_MS = 30000;
+  var DATA_URL = 'soe.json';
+  var lastSig = '';
+  var prevById = {};
+  var lastData = null;
+  var filter = { q:'', tag:'' };
+  var filterBuilt = false;
+
+  function el(id){ return document.getElementById(id); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function sigOf(list){
+    return list.map(function(a){ return a.id+'|'+(a.updatedAt||'')+'|'+(a.status||''); }).join('^');
+  }
+
+  function applyFilters(all){
+    var q = filter.q.trim().toLowerCase();
+    return all.filter(function(a){
+      if(q){ var hay = (a.title+' '+(a.source||'')+' '+(a.tag||'')).toLowerCase();
+        if(hay.indexOf(q) < 0) return false; }
+      if(filter.tag && a.tag !== filter.tag) return false;
+      return true;
+    });
+  }
+
+  function buildFilterOptions(all){
+    if(filterBuilt) return;
+    var tags = {};
+    all.forEach(function(a){ if(a.tag) tags[a.tag]=1; });
+    var ts = el('tagSel');
+    Object.keys(tags).sort().forEach(function(t){ var o=document.createElement('option'); o.value=t; o.textContent=t; ts.appendChild(o); });
+    filterBuilt = true;
+  }
+
+  function render(data, opts){
+    opts = opts || {};
+    var all = (data && data.announcements) || [];
+    if(opts.first) buildFilterOptions(all);
+
+    var list = applyFilters(all);
+    var box = el('soeList');
+    if(!list.length){
+      box.innerHTML = '<div class="empty">没有匹配的公告，试试调整筛选条件或清空搜索。</div>';
+    } else {
+      box.innerHTML = list.map(function(a){
+        var isNew = opts.announce && !prevById[a.id];
+        var wasUpd = prevById[a.id] && (prevById[a.id].updatedAt !== a.updatedAt || prevById[a.id].status !== a.status);
+        var badge = isNew ? '<span class="pill p-new">NEW</span>' : (wasUpd ? '<span class="pill p-upd">已更新</span>' : '');
+        var openFlag = a.status === 'open' ? '<span class="pill p-open">可投递</span>' : '';
+        var meta = '<span class="pill p-tag">'+esc(a.tag||'招聘公告')+'</span>'
+          + (a.source ? '<span>'+esc(a.source)+'</span>' : '')
+          + openFlag;
+        return '<div class="soe'+(isNew?' soe-new':(wasUpd?' soe-upd':''))+'">'
+          + '<div class="soe-main"><div class="soe-title">'+esc(a.title)+' '+badge+'</div>'
+          + '<div class="soe-meta">'+meta+'</div></div>'
+          + '<div class="soe-actions"><a class="go" href="'+esc(a.url)+'" target="_blank" rel="noopener">看公告 ↗</a></div>'
+          + '</div>';
+      }).join('');
+    }
+
+    // KPI
+    el('kpiTotal').textContent = all.length;
+    el('kpiShown').textContent = list.length;
+    var today = (data && data.generatedAt ? data.generatedAt.slice(0,10) : '');
+    var todayCnt = today ? all.filter(function(a){ return (a.updatedAt||'').slice(0,10) === today; }).length : 0;
+    el('kpiToday').textContent = todayCnt;
+    el('dataTs').textContent = (data && data.generatedAt) ? data.generatedAt : '—';
+
+    // diff toast
+    if(opts.announce && opts.changed){
+      var added=0, updated=0;
+      all.forEach(function(a){
+        var p = prevById[a.id];
+        if(!p) added++;
+        else if(p.updatedAt !== a.updatedAt || p.status !== a.status) updated++;
+      });
+      if(added || updated){
+        var msg = '📢 已自动同步：' + (added ? ('新增 '+added+' 条公告') : '') + ((added&&updated)?'，':'') + (updated ? ('更新 '+updated+' 条公告') : '');
+        toast(msg);
+      }
+    }
+
+    // baseline for next diff
+    prevById = {}; all.forEach(function(a){ prevById[a.id] = a; });
+  }
+
+  function setSync(state, isError){
+    var dot = el('syncDot'), txt = el('syncText');
+    if(state === 'loading'){ dot.className = 'dot syncing'; txt.textContent = '同步中…'; }
+    else if(isError){ dot.className = 'dot offline'; txt.textContent = '离线（显示缓存）'; }
+    else { dot.className = 'dot'; txt.textContent = '已是最新'; }
+  }
+
+  function toast(msg){
+    var t = el('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('show'); }, 4200);
+  }
+
+  function loadJobs(announce){
+    setSync('loading');
+    var btn = el('refreshBtn'); if(btn) btn.disabled = true;
+    var url = DATA_URL + '?_=' + Date.now();
+    fetch(url, { cache:'no-store' }).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(data){
+      lastData = data;
+      var sig = sigOf(data.announcements || []);
+      var changed = sig !== lastSig;
+      render(data, { announce: announce && lastSig && changed, changed: changed, first: !lastSig });
+      lastSig = sig;
+      setSync('ok');
+    }).catch(function(e){
+      setSync('ok', true);
+      console.warn('soe load failed:', e);
+      if(!lastSig){
+        el('soeList').innerHTML = '<div class="empty">⚠️ 暂时无法加载公告数据（' + esc(e.message) + '）。请检查网络后点击「立即刷新」。</div>';
+      }
+    }).then(function(){
+      if(btn) btn.disabled = false;
+    });
+  }
+
+  function reRenderLocal(){ if(lastData) render(lastData, { announce:false }); }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    el('search').addEventListener('input', function(e){ filter.q = e.target.value; reRenderLocal(); });
+    el('tagSel').addEventListener('change', function(e){ filter.tag = e.target.value; reRenderLocal(); });
+    el('refreshBtn').addEventListener('click', function(){ loadJobs(false); toast('已手动刷新'); });
+
+    loadJobs(false);
+    setInterval(function(){ loadJobs(true); }, POLL_MS);
+  });
+})();
+</script>
+</body>
+</html>
