@@ -1,0 +1,357 @@
+{
+  "generatedAt": "2026-08-03 11:30",
+  "note": "示例数据：title / url / source / field 为真实抓取自智联招聘；company / city / salary / experience / education 为演示占位字段，接入真实数据源后可整体替换。实时同步机制以本文件为准。",
+  "jobs": [
+    {
+      "id": "CCL1492247250J40830335307",
+      "title": "光伏工艺助理工程师（湿法方向）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "合肥",
+      "salary": "12-18K·13薪",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "本科",
+      "tags": [
+        "光伏",
+        "湿法",
+        "工艺"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1492247250J40830335307.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:00"
+    },
+    {
+      "id": "CC199232620J40771216816",
+      "title": "光伏电站站长",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "西安",
+      "salary": "15-22K·13薪",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "大专",
+      "tags": [
+        "光伏",
+        "电站运营"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC199232620J40771216816.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:11"
+    },
+    {
+      "id": "CCL1460995940J40868848603",
+      "title": "光伏业务销售员",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "苏州",
+      "salary": "10-18K·13薪",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "大专",
+      "tags": [
+        "光伏",
+        "销售"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1460995940J40868848603.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:22"
+    },
+    {
+      "id": "CCL1492247250J40834155907",
+      "title": "研发工程师（光伏 TOPCon / TBC 电池）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "上海",
+      "salary": "20-35K·14薪",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "光伏",
+        "电池",
+        "研发"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1492247250J40834155907.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "hot",
+      "updatedAt": "2026-08-03 08:33"
+    },
+    {
+      "id": "CC581307430J40833276311",
+      "title": "光伏新能源投标专员",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "南京",
+      "salary": "12-20K·13薪",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "本科",
+      "tags": [
+        "光伏",
+        "投标"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC581307430J40833276311.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:44"
+    },
+    {
+      "id": "CCL1460995940J40779820003",
+      "title": "工商业光伏发电业务开发经理",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "合肥",
+      "salary": "18-30K·14薪",
+      "type": "全职",
+      "experience": "5-10年",
+      "education": "本科",
+      "tags": [
+        "光伏",
+        "开发",
+        "BD"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1460995940J40779820003.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 08:55"
+    },
+    {
+      "id": "CCL1492247250J40867562607",
+      "title": "光伏湿法研发工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "西安",
+      "salary": "18-28K·14薪",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "硕士",
+      "tags": [
+        "光伏",
+        "湿法",
+        "研发"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1492247250J40867562607.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 09:06"
+    },
+    {
+      "id": "CC199232620J40771217016",
+      "title": "光伏电站站长",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "徐州",
+      "salary": "14-20K·13薪",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "大专",
+      "tags": [
+        "光伏",
+        "电站运营"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC199232620J40771217016.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 09:17"
+    },
+    {
+      "id": "CC696133780J40634745605",
+      "title": "光伏售后运维工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "盐城",
+      "salary": "10-16K·13薪",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "大专",
+      "tags": [
+        "光伏",
+        "运维"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC696133780J40634745605.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 09:28"
+    },
+    {
+      "id": "CC677096020J40939112508",
+      "title": "商务主管-欧洲区域（光伏组件）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "上海",
+      "salary": "20-35K·14薪",
+      "type": "全职",
+      "experience": "5-10年",
+      "education": "本科",
+      "tags": [
+        "光伏",
+        "海外",
+        "商务"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC677096020J40939112508.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "hot",
+      "updatedAt": "2026-08-03 09:39"
+    },
+    {
+      "id": "CC199232620J40753891416",
+      "title": "急招电工-五险一金-包住",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "合肥",
+      "salary": "8-12K·13薪",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "中专",
+      "tags": [
+        "光伏",
+        "电工"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC199232620J40753891416.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "open",
+      "updatedAt": "2026-08-03 09:50"
+    },
+    {
+      "id": "CCL1362071830J40867249807",
+      "title": "资深浆料研发工程师（光伏行业）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "光伏",
+      "city": "苏州",
+      "salary": "25-40K·14薪",
+      "type": "全职",
+      "experience": "5-10年",
+      "education": "硕士",
+      "tags": [
+        "光伏",
+        "浆料",
+        "研发"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1362071830J40867249807.htm?refcode=4019&srccode=401903&preactionid=37169f9e-d400-4ef9-b55e-8bbbd2bd9c1b",
+      "status": "hot",
+      "updatedAt": "2026-08-03 09:01"
+    },
+    {
+      "id": "CCL1509860860J41009585904",
+      "title": "市场总监（风能方向）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "风能",
+      "city": "北京",
+      "salary": "30-50K·14薪",
+      "type": "全职",
+      "experience": "5-10年",
+      "education": "本科",
+      "tags": [
+        "风能",
+        "市场"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1509860860J41009585904.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "status": "open",
+      "updatedAt": "2026-08-03 10:12"
+    },
+    {
+      "id": "CC634659930J40897186703",
+      "title": "风能资源设计岗（社招校招不限）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "风能",
+      "city": "张家口",
+      "salary": "15-25K·13薪",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "本科",
+      "tags": [
+        "风能",
+        "资源",
+        "设计"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC634659930J40897186703.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "status": "open",
+      "updatedAt": "2026-08-03 10:23"
+    },
+    {
+      "id": "CC346610010J40779655202",
+      "title": "市场开拓岗（风能发电工程施工）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "风能",
+      "city": "天津",
+      "salary": "18-30K·14薪",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "风能",
+        "施工",
+        "BD"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC346610010J40779655202.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "status": "open",
+      "updatedAt": "2026-08-03 10:34"
+    },
+    {
+      "id": "CCL1509860860J41010851604",
+      "title": "市场拓展总监（风能方向）",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "风能",
+      "city": "北京",
+      "salary": "35-55K·14薪",
+      "type": "全职",
+      "experience": "10年+",
+      "education": "本科",
+      "tags": [
+        "风能",
+        "市场"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1509860860J41010851604.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "status": "hot",
+      "updatedAt": "2026-08-03 10:45"
+    },
+    {
+      "id": "CCL1354809480J40820191409",
+      "title": "风能风电电气工程师",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "风能",
+      "city": "南通",
+      "salary": "18-28K·14薪",
+      "type": "全职",
+      "experience": "3-5年",
+      "education": "本科",
+      "tags": [
+        "风能",
+        "电气"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CCL1354809480J40820191409.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "status": "open",
+      "updatedAt": "2026-08-03 10:56"
+    },
+    {
+      "id": "CC840900840J41018668804",
+      "title": "天津明阳风能叶片技术有限公司+天津+技工",
+      "company": "智联招聘·能源企业",
+      "source": "智联招聘",
+      "field": "风能",
+      "city": "天津",
+      "salary": "9-14K·13薪",
+      "type": "全职",
+      "experience": "1-3年",
+      "education": "中专",
+      "tags": [
+        "风能",
+        "叶片",
+        "技工"
+      ],
+      "url": "http://www.zhaopin.com/jobdetail/CC840900840J41018668804.htm?refcode=4019&srccode=401903&preactionid=5d4c9933-b64a-4d90-bd7f-f04398ec36be",
+      "status": "open",
+      "updatedAt": "2026-08-03 10:07"
+    }
+  ]
+}
