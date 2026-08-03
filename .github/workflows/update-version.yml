@@ -1,0 +1,28 @@
+name: Bump data timestamp
+
+on:
+  schedule:
+    - cron: '0 16 * * *'   # 每天北京时间 00:00（UTC 16:00）自动刷新「最后更新」时间
+  workflow_dispatch:        # 也可在 Actions 页面手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write timestamp (Asia/Shanghai)
+        run: |
+          TS=$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M')
+          printf '{\n  "ts": "%s"\n}\n' "$TS" > version.json
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add version.json
+          git commit -m "chore: bump data timestamp" || echo "no changes"
+          git push

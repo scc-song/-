@@ -940,7 +940,7 @@
 </div></section>
 
 <footer><div class="wrap">ResumeAuto · 简历分析 + 匹配投递 · 简历已解析、链接按方向匹配、投递由用户本人完成</div></footer>
-<div class="live-badge"><span class="dot"></span> 招聘数据实时更新 · 最后更新：<b id="dataTs">加载中…</b></div>
+<div class="live-badge"><span class="dot"></span> 招聘数据实时更新 · 最后更新：<b id="dataTs">—</b></div>
 
 <script>
   var KEY = 'resumeauto_feedback';
@@ -1044,11 +1044,14 @@
   // ---- 招聘数据实时更新轮询 ----
   var lastTs = "";
   function checkVersion(){
-    fetch('/api/version').then(function(r){return r.json();}).then(function(d){
+    fetch('version.json', {cache:'no-store'}).then(function(r){
+      if(!r.ok) throw new Error('version.json not found');
+      return r.json();
+    }).then(function(d){
       document.getElementById('dataTs').textContent = d.ts || '—';
       if(lastTs && d.ts && d.ts !== lastTs){ location.reload(); }
       lastTs = d.ts || "";
-    }).catch(function(){});
+    }).catch(function(){ /* keep dash on missing/error, no stuck loading */ });
   }
   checkVersion();
   setInterval(checkVersion, 30000);
