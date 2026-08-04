@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-08-04 09:18",
+  "generatedAt": "2026-08-04 20:29",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
+    {
+      "id": "SOE069",
+      "title": "50天后，世界的脉搏将和上海一...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/dKUcmwTTo03SLhz1lxTysA",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
     {
       "id": "SOE039",
       "title": "“创赢未来”创业大赛全国赛在...",
@@ -102,11 +111,11 @@
       "updatedAt": "2026-08-04"
     },
     {
-      "id": "SOE050",
-      "title": "中国长城2026年全球博士人才招聘启动",
-      "tag": "招聘公告",
+      "id": "SOE070",
+      "title": "中国融通集团2026届夏季校园招聘",
+      "tag": "国企·央企",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/O85pIJb51Zkmxp_OdxIMgA",
+      "url": "https://mp.weixin.qq.com/s/s6uZIK6OulOchIQulyYOtg",
       "status": "open",
       "updatedAt": "2026-08-04"
     },
@@ -201,20 +210,20 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE071",
+      "title": "大规模开展职业技能培训 为高...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260803_581450.html",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
       "id": "SOE061",
       "title": "技能强企，产教评技能生态链如...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260731_581292.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE062",
-      "title": "抓好“四化”建设推进调解仲裁...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260727_580998.html",
       "status": "open",
       "updatedAt": "2026-08-04"
     },
@@ -237,15 +246,6 @@
       "updatedAt": "2026-08-04"
     },
     {
-      "id": "SOE065",
-      "title": "新就业形态劳动者社保覆盖将扩大",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260724_580839.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
       "id": "SOE066",
       "title": "电子社保卡4.0全新来袭！高效...",
       "tag": "招聘公告",
@@ -255,11 +255,11 @@
       "updatedAt": "2026-08-04"
     },
     {
-      "id": "SOE067",
-      "title": "百日千万招聘专项行动推出汽车...",
+      "id": "SOE072",
+      "title": "百日千万招聘专项行动推出人工...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260727_580996.html",
+      "url": "http://www.job.mohrss.gov.cn:80/rdzx/171931.jhtml",
       "status": "open",
       "updatedAt": "2026-08-04"
     },
@@ -269,6 +269,42 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260729_581158.html",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE050",
+      "title": "中国长城2026年全球博士人才招聘启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/O85pIJb51Zkmxp_OdxIMgA",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE062",
+      "title": "抓好“四化”建设推进调解仲裁...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260727_580998.html",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE065",
+      "title": "新就业形态劳动者社保覆盖将扩大",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260724_580839.html",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE067",
+      "title": "百日千万招聘专项行动推出汽车...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260727_580996.html",
       "status": "open",
       "updatedAt": "2026-08-04"
     },
@@ -413,42 +449,6 @@
       "tag": "国企·央企",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/gxDQ-6M0AQSLuB4uM257Tg",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE017",
-      "title": "旋翼飞行器制造业创新中心2026年春季招聘正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/p4q0OkSYkVZbgK3LNn60yQ",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE018",
-      "title": "国家能源集团2026春季校园招聘",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/ykwpbhDklXSHNKfsY7nP4A",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE019",
-      "title": "中国铝业集团有限公司2026年春季招聘（第二批）",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/IYr6fN10t65GZzMlIW46gQ",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE020",
-      "title": "国务院印发《实施就业优先战略“十五五”规划》",
-      "tag": "招聘公告",
-      "source": "国家大学生就业网",
-      "url": "https://www.ncss.cn/ncss/jydt/yw/202606/20260623/2293840478.html",
       "status": "open",
       "updatedAt": "2026-08-03"
     }
