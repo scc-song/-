@@ -1,16 +1,7 @@
 {
-  "generatedAt": "2026-08-06 06:18",
+  "generatedAt": "2026-08-06 18:13",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
-    {
-      "id": "SOE069",
-      "title": "50天后，世界的脉搏将和上海一...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/dKUcmwTTo03SLhz1lxTysA",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
     {
       "id": "SOE040",
       "title": "三峡集团2026年博士后招聘全面启动",
@@ -219,6 +210,15 @@
       "updatedAt": "2026-08-05"
     },
     {
+      "id": "SOE081",
+      "title": "人力资源社会保障部面向社会公...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260805_581603.html",
+      "status": "open",
+      "updatedAt": "2026-08-06"
+    },
+    {
       "id": "SOE077",
       "title": "全国专业技术人才总量超8000...",
       "tag": "招聘公告",
@@ -226,15 +226,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260804_581487.html",
       "status": "open",
       "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE071",
-      "title": "大规模开展职业技能培训 为高...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260803_581450.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     },
     {
       "id": "SOE078",
@@ -255,6 +246,15 @@
       "updatedAt": "2026-08-05"
     },
     {
+      "id": "SOE082",
+      "title": "百日千万招聘专项行动推出线上...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.workercn.cn/c/2026-08-05/8863593.shtml",
+      "status": "open",
+      "updatedAt": "2026-08-06"
+    },
+    {
       "id": "SOE080",
       "title": "跨省联动 云端送岗——“就业...",
       "tag": "招聘公告",
@@ -262,6 +262,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260804_581512.html",
       "status": "open",
       "updatedAt": "2026-08-05"
+    },
+    {
+      "id": "SOE069",
+      "title": "50天后，世界的脉搏将和上海一...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/dKUcmwTTo03SLhz1lxTysA",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE071",
+      "title": "大规模开展职业技能培训 为高...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260803_581450.html",
+      "status": "open",
+      "updatedAt": "2026-08-04"
     },
     {
       "id": "SOE039",
@@ -431,24 +449,6 @@
       "tag": "国企·央企",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/2UpoavJtLlq8ITBj3Twm-Q",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE007",
-      "title": "中国空空导弹研究院2027届毕业生暑期开放日报名开始啦",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/aJQ2O6xzRo-fl0ch1QGwIw",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE008",
-      "title": "中国电科电科院2026届校园招聘开启",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/HJQGIEA5RPDuR_tYxHz2dw",
       "status": "open",
       "updatedAt": "2026-08-03"
     }
