@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 13:53",
+  "generatedAt": "2026-08-07 17:35",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -165,6 +165,15 @@
       "updatedAt": "2026-08-05"
     },
     {
+      "id": "SOE083",
+      "title": "数智驱动 开创人社信息化发展...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/9nUsLy-gIkdBb-gXjNxJqQ",
+      "status": "open",
+      "updatedAt": "2026-08-07"
+    },
+    {
       "id": "SOE056",
       "title": "正元地理信息集团股份有限公司校园招聘公告",
       "tag": "国企·央企",
@@ -192,6 +201,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE084",
+      "title": "赋能技能成才！全力推进“职业...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/6xwjBmFNEMntkVUh85zrbw",
+      "status": "open",
+      "updatedAt": "2026-08-07"
+    },
+    {
       "id": "SOE060",
       "title": "通用技术资产公司相关岗位招聘",
       "tag": "国企·央企",
@@ -201,13 +219,13 @@
       "updatedAt": "2026-08-04"
     },
     {
-      "id": "SOE076",
-      "title": "世赛“云探营”",
+      "id": "SOE085",
+      "title": "一份图鉴带你看懂第48届世界技...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202606/t20260604_577705.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260806_581636.html",
       "status": "open",
-      "updatedAt": "2026-08-05"
+      "updatedAt": "2026-08-07"
     },
     {
       "id": "SOE081",
@@ -253,6 +271,15 @@
       "url": "https://www.workercn.cn/c/2026-08-05/8863593.shtml",
       "status": "open",
       "updatedAt": "2026-08-06"
+    },
+    {
+      "id": "SOE076",
+      "title": "世赛“云探营”",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202606/t20260604_577705.html",
+      "status": "open",
+      "updatedAt": "2026-08-05"
     },
     {
       "id": "SOE080",
@@ -422,33 +449,6 @@
       "tag": "国企·央企",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/fgsXd6d76Xq0Cz8DsBIa_Q",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE004",
-      "title": "中交集团社会招聘扬帆启航",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/BQi6nA6CUODVBEePURfnmg",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE005",
-      "title": "华能核能技术研究院有限公司2026年社会招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/Qaf2HV8vw2L9dUjzDS6k7Q",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE006",
-      "title": "中铁十一局集团有限公司公开招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/2UpoavJtLlq8ITBj3Twm-Q",
       "status": "open",
       "updatedAt": "2026-08-03"
     }
