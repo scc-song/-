@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 13:10",
+  "generatedAt": "2026-08-10 18:40",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -138,6 +138,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE086",
+      "title": "华侨城集团总部及所属企业法律类岗位招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/eZnsk5phaKZeAHq-9PefVw",
+      "status": "open",
+      "updatedAt": "2026-08-10"
+    },
+    {
       "id": "SOE054",
       "title": "华润集团2026年博士后招聘",
       "tag": "国企·央企",
@@ -172,15 +181,6 @@
       "url": "https://mp.weixin.qq.com/s/9nUsLy-gIkdBb-gXjNxJqQ",
       "status": "open",
       "updatedAt": "2026-08-07"
-    },
-    {
-      "id": "SOE056",
-      "title": "正元地理信息集团股份有限公司校园招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/quIumbjt7DWRf6WFEN8v-g",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     },
     {
       "id": "SOE057",
@@ -271,6 +271,15 @@
       "url": "https://www.workercn.cn/c/2026-08-05/8863593.shtml",
       "status": "open",
       "updatedAt": "2026-08-06"
+    },
+    {
+      "id": "SOE056",
+      "title": "正元地理信息集团股份有限公司校园招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/quIumbjt7DWRf6WFEN8v-g",
+      "status": "open",
+      "updatedAt": "2026-08-04"
     },
     {
       "id": "SOE076",
@@ -440,15 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/m2oWNM6Nve0u6izstEBgyQ",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE003",
-      "title": "中国航天科技集团五院502所2027届校园招聘提前批正式启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/fgsXd6d76Xq0Cz8DsBIa_Q",
       "status": "open",
       "updatedAt": "2026-08-03"
     }
