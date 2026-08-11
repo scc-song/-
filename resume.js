@@ -110,7 +110,7 @@
       var sch = SCHEMA[sec.type];
       var hidden = sec.hidden ? ' hidden' : '';
       html += '<div class="sec' + hidden + '" data-sec="' + si + '">';
-      html += '<div class="sec-head"><span class="sec-title">' + esc(sec.title || sch.label) + '</span>'
+      html += '<div class="sec-head"><span class="drag-handle" title="按住拖拽排序">⠿</span><span class="sec-title">' + esc(sec.title || sch.label) + '</span>'
         + '<button class="mini" data-act="up" title="上移">↑</button>'
         + '<button class="mini" data-act="down" title="下移">↓</button>'
         + '<button class="mini" data-act="hide" title="隐藏/显示">' + (sec.hidden ? '显示' : '隐藏') + '</button>'
@@ -332,6 +332,82 @@
     r.readAsArrayBuffer(file);
   }
 
+  /* ---------- AI 润色（用户自己的 Key，直连厂商）---------- */
+  var AIKEY = 'resumeauto.ai';
+  function loadAI() { try { return JSON.parse(localStorage.getItem(AIKEY) || '{}'); } catch (e) { return {}; } }
+  function saveAI(o) { try { localStorage.setItem(AIKEY, JSON.stringify(o)); } catch (e) { flash('AI 设置保存失败：' + e); } }
+  function parseJsonSafe(s) {
+    try { return JSON.parse(s); } catch (e) {}
+    var m = s.match(/\{[\s\S]*\}/); if (m) { try { return JSON.parse(m[0]); } catch (e) {} }
+    return null;
+  }
+  function applyAiResults(json, blocks) {
+    if (!json || !Array.isArray(json.results)) { flash('模型返回格式异常，未应用'); return; }
+    var map = {}; json.results.forEach(function (r) { if (r && r.id != null) map[r.id] = r; });
+    var n = 0;
+    blocks.forEach(function (b) {
+      var res = map[b.id]; if (!res || !res.text) return;
+      var lines = res.text.split('\n').map(function (x) { return x.replace(/^\s*[-•·]\s*/, '').trim(); }).filter(Boolean);
+      if (!lines.length) return;
+      if (b.id === 'summary') state.basics.summary = lines.join('\n');
+      else {
+        var p = b.id.split(':'), si = +p[1], ij = +p[2];
+        if (state.sections[si] && state.sections[si].items[ij]) {
+          if (p[0] === 'b') state.sections[si].items[ij].bullets = lines.slice();
+          else if (p[0] === 'c') state.sections[si].items[ij].body = lines.slice();
+        }
+      }
+      n++;
+    });
+    flash('已按 JD 润色 ' + n + ' 处，请检查并补全 [数字] 占位');
+  }
+  function aiPolish() {
+    var cfg = loadAI();
+    if (!cfg.key) { document.getElementById('aiSettings').hidden = false; flash('请先填写 API Key'); return; }
+    var jd = document.getElementById('jdInput').value || '';
+    if (!jd.trim()) { flash('请先在 JD 匹配卡片粘贴岗位 JD'); return; }
+    var blocks = [];
+    if (state.basics.summary) blocks.push({ id: 'summary', text: state.basics.summary });
+    state.sections.forEach(function (sec, si) {
+      if (sec.hidden) return;
+      if (sec.type === 'experience' || sec.type === 'projects')
+        sec.items.forEach(function (it, ij) { var ls = (it.bullets || []).filter(Boolean); if (ls.length) blocks.push({ id: 'b:' + si + ':' + ij, text: ls.join('\n') }); });
+      else if (sec.type === 'custom')
+        sec.items.forEach(function (it, ij) { var ls = (it.body || []).filter(Boolean); if (ls.length) blocks.push({ id: 'c:' + si + ':' + ij, text: ls.join('\n') }); });
+    });
+    if (!blocks.length) { flash('当前没有可润色的条目（先填些职责/业绩）'); return; }
+    var btn = document.getElementById('aiPolish'), st = document.getElementById('aiStatus');
+    btn.disabled = true; st.textContent = '润色中（浏览器直连你的模型）…';
+    var blockTxt = blocks.map(function (b) { return '[' + b.id + ']\n' + b.text; }).join('\n\n');
+    var prompt = '你是一名资深简历优化顾问。下面是候选人的若干简历文本片段与目标岗位 JD。\n'
+      + '请逐条专业润色：用强动词开头、突出量化成果（用 [数字] 占位让候选人自行填写）、保持中文、忠于原文事实、不要编造新经历。\n'
+      + '严格只返回一个 JSON 对象：{"results":[{"id":"原id","text":"润色后文本（保留原换行结构）"}]}，每个输入 id 必须对应一个结果。\n\n'
+      + '【岗位 JD】\n' + jd + '\n\n【待润色片段】\n' + blockTxt;
+    var url = (cfg.base || 'https://api.openai.com/v1').replace(/\/+$/, '') + '/chat/completions';
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + cfg.key },
+      body: JSON.stringify({
+        model: cfg.model || 'gpt-4o-mini', temperature: 0.3,
+        messages: [
+          { role: 'system', content: 'You are a precise resume editor. Output only valid JSON.' },
+          { role: 'user', content: prompt }
+        ],
+        response_format: { type: 'json_object' }
+      })
+    }).then(function (r) { if (!r.ok) return r.text().then(function (t) { throw new Error('HTTP ' + r.status + ' ' + t.slice(0, 200)); }); return r.json(); })
+      .then(function (d) {
+        var content = d && d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content;
+        if (!content) throw new Error('模型返回为空');
+        applyAiResults(parseJsonSafe(content), blocks);
+        btn.disabled = false; st.textContent = '✅ 已润色 ' + blocks.length + ' 处';
+        save(); renderForm(); renderPreview();
+      }).catch(function (err) {
+        btn.disabled = false; st.textContent = '';
+        alert('AI 润色失败：' + err.message + '\n（请检查 API 设置 / 网络 / 额度；请求由你的浏览器直连模型厂商，不经过任何中转服务器）');
+      });
+  }
+
   /* ---------- 多份简历管理 ---------- */
   function renderResumeSelector() {
     var sel = document.getElementById('resumeSel');
@@ -464,6 +540,52 @@
       var ta = document.getElementById('coverOut'); ta.select();
       try { document.execCommand('copy'); flash('求职信已复制'); } catch (e) { flash('复制失败，请手动选择'); }
     });
+    // AI 润色：设置与执行
+    document.getElementById('aiSettingsBtn').addEventListener('click', function () {
+      var box = document.getElementById('aiSettings'); box.hidden = !box.hidden;
+      if (!box.hidden) { var cfg = loadAI(); document.getElementById('aiBase').value = cfg.base || 'https://api.openai.com/v1'; document.getElementById('aiKey').value = cfg.key || ''; document.getElementById('aiModel').value = cfg.model || 'gpt-4o-mini'; }
+    });
+    ['aiBase', 'aiKey', 'aiModel'].forEach(function (id) {
+      document.getElementById(id).addEventListener('change', function () {
+        var cfg = loadAI();
+        cfg.base = document.getElementById('aiBase').value.trim();
+        cfg.key = document.getElementById('aiKey').value.trim();
+        cfg.model = document.getElementById('aiModel').value.trim();
+        saveAI(cfg); flash('AI 设置已保存（仅本机）');
+      });
+    });
+    document.getElementById('aiPolish').addEventListener('click', aiPolish);
+    // 模块拖拽排序（手柄 + HTML5 DnD，箭头按钮仍可用作兜底）
+    var sectionsEl = document.getElementById('sections'), dragSi = null;
+    sectionsEl.addEventListener('mousedown', function (e) {
+      var h = e.target.closest('.drag-handle'), sec = e.target.closest('.sec');
+      if (h && sec) sec.setAttribute('draggable', 'true');
+    });
+    sectionsEl.addEventListener('dragstart', function (e) {
+      var sec = e.target.closest('.sec'); if (!sec) return;
+      if (e.target.matches('input,textarea,button')) { e.preventDefault(); return; }
+      dragSi = +sec.dataset.sec; sec.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      try { e.dataTransfer.setData('text/plain', String(dragSi)); } catch (_) {}
+    });
+    sectionsEl.addEventListener('dragover', function (e) {
+      if (dragSi == null) return; e.preventDefault();
+      var sec = e.target.closest('.sec'); if (!sec || sec.classList.contains('dragging')) return;
+      var dragging = sectionsEl.querySelector('.dragging'); if (!dragging) return;
+      var rect = sec.getBoundingClientRect(), after = (e.clientY - rect.top) > rect.height / 2;
+      if (after) sectionsEl.insertBefore(dragging, sec.nextSibling); else sectionsEl.insertBefore(dragging, sec);
+    });
+    sectionsEl.addEventListener('drop', function (e) {
+      if (dragSi == null) return; e.preventDefault();
+      var order = Array.prototype.map.call(sectionsEl.querySelectorAll('.sec'), function (el) { return +el.dataset.sec; });
+      state.sections = order.map(function (i) { return state.sections[i]; });
+      dragSi = null; save(); renderForm(); renderPreview();
+    });
+    sectionsEl.addEventListener('dragend', function (e) {
+      var d = sectionsEl.querySelector('.dragging'); if (d) d.classList.remove('dragging');
+      Array.prototype.forEach.call(sectionsEl.querySelectorAll('.sec'), function (el) { el.removeAttribute('draggable'); });
+      dragSi = null;
+    });
     document.getElementById('exportPdf').addEventListener('click', function () { window.print(); });
     document.getElementById('exportJson').addEventListener('click', exportJson);
     document.getElementById('exportMd').addEventListener('click', exportMd);
@@ -490,7 +612,7 @@
       else if (f) flash('仅支持 .docx 简历导入');
     });
     // expose for testing
-    window.__ra = { state: function () { return state; }, computeAts: computeAts, parseDocxToState: parseDocxToState };
+    window.__ra = { state: function () { return state; }, computeAts: computeAts, parseDocxToState: parseDocxToState, applyAiResults: applyAiResults, loadAI: loadAI };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
