@@ -18,6 +18,7 @@
   if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', fixLinks); } else { fixLinks(); }
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
@@ -158,7 +159,7 @@
       <span class="tag-ok">低压电工证（运维硬门槛）</span><span class="tag-ok">电气相关背景</span><span class="tag-ok">新能源方向对口</span><span class="tag-ok">学历背景达标</span><span class="tag-ok">持证（详见证书栏）</span>
       <span class="tag-warn">缺登高证（风电运维硬性）</span><span class="tag-warn">缺领域关键词（逆变器/汇流箱/变压器等）</span><span class="tag-warn">建议补充高压电工证</span>
     </div>
-    <a class="dl" href="/static/优化版简历_宋创创_v2_新能源.docx" download>下载优化版简历（.docx）</a>
+    <button id="exportResume" class="dl" style="background:var(--bg-soft);border:1px solid var(--line);color:var(--text)">⬇️ 导出我的简历（.txt）</button>
     <button id="saveProfile" class="dl" style="margin-top:14px;background:var(--bg-soft);border:1px solid var(--line);color:var(--text)">保存画像修改</button>
     <div id="profileMsg" style="margin-top:8px;font-size:12px;color:var(--muted)"></div>
     <button id="changeResume" class="dl" style="margin-top:14px;background:var(--bg-soft);border:1px solid var(--line);color:var(--text)">更换简历（上传新 .docx）</button>
@@ -939,7 +940,7 @@
   <div class="note">③ 自动优化：系统按上方真实反馈，在沙箱存活期间<b>每 20 分钟自动重跑跟踪</b>并生成下一轮优化建议。也可点下方按钮立即生成。
     <button id="optBtn" class="dl" style="margin-left:10px">立即生成优化建议</button></div>
   <div id="optBox" class="opt-box"></div>
-  <a class="dl" href="/static/优化版简历_宋创创_v2_新能源.docx" download style="margin-top:14px;display:inline-block"><span id="optRegen" style="margin-left:10px;color:var(--accent);font-size:13px"></span>⬇ 下载优化版简历</a>
+  <a class="dl" href="resume.html" style="margin-top:14px;display:inline-block">📝 打开简历编辑器（可导出优化版简历）</a>
 </div></section>
 
 <footer><div class="wrap">ResumeAuto · 简历分析 + 匹配投递 · 简历已解析、链接按方向匹配、投递由用户本人完成</div></footer>
@@ -957,9 +958,7 @@
       btns.forEach(function(b){ var s=b.dataset.s; b.className=''; if(st===s) b.classList.add('on-'+s); });
     });
   }
-  function syncFeedback(url, status){
-    fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url,status:status})}).catch(function(e){ console.log(e); });
-  }
+  function syncFeedback(){ /* 静态站点无后端，投递反馈仅保存在本地浏览器 */ }
   document.querySelectorAll('.job .fb button').forEach(function(b){
     b.onclick = function(){
       var job = b.closest('.job'); var url = job.dataset.url; var s = b.dataset.s;
@@ -1018,7 +1017,7 @@
         var ob = document.getElementById('optBox'); ob.innerHTML='';
         d.opt.suggestions.forEach(function(t){ var e=document.createElement('div'); e.className='ob'; e.textContent=t; ob.appendChild(e); });
       }
-    }).catch(function(e){ console.log(e); });
+    }).catch(function(e){ var b=document.getElementById('trackList'); if(b && !b.dataset.noted){ b.innerHTML='<div class="mut" style="color:var(--muted);font-size:13px">自动跟踪 / 优化建议需要后端服务；当前为纯静态站点暂不可用。请用岗位卡片上的反馈按钮（本地保存）记录结果，或前往「简历编辑器」定制简历。</div>'; b.dataset.noted='1'; } });
   }
   document.getElementById('saveTrack').onclick = function(){
     var ids = {boss:'ck-boss', liepin:'ck-liepin', zhaopin:'ck-zhaopin', job51:'ck-job51', lagou:'ck-lagou', shixiseng:'ck-shixiseng'};
@@ -1033,13 +1032,11 @@
         loadStatus();
         var n=0, iv=setInterval(function(){ n++; loadStatus(); if(n>=9) clearInterval(iv); }, 10000);
       })
-      .catch(function(e){ document.getElementById('authMsg').textContent='保存失败：'+e; });
+      .catch(function(e){ document.getElementById('authMsg').textContent='自动跟踪需要后端服务；当前为纯静态站点暂不支持 cookie 自动跟踪。请在各平台手动投递，并用岗位卡片上的反馈按钮（本地保存）记录结果。'; });
   };
   document.getElementById('optBtn').onclick = function(){
-    fetch('/api/optimize').then(function(r){return r.json();}).then(function(d){
-      var ob=document.getElementById('optBox'); ob.innerHTML='';
-      (d.suggestions||[]).forEach(function(t){ var e=document.createElement('div'); e.className='ob'; e.textContent=t; ob.appendChild(e); });
-    });
+    var ob=document.getElementById('optBox'); if(!ob) return;
+    ob.innerHTML='<div class="ob">简历优化建议需要后端服务；当前为纯静态站点暂不可用。👉 前往「简历编辑器」页，粘贴岗位 JD 即可按岗位智能生成定制简历与求职信。</div>';
   };
   loadStatus();
   setInterval(loadStatus, 30000);
@@ -1059,7 +1056,17 @@
   checkVersion();
   setInterval(checkVersion, 30000);
 
-  // ---- 更换简历 / 编辑画像 ----
+  // ---- 更换简历 / 编辑画像（纯前端，无需后端）----
+  var PROFILE_KEY = 'resumeauto_profile';
+  function loadProfileLocal(){ try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || 'null'); } catch(e){ return null; } }
+  function applyProfile(p){
+    if(!p) return;
+    var map = {'ra-name':'name','ra-dir':'direction','ra-edu':'education','ra-cert':'certificates','ra-exp':'experience'};
+    for(var id in map){ var el=document.getElementById(id); if(el && p[map[id]]!=null) el.value=p[map[id]]; }
+  }
+  var _saved = loadProfileLocal(); if(_saved) applyProfile(_saved);
+
+  // 上传 .docx：浏览器本地用 mammoth 解析，文件不上传任何服务器
   var chg = document.getElementById('changeResume');
   if (chg) chg.onclick = function(){ document.getElementById('resumeFile').click(); };
   var rf = document.getElementById('resumeFile');
@@ -1067,13 +1074,43 @@
     var f = this.files[0]; if(!f) return;
     var msg = document.getElementById('uploadMsg');
     if(!/\.docx$/i.test(f.name)){ msg.textContent='请上传 .docx 格式的简历'; return; }
-    msg.textContent='解析中...';
-    var fd = new FormData(); fd.append('file', f);
-    fetch('/api/upload_resume',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
-      if(d.ok){ msg.textContent='已重新分析：'+(d.profile&&d.profile.name||'')+'，页面刷新中...'; setTimeout(function(){location.reload();},900); }
-      else { msg.textContent='处理失败：'+(d.detail||'未知错误'); }
-    }).catch(function(e){ msg.textContent='上传失败：'+e; });
+    if(!window.mammoth){ msg.textContent='解析库未加载（可能网络受限），请刷新后重试，或手动填写下方字段。'; return; }
+    msg.textContent='本地解析中（文件不会上传）...';
+    var reader = new FileReader();
+    reader.onload = function(e){
+      mammoth.extractRawText({arrayBuffer:e.target.result}).then(function(res){
+        var text = (res.value||'').replace(/\r/g,'');
+        var prof = parseDocxToProfile(text);
+        applyProfile(prof); try{ localStorage.setItem(PROFILE_KEY, JSON.stringify(prof)); }catch(_){}
+        msg.textContent='✅ 已本地解析并填充画像，可编辑后点「保存画像修改」。';
+      }).catch(function(err){ msg.textContent='解析失败：'+(err&&err.message?err.message:err); });
+    };
+    reader.onerror = function(){ msg.textContent='读取文件失败。'; };
+    reader.readAsArrayBuffer(f);
   };
+  function parseDocxToProfile(text){
+    var lines = text.split(/\n/).map(function(l){return l.trim();}).filter(function(l){return l.length;});
+    var p = {name:'',direction:'',education:'',certificates:'',experience:''};
+    for(var i=0;i<lines.length;i++){ if(lines[i].length<=4 && !/教育|工作|项目|技能|经历|评价|求职|基本|信息|背景|证书|资质/.test(lines[i])){ p.name=lines[i]; break; } }
+    var sec = {education:'',certificates:'',experience:''}, cur=null;
+    lines.forEach(function(l){
+      if(/教育|学历|毕业|学校/.test(l) && l.length<14){ cur='education'; return; }
+      if(/证书|资质|资格|执业/.test(l) && l.length<14){ cur='certificates'; return; }
+      if(/经历|实践|工作|实习|项目/.test(l) && l.length<14){ cur='experience'; return; }
+      if(cur) sec[cur]+= (sec[cur]?'\n':'') + l;
+    });
+    p.education = sec.education || '';
+    p.certificates = sec.certificates || '';
+    p.experience = sec.experience || '';
+    if(!p.direction){ p.direction = detectDirection(text); }
+    return p;
+  }
+  function detectDirection(text){
+    var kw=['光伏','风能','风电','新能源','储能','电池','电气','运维'];
+    for(var i=0;i<kw.length;i++){ if(text.indexOf(kw[i])>=0) return '新能源 · '+kw[i]; }
+    return '新能源 · 光伏 / 风能 / 储能';
+  }
+  // 保存画像：仅存浏览器本地，不发任何请求
   var sp = document.getElementById('saveProfile');
   if (sp) sp.onclick = function(){
     var msg = document.getElementById('profileMsg');
@@ -1084,12 +1121,25 @@
       certificates: document.getElementById('ra-cert').value.trim(),
       experience: document.getElementById('ra-exp').value.trim()
     };
-    msg.textContent='保存中...';
-    fetch('/api/resume_profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-      .then(function(r){return r.json();}).then(function(d){
-        if(d.ok){ msg.textContent='已保存，页面刷新中...'; setTimeout(function(){location.reload();},800); }
-        else { msg.textContent='保存失败：'+(d.detail||'未知错误'); }
-      }).catch(function(e){ msg.textContent='保存失败：'+e; });
+    try { localStorage.setItem(PROFILE_KEY, JSON.stringify(data)); msg.textContent='✅ 已保存到本地浏览器（不会上传服务器）。'; }
+    catch(e){ msg.textContent='保存失败：'+e; }
+  };
+  // 导出简历：本地生成 .txt，避免 /static 404
+  var er = document.getElementById('exportResume');
+  if (er) er.onclick = function(){
+    var data = {
+      name: document.getElementById('ra-name').value.trim(),
+      direction: document.getElementById('ra-dir').value.trim(),
+      education: document.getElementById('ra-edu').value.trim(),
+      certificates: document.getElementById('ra-cert').value.trim(),
+      experience: document.getElementById('ra-exp').value.trim()
+    };
+    var out = '简历画像（ResumeAuto 导出）\n====================\n姓名：'+data.name+'\n求职方向：'+data.direction+
+      '\n\n【教育】\n'+data.education+'\n\n【证书 / 资质】\n'+data.certificates+'\n\n【实践 / 经历】\n'+data.experience+'\n';
+    var blob = new Blob([out], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = (data.name||'resume')+'.txt'; a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
   };
 </script>
 </body>
