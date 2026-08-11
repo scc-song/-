@@ -59,9 +59,12 @@
   function emptyItem(type) {
     var it = {}; SCHEMA[type].fields.forEach(function (f) { it[f.k] = (f.type === 'lines') ? [] : ''; }); return it;
   }
+  function defaultDesign() {
+    return { font: '', lh: 1.55, base: 14, sec: 14, gap: 16, margin: 32, para: 2, modes: { icon: false, subCenter: false, longTitle: false } };
+  }
   function DEFAULT_STATE() {
     return {
-      meta: { template: 'magic', accent: '#E1251B' },
+      meta: { template: 'magic', accent: '#E1251B', design: defaultDesign() },
       basics: { name: '', title: '', phone: '', email: '', location: '', links: '', summary: '' },
       sections: [
         { type: 'experience', title: '', items: [emptyItem('experience')] },
@@ -200,7 +203,7 @@
     else inner = head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + aside + '</div><div class="pv-main">' + main + '</div></div>';
     var pv = document.getElementById('preview');
     pv.className = 'resume-preview t-' + state.meta.template;
-    pv.style.setProperty('--accent', state.meta.accent || '#E1251B');
+    applyDesignVars(pv);
     pv.innerHTML = inner;
     renderAtsBadge();
   }
@@ -501,10 +504,126 @@
     document.getElementById('tplSel').value = state.meta.template;
     document.getElementById('accent').value = state.meta.accent || '#E1251B';
     renderResumeSelector(); renderForm(); renderPreview(); renderJd();
+    renderTemplateGallery(); renderDesign();
+  }
+
+  /* ---------- 模板画廊 + 设计 ---------- */
+  var BUILTIN = [
+    { tpl: 'magic', name: 'Magic Resume 风', desc: '清爽卡片 · 姓名强调色 · 竖条标题' },
+    { tpl: 'standard', name: '统一标准模板', desc: '京东红 · 色条标题 · 结构统一' },
+    { tpl: 'classic', name: '经典单栏', desc: 'ATS 友好 · 简洁单栏' },
+    { tpl: 'cn', name: '清爽中文单栏', desc: '左侧色条标题 · 留白舒适' },
+    { tpl: 'sidebar', name: '双栏侧边', desc: '左栏信息 · 右栏正文' },
+    { tpl: 'energy', name: '新能源商务', desc: '强调色侧边 · 专业大气' },
+    { tpl: 'cover', name: '封面头图风', desc: '彩色头图 · 个性封面' },
+    { tpl: 'table', name: '表格简历风', desc: '表格化排版 · 条理清晰' }
+  ];
+  var SAMPLE = {
+    basics: { name: '宋创创', title: '京东物流 · 运营管培生', phone: '138-0000-0000', email: 'sc@example.com', location: '河南 · 郑州', summary: '能源与动力工程背景，具备 4S 店销售与新媒体运营实习经验，执行力强、善于沟通。' },
+    sections: [
+      { type: 'education', title: '教育背景', items: [{ school: '黄河交通学院', degree: '能源与动力工程 本科', period: '2018 – 2022', location: '河南', bullets: [] }] },
+      { type: 'experience', title: '工作经历', items: [{ role: '销售助理', company: '奇瑞汽车 4S 店', period: '2021 – 2022', location: '郑州', bullets: ['负责客户接待与需求分析', '协助完成月度销售目标'] }] },
+      { type: 'skills', title: '技能专长', items: [{ category: '专业技能', items: '销售沟通，新媒体运营，客户服务' }, { category: '工具', items: 'Excel，PPT，剪映' }] }
+    ]
+  };
+  function sampleSecHTML(sec) {
+    var title = sec.title || '', body = '';
+    if (sec.type === 'skills') {
+      sec.items.forEach(function (it) {
+        var tags = (it.items || '').split(/[,，\n]/).map(function (s) { return s.trim(); }).filter(Boolean);
+        if (tags.length) body += '<div class="pv-skill-cat"><b>' + esc(it.category || '技能') + '</b></div><div class="pv-skill-tags">' + tags.map(function (t) { return '<span class="pv-tag">' + esc(t) + '</span>'; }).join('') + '</div>';
+      });
+    } else {
+      sec.items.forEach(function (it) {
+        var t = it.role || it.school || '';
+        var sub = [sec.type === 'education' ? it.degree : (it.company || it.role), it.location].filter(Boolean).join(' · ');
+        var bl = (it.bullets || []).filter(Boolean);
+        body += '<div class="pv-item"><div class="pv-item-head"><span class="pv-item-title">' + esc(t) + '</span>' + (it.period ? '<span class="pv-period">' + esc(it.period) + '</span>' : '') + '</div>' + (sub ? '<div class="pv-item-sub">' + esc(sub) + '</div>' : '') + (bl.length ? '<ul class="pv-bullets">' + bl.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' : '') + '</div>';
+      });
+    }
+    return '<div class="pv-section"><div class="pv-sec-title">' + esc(title) + '</div>' + body + '</div>';
+  }
+  function genPreview(tpl, acc) {
+    var b = SAMPLE.basics;
+    var contact = []; ['phone', 'email', 'location'].forEach(function (f) { if (b[f]) contact.push(esc(b[f])); });
+    var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
+    var single = ['classic', 'cn', 'cover', 'standard', 'magic'].indexOf(tpl) >= 0;
+    var main = '';
+    if (b.summary) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
+    SAMPLE.sections.forEach(function (sec) { if (!single && sec.type === 'skills') return; main += sampleSecHTML(sec); });
+    var head = '<h1 class="pv-name">' + esc(b.name) + '</h1>' + (b.title ? '<div class="pv-ptitle">' + esc(b.title) + '</div>' : '');
+    var inner = (tpl === 'cover') ? ('<div class="pv-cover-head">' + head + contactHtml + '</div><div class="pv-cover-body">' + main + '</div>')
+      : (single ? (head + contactHtml + main) : (head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + sampleSecHTML(SAMPLE.sections[2]) + '</div><div class="pv-main">' + main + '</div></div>'));
+    return '<div class="resume-preview t-' + tpl + '" style="--accent:' + acc + '">' + inner + '</div>';
+  }
+  function renderTemplateGallery() {
+    var grid = document.getElementById('tplGallery'); if (!grid) return;
+    grid.innerHTML = '';
+    var acc = (state.meta && state.meta.accent) || '#E1251B';
+    BUILTIN.forEach(function (t) {
+      var card = document.createElement('div');
+      card.className = 'tpl-thumb' + (state.meta.template === t.tpl ? ' active' : '');
+      card.innerHTML = '<div class="shot"><div class="sheet">' + genPreview(t.tpl, acc) + '</div></div>'
+        + '<div class="meta"><div class="nm">' + esc(t.name) + '</div><div class="ds">' + esc(t.desc) + '</div></div>';
+      card.onclick = function () { setTemplate(t.tpl); };
+      grid.appendChild(card);
+    });
+  }
+  function setTemplate(tpl) {
+    state.meta.template = tpl;
+    var sel = document.getElementById('tplSel'); if (sel) sel.value = tpl;
+    save(); renderTemplateGallery(); renderPreview();
+  }
+  function applyDesignVars(pv) {
+    var d = state.meta.design || defaultDesign();
+    pv.style.setProperty('--accent', state.meta.accent || '#E1251B');
+    if (d.font) pv.style.setProperty('--rs-font', d.font); else pv.style.removeProperty('--rs-font');
+    pv.style.setProperty('--rs-lh', d.lh);
+    pv.style.setProperty('--rs-base', d.base + 'px');
+    pv.style.setProperty('--rs-sec', d.sec + 'px');
+    pv.style.setProperty('--rs-gap', d.gap + 'px');
+    pv.style.setProperty('--rs-margin', d.margin + 'px');
+    pv.style.setProperty('--rs-para', d.para + 'px');
+    pv.classList.toggle('icon-mode', !!d.modes.icon);
+    pv.classList.toggle('subtitle-center', !!d.modes.subCenter);
+    pv.classList.toggle('long-title', !!d.modes.longTitle);
+  }
+  var SWATCHES = ['#E1251B', '#f97316', '#16a34a', '#2563eb', '#7c3aed', '#db2777', '#0891b2', '#475569', '#111827'];
+  function renderDesign() {
+    var d = state.meta.design || defaultDesign();
+    var set = function (id, v, valId, unit) {
+      var el = document.getElementById(id); if (!el) return;
+      el.value = v;
+      if (valId) { var vv = document.getElementById(valId); if (vv) vv.textContent = (unit ? v + unit : v); }
+    };
+    set('rsFont', d.font || '');
+    set('rsLh', d.lh, 'rsLhVal'); set('rsBase', d.base, 'rsBaseVal', 'px'); set('rsSec', d.sec, 'rsSecVal', 'px');
+    set('rsMargin', d.margin, 'rsMarginVal', 'px'); set('rsGap', d.gap, 'rsGapVal', 'px'); set('rsPara', d.para, 'rsParaVal', 'px');
+    var ai = document.getElementById('accent'); if (ai) ai.value = state.meta.accent || '#E1251B';
+    var sw = document.getElementById('themeSwatches'); if (sw) {
+      sw.innerHTML = '';
+      SWATCHES.forEach(function (c) {
+        var s = document.createElement('span'); s.className = 'ts' + (state.meta.accent === c ? ' active' : '');
+        s.style.background = c; s.title = c;
+        s.onclick = function () { setAccent(c); };
+        sw.appendChild(s);
+      });
+    }
+    var modeMap = { mIcon: 'icon', mSubCenter: 'subCenter', mLongTitle: 'longTitle' };
+    Object.keys(modeMap).forEach(function (id) {
+      var el = document.getElementById(id); if (el) el.checked = !!d.modes[modeMap[id]];
+    });
+  }
+  function setAccent(c) {
+    state.meta.accent = c;
+    var ai = document.getElementById('accent'); if (ai) ai.value = c;
+    save(); renderDesign(); renderPreview();
   }
 
   function init() {
     load();
+    if (!state.meta) state.meta = { template: 'magic', accent: '#E1251B', design: defaultDesign() };
+    if (!state.meta.design) state.meta.design = defaultDesign();
     // 支持 ?tpl= 预选模板、?accent= 预选主题色（来自模板库）
     try {
       var qp = new URLSearchParams(location.search);
@@ -519,11 +638,11 @@
       }
     } catch (e) {}
     renderAll();
-    var form = document.querySelector('.form-panel');
+    var form = document.querySelector('.wb-side');
     form.addEventListener('input', onInput);
     form.addEventListener('click', onClick);
-    document.getElementById('tplSel').addEventListener('change', function (e) { state.meta.template = e.target.value; save(); renderPreview(); });
-    document.getElementById('accent').addEventListener('input', function (e) { state.meta.accent = e.target.value; save(); renderPreview(); });
+    document.getElementById('tplSel').addEventListener('change', function (e) { setTemplate(e.target.value); });
+    document.getElementById('accent').addEventListener('input', function (e) { setAccent(e.target.value); });
     document.getElementById('resumeSel').addEventListener('change', function (e) { switchResume(e.target.value); });
     document.getElementById('newResume').addEventListener('click', function () {
       var name = prompt('新简历名称（如：光伏岗版）：', state.basics.title || '新简历');
@@ -626,6 +745,28 @@
       if (f && /\.docx$/i.test(f.name)) handleDocx(f);
       else if (f) flash('仅支持 .docx 简历导入');
     });
+    // 模板画廊在 renderAll 已渲染；绑定 tab 切换与设计面板控件
+    Array.prototype.forEach.call(document.querySelectorAll('.wb-tab'), function (btn) {
+      btn.addEventListener('click', function () {
+        var tab = btn.dataset.tab;
+        Array.prototype.forEach.call(document.querySelectorAll('.wb-tab'), function (b) { b.classList.toggle('active', b === btn); });
+        document.getElementById('pane-template').hidden = tab !== 'template';
+        document.getElementById('pane-content').hidden = tab !== 'content';
+        document.getElementById('pane-design').hidden = tab !== 'design';
+      });
+    });
+    document.getElementById('rsFont').addEventListener('change', function (e) { state.meta.design.font = e.target.value; save(); renderPreview(); });
+    var rsMap = { rsLh: 'lh', rsBase: 'base', rsSec: 'sec', rsMargin: 'margin', rsGap: 'gap', rsPara: 'para' };
+    Object.keys(rsMap).forEach(function (id) {
+      document.getElementById(id).addEventListener('input', function (e) {
+        var v = parseFloat(e.target.value); state.meta.design[rsMap[id]] = v; save(); renderPreview();
+        var valEl = document.getElementById(id + 'Val'); if (valEl) valEl.textContent = (rsMap[id] === 'lh') ? v : v + 'px';
+      });
+    });
+    document.getElementById('mIcon').addEventListener('change', function (e) { state.meta.design.modes.icon = e.target.checked; save(); renderPreview(); });
+    document.getElementById('mSubCenter').addEventListener('change', function (e) { state.meta.design.modes.subCenter = e.target.checked; save(); renderPreview(); });
+    document.getElementById('mLongTitle').addEventListener('change', function (e) { state.meta.design.modes.longTitle = e.target.checked; save(); renderPreview(); });
+
     // expose for testing
     window.__ra = { state: function () { return state; }, computeAts: computeAts, parseDocxToState: parseDocxToState, applyAiResults: applyAiResults, loadAI: loadAI };
   }
