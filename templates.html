@@ -4,134 +4,334 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>简历模板库 · ResumeAuto</title>
+<link rel="stylesheet" href="resume.css" />
 <style>
   :root{
-    --brand:#16a34a; --brand-d:#0f7a37; --bg:#f5f7f6; --card:#fff;
-    --line:#e3e8e6; --text:#1f2a26; --muted:#6b7a73; --shadow:0 1px 3px rgba(0,0,0,.08),0 6px 20px rgba(0,0,0,.05);
+    --bg:#f3f4f6; --surface:#fff; --line:#e5e7eb; --text:#111827; --muted:#6b7280;
+    --brand:#E1251B; --brand-d:#b91c1c; --brand-soft:#fef2f2;
+    --shadow:0 1px 3px rgba(0,0,0,.08),0 6px 20px rgba(0,0,0,.05);
+    --shadow-lg:0 10px 40px rgba(0,0,0,.12);
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-    background:var(--bg);color:var(--text);line-height:1.5}
-  header{padding:28px 20px 18px;max-width:1180px;margin:0 auto}
-  h1{margin:0 0 6px;font-size:26px;display:flex;align-items:center;gap:10px}
-  h1 .dot{width:12px;height:12px;border-radius:3px;background:var(--brand)}
-  .sub{color:var(--muted);font-size:14px;margin:0 0 14px}
-  .sub a{color:var(--brand-d)}
-  .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
-  .tabs{display:flex;flex-wrap:wrap;gap:8px}
-  .tab{border:1px solid var(--line);background:#fff;color:var(--text);padding:7px 14px;border-radius:999px;
-    cursor:pointer;font-size:14px;transition:.15s}
-  .tab:hover{border-color:var(--brand)}
-  .tab.on{background:var(--brand);border-color:var(--brand);color:#fff}
-  .search{flex:1;min-width:180px;max-width:320px;padding:9px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;outline:none}
-  .search:focus{border-color:var(--brand)}
-  .count{color:var(--muted);font-size:13px;margin:6px 2px 16px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px;max-width:1180px;margin:0 auto;padding:0 20px 60px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
-    display:flex;flex-direction:column;transition:.15s}
-  .card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.12)}
-  .thumb{aspect-ratio:3/4;background:#eef1f0;display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-  .thumb .ph{color:var(--muted);font-size:13px}
-  .body{padding:12px 13px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
-  .name{font-size:14px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .badge{display:inline-block;font-size:11px;color:var(--brand-d);background:#e7f5ec;border-radius:6px;padding:2px 7px;width:fit-content}
-  .acts{display:flex;gap:8px;margin-top:auto}
-  .btn{flex:1;text-align:center;text-decoration:none;font-size:13px;padding:8px 6px;border-radius:9px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--text);transition:.15s}
-  .btn:hover{border-color:var(--brand)}
-  .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
-  .btn.primary:hover{background:var(--brand-d)}
-  footer{max-width:1180px;margin:0 auto;padding:0 20px 50px;color:var(--muted);font-size:12px}
-  .empty{text-align:center;color:var(--muted);padding:40px}
-  @media (max-width:560px){.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+
+  /* ---------- topbar ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .topbar-inner{max-width:1400px;margin:0 auto;padding:0 20px;height:58px;display:flex;align-items:center;gap:16px}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:var(--text);text-decoration:none}
+  .brand i{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--brand)}
+  .nav{display:flex;gap:6px}
+  .nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;transition:.15s}
+  .nav a:hover{color:var(--text);background:#f3f4f6}
+  .nav a.active{color:var(--brand);background:var(--brand-soft);font-weight:600}
+  .spacer{flex:1}
+  .search-wrap{position:relative;min-width:180px;max-width:360px;flex:1}
+  .search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted)}
+  .search{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--line);border-radius:10px;font-size:14px;outline:none;background:#f9fafb}
+  .search:focus{border-color:var(--brand);background:#fff}
+  .btn-new{background:var(--brand);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+  .btn-new:hover{background:var(--brand-d)}
+
+  /* ---------- layout ---------- */
+  .wrap{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:240px 1fr;gap:20px;padding:20px}
+  @media (max-width:900px){.wrap{grid-template-columns:1fr}}
+
+  /* ---------- sidebar ---------- */
+  .sidebar{display:flex;flex-direction:column;gap:18px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow)}
+  .card h3{margin:0 0 12px;font-size:14px;font-weight:700;color:var(--text)}
+  .cat-list{display:flex;flex-direction:column;gap:4px}
+  .cat-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:14px;color:var(--muted);transition:.15s;border:none;background:transparent;width:100%;text-align:left}
+  .cat-item:hover{background:#f3f4f6;color:var(--text)}
+  .cat-item.active{background:var(--brand-soft);color:var(--brand);font-weight:600}
+  .cat-item .dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.6}
+  .cat-item .count{margin-left:auto;font-size:12px;color:inherit;opacity:.7}
+
+  .theme-row{display:flex;flex-wrap:wrap;gap:8px}
+  .theme{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.15s;position:relative}
+  .theme:hover{transform:scale(1.1)}
+  .theme.active{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--brand)}
+
+  .resume-list{display:flex;flex-direction:column;gap:6px}
+  .resume-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--muted);transition:.15s}
+  .resume-item:hover{background:#f3f4f6;color:var(--text)}
+  .resume-item b{font-weight:600;color:var(--text);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .resume-item span{font-size:12px;color:var(--muted)}
+  .empty-side{color:var(--muted);font-size:13px;padding:4px 0}
+
+  /* ---------- main ---------- */
+  .main{min-width:0}
+  .main-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .main-head h2{margin:0;font-size:20px}
+  .main-head .count{color:var(--muted);font-size:14px}
+  .sort{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  @media (max-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+
+  .tcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s;position:relative;cursor:pointer}
+  .tcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .tcard .thumb{aspect-ratio:3/4;background:#f9fafb;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+  .tcard .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
+  .tcard:hover .thumb img{transform:scale(1.03)}
+  .tcard .overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;gap:10px;opacity:0;transition:.2s}
+  .tcard:hover .overlay{opacity:1}
+  .tcard .overlay button{border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer}
+  .tcard .overlay .btn-use{background:var(--brand);color:#fff}
+  .tcard .overlay .btn-prev{background:#fff;color:var(--text)}
+  .tcard .info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .tcard .badge{align-self:flex-start;font-size:11px;color:var(--brand-d);background:var(--brand-soft);border-radius:6px;padding:2px 7px}
+  .tcard .name{font-size:14px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+  .tcard .acts{display:flex;gap:8px;margin-top:4px}
+  .tcard .acts a{flex:1;text-align:center;text-decoration:none;font-size:12px;padding:7px 4px;border-radius:7px;border:1px solid var(--line);color:var(--text);background:#fff}
+  .tcard .acts a.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+
+  .ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:13px;text-align:center;padding:20px}
+
+  .empty-main{text-align:center;color:var(--muted);padding:60px 20px}
+  .empty-main h3{margin:0 0 6px;font-size:16px;color:var(--text)}
+
+  /* ---------- modal ---------- */
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.on{display:flex}
+  .modal-box{background:var(--surface);border-radius:16px;max-width:960px;width:100%;max-height:90vh;display:grid;grid-template-columns:1.1fr .9fr;gap:0;overflow:hidden;box-shadow:var(--shadow-lg)}
+  @media (max-width:760px){.modal-box{grid-template-columns:1fr;max-height:95vh}}
+  .modal-preview{background:#f3f4f6;display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}
+  .modal-preview img{max-width:100%;max-height:76vh;object-fit:contain;border-radius:8px;box-shadow:var(--shadow)}
+  .modal-info{padding:24px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+  .modal-info h3{margin:0;font-size:20px}
+  .modal-info .meta{color:var(--muted);font-size:13px}
+  .modal-info .tag{display:inline-block;font-size:12px;color:var(--brand-d);background:var(--brand-soft);border-radius:6px;padding:3px 8px;margin-right:6px}
+  .modal-info .desc{font-size:13px;color:#374151;line-height:1.7;flex:1}
+  .modal-info .btns{display:flex;gap:10px;margin-top:auto}
+  .modal-info .btns a,.modal-info .btns button{flex:1;text-align:center;padding:10px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;border:none}
+  .modal-info .btns .use{background:var(--brand);color:#fff}
+  .modal-info .btns .down{background:#f3f4f6;color:var(--text)}
+  .modal-info .btns .close{background:transparent;color:var(--muted)}
+  .modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.9);cursor:pointer;font-size:18px;color:#374151;display:flex;align-items:center;justify-content:center}
+
+  footer{max-width:1400px;margin:0 auto;padding:0 20px 40px;color:var(--muted);font-size:12px;text-align:center}
 </style>
 </head>
 <body>
-<header>
-  <h1><span class="dot"></span>简历模板库</h1>
-  <p class="sub">精选自开源项目 <a href="https://github.com/mmmlllnnn/ResumeCollection" target="_blank" rel="noopener">mmmlllnnn/ResumeCollection</a>（CC/公开授权）。预览图直链 GitHub，点击「下载 Word」获取可编辑原文件。</p>
-  <div class="bar">
-    <div class="tabs" id="tabs"></div>
-    <input class="search" id="search" placeholder="搜索模板名，如 免费 / 商务 / 研究生…" />
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><i></i>ResumeAuto</a>
+    <nav class="nav">
+      <a href="index.html">首页</a>
+      <a href="resume.html">简历编辑器</a>
+      <a href="templates.html" class="active">模板库</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input class="search" id="search" placeholder="搜索模板，如 商务 / 应届生 / 研究生…" />
+    </div>
+    <a class="btn-new" href="resume.html">＋ 新建简历</a>
   </div>
-  <div class="count" id="count"></div>
 </header>
-<main class="grid" id="grid"></main>
-<div class="empty" id="empty" hidden>没有匹配的模板。</div>
+
+<div class="wrap">
+  <aside class="sidebar">
+    <div class="card">
+      <h3>我的简历</h3>
+      <div class="resume-list" id="resumeList"><div class="empty-side">暂无保存的简历</div></div>
+    </div>
+    <div class="card">
+      <h3>模板分类</h3>
+      <div class="cat-list" id="catList"></div>
+    </div>
+    <div class="card">
+      <h3>主题色</h3>
+      <div class="theme-row" id="themeRow"></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-head">
+      <div>
+        <h2 id="mainTitle">全部模板</h2>
+        <div class="count" id="count">加载中…</div>
+      </div>
+      <div class="sort">按热度排序</div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="empty-main" id="empty" hidden>
+      <h3>没有找到匹配的模板</h3>
+      <p>换个关键词或分类试试</p>
+    </div>
+  </main>
+</div>
+
 <footer>
-  所有模板版权归原作者所有，仅作格式参考与下载。ResumeAuto 不存储这些图片，预览均从源仓库实时加载。
+  所有模板版权归原作者所有，仅作格式参考与下载。ResumeAuto 不存储这些文件，预览与下载经 jsDelivr 从源仓库加载。
 </footer>
 
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-preview"><img id="modalImg" src="" alt=""/></div>
+    <div class="modal-info">
+      <h3 id="modalName">模板名称</h3>
+      <div class="meta" id="modalMeta"></div>
+      <div class="desc">
+        <span class="tag" id="modalTag">分类</span>
+        点击下方按钮即可使用该模板风格新建简历，或下载 Word 原文件到本地编辑。
+      </div>
+      <div class="btns">
+        <a class="use" id="modalUse" href="resume.html">立即使用</a>
+        <a class="down" id="modalDown" href="#" target="_blank" rel="noopener" download>下载 Word</a>
+        <button class="close" onclick="closeModal()">关闭</button>
+      </div>
+    </div>
+  </div>
+  <button class="modal-close" onclick="closeModal()">×</button>
+</div>
+
 <script>
-// 分类 key -> 编辑器内对应的 CSS 模板（resume.html?tpl=）
 var TPL_MAP = {
-  "中文简历": "cn",
+  "中文简历": "magic",
   "EnglishResume": "classic",
   "多页简历": "sidebar",
   "简历封面": "cover",
   "简单表格简历": "table"
 };
-var manifest = null, activeCat = "all", kw = "";
+var THEMES = ['#E1251B','#f97316','#16a34a','#2563eb','#7c3aed','#db2777','#0891b2','#475569','#111827'];
+var manifest = null, activeCat = 'all', kw = '', accent = '#E1251B';
 
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
 
-function buildTabs(){
-  var tabs = document.getElementById('tabs');
-  var cats = [{key:"all",label:"全部"}].concat(manifest.categories.map(function(c){return {key:c.key,label:c.label};}));
-  tabs.innerHTML = '';
+function loadResumes(){
+  var list = document.getElementById('resumeList');
+  try{
+    var keys = Object.keys(localStorage).filter(function(k){return k.indexOf('resume_')===0 || k==='resume_current';});
+    if(!keys.length){ list.innerHTML='<div class="empty-side">暂无保存的简历</div>'; return; }
+    list.innerHTML='';
+    keys.forEach(function(k){
+      try{
+        var d = JSON.parse(localStorage.getItem(k)||'{}');
+        var name = d.meta && d.meta.name ? d.meta.name : (k==='resume_current'?'当前简历':k.replace('resume_',''));
+        var div = document.createElement('div'); div.className='resume-item';
+        div.innerHTML='<div><b>'+esc(name)+'</b><span>'+(d.basics && d.basics.name?esc(d.basics.name):'未填写姓名')+'</span></div>';
+        div.onclick = function(){ location.href = 'resume.html?key='+encodeURIComponent(k); };
+        list.appendChild(div);
+      }catch(e){}
+    });
+  }catch(e){ list.innerHTML='<div class="empty-side">读取失败</div>'; }
+}
+
+function buildCats(){
+  var wrap = document.getElementById('catList');
+  var counts = {};
+  manifest.categories.forEach(function(c){counts[c.key]=c.items.length;});
+  var all = manifest.categories.reduce(function(a,c){return a+c.items.length;},0);
+  var cats = [{key:'all',label:'全部',n:all}].concat(manifest.categories.map(function(c){return {key:c.key,label:c.label,n:c.items.length};}));
+  wrap.innerHTML='';
   cats.forEach(function(c){
     var b = document.createElement('button');
-    b.className = 'tab' + (c.key===activeCat?' on':'');
-    b.textContent = c.label;
-    b.onclick = function(){ activeCat = c.key; buildTabs(); render(); };
-    tabs.appendChild(b);
+    b.className='cat-item'+(c.key===activeCat?' active':'');
+    b.innerHTML='<span class="dot"></span><span>'+esc(c.label)+'</span><span class="count">'+c.n+'</span>';
+    b.onclick = function(){ activeCat=c.key; buildCats(); render(); };
+    wrap.appendChild(b);
+  });
+}
+
+function buildThemes(){
+  var row = document.getElementById('themeRow');
+  row.innerHTML='';
+  THEMES.forEach(function(c){
+    var b = document.createElement('span');
+    b.className='theme'+(c===accent?' active':'');
+    b.style.background=c;
+    b.title=c;
+    b.onclick = function(){ accent=c; buildThemes(); };
+    row.appendChild(b);
   });
 }
 
 function allItems(){
-  var out = [];
+  var out=[];
   manifest.categories.forEach(function(c){
-    c.items.forEach(function(it){ out.push(Object.assign({catKey:c.key, catLabel:c.label}, it)); });
+    c.items.forEach(function(it){ out.push(Object.assign({catKey:c.key,catLabel:c.label},it)); });
   });
   return out;
 }
 
-function render(){
-  var grid = document.getElementById('grid');
-  var items = allItems().filter(function(it){
-    if(activeCat!=="all" && it.catKey!==activeCat) return false;
-    if(kw && it.name.indexOf(kw)<0) return false;
+function filteredItems(){
+  return allItems().filter(function(it){
+    if(activeCat!=='all' && it.catKey!==activeCat) return false;
+    if(kw){
+      var q = kw.toLowerCase();
+      if((it.name||'').toLowerCase().indexOf(q)<0 && (it.catLabel||'').toLowerCase().indexOf(q)<0) return false;
+    }
     return true;
   });
+}
+
+function render(){
+  var items = filteredItems();
+  var title = activeCat==='all'?'全部模板':(manifest.categories.find(function(c){return c.key===activeCat})||{}).label||activeCat;
+  document.getElementById('mainTitle').textContent = title;
   document.getElementById('count').textContent = '共 '+items.length+' 个模板';
   document.getElementById('empty').hidden = items.length>0;
-  grid.innerHTML = '';
+  var grid = document.getElementById('grid'); grid.innerHTML='';
   items.forEach(function(it){
-    var card = document.createElement('div'); card.className='card';
-    var tpl = TPL_MAP[it.catKey] || 'classic';
-    var thumb = it.preview
-      ? '<div class="thumb"><img loading="lazy" src="'+esc(it.preview)+'" alt="'+esc(it.name)+'" onerror="this.parentNode.innerHTML=\'<div class=\\\"ph\\\">预览加载失败</div>\'"></div>'
-      : '<div class="thumb"><div class="ph">无预览</div></div>';
+    var tpl = TPL_MAP[it.catKey] || 'magic';
+    var card = document.createElement('div'); card.className='tcard';
+    var previewUrl = esc(it.preview||'');
+    var docUrl = esc(it.doc||'');
     card.innerHTML =
-      thumb +
-      '<div class="body">'+
+      '<div class="thumb">'+
+        (previewUrl?'<img loading="lazy" src="'+previewUrl+'" alt="'+esc(it.name)+'" onerror="this.style.display=\'none\';this.parentNode.querySelector(\'.ph\').style.display=\'flex\'">':'')+
+        '<div class="ph" style="'+(previewUrl?'display:none':'')+'">预览加载失败<br><small>点击下载原文件查看</small></div>'+
+        '<div class="overlay">'+
+          '<button class="btn-prev" onclick="event.stopPropagation();openModal(\''+esc(it.id)+'\')">预览</button>'+
+          '<button class="btn-use" onclick="event.stopPropagation();location.href=\'resume.html?tpl='+encodeURIComponent(tpl)+'&accent='+encodeURIComponent(accent)+'\'">使用</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="info">'+
         '<span class="badge">'+esc(it.catLabel)+'</span>'+
         '<div class="name">'+esc(it.name)+'</div>'+
         '<div class="acts">'+
-          '<a class="btn primary" href="resume.html?tpl='+encodeURIComponent(tpl)+'" target="_blank" rel="noopener">以此风格新建</a>'+
-          '<a class="btn" href="'+esc(it.doc)+'" target="_blank" rel="noopener" download>下载 Word</a>'+
+          '<a class="primary" href="resume.html?tpl='+encodeURIComponent(tpl)+'&accent='+encodeURIComponent(accent)+'">使用模板</a>'+
+          '<a href="'+docUrl+'" target="_blank" rel="noopener" download>下载 Word</a>'+
         '</div>'+
       '</div>';
+    card.querySelector('.thumb').onclick = function(){ openModal(it.id); };
     grid.appendChild(card);
   });
 }
 
-document.getElementById('search').addEventListener('input', function(e){ kw = e.target.value.trim(); render(); });
+var currentItems = {};
+function openModal(id){
+  var it = allItems().find(function(x){return x.id===id;});
+  if(!it) return;
+  currentItems[id] = it;
+  document.getElementById('modalName').textContent = it.name;
+  document.getElementById('modalTag').textContent = it.catLabel;
+  document.getElementById('modalMeta').textContent = '编号 '+it.id+' · '+it.catLabel;
+  document.getElementById('modalImg').src = it.preview || '';
+  document.getElementById('modalImg').alt = it.name;
+  var tpl = TPL_MAP[it.catKey] || 'magic';
+  document.getElementById('modalUse').href = 'resume.html?tpl='+encodeURIComponent(tpl)+'&accent='+encodeURIComponent(accent);
+  document.getElementById('modalDown').href = it.doc || '#';
+  document.getElementById('modal').classList.add('on');
+}
+function closeModal(){ document.getElementById('modal').classList.remove('on'); }
 
-fetch('templates/manifest.json', {cache:'no-cache'})
-  .then(function(r){ return r.json(); })
-  .then(function(d){ manifest = d; buildTabs(); render(); })
-  .catch(function(e){ document.getElementById('grid').innerHTML = '<div class="empty">清单加载失败：'+esc(e.message)+'<br>请确认 templates/manifest.json 已部署。</div>'; });
+document.getElementById('search').addEventListener('input', function(e){ kw=e.target.value.trim(); render(); });
+document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+fetch('templates/manifest.json',{cache:'no-cache'})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    manifest=d;
+    loadResumes(); buildCats(); buildThemes(); render();
+  })
+  .catch(function(e){
+    document.getElementById('grid').innerHTML='<div class="empty-main"><h3>清单加载失败</h3><p>'+esc(e.message)+'<br>请确认 templates/manifest.json 已部署。</p></div>';
+  });
 </script>
 </body>
 </html>
