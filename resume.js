@@ -1,529 +1,496 @@
-/* ResumeAuto 智能简历编辑器 —— 纯前端，无后端依赖
- * 功能：docx 本地解析(方案A) + JD 关键词提取 + 按岗位智能重排模块 + 实时编辑 + 本地保存 + 导出
- */
+/* ResumeAuto 简历编辑器 v2 —— 结构化表单 + 实时预览 + 多模板 + ATS 评分 + 多份简历
+   纯前端，数据仅存浏览器 localStorage，不上传任何服务器。 */
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'resumeauto.data.v1';
+  var KEY = 'resumeauto.v2';
 
-  // 简历数据模型
-  function emptyState() {
+  /* ---------- 字段 schema ---------- */
+  var SCHEMA = {
+    experience: { label: '工作经历', fields: [
+      { k: 'role', label: '职位', type: 'text', ex: '光伏电站运维工程师' },
+      { k: 'company', label: '公司 / 单位', type: 'text', ex: '某某新能源科技有限公司' },
+      { k: 'period', label: '时间', type: 'text', ex: '2023.07 - 至今' },
+      { k: 'bullets', label: '职责 / 业绩（每行一条，动词+数据）', type: 'lines', ex: '负责 50MW 光伏电站日常巡检与故障排查，年发电效率提升 8%' }
+    ] },
+    education: { label: '教育背景', fields: [
+      { k: 'school', label: '学校', type: 'text', ex: '某某大学' },
+      { k: 'degree', label: '学历 / 专业', type: 'text', ex: '本科 · 电气工程及其自动化' },
+      { k: 'period', label: '时间', type: 'text', ex: '2019.09 - 2023.06' },
+      { k: 'note', label: '备注（GPA / 荣誉，可选）', type: 'lines', ex: 'GPA 3.6/4.0，校级一等奖学金' }
+    ] },
+    projects: { label: '项目经历', fields: [
+      { k: 'name', label: '项目名称', type: 'text', ex: '某园区分布式光伏并网项目' },
+      { k: 'role', label: '角色', type: 'text', ex: '项目助理 / 电气调试' },
+      { k: 'period', label: '时间', type: 'text', ex: '2024.03 - 2024.09' },
+      { k: 'bullets', label: '项目描述 / 成果（每行一条）', type: 'lines', ex: '参与 2MW 屋顶光伏系统电气设计，协助完成并网验收' }
+    ] },
+    skills: { label: '技能特长', fields: [
+      { k: 'category', label: '分类', type: 'text', ex: '专业技能' },
+      { k: 'items', label: '内容（逗号或换行分隔）', type: 'text', ex: '光伏系统运维, 电气接线, AutoCAD, 并网调试' }
+    ] },
+    certificates: { label: '证书 / 资质', fields: [
+      { k: 'name', label: '证书名称', type: 'text', ex: '高压电工证' },
+      { k: 'issuer', label: '颁发机构', type: 'text', ex: '应急管理部' },
+      { k: 'date', label: '获取时间', type: 'text', ex: '2023.05' }
+    ] },
+    custom: { label: '自定义模块', fields: [
+      { k: 'heading', label: '小标题', type: 'text', ex: '自我评价' },
+      { k: 'body', label: '内容（每行一条）', type: 'lines', ex: '踏实肯干，熟悉新能源场站运维流程与安全生产规范' }
+    ] }
+  };
+
+  var BASICS = [
+    { k: 'name', label: '姓名', type: 'text' },
+    { k: 'title', label: '求职方向', type: 'text', ex: '新能源 · 光伏/风电运维' },
+    { k: 'phone', label: '电话', type: 'text' },
+    { k: 'email', label: '邮箱', type: 'text' },
+    { k: 'location', label: '所在城市', type: 'text', ex: '江苏 · 盐城' },
+    { k: 'links', label: '其他（官网/领英/GitHub 等）', type: 'text' },
+    { k: 'summary', label: '自我评价 / 摘要', type: 'lines', ex: '电气工程背景，熟悉光伏电站运维与并网流程，具备现场故障排查与数据分析能力。' }
+  ];
+
+  /* ---------- 工具 ---------- */
+  function esc(s) {
+    return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function emptyItem(type) {
+    var it = {}; SCHEMA[type].fields.forEach(function (f) { it[f.k] = (f.type === 'lines') ? [] : ''; }); return it;
+  }
+  function DEFAULT_STATE() {
     return {
-      basics: { name: '', phone: '', email: '', location: '', links: '' },
-      summary: '',
+      meta: { template: 'classic', accent: '#16a34a' },
+      basics: { name: '', title: '', phone: '', email: '', location: '', links: '', summary: '' },
       sections: [
-        { type: 'experience', title: '工作经历', items: [] },
-        { type: 'projects', title: '项目经历', items: [] },
-        { type: 'skills', title: '技能特长', items: [] },
-        { type: 'education', title: '教育背景', items: [] },
-        { type: 'extra', title: '证书 / 其他', items: [] }
-      ],
-      jd: '',
-      order: null // 智能排序后的 section type 顺序
+        { type: 'experience', title: '', items: [emptyItem('experience')] },
+        { type: 'education', title: '', items: [emptyItem('education')] },
+        { type: 'skills', title: '', items: [emptyItem('skills')] },
+        { type: 'projects', title: '', items: [] },
+        { type: 'certificates', title: '', items: [] }
+      ]
     };
   }
-
-  var state = emptyState();
-
-  /* ---------- 本地存储 ---------- */
-  function save() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      flash('已自动保存到本地');
-    } catch (e) { /* 忽略隐私模式限制 */ }
+  function defaultData() {
+    return { current: '默认简历', resumes: { '默认简历': DEFAULT_STATE() } };
   }
+
+  /* ---------- 存储 ---------- */
+  var data, state;
   function load() {
-    try {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) state = Object.assign(emptyState(), JSON.parse(raw));
-    } catch (e) { /* 损坏则重置 */ }
+    try { data = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { data = null; }
+    if (!data || !data.resumes || !data.current) data = defaultData();
+    if (!data.resumes[data.current]) data.current = Object.keys(data.resumes)[0];
+    state = data.resumes[data.current];
   }
-  var flashTimer;
-  function flash(msg) {
-    var el = document.getElementById('saveState');
-    if (!el) return;
-    el.textContent = msg + ' · ' + new Date().toLocaleTimeString();
-    clearTimeout(flashTimer);
-    flashTimer = setTimeout(function () { el.textContent = ''; }, 2500);
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { flash('保存失败：' + e); }
   }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
 
-  /* ---------- JD 关键词与信号 ---------- */
-  // 领域词典（新能源求职向，可扩展）
-  var SKILL_DICT = [
-    'python', 'c++', 'java', 'matlab', 'sql', 'excel', 'ppt', 'word', 'linux',
-    '锂离子电池', '锂电池', '动力电池', '固态电池', 'bms', '电池管理系统', '储能',
-    '光伏', '风电', '氢能', '燃料电池', '碳中和', '新能源', '电力系统', '电气',
-    '仿真', '建模', '数据分析', '机器学习', '深度学习', '算法', '嵌入式',
-    '项目管理', 'pmp', '团队协作', '沟通', '供应链', '质量控制', 'ie', '六西格玛',
-    'autocad', 'solidworks', 'ansys', 'catia', 'cad', 'plc', 'mes', 'erp'
-  ];
-  // 模块权重信号：命中关键词 -> 提升对应模块优先级
-  var SIGNAL_RULES = [
-    { kw: ['开发', '编程', '技术', '工程', '算法', '嵌入式', '仿真', '建模', 'cad', '代码'],
-      up: ['skills', 'projects'] },
-    { kw: ['管理', '团队', '负责', 'leader', '总监', '主管', '项目经理'],
-      up: ['experience'] },
-    { kw: ['研究', '论文', '科研', '课题', '专利'], up: ['projects', 'extra'] },
-    { kw: ['实习', '在校', '校园', '应届'], up: ['education', 'projects'] },
-    { kw: ['销售', '市场', '客户', '商务', '运营'], up: ['experience', 'skills'] }
-  ];
-
-  function parseJD(text) {
-    text = (text || '').toLowerCase();
-    var found = [];
-    SKILL_DICT.forEach(function (k) {
-      if (text.indexOf(k) !== -1) found.push(k);
+  /* ---------- 渲染：基本信息 ---------- */
+  function renderBasics() {
+    var html = '<h2>基本信息</h2>';
+    BASICS.forEach(function (f) {
+      html += '<div class="field"><label>' + f.label + '</label>';
+      if (f.type === 'lines')
+        html += '<textarea data-bind="' + f.k + '" rows="3" placeholder="' + esc(f.ex || '') + '">' + esc(state.basics[f.k] || '') + '</textarea>';
+      else
+        html += '<input data-bind="' + f.k + '" value="' + esc(state.basics[f.k] || '') + '" placeholder="' + esc(f.ex || '') + '" />';
+      html += '</div>';
     });
-    // 也抽取 JD 里出现的英文技能词
-    var en = text.match(/[a-z][a-z0-9\+\#\.]{1,}/g) || [];
-    en.forEach(function (w) {
-      if (w.length >= 2 && SKILL_DICT.indexOf(w) === -1) found.push(w);
-    });
-    // 去重
-    found = found.filter(function (v, i) { return found.indexOf(v) === i; });
-
-    // 信号计分
-    var weight = { experience: 1, projects: 1, skills: 1, education: 1, extra: 1 };
-    SIGNAL_RULES.forEach(function (r) {
-      r.kw.forEach(function (k) {
-        if (text.indexOf(k) !== -1) r.up.forEach(function (t) { weight[t] += 1; });
-      });
-    });
-    return { keywords: found, weight: weight };
+    document.getElementById('basicsForm').innerHTML = html;
   }
 
-  function reorderSections(weight) {
-    var order = state.sections.map(function (s) { return s.type; })
-      .sort(function (a, b) { return (weight[b] || 1) - (weight[a] || 1); });
-    state.order = order;
-  }
-
-  /* ---------- 自动起草总结 ---------- */
-  function autoSummary(jd) {
-    var kws = parseJD(jd).keywords.slice(0, 6);
-    if (!kws.length) return state.summary;
-    var kwText = kws.join('、');
-    return '具备' + kwText + '等相关能力，熟悉岗位核心要求，能够结合项目与实践经验高效达成目标；' +
-      '注重结果导向与团队协作，期望在对应方向上持续深耕。';
-  }
-
-  /* ---------- docx 解析（方案 A）---------- */
-  function handleDocx(file) {
-    var status = document.getElementById('parseStatus');
-    if (!window.mammoth) {
-      status.className = 'status err';
-      status.textContent = '解析库未加载（可能网络受限）。请检查网络后重试，或改用「粘贴文本」方式。';
-      return;
-    }
-    status.className = 'status';
-    status.textContent = '正在解析 ' + file.name + ' …';
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      mammoth.extractRawText({ arrayBuffer: e.target.result })
-        .then(function (result) {
-          var text = result.value || '';
-          if (!text.trim()) { status.className = 'status err'; status.textContent = '未提取到文本，请确认是 .docx 文档。'; return; }
-          parseResumeText(text);
-          status.className = 'status ok';
-          status.textContent = '解析成功，已填充到右侧编辑器（可继续编辑）。';
-          save(); render();
-        })
-        .catch(function (err) {
-          status.className = 'status err';
-          status.textContent = '解析失败：' + (err && err.message ? err.message : err);
-        });
-    };
-    reader.onerror = function () {
-      status.className = 'status err'; status.textContent = '读取文件失败。';
-    };
-    reader.readAsArrayBuffer(file);
-  }
-
-  // 把 docx 纯文本拆成结构化简历（启发式）
-  function parseResumeText(text) {
-    var lines = text.split(/\r?\n/).map(function (l) { return l.trim(); })
-      .filter(function (l) { return l.length; });
-
-    var basics = state.basics;
-    // 邮箱 / 电话
-    var emailM = text.match(/[\w.+-]+@[\w-]+\.[\w.-]+/);
-    var phoneM = text.match(/(?:\+?86[-\s]?)?1[3-9]\d{9}/);
-    if (emailM) basics.email = emailM[0];
-    if (phoneM) basics.phone = phoneM[0];
-    // 姓名：第一个较短的非标题行
-    for (var i = 0; i < lines.length; i++) {
-      if (lines[i].length <= 4 && !/教育|工作|项目|技能|经历|评价|求职|基本|信息|背景/.test(lines[i])) {
-        basics.name = lines[i]; break;
-      }
-    }
-
-    // 按常见小标题切分
-    var map = {
-      experience: /工作|实习|经验/, projects: /项目/, skills: /技能|特长|专业/,
-      education: /教育|学历|背景/, extra: /证书|荣誉|获奖|其他|语言/
-    };
-    var blocks = {}; var current = null;
-    lines.forEach(function (line) {
-      var hit = null;
-      for (var t in map) { if (map[t].test(line) && line.length < 12) { hit = t; break; } }
-      if (hit) { current = hit; blocks[current] = blocks[current] || []; return; }
-      if (current) blocks[current].push(line);
-    });
-
-    // 写入 sections
-    state.sections.forEach(function (s) {
-      var raw = blocks[s.type];
-      if (!raw || !raw.length) return;
-      if (s.type === 'skills') {
-        s.items = raw.join(' ').split(/[、,，;；\s]+/).filter(function (x) { return x.length; })
-          .map(function (x) { return { text: x }; });
-      } else if (s.type === 'education') {
-        s.items = chunkEducation(raw).map(function (b) { return { title: b[0] || '', meta: '', desc: b.slice(1).join('\n') }; });
-      } else {
-        s.items = chunkByGap(raw).map(function (b) {
-          return { title: b[0] || '', meta: b[1] && /\d{4}|公司|大学|学院/.test(b[1]) ? b[1] : '', desc: b.slice(b[1] && /\d{4}|公司|大学|学院/.test(b[1]) ? 2 : 1).join('\n') };
-        });
-      }
-    });
-  }
-  // 按空行/明显换行把段落切块
-  function chunkByGap(arr) {
-    var out = [], cur = [];
-    arr.forEach(function (l) {
-      if (/^\d{4}[\s.\-/]?\d{0,2}/.test(l) || cur.length >= 4) { if (cur.length) out.push(cur); cur = [l]; }
-      else cur.push(l);
-    });
-    if (cur.length) out.push(cur);
-    return out;
-  }
-  function chunkEducation(arr) {
-    var out = [], cur = [];
-    arr.forEach(function (l) {
-      if (/大学|学院|学校/.test(l) && cur.length) { out.push(cur); cur = [l]; } else cur.push(l);
-    });
-    if (cur.length) out.push(cur);
-    return out;
-  }
-
-  /* ---------- 渲染（可编辑）---------- */
-  function render() {
-    var root = document.getElementById('resume');
-    root.innerHTML = '';
-
-    // 姓名 + 联系方式
-    var h1 = document.createElement('h1');
-    h1.className = 'name'; h1.contentEditable = 'true';
-    h1.textContent = state.basics.name || '你的姓名';
-    h1.oninput = function () { state.basics.name = h1.textContent.trim(); debouncedSave(); };
-    root.appendChild(h1);
-
-    var contact = document.createElement('div');
-    contact.className = 'contact'; contact.contentEditable = 'true';
-    var c = state.basics;
-    contact.textContent = [c.phone, c.email, c.location, c.links].filter(Boolean).join('  |  ') || '电话 | 邮箱 | 城市 | 主页';
-    contact.oninput = function () {
-      var parts = contact.textContent.split('|').map(function (x) { return x.trim(); });
-      state.basics.phone = parts[0] || ''; state.basics.email = parts[1] || '';
-      state.basics.location = parts[2] || ''; state.basics.links = parts[3] || '';
-      debouncedSave();
-    };
-    root.appendChild(contact);
-
-    // 总结
-    root.appendChild(blockEl({
-      type: 'summary', title: '个人总结',
-      render: function () {
-        var d = document.createElement('div'); d.contentEditable = 'true';
-        d.textContent = state.summary || '粘贴 JD 后点「智能生成」，或在此直接撰写。';
-        d.oninput = function () { state.summary = d.textContent; debouncedSave(); };
-        return d;
-      }
-    }));
-
-    // 各模块（按 order 排序）
-    var order = state.order || state.sections.map(function (s) { return s.type; });
-    order.forEach(function (type) {
-      var sec = state.sections.find(function (s) { return s.type === type; });
-      if (!sec) return;
-      root.appendChild(sectionEl(sec));
-    });
-  }
-
-  function blockEl(opt) {
-    var sec = document.createElement('section'); sec.className = 'block';
-    var h2 = document.createElement('h2'); h2.textContent = opt.title;
-    sec.appendChild(h2); sec.appendChild(opt.render());
-    return sec;
-  }
-
-  function sectionEl(sec) {
-    var wrap = document.createElement('section'); wrap.className = 'block';
-    var h2 = document.createElement('h2'); h2.textContent = sec.title; wrap.appendChild(h2);
-
-    if (sec.type === 'skills') {
-      var line = document.createElement('div'); line.className = 'skills-line';
-      var hitSet = currentHits();
-      sec.items.forEach(function (it, i) {
-        var chip = document.createElement('span');
-        chip.className = 'chip' + (hitSet.has(it.text.toLowerCase()) ? ' hit' : '');
-        chip.contentEditable = 'true'; chip.textContent = it.text;
-        chip.oninput = function () { it.text = chip.textContent; debouncedSave(); };
-        var del = delBtn(function () { sec.items.splice(i, 1); render(); save(); });
-        chip.appendChild(del);
-        line.appendChild(chip); line.appendChild(document.createTextNode(' '));
-      });
-      wrap.appendChild(line);
-      wrap.appendChild(addBtn('+ 添加技能', function () {
-        sec.items.push({ text: '新技能' }); render(); save();
-      }));
-      return wrap;
-    }
-
-    var ul = document.createElement('ul'); ul.className = 'items';
-    sec.items.forEach(function (it, i) {
-      var li = document.createElement('li'); li.className = 'item';
-      var row1 = document.createElement('div'); row1.className = 'row1';
-      var title = document.createElement('span'); title.className = 'title'; title.contentEditable = 'true';
-      title.textContent = it.title || '职位 / 项目名';
-      title.oninput = function () { it.title = title.textContent; debouncedSave(); };
-      var meta = document.createElement('span'); meta.className = 'meta'; meta.contentEditable = 'true';
-      meta.textContent = it.meta || '公司 / 时间';
-      meta.oninput = function () { it.meta = meta.textContent; debouncedSave(); };
-      row1.appendChild(title); row1.appendChild(meta);
-      var desc = document.createElement('div'); desc.className = 'desc'; desc.contentEditable = 'true';
-      desc.textContent = it.desc || '主要职责与成果…';
-      desc.oninput = function () { it.desc = desc.textContent; debouncedSave(); };
-      li.appendChild(row1); li.appendChild(desc);
-      li.appendChild(delBtn(function () { sec.items.splice(i, 1); render(); save(); }));
-      ul.appendChild(li);
-    });
-    wrap.appendChild(ul);
-    wrap.appendChild(addBtn('+ 添加一条', function () {
-      sec.items.push({ title: '', meta: '', desc: '' }); render(); save();
-    }));
-    return wrap;
-  }
-
-  function delBtn(onclick) {
-    var b = document.createElement('button'); b.className = 'del-btn'; b.textContent = '✕';
-    b.onclick = onclick; return b;
-  }
-  function addBtn(label, onclick) {
-    var b = document.createElement('button'); b.className = 'add-btn'; b.textContent = label;
-    b.onclick = onclick; return b;
-  }
-
-  var hitCache = null;
-  function currentHits() {
-    if (hitCache) return hitCache;
-    hitCache = new Set();
-    if (state.jd) parseJD(state.jd).keywords.forEach(function (k) { hitCache.add(k); });
-    // 也把用户技能小写加入，便于高亮
-    state.sections.forEach(function (s) {
-      if (s.type === 'skills') s.items.forEach(function (it) { hitCache.add(it.text.toLowerCase()); });
-    });
-    return hitCache;
-  }
-
-  /* ---------- 导出 ---------- */
-  function exportJSON() {
-    var blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-    download(blob, (state.basics.name || 'resume') + '.json');
-  }
-  function exportMarkdown() {
-    var s = state, md = '';
-    md += '# ' + (s.basics.name || '姓名') + '\n';
-    md += [s.basics.phone, s.basics.email, s.basics.location, s.basics.links].filter(Boolean).join(' | ') + '\n\n';
-    if (s.summary) md += '## 个人总结\n' + s.summary + '\n\n';
-    s.sections.forEach(function (sec) {
-      md += '## ' + sec.title + '\n';
-      if (sec.type === 'skills') {
-        md += sec.items.map(function (i) { return '- ' + i.text; }).join('\n') + '\n\n';
-      } else {
-        sec.items.forEach(function (it) {
-          md += '- **' + (it.title || '') + '**' + (it.meta ? '  _' + it.meta + '_' : '') + '\n';
-          if (it.desc) md += '  ' + it.desc.replace(/\n/g, '\n  ') + '\n';
-        });
-        md += '\n';
-      }
-    });
-    download(new Blob([md], { type: 'text/markdown' }), (s.basics.name || 'resume') + '.md');
-  }
-  function download(blob, name) {
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob); a.download = name; a.click();
-    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-  }
-
-  /* ---------- ai-job-search 方法论（纯前端）：求职信 + 技能差距 ---------- */
-  // 把整份简历压成一段小写文本，便于做关键词命中判断
-  function resumeBlob() {
-    var s = state, parts = [];
-    if (s.summary) parts.push(s.summary);
-    s.sections.forEach(function (sec) {
-      sec.items.forEach(function (it) {
-        if (sec.type === 'skills') parts.push(it.text);
-        else parts.push([it.title, it.meta, it.desc].filter(Boolean).join(' '));
-      });
-    });
-    return (s.basics.name + ' ' + s.basics.location + ' ' + parts.join(' ')).toLowerCase();
-  }
-  // 从 JD 里尽量提取岗位名（招 X 工程师 / X 运维 等）
-  function extractPosition(jd) {
-    var m = jd.match(/(?:招聘|诚聘|招募|招)\s*([\u4e00-\u9fa5A-Za-z]{2,12}?)(工程师|专员|经理|主管|助理|技术员|运维|分析师|设计师|顾问)/);
-    if (m) return m[1] + m[2];
-    var m2 = jd.match(/([\u4e00-\u9fa5A-Za-z]{2,12}?(?:工程师|专员|经理|主管|运维|分析师))/);
-    if (m2) return m2[1];
-    return state.basics.direction || '相关岗位';
-  }
-  // 生成求职信（基于 JD + 当前简历，客户端拼装，可再编辑）
-  function generateCoverLetter() {
-    var jd = state.jd || ((document.getElementById('jdInput') || {}).value || '');
-    jd = (jd || '').trim();
-    if (!jd) { flash('请先在左侧粘贴岗位 JD'); return; }
-    var pos = extractPosition(jd);
-    var parsed = parseJD(jd);
-    var s = state;
-    var name = s.basics.name || '（你的姓名）';
-    var contact = [s.basics.phone, s.basics.email].filter(Boolean).join(' / ');
-    var mySkills = [];
-    var sk = s.sections.find(function (x) { return x.type === 'skills'; });
-    if (sk) sk.items.forEach(function (it) { mySkills.push(it.text); });
-    var matched = mySkills.filter(function (t) {
-      var tl = t.toLowerCase();
-      return parsed.keywords.some(function (k) { return tl.indexOf(k) >= 0 || k.indexOf(tl) >= 0; });
-    });
-    var skillLine = (matched.length ? matched : parsed.keywords).slice(0, 6).join('、');
-    var expSec = s.sections.find(function (x) { return x.type === 'experience' || x.type === 'projects'; });
-    var highlight = '';
-    if (expSec && expSec.items.length) {
-      var top = expSec.items[0];
-      highlight = (top.title ? ('曾参与/负责「' + top.title + '」') : '在校期间') +
-        (top.desc ? ('，' + top.desc.replace(/\n/g, ' ').slice(0, 70)) : '') + '。';
-    } else {
-      highlight = '在校期间担任学生干部并参与新能源汽车高压安全相关实践，具备良好的执行力与团队协作意识。';
-    }
-    var cl = '';
-    cl += '尊敬的人力资源经理：\n\n';
-    cl += '您好！我是' + name + '，关注到贵公司「' + pos + '」岗位的招聘信息，特此投递简历。\n\n';
-    cl += '在过往学习与实践中，我积累了与岗位高度相关的能力，尤其在' + skillLine + '等方面具备扎实基础；' +
-      '结合岗位要求，我能够快速胜任' + pos + '相关工作，并为团队创造价值。\n\n';
-    cl += highlight + '我注重结果导向与持续学习，期望在' + pos + '方向长期深耕。\n\n';
-    cl += '如方便，期待有机会与您进一步沟通。感谢您的时间与审阅！\n\n';
-    cl += '此致\n敬礼\n\n' + name + (contact ? ('\n' + contact) : '') + '\n';
-    var ta = document.getElementById('coverOut');
-    if (ta) { ta.value = cl; ta.classList.add('filled'); }
-    flash('已生成求职信，可编辑后复制');
-  }
-  // 技能差距分析：把 JD 关键词与简历做命中比对
-  function skillGapAnalysis() {
-    var jd = state.jd || ((document.getElementById('jdInput') || {}).value || '');
-    jd = (jd || '').trim();
-    if (!jd) { flash('请先粘贴岗位 JD'); return; }
-    var parsed = parseJD(jd);
-    var blob = resumeBlob();
-    var sk = state.sections.find(function (x) { return x.type === 'skills'; });
-    var mySkills = sk ? sk.items.map(function (it) { return it.text.toLowerCase(); }) : [];
-    var matched = [], missing = [];
-    parsed.keywords.forEach(function (k) {
-      var kl = k.toLowerCase();
-      var hit = mySkills.some(function (t) { return t.indexOf(kl) >= 0 || kl.indexOf(t) >= 0; }) || blob.indexOf(kl) >= 0;
-      (hit ? matched : missing).push(k);
-    });
-    var score = parsed.keywords.length ? Math.round(matched.length / parsed.keywords.length * 100) : 0;
-    renderGap(matched, missing, score, parsed.keywords.length);
-    flash('技能差距分析完成');
-  }
-  function renderGap(matched, missing, score, total) {
-    var box = document.getElementById('gapResult');
-    if (!box) return;
-    box.hidden = false;
+  /* ---------- 渲染：模块 ---------- */
+  function renderSections() {
     var html = '';
-    html += '<div class="gap-score">岗位匹配度 <b>' + score + '%</b> <span class="muted">（命中 ' + matched.length + ' / ' + total + ' 个关键技能词）</span></div>';
-    html += '<div class="gap-bar"><span style="width:' + score + '%"></span></div>';
-    html += '<div class="gap-cols">';
-    html += '<div class="gap-col ok"><h4>✅ 已具备</h4>' + (matched.length ? matched.map(function (k) { return '<span class="gtag ok">' + k + '</span>'; }).join('') : '<span class="muted">暂无匹配</span>') + '</div>';
-    html += '<div class="gap-col miss"><h4>⚠️ 待补足</h4>' + (missing.length ? missing.map(function (k) { return '<span class="gtag miss">' + k + '</span>'; }).join('') : '<span class="muted">无明显缺口 🎉</span>') + '</div>';
-    html += '</div>';
-    if (missing.length) {
-      html += '<div class="gap-tip"><b>优化建议：</b>在简历的「技能 / 项目 / 经历」中补充与 ' +
-        missing.slice(0, 6).join('、') + ' 相关的具体经历、工具或成果，可显著提升匹配度；若确实缺乏，可优先学习并在「证书」栏体现。</div>';
+    state.sections.forEach(function (sec, si) {
+      var sch = SCHEMA[sec.type];
+      var hidden = sec.hidden ? ' hidden' : '';
+      html += '<div class="sec' + hidden + '" data-sec="' + si + '">';
+      html += '<div class="sec-head"><span class="sec-title">' + esc(sec.title || sch.label) + '</span>'
+        + '<button class="mini" data-act="up" title="上移">↑</button>'
+        + '<button class="mini" data-act="down" title="下移">↓</button>'
+        + '<button class="mini" data-act="hide" title="隐藏/显示">' + (sec.hidden ? '显示' : '隐藏') + '</button>'
+        + '<button class="mini danger" data-act="del" title="删除模块">✕</button></div>';
+      html += '<div class="sec-body">';
+      sec.items.forEach(function (it, ij) {
+        html += '<div class="item" data-item="' + ij + '"><div class="item-head"><span>#' + (ij + 1) + '</span>'
+          + '<span><button class="mini" data-act="upitem">↑</button><button class="mini" data-act="downitem">↓</button>'
+          + '<button class="mini danger" data-act="delitem">✕</button></span></div>';
+        sch.fields.forEach(function (f) {
+          var val = it[f.k];
+          html += '<div class="field"><label>' + f.label + '</label>';
+          if (f.type === 'lines')
+            html += '<textarea data-field="' + f.k + '" data-type="lines" rows="3" placeholder="' + esc(f.ex || '') + '">' + esc(Array.isArray(val) ? val.join('\n') : (val || '')) + '</textarea>';
+          else
+            html += '<input data-field="' + f.k + '" data-type="' + f.type + '" value="' + esc(val || '') + '" placeholder="' + esc(f.ex || '') + '" />';
+          html += '</div>';
+        });
+        html += '<span class="example-link" data-act="example">填入示例</span></div>';
+      });
+      html += '<button class="mini" data-act="additem">＋ 添加一条</button></div></div>';
+    });
+    document.getElementById('sections').innerHTML = html;
+  }
+
+  function renderForm() { renderBasics(); renderSections(); }
+
+  /* ---------- 渲染：预览 ---------- */
+  function secTitle(sec) {
+    if (sec.type === 'custom') return (sec.items[0] && sec.items[0].heading) || '自定义模块';
+    return sec.title || SCHEMA[sec.type].label;
+  }
+  function renderSectionHtml(sec) {
+    var title = secTitle(sec), body = '';
+    if (sec.type === 'skills') {
+      sec.items.forEach(function (it) {
+        var tags = (it.items || '').split(/[,，\n]/).map(function (s) { return s.trim(); }).filter(Boolean);
+        if (tags.length) body += '<div class="pv-skill-cat"><b>' + esc(it.category || '技能') + '</b></div>'
+          + '<div class="pv-skill-tags">' + tags.map(function (t) { return '<span class="pv-tag">' + esc(t) + '</span>'; }).join('') + '</div>';
+      });
+    } else if (sec.type === 'custom') {
+      sec.items.forEach(function (it) {
+        var lines = (it.body || []).filter(Boolean);
+        if (lines.length) body += '<ul class="pv-bullets">' + lines.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul>';
+      });
+    } else if (sec.type === 'certificates') {
+      sec.items.forEach(function (it) {
+        var head = [it.name, it.issuer].filter(Boolean).join(' · ');
+        body += '<div class="pv-item"><div class="pv-item-head"><span class="pv-item-title">' + esc(head)
+          + '</span>' + (it.date ? '<span class="pv-period">' + esc(it.date) + '</span>' : '') + '</div></div>';
+      });
+    } else {
+      sec.items.forEach(function (it) {
+        var title = it.role || it.name || it.school || '';
+        var sub = [sec.type === 'education' ? it.degree : (it.company || it.role), it.location].filter(Boolean).join(' · ');
+        var bullets = (it.bullets || []).filter(Boolean);
+        body += '<div class="pv-item"><div class="pv-item-head"><span class="pv-item-title">' + esc(title) + '</span>'
+          + (it.period ? '<span class="pv-period">' + esc(it.period) + '</span>' : '') + '</div>'
+          + (sub ? '<div class="pv-item-sub">' + esc(sub) + '</div>' : '')
+          + (bullets.length ? '<ul class="pv-bullets">' + bullets.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' : '') + '</div>';
+      });
     }
+    return '<div class="pv-section"><div class="pv-sec-title">' + esc(title) + '</div>' + body + '</div>';
+  }
+  function renderPreview() {
+    var b = state.basics;
+    var contact = [];
+    if (b.phone) contact.push(esc(b.phone));
+    if (b.email) contact.push(esc(b.email));
+    if (b.location) contact.push(esc(b.location));
+    if (b.links) contact.push(esc(b.links));
+    var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
+    var asideTypes = { skills: 1, certificates: 1 };
+    var aside = '', main = '';
+    if (b.summary) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
+    state.sections.forEach(function (sec) {
+      if (sec.hidden) return;
+      var h = renderSectionHtml(sec);
+      if (state.meta.template !== 'classic' && asideTypes[sec.type]) aside += h; else main += h;
+    });
+    var head = '<h1 class="pv-name">' + esc(b.name || '你的名字') + '</h1>'
+      + (b.title ? '<div class="pv-ptitle">' + esc(b.title) + '</div>' : '');
+    var inner;
+    if (state.meta.template === 'classic') inner = head + contactHtml + main;
+    else inner = head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + aside + '</div><div class="pv-main">' + main + '</div></div>';
+    var pv = document.getElementById('preview');
+    pv.className = 'resume-preview t-' + state.meta.template;
+    pv.style.setProperty('--accent', state.meta.accent || '#16a34a');
+    pv.innerHTML = inner;
+    renderAtsBadge();
+  }
+
+  /* ---------- ATS / JD ---------- */
+  function resumeText() {
+    var t = (state.basics.name || '') + ' ' + (state.basics.title || '') + ' ' + (state.basics.summary || '') + ' ';
+    state.sections.forEach(function (s) {
+      if (s.hidden) return;
+      s.items.forEach(function (it) { for (var k in it) { var v = it[k]; t += (Array.isArray(v) ? v.join(' ') : (v || '')) + ' '; } });
+    });
+    return t;
+  }
+  function parseJD(jd) {
+    var dict = ['光伏', '风电', '风能', '新能源', '储能', '电池', 'bms', '电气', 'cad', 'autocad', '并网', '逆变', '运维', '电网', '充电桩', '氢能', '锂电', '系统集成', 'plc', 'scada', 'python', 'sql', '数据分析', '项目管理', '安全规范', '调度', '继电保护'];
+    var low = (jd || '').toLowerCase(), found = [];
+    dict.forEach(function (k) { if (low.indexOf(k.toLowerCase()) >= 0) found.push(k); });
+    return found;
+  }
+  function computeAts() {
+    var jd = document.getElementById('jdInput').value || '';
+    if (!jd.trim()) return null;
+    var text = resumeText().toLowerCase();
+    var kws = parseJD(jd);
+    var matched = kws.filter(function (k) { return text.indexOf(k.toLowerCase()) >= 0; });
+    var missing = kws.filter(function (k) { return text.indexOf(k.toLowerCase()) < 0; });
+    var kwScore = kws.length ? Math.round(matched.length / kws.length * 100) : 100;
+    var sp = 0;
+    if (state.basics.summary) sp += 20;
+    if (state.sections.some(function (s) { return s.type === 'experience' && s.items.length; })) sp += 25;
+    if (state.sections.some(function (s) { return s.type === 'skills'; })) sp += 20;
+    if (state.sections.some(function (s) { return s.type === 'education'; })) sp += 15;
+    if (state.basics.phone && state.basics.email) sp += 20;
+    var tplBonus = state.meta.template === 'classic' ? 5 : 0;
+    var score = Math.max(0, Math.min(100, Math.round(kwScore * 0.5 + sp * 0.5) + tplBonus));
+    return { score: score, matched: matched, missing: missing, kwScore: kwScore };
+  }
+  function renderAtsBadge() {
+    var a = computeAts(), badge = document.getElementById('atsBadge');
+    if (!a) { badge.textContent = '匹配度 —'; badge.style.background = '#0f172a'; return; }
+    badge.textContent = '匹配度 ' + a.score;
+    badge.style.background = a.score >= 80 ? '#16a34a' : (a.score >= 60 ? '#d97706' : '#dc2626');
+  }
+  function renderJd() {
+    var a = computeAts(), box = document.getElementById('jdResult');
+    if (!a) { box.innerHTML = ''; return; }
+    var html = '<div class="ats-score">岗位匹配度 <b>' + a.score + '</b>（关键词命中 ' + a.kwScore + '%）</div>'
+      + '<div class="ats-bar"><i style="width:' + a.score + '%"></i></div>';
+    html += '<div class="kw-list">已具备：' + (a.matched.length ? a.matched.map(function (k) { return '<span class="tag">' + k + '</span>'; }).join('') : '（暂无）') + '</div>';
+    html += '<div class="kw-list" style="margin-top:6px">建议补充：' + (a.missing.length ? a.missing.map(function (k) { return '<span class="tag miss">' + k + '</span>'; }).join('') : '✅ 已覆盖主要关键词') + '</div>';
     box.innerHTML = html;
   }
 
-  var saveT;
-  function debouncedSave() { clearTimeout(saveT); saveT = setTimeout(save, 600); }
+  /* ---------- 求职信 / 差距分析 ---------- */
+  function extractPosition(jd) {
+    var m = (jd || '').match(/(?:招聘|诚聘|招募|招)\s*([一-龥A-Za-z]{2,12}?)(工程师|专员|经理|主管|助理|技术员|运维|分析师|设计师|顾问)/);
+    if (m) return m[1] + m[2];
+    var m2 = (jd || '').match(/([一-龥A-Za-z]{2,12}?(?:工程师|专员|经理|主管|运维|分析师))/);
+    return m2 ? m2[1] : null;
+  }
+  function generateCoverLetter() {
+    var jd = document.getElementById('jdInput').value || '', b = state.basics;
+    var pos = extractPosition(jd) || b.title || '贵公司相关岗位';
+    var skills = [];
+    state.sections.forEach(function (s) { if (s.type === 'skills') s.items.forEach(function (it) { (it.items || '').split(/[,，\n]/).forEach(function (x) { var t = x.trim(); if (t) skills.push(t); }); }); });
+    var skillLine = skills.slice(0, 6).join('、');
+    var ta = document.getElementById('coverOut');
+    ta.value = '尊敬的人事经理：\n\n您好！我叫' + (b.name || '___') + '，应聘「' + pos + '」一职。\n\n'
+      + '我具备' + (skillLine || '相关专业') + '等能力，' + (b.summary ? b.summary : '对该岗位有浓厚兴趣并具备相应的实践基础') + '。\n'
+      + '如有机会加入，我将以扎实的专业能力与踏实的态度，为团队创造价值。期待您的回复！\n\n此致\n敬礼\n' + (b.name || '') + '\n' + (b.phone || '');
+    document.getElementById('copyCover').hidden = false;
+    flash('已生成求职信，可手动修改后复制');
+  }
+  function skillGapAnalysis() {
+    var a = computeAts(), box = document.getElementById('gapResult');
+    if (!a) { box.innerHTML = '<p class="hint">请先在上方粘贴岗位 JD。</p>'; return; }
+    var html = '<div class="ats-score">匹配度 <b>' + a.score + '</b></div><div class="ats-bar"><i style="width:' + a.score + '%"></i></div>'
+      + '<div class="kw-list">已具备关键词：' + (a.matched.length ? a.matched.map(function (k) { return '<span class="tag">' + k + '</span>'; }).join('') : '（暂无）') + '</div>'
+      + '<div class="kw-list" style="margin-top:6px">待补足关键词：' + (a.missing.length ? a.missing.map(function (k) { return '<span class="tag miss">' + k + '</span>'; }).join('') : '✅ 已覆盖主要关键词') + '</div>';
+    box.innerHTML = html;
+  }
 
-  /* ---------- 事件绑定 ---------- */
-  function init() {
-    load(); render();
+  /* ---------- .docx 导入 ---------- */
+  function parseDocxToState(text) {
+    text = text.replace(/\r/g, '');
+    var lines = text.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l.length; });
+    var st = DEFAULT_STATE();
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].length <= 5 && !/教育|工作|项目|技能|经历|证书|基本|信息|评价|求职|自我|获奖|语言|联系/.test(lines[i])) { st.basics.name = lines[i]; break; }
+    }
+    lines.forEach(function (l) {
+      var m = l.match(/(1[3-9]\d{9})/); if (m) st.basics.phone = m[1];
+      var e = l.match(/([\w.]+@[\w.]+)/); if (e) st.basics.email = e[1];
+    });
+    var map = [['教育', 'education'], ['工作', 'experience'], ['实习', 'experience'], ['项目', 'projects'], ['技能', 'skills'], ['证书', 'certificates'], ['获奖', 'custom'], ['自我', 'custom'], ['评价', 'custom']];
+    var cur = null, buf = [], sections = [];
+    function flush() {
+      if (cur && buf.length) {
+        if (cur === 'skills') sections.push({ type: 'skills', title: '', items: [{ category: '技能', items: buf.join('，') }] });
+        else if (cur === 'certificates') sections.push({ type: 'certificates', title: '', items: buf.map(function (l) { return { name: l, issuer: '', date: '' }; }) });
+        else if (cur === 'experience') sections.push({ type: 'experience', title: '', items: [{ role: buf[0] || '', company: '', period: '', bullets: buf.slice(1) }] });
+        else if (cur === 'projects') sections.push({ type: 'projects', title: '', items: [{ name: buf[0] || '', role: '', period: '', bullets: buf.slice(1) }] });
+        else if (cur === 'education') sections.push({ type: 'education', title: '', items: [{ school: buf[0] || '', degree: buf[1] || '', period: '', note: buf.slice(2).join(' ') }] });
+        else sections.push({ type: 'custom', title: '', items: [{ heading: '自我评价', body: buf }] });
+      }
+      cur = null; buf = [];
+    }
+    lines.forEach(function (l) {
+      var hit = null;
+      map.forEach(function (p) { if (new RegExp(p[0]).test(l) && l.length < 16) hit = p[1]; });
+      if (hit) { flush(); cur = hit; }
+      else if (cur) buf.push(l);
+    });
+    flush();
+    if (sections.length) st.sections = sections;
+    return st;
+  }
+  function handleDocx(file) {
+    if (!window.mammoth) { alert('解析库未加载，请刷新后重试'); return; }
+    var r = new FileReader();
+    r.onload = function (e) {
+      mammoth.extractRawText({ arrayBuffer: e.target.result }).then(function (res) {
+        var st = parseDocxToState(res.value || '');
+        state.sections = st.sections;
+        if (st.basics.name) state.basics.name = st.basics.name;
+        if (st.basics.phone) state.basics.phone = st.basics.phone;
+        if (st.basics.email) state.basics.email = st.basics.email;
+        save(); renderForm(); renderPreview(); flash('已从 .docx 导入并解析，可继续编辑');
+      }).catch(function (err) { alert('解析失败：' + (err && err.message ? err.message : err)); });
+    };
+    r.readAsArrayBuffer(file);
+  }
 
-    document.getElementById('genBtn').onclick = function () {
-      var jd = document.getElementById('jdInput').value.trim();
-      if (!jd) { flash('请先粘贴岗位 JD'); return; }
-      state.jd = jd;
-      var res = parseJD(jd);
-      reorderSections(res.weight);
-      if (!state.summary) state.summary = autoSummary(jd);
-      render(); save();
-      // 匹配面板
-      var card = document.getElementById('matchCard'); card.hidden = false;
-      var tags = document.getElementById('matchTags'); tags.innerHTML = '';
-      res.keywords.slice(0, 24).forEach(function (k) {
-        var t = document.createElement('span'); t.className = 'tag'; t.textContent = k; tags.appendChild(t);
+  /* ---------- 多份简历管理 ---------- */
+  function renderResumeSelector() {
+    var sel = document.getElementById('resumeSel');
+    sel.innerHTML = '';
+    Object.keys(data.resumes).forEach(function (name) {
+      var o = document.createElement('option'); o.value = name; o.textContent = name; sel.appendChild(o);
+    });
+    sel.value = data.current;
+  }
+  function switchResume(name) { if (data.resumes[name]) { data.current = name; state = data.resumes[name]; save(); renderAll(); } }
+
+  /* ---------- 导出 ---------- */
+  function download(blob, name) {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+  function exportJson() { download(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }), (state.basics.name || 'resume') + '.json'); }
+  function exportMd() {
+    var b = state.basics, md = '# ' + (b.name || '简历') + '\n';
+    if (b.title) md += '**' + b.title + '**\n';
+    var c = [b.phone, b.email, b.location, b.links].filter(Boolean).join(' | ');
+    if (c) md += '\n' + c + '\n';
+    if (b.summary) md += '\n## 自我评价\n' + b.summary + '\n';
+    state.sections.forEach(function (s) {
+      if (s.hidden || !s.items.length) return;
+      md += '\n## ' + secTitle(s) + '\n';
+      if (s.type === 'skills') s.items.forEach(function (it) { md += '- **' + (it.category || '技能') + '**：' + it.items + '\n'; });
+      else if (s.type === 'certificates') s.items.forEach(function (it) { md += '- ' + [it.name, it.issuer, it.date].filter(Boolean).join(' · ') + '\n'; });
+      else if (s.type === 'custom') s.items.forEach(function (it) { (it.body || []).forEach(function (l) { md += '- ' + l + '\n'; }); });
+      else s.items.forEach(function (it) {
+        var head = it.role || it.name || it.school || '';
+        md += '- **' + head + '**' + (it.company || it.school ? ' · ' + (it.company || it.school) : '') + (it.period ? '（' + it.period + '）' : '') + '\n';
+        (it.bullets || []).forEach(function (bl) { md += '  - ' + bl + '\n'; });
       });
-      if (!res.keywords.length) {
-        var t = document.createElement('span'); t.className = 'tag miss'; t.textContent = '未在词典中找到明确技能词'; tags.appendChild(t);
-      }
-      var topSec = (state.order || [])[0];
-      var secObj = state.sections.find(function (s) { return s.type === topSec; });
-      document.getElementById('reorderHint').textContent = secObj
-        ? '已根据 JD 将「' + secObj.title + '」模块置顶——岗位更看重的经历被排在前面。'
-        : '';
-      hitCache = null; render();
-      flash('已按岗位定制');
-    };
+    });
+    download(new Blob([md], { type: 'text/markdown;charset=utf-8' }), (b.name || 'resume') + '.md');
+  }
 
-    var dz = document.getElementById('dropzone');
-    var input = document.getElementById('docxInput');
-    input.onchange = function () { if (input.files[0]) handleDocx(input.files[0]); };
-    ['dragover', 'dragenter'].forEach(function (ev) {
-      dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add('drag'); });
-    });
-    ['dragleave', 'drop'].forEach(function (ev) {
-      dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove('drag'); });
-    });
-    dz.addEventListener('drop', function (e) {
-      if (e.dataTransfer.files[0]) handleDocx(e.dataTransfer.files[0]);
-    });
+  /* ---------- toast ---------- */
+  function flash(msg) {
+    var t = document.getElementById('toast');
+    if (!t) { t = document.createElement('div'); t.id = 'toast'; document.body.appendChild(t); }
+    t.textContent = msg; t.style.opacity = '1';
+    clearTimeout(t._t); t._t = setTimeout(function () { t.style.opacity = '0'; }, 1700);
+  }
 
-    document.getElementById('saveBtn').onclick = function () { save(); flash('已保存'); };
-    document.getElementById('exportJson').onclick = exportJSON;
-    document.getElementById('exportMd').onclick = exportMarkdown;
-    document.getElementById('exportPdf').onclick = function () { window.print(); };
-    document.getElementById('resetBtn').onclick = function () {
-      if (confirm('确定清空当前简历？此操作不可撤销。')) {
-        state = emptyState(); save(); render(); flash('已重置');
+  /* ---------- 事件 ---------- */
+  var pvT, svT, jdT;
+  function schedulePreview() { clearTimeout(pvT); pvT = setTimeout(renderPreview, 120); }
+  function scheduleSave() { clearTimeout(svT); svT = setTimeout(save, 500); }
+  function scheduleJd() { clearTimeout(jdT); jdT = setTimeout(function () { renderJd(); renderAtsBadge(); }, 250); }
+
+  function onInput(e) {
+    var t = e.target;
+    if (t.dataset.bind) { state.basics[t.dataset.bind] = t.value; schedulePreview(); scheduleSave(); return; }
+    if (t.dataset.field) {
+      var secEl = t.closest('.sec'), itemEl = t.closest('.item');
+      if (secEl && itemEl) {
+        var si = +secEl.dataset.sec, ij = +itemEl.dataset.item, f = t.dataset.field;
+        state.sections[si].items[ij][f] = (t.dataset.type === 'lines') ? t.value.split('\n') : t.value;
+        schedulePreview(); scheduleSave();
       }
-    };
-    // 求职辅助：求职信 + 技能差距（ai-job-search 方法论纯前端移植）
-    document.getElementById('genCover').onclick = generateCoverLetter;
-    document.getElementById('genGap').onclick = skillGapAnalysis;
-    var copyBtn = document.getElementById('copyCover');
-    if (copyBtn) copyBtn.onclick = function () {
-      var ta = document.getElementById('coverOut');
-      if (!ta || !ta.value) { flash('请先生成求职信'); return; }
-      ta.select();
-      var done = function () { flash('求职信已复制到剪贴板'); };
-      try { document.execCommand('copy'); done(); }
-      catch (e) {
-        if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(done, function () { flash('复制失败，请手动选择文本复制'); });
-        else flash('复制失败，请手动选择文本复制');
-      }
-    };
-    // 自动保存（离开前）
-    window.addEventListener('beforeunload', save);
+    }
+  }
+  function onClick(e) {
+    var btn = e.target.closest('[data-act]'); if (!btn) return;
+    var act = btn.dataset.act;
+    var secEl = btn.closest('.sec'), itemEl = btn.closest('.item');
+    var si = secEl ? +secEl.dataset.sec : -1, ij = itemEl ? +itemEl.dataset.item : -1;
+    if (act === 'up') swapSection(si, -1);
+    else if (act === 'down') swapSection(si, 1);
+    else if (act === 'hide') state.sections[si].hidden = !state.sections[si].hidden;
+    else if (act === 'del') state.sections.splice(si, 1);
+    else if (act === 'additem') state.sections[si].items.push(emptyItem(state.sections[si].type));
+    else if (act === 'upitem') swapItem(si, ij, -1);
+    else if (act === 'downitem') swapItem(si, ij, 1);
+    else if (act === 'delitem') state.sections[si].items.splice(ij, 1);
+    else if (act === 'example') {
+      SCHEMA[state.sections[si].type].fields.forEach(function (f) {
+        state.sections[si].items[ij][f.k] = (f.type === 'lines') ? (f.ex || '').split('\n') : (f.ex || '');
+      });
+    }
+    save(); renderForm(); renderPreview();
+  }
+  function swapSection(i, dir) { var j = i + dir; if (j < 0 || j >= state.sections.length) return; var t = state.sections[i]; state.sections[i] = state.sections[j]; state.sections[j] = t; }
+  function swapItem(si, ij, dir) { var arr = state.sections[si].items, j = ij + dir; if (j < 0 || j >= arr.length) return; var t = arr[ij]; arr[ij] = arr[j]; arr[j] = t; }
+
+  function renderAll() {
+    document.getElementById('tplSel').value = state.meta.template;
+    document.getElementById('accent').value = state.meta.accent || '#16a34a';
+    renderResumeSelector(); renderForm(); renderPreview(); renderJd();
+  }
+
+  function init() {
+    load();
+    renderAll();
+    var form = document.querySelector('.form-panel');
+    form.addEventListener('input', onInput);
+    form.addEventListener('click', onClick);
+    document.getElementById('tplSel').addEventListener('change', function (e) { state.meta.template = e.target.value; save(); renderPreview(); });
+    document.getElementById('accent').addEventListener('input', function (e) { state.meta.accent = e.target.value; save(); renderPreview(); });
+    document.getElementById('resumeSel').addEventListener('change', function (e) { switchResume(e.target.value); });
+    document.getElementById('newResume').addEventListener('click', function () {
+      var name = prompt('新简历名称（如：光伏岗版）：', state.basics.title || '新简历');
+      if (!name) return;
+      if (data.resumes[name]) { alert('已存在同名简历'); return; }
+      data.resumes[name] = clone(state); data.current = name; save(); renderAll(); flash('已创建「' + name + '」');
+    });
+    document.getElementById('delResume').addEventListener('click', function () {
+      if (Object.keys(data.resumes).length <= 1) { alert('至少保留一份简历'); return; }
+      if (!confirm('删除当前简历「' + data.current + '」？')) return;
+      delete data.resumes[data.current];
+      data.current = Object.keys(data.resumes)[0]; state = data.resumes[data.current]; save(); renderAll(); flash('已删除');
+    });
+    document.getElementById('saveResume').addEventListener('click', function () { save(); flash('已保存'); });
+    document.getElementById('resetBtn').addEventListener('click', function () {
+      if (!confirm('重置当前简历为空白模板？此操作不可撤销。')) return;
+      state.sections = DEFAULT_STATE().sections; state.basics = { name: '', title: '', phone: '', email: '', location: '', links: '', summary: '' }; save(); renderForm(); renderPreview(); flash('已重置');
+    });
+    document.getElementById('addSection').addEventListener('click', function () {
+      var type = document.getElementById('addType').value;
+      state.sections.push({ type: type, title: '', items: (type === 'skills' || type === 'certificates') ? [emptyItem(type)] : [] });
+      save(); renderForm(); renderPreview();
+    });
+    document.getElementById('analyzeJd').addEventListener('click', renderJd);
+    document.getElementById('jdInput').addEventListener('input', scheduleJd);
+    document.getElementById('genCover').addEventListener('click', generateCoverLetter);
+    document.getElementById('genGap').addEventListener('click', skillGapAnalysis);
+    document.getElementById('copyCover').addEventListener('click', function () {
+      var ta = document.getElementById('coverOut'); ta.select();
+      try { document.execCommand('copy'); flash('求职信已复制'); } catch (e) { flash('复制失败，请手动选择'); }
+    });
+    document.getElementById('exportPdf').addEventListener('click', function () { window.print(); });
+    document.getElementById('exportJson').addEventListener('click', exportJson);
+    document.getElementById('exportMd').addEventListener('click', exportMd);
+    document.getElementById('importJson').addEventListener('click', function () { document.getElementById('importFile').click(); });
+    document.getElementById('importFile').addEventListener('change', function (e) {
+      var f = e.target.files[0]; if (!f) return;
+      var r = new FileReader();
+      r.onload = function (ev) {
+        try {
+          var d = JSON.parse(ev.target.result);
+          if (!d.resumes) throw new Error('格式不正确');
+          data = d; if (!data.resumes[data.current]) data.current = Object.keys(data.resumes)[0];
+          state = data.resumes[data.current]; save(); renderAll(); flash('已导入简历数据');
+        } catch (err) { alert('导入失败：' + err.message); }
+      };
+      r.readAsText(f);
+    });
+    // drag & drop .docx anywhere on form
+    form.addEventListener('dragover', function (e) { e.preventDefault(); });
+    form.addEventListener('drop', function (e) {
+      e.preventDefault();
+      var f = e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f && /\.docx$/i.test(f.name)) handleDocx(f);
+      else if (f) flash('仅支持 .docx 简历导入');
+    });
+    // expose for testing
+    window.__ra = { state: function () { return state; }, computeAts: computeAts, parseDocxToState: parseDocxToState };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
