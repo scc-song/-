@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11 12:50",
+  "generatedAt": "2026-08-11 16:40",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -156,24 +156,6 @@
       "updatedAt": "2026-08-04"
     },
     {
-      "id": "SOE074",
-      "title": "多措并举护航灵活就业、新就业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/kjix9tMxPxb_ljIE9sd81w",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE075",
-      "title": "拓宽就业门路！服务业多业态同...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/XWXHCFExCRrJhgRmvcqkdQ",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
       "id": "SOE083",
       "title": "数智驱动 开创人社信息化发展...",
       "tag": "招聘公告",
@@ -237,15 +219,6 @@
       "updatedAt": "2026-08-06"
     },
     {
-      "id": "SOE077",
-      "title": "全国专业技术人才总量超8000...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260804_581487.html",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
       "id": "SOE078",
       "title": "我国上半年城镇新增就业695万人",
       "tag": "招聘公告",
@@ -253,6 +226,15 @@
       "url": "https://mp.weixin.qq.com/s?__biz=MjM5NzMyOTY2OA==&mid=2650819076&idx=1&sn=a16b6639350f0e2704a5e79e1327dc8f&chksm=bd2f446f8a58cd79e374d2128ee9a568d591368e0c11df730131419345cabb059bca554f88a0#rd",
       "status": "open",
       "updatedAt": "2026-08-05"
+    },
+    {
+      "id": "SOE087",
+      "title": "推动高质量充分就业取得新进展",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581830.html",
+      "status": "open",
+      "updatedAt": "2026-08-11"
     },
     {
       "id": "SOE079",
@@ -264,6 +246,15 @@
       "updatedAt": "2026-08-05"
     },
     {
+      "id": "SOE088",
+      "title": "百日千万招聘专项行动推出电力...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581842.html",
+      "status": "open",
+      "updatedAt": "2026-08-11"
+    },
+    {
       "id": "SOE082",
       "title": "百日千万招聘专项行动推出线上...",
       "tag": "招聘公告",
@@ -271,6 +262,42 @@
       "url": "https://www.workercn.cn/c/2026-08-05/8863593.shtml",
       "status": "open",
       "updatedAt": "2026-08-06"
+    },
+    {
+      "id": "SOE089",
+      "title": "积极推进工伤保险高质量发展—...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581828.html",
+      "status": "open",
+      "updatedAt": "2026-08-11"
+    },
+    {
+      "id": "SOE074",
+      "title": "多措并举护航灵活就业、新就业...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/kjix9tMxPxb_ljIE9sd81w",
+      "status": "open",
+      "updatedAt": "2026-08-05"
+    },
+    {
+      "id": "SOE075",
+      "title": "拓宽就业门路！服务业多业态同...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/XWXHCFExCRrJhgRmvcqkdQ",
+      "status": "open",
+      "updatedAt": "2026-08-05"
+    },
+    {
+      "id": "SOE077",
+      "title": "全国专业技术人才总量超8000...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260804_581487.html",
+      "status": "open",
+      "updatedAt": "2026-08-05"
     },
     {
       "id": "SOE056",
@@ -424,33 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260724_580839.html",
       "status": "open",
       "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE067",
-      "title": "百日千万招聘专项行动推出汽车...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260727_580996.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE001",
-      "title": "重点行业重点企业招聘专栏",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "http://job.mohrss.gov.cn/zdqyzpxx/index.jhtml",
-      "status": "open",
-      "updatedAt": "2026-08-03"
-    },
-    {
-      "id": "SOE002",
-      "title": "兵器未来科学家·2027届博士招聘提前批正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/m2oWNM6Nve0u6izstEBgyQ",
-      "status": "open",
-      "updatedAt": "2026-08-03"
     }
   ]
 }
