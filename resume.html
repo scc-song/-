@@ -1,84 +1,92 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>简历编辑器 · ResumeAuto</title>
-  <link rel="stylesheet" href="resume.css" />
-  <!-- 纯前端 docx 解析（方案 A）：在浏览器内读取 .docx 文本，无需后端 -->
-  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+<meta charset="UTF-8" />
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ResumeAuto · 简历编辑器</title>
+<link rel="stylesheet" href="resume.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <span class="logo">⚡</span>
-      <span>ResumeAuto · 智能简历编辑器</span>
+<header class="topbar">
+  <div class="brand">⚡ ResumeAuto <span class="sub">简历编辑器</span></div>
+  <div class="tools">
+    <label class="tctl">模板
+      <select id="tplSel" title="切换版式（内容不丢）">
+        <option value="classic">经典单栏 · ATS</option>
+        <option value="sidebar">双栏侧边</option>
+        <option value="energy">新能源商务</option>
+      </select>
+    </label>
+    <label class="tctl">主题色
+      <input type="color" id="accent" value="#16a34a" title="主题色" />
+    </label>
+    <span class="sep"></span>
+    <label class="tctl">简历
+      <select id="resumeSel" title="切换/管理多份简历"></select>
+    </label>
+    <button id="newResume" class="btn ghost" title="基于当前另存为新简历">＋新简历</button>
+    <button id="delResume" class="btn ghost" title="删除当前简历">🗑</button>
+    <span class="sep"></span>
+    <button id="saveResume" class="btn">💾 保存</button>
+    <button id="exportPdf" class="btn">📄 导出PDF</button>
+    <button id="exportJson" class="btn ghost">JSON</button>
+    <button id="exportMd" class="btn ghost">MD</button>
+    <button id="importJson" class="btn ghost">导入</button>
+    <input type="file" id="importFile" accept="application/json" hidden />
+    <button id="resetBtn" class="btn ghost">重置</button>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- 左：结构化表单 -->
+  <section class="panel form-panel">
+    <div id="basicsForm" class="card"></div>
+    <div id="sections"></div>
+    <div class="add-row">
+      <select id="addType">
+        <option value="experience">＋ 工作经历</option>
+        <option value="education">＋ 教育背景</option>
+        <option value="projects">＋ 项目经历</option>
+        <option value="skills">＋ 技能特长</option>
+        <option value="certificates">＋ 证书/资质</option>
+        <option value="custom">＋ 自定义模块</option>
+      </select>
+      <button id="addSection" class="btn">添加模块</button>
     </div>
-    <nav class="topnav">
-      <a href="./">首页</a>
-      <a href="./jobs.html">岗位</a>
-      <a href="./soe.html">国企央企</a>
-      <a href="./resume.html" class="active">简历编辑器</a>
-    </nav>
-  </header>
 
-  <main class="layout">
-    <!-- 左侧：岗位 JD + 上传 -->
-    <aside class="panel-left">
-      <section class="card">
-        <h2>① 粘贴岗位 JD</h2>
-        <p class="hint">粘贴招聘要求，系统会提取关键词、智能调整简历模块顺序、自动起草总结。</p>
-        <textarea id="jdInput" placeholder="例如：招聘新能源电池系统工程师，要求熟悉锂离子电池、BMS、Python 数据分析……"></textarea>
-        <button id="genBtn" class="btn primary">智能生成定制简历</button>
-      </section>
-
-      <section class="card">
-        <h2>② 上传简历（.docx）</h2>
-        <p class="hint">浏览器本地解析，文件不会上传到任何服务器。</p>
-        <label class="dropzone" id="dropzone">
-          <input type="file" id="docxInput" accept=".docx" hidden />
-          <span>点击或拖拽 .docx 到此处</span>
-        </label>
-        <div id="parseStatus" class="status"></div>
-      </section>
-
-      <section class="card" id="matchCard" hidden>
-        <h2>③ JD 匹配分析</h2>
-        <div id="matchTags" class="tags"></div>
-        <p class="hint" id="reorderHint"></p>
-      </section>
-
-      <section class="card" id="auxCard">
-        <h2>④ 求职辅助（AI 方法论）</h2>
-        <p class="hint">基于你粘贴的 JD 与当前简历，本地生成求职信、分析技能差距。全部在浏览器完成，不联网、不上传。</p>
-        <div class="btn-row">
-          <button id="genCover" class="btn primary">✉️ 生成求职信</button>
-          <button id="genGap" class="btn">📊 技能差距分析</button>
-        </div>
-        <div id="gapResult" class="gap-result" hidden></div>
-        <label class="hint" for="coverOut" style="margin-top:14px;display:block">求职信（可编辑后复制）</label>
-        <textarea id="coverOut" class="cover-out" placeholder="点「生成求职信」后在此显示，可修改后复制。"></textarea>
-        <button id="copyCover" class="btn ghost" style="margin-top:8px">复制求职信</button>
-      </section>
-    </aside>
-
-    <!-- 右侧：简历编辑 + 导出 -->
-    <section class="panel-right">
-      <div class="toolbar">
-        <button id="saveBtn" class="btn">💾 保存</button>
-        <button id="exportJson" class="btn">导出 JSON</button>
-        <button id="exportMd" class="btn">导出 Markdown</button>
-        <button id="exportPdf" class="btn primary">打印 / 导出 PDF</button>
-        <button id="resetBtn" class="btn ghost">重置</button>
-        <span id="saveState" class="save-state"></span>
+    <div class="card jd-card">
+      <h2>① 岗位 JD 匹配</h2>
+      <textarea id="jdInput" rows="5" placeholder="粘贴目标岗位的 JD / 招聘要求，自动计算匹配度并给出补充建议…"></textarea>
+      <div class="row">
+        <button id="analyzeJd" class="btn">分析匹配度</button>
+        <span id="jdHint" class="hint"></span>
       </div>
+      <div id="jdResult"></div>
+    </div>
 
-      <article class="resume" id="resume">
-        <!-- 由 resume.js 渲染 -->
-      </article>
-    </section>
-  </main>
+    <div class="card aux-card" id="auxCard">
+      <h2>② 求职辅助</h2>
+      <div class="row">
+        <button id="genCover" class="btn">✉️ 生成求职信</button>
+        <button id="genGap" class="btn ghost">📊 技能差距分析</button>
+        <button id="copyCover" class="btn ghost" hidden>复制求职信</button>
+      </div>
+      <textarea id="coverOut" rows="8" placeholder="点击「生成求职信」自动按 JD + 当前简历拼装，可手动修改…"></textarea>
+      <div id="gapResult"></div>
+    </div>
+  </section>
 
-  <script src="resume.js"></script>
+  <!-- 右：实时预览 -->
+  <section class="panel preview-panel">
+    <div class="preview-bar">
+      <span class="pv-title">实时预览</span>
+      <span id="atsBadge" class="ats-badge" title="ATS 匹配度">—</span>
+    </div>
+    <div id="preview" class="resume-preview t-classic"></div>
+  </section>
+</main>
+
+<script src="resume.js"></script>
 </body>
 </html>
