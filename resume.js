@@ -184,17 +184,19 @@
     if (b.links) contact.push(esc(b.links));
     var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
     var asideTypes = { skills: 1, certificates: 1 };
+    var single = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover');
     var aside = '', main = '';
     if (b.summary) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
     state.sections.forEach(function (sec) {
       if (sec.hidden) return;
       var h = renderSectionHtml(sec);
-      if (state.meta.template !== 'classic' && asideTypes[sec.type]) aside += h; else main += h;
+      if (!single && asideTypes[sec.type]) aside += h; else main += h;
     });
     var head = '<h1 class="pv-name">' + esc(b.name || '你的名字') + '</h1>'
       + (b.title ? '<div class="pv-ptitle">' + esc(b.title) + '</div>' : '');
     var inner;
-    if (state.meta.template === 'classic') inner = head + contactHtml + main;
+    if (state.meta.template === 'cover') inner = '<div class="pv-cover-head">' + head + contactHtml + '</div><div class="pv-cover-body">' + main + '</div>';
+    else if (single) inner = head + contactHtml + main;
     else inner = head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + aside + '</div><div class="pv-main">' + main + '</div></div>';
     var pv = document.getElementById('preview');
     pv.className = 'resume-preview t-' + state.meta.template;
@@ -232,7 +234,7 @@
     if (state.sections.some(function (s) { return s.type === 'skills'; })) sp += 20;
     if (state.sections.some(function (s) { return s.type === 'education'; })) sp += 15;
     if (state.basics.phone && state.basics.email) sp += 20;
-    var tplBonus = state.meta.template === 'classic' ? 5 : 0;
+    var tplBonus = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover') ? 5 : 0;
     var score = Math.max(0, Math.min(100, Math.round(kwScore * 0.5 + sp * 0.5) + tplBonus));
     return { score: score, matched: matched, missing: missing, kwScore: kwScore };
   }
@@ -503,6 +505,14 @@
 
   function init() {
     load();
+    // 支持 ?tpl= 预选模板（来自模板库「以此风格新建」）
+    try {
+      var tp = new URLSearchParams(location.search).get('tpl');
+      var VALID = ['classic', 'cn', 'sidebar', 'energy', 'cover', 'table'];
+      if (tp && VALID.indexOf(tp) >= 0 && state.meta.template !== tp) {
+        state.meta.template = tp; save();
+      }
+    } catch (e) {}
     renderAll();
     var form = document.querySelector('.form-panel');
     form.addEventListener('input', onInput);
