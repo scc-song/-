@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>简历编辑器 · ResumeAuto</title>
+  <link rel="stylesheet" href="resume.css" />
+  <!-- 纯前端 docx 解析（方案 A）：在浏览器内读取 .docx 文本，无需后端 -->
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="logo">⚡</span>
+      <span>ResumeAuto · 智能简历编辑器</span>
+    </div>
+    <nav class="topnav">
+      <a href="./">首页</a>
+      <a href="./jobs.html">岗位</a>
+      <a href="./soe.html">国企央企</a>
+      <a href="./resume.html" class="active">简历编辑器</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <!-- 左侧：岗位 JD + 上传 -->
+    <aside class="panel-left">
+      <section class="card">
+        <h2>① 粘贴岗位 JD</h2>
+        <p class="hint">粘贴招聘要求，系统会提取关键词、智能调整简历模块顺序、自动起草总结。</p>
+        <textarea id="jdInput" placeholder="例如：招聘新能源电池系统工程师，要求熟悉锂离子电池、BMS、Python 数据分析……"></textarea>
+        <button id="genBtn" class="btn primary">智能生成定制简历</button>
+      </section>
+
+      <section class="card">
+        <h2>② 上传简历（.docx）</h2>
+        <p class="hint">浏览器本地解析，文件不会上传到任何服务器。</p>
+        <label class="dropzone" id="dropzone">
+          <input type="file" id="docxInput" accept=".docx" hidden />
+          <span>点击或拖拽 .docx 到此处</span>
+        </label>
+        <div id="parseStatus" class="status"></div>
+      </section>
+
+      <section class="card" id="matchCard" hidden>
+        <h2>③ JD 匹配分析</h2>
+        <div id="matchTags" class="tags"></div>
+        <p class="hint" id="reorderHint"></p>
+      </section>
+    </aside>
+
+    <!-- 右侧：简历编辑 + 导出 -->
+    <section class="panel-right">
+      <div class="toolbar">
+        <button id="saveBtn" class="btn">💾 保存</button>
+        <button id="exportJson" class="btn">导出 JSON</button>
+        <button id="exportMd" class="btn">导出 Markdown</button>
+        <button id="exportPdf" class="btn primary">打印 / 导出 PDF</button>
+        <button id="resetBtn" class="btn ghost">重置</button>
+        <span id="saveState" class="save-state"></span>
+      </div>
+
+      <article class="resume" id="resume">
+        <!-- 由 resume.js 渲染 -->
+      </article>
+    </section>
+  </main>
+
+  <script src="resume.js"></script>
+</body>
+</html>
