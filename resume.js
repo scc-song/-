@@ -61,7 +61,7 @@
   }
   function DEFAULT_STATE() {
     return {
-      meta: { template: 'classic', accent: '#16a34a' },
+      meta: { template: 'magic', accent: '#E1251B' },
       basics: { name: '', title: '', phone: '', email: '', location: '', links: '', summary: '' },
       sections: [
         { type: 'experience', title: '', items: [emptyItem('experience')] },
@@ -184,7 +184,7 @@
     if (b.links) contact.push(esc(b.links));
     var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
     var asideTypes = { skills: 1, certificates: 1 };
-    var single = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover');
+    var single = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover' || state.meta.template === 'standard' || state.meta.template === 'magic');
     var aside = '', main = '';
     if (b.summary) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
     state.sections.forEach(function (sec) {
@@ -200,7 +200,7 @@
     else inner = head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + aside + '</div><div class="pv-main">' + main + '</div></div>';
     var pv = document.getElementById('preview');
     pv.className = 'resume-preview t-' + state.meta.template;
-    pv.style.setProperty('--accent', state.meta.accent || '#16a34a');
+    pv.style.setProperty('--accent', state.meta.accent || '#E1251B');
     pv.innerHTML = inner;
     renderAtsBadge();
   }
@@ -234,7 +234,7 @@
     if (state.sections.some(function (s) { return s.type === 'skills'; })) sp += 20;
     if (state.sections.some(function (s) { return s.type === 'education'; })) sp += 15;
     if (state.basics.phone && state.basics.email) sp += 20;
-    var tplBonus = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover') ? 5 : 0;
+    var tplBonus = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover' || state.meta.template === 'standard' || state.meta.template === 'magic') ? 5 : 0;
     var score = Math.max(0, Math.min(100, Math.round(kwScore * 0.5 + sp * 0.5) + tplBonus));
     return { score: score, matched: matched, missing: missing, kwScore: kwScore };
   }
@@ -499,18 +499,23 @@
 
   function renderAll() {
     document.getElementById('tplSel').value = state.meta.template;
-    document.getElementById('accent').value = state.meta.accent || '#16a34a';
+    document.getElementById('accent').value = state.meta.accent || '#E1251B';
     renderResumeSelector(); renderForm(); renderPreview(); renderJd();
   }
 
   function init() {
     load();
-    // 支持 ?tpl= 预选模板（来自模板库「以此风格新建」）
+    // 支持 ?tpl= 预选模板、?accent= 预选主题色（来自模板库）
     try {
-      var tp = new URLSearchParams(location.search).get('tpl');
-      var VALID = ['classic', 'cn', 'sidebar', 'energy', 'cover', 'table'];
+      var qp = new URLSearchParams(location.search);
+      var tp = qp.get('tpl');
+      var ac = qp.get('accent');
+      var VALID = ['magic', 'standard', 'classic', 'cn', 'sidebar', 'energy', 'cover', 'table'];
       if (tp && VALID.indexOf(tp) >= 0 && state.meta.template !== tp) {
         state.meta.template = tp; save();
+      }
+      if (ac && /^#[0-9A-Fa-f]{6}$/.test(ac) && state.meta.accent !== ac) {
+        state.meta.accent = ac; save();
       }
     } catch (e) {}
     renderAll();
