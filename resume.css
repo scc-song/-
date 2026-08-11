@@ -125,6 +125,22 @@ body {
 .t-energy .pv-aside .pv-skill-tags .pv-tag { background: rgba(255,255,255,.18); color: #fff; border-color: rgba(255,255,255,.4); }
 .t-energy .pv-aside .pv-contact, .t-energy .pv-aside .pv-note { color: rgba(255,255,255,.92); }
 .t-sidebar .pv-main, .t-energy .pv-main { padding: 22px 20px; }
+/* cn: clean single column, accent left-border titles */
+.t-cn .pv-sec-title { border-bottom: none; border-left: 4px solid var(--accent); padding: 1px 0 1px 9px; margin-bottom: 6px; }
+/* cover: colored header band (封面头图风) */
+.t-cover .resume-preview { padding: 0; }
+.t-cover .pv-cover-head { background: var(--accent); color: #fff; padding: 32px 34px; }
+.t-cover .pv-cover-head .pv-name { color: #fff; font-size: 30px; }
+.t-cover .pv-cover-head .pv-ptitle { color: rgba(255,255,255,.92); }
+.t-cover .pv-cover-head .pv-contact { color: rgba(255,255,255,.9); margin-bottom: 0; }
+.t-cover .pv-cover-body { padding: 22px 34px; }
+/* table: tabular item layout (表格简历风) */
+.t-table .pv-item { display: grid; grid-template-columns: 34% 1fr; gap: 2px 14px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.t-table .pv-item-head { flex-direction: column; grid-column: 1 / 2; }
+.t-table .pv-item-sub, .t-table .pv-bullets, .t-table .pv-skills { grid-column: 2 / 3; }
+.t-table .pv-skill-cat { display: grid; grid-template-columns: 34% 1fr; gap: 2px 14px; }
+.t-table .pv-skill-tags { grid-column: 2 / 3; }
+.t-table .pv-section { border-left: 3px solid var(--accent); padding-left: 10px; }
 /* ---------- ATS / JD result ---------- */
 .ats-score { font-size: 13px; margin: 8px 0; }
 .ats-bar { height: 9px; background: #e5e7eb; border-radius: 6px; overflow: hidden; margin: 4px 0 8px; }
@@ -147,9 +163,11 @@ body {
   body, .layout { display: block; height: auto; padding: 0; background: #fff; }
   .preview-panel { border: 0; overflow: visible; background: #fff; max-height: none; }
   .resume-preview { padding: 0; }
-  .resume-preview.t-classic, .resume-preview.t-sidebar, .resume-preview.t-energy { all: unset; display: block; padding: 0; color: #000; }
+  .resume-preview.t-classic, .resume-preview.t-cn, .resume-preview.t-sidebar, .resume-preview.t-energy, .resume-preview.t-cover, .resume-preview.t-table { all: unset; display: block; padding: 0; color: #000; }
   .resume-preview .pv-grid { grid-template-columns: 1fr !important; }
   .resume-preview .pv-aside { display: none !important; }
+  .resume-preview .pv-cover-head { background: #fff !important; color: #000 !important; padding: 0 !important; }
+  .resume-preview .pv-cover-head .pv-name, .resume-preview .pv-cover-head .pv-ptitle, .resume-preview .pv-cover-head .pv-contact { color: #000 !important; }
   .resume-preview .pv-name { color: #000 !important; }
   .resume-preview .pv-sec-title { color: #000 !important; border-color: #000 !important; }
   .resume-preview .pv-tag { color: #000 !important; border-color: #999 !important; background: #fff !important; }
