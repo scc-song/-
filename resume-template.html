@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ResumeAuto · 全站统一简历模板</title>
+<link rel="stylesheet" href="resume.css" />
+<style>
+  .wrap{ max-width: 820px; margin: 0 auto; padding: 24px 16px 60px; }
+  .topbar{ position: sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between;
+    gap:10px; flex-wrap:wrap; padding:10px 16px; background:#0f172a; color:#e5e7eb; box-shadow:0 1px 6px rgba(0,0,0,.15); }
+  .brand{ font-weight:700; font-size:16px; letter-spacing:.3px; }
+  .brand .sub{ font-weight:400; color:#94a3b8; font-size:13px; margin-left:6px; }
+  .note{ background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:12px 14px; margin:16px 0; font-size:13px; color:#475569; }
+  .note b{ color:#111827; }
+  .btn{ border:1px solid #E1251B; background:#E1251B; color:#fff; border-radius:6px; padding:7px 12px; font-size:13px; cursor:pointer; }
+  .btn.ghost{ background:#fff; color:#0f172a; border-color:#475569; }
+  .sheet{ background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.08),0 6px 20px rgba(0,0,0,.05); border-radius:6px; overflow:hidden; }
+  @media print{
+    .topbar,.note,.wrap{ display:none !important; }
+    body{ background:#fff; }
+    .sheet{ box-shadow:none; border-radius:0; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">⚡ ResumeAuto <span class="sub">全站统一简历模板</span></div>
+  <div style="display:flex; gap:8px;">
+    <button class="btn" onclick="window.print()">🖨 打印 / 导出 PDF</button>
+    <a class="btn ghost" href="resume.html" style="text-decoration:none; display:inline-block; line-height:1.4;">📝 去编辑器填写</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="note">
+    <b>说明：</b>这是 Magic Resume 风格的简历模板（<code>t-magic</code>，京东红 <code>#E1251B</code> 强调色）。外观由 <code>resume.css</code> 统一控制，
+    在「简历编辑器」中打开即默认套用，导出 PDF / 打印时保持完全一致。下方为示例（宋创创 · 京东物流方向），可直接打印，或在编辑器里切换为其它版式。
+  </div>
+
+  <div class="sheet">
+      <div class="resume-preview t-magic" style="--accent:#E1251B;">
+      <h1 class="pv-name">宋创创</h1>
+      <div class="pv-ptitle">能源与动力工程 · 本科　|　京东物流 · 基层运营 / 培训生</div>
+      <div class="pv-contact">
+        <span>17629836263</span>
+        <span>2985232063@qq.com</span>
+        <span>河南 · 周口</span>
+        <span>2003.11</span>
+      </div>
+
+      <div class="pv-summary">理工类本科背景，兼具汽车工程技术与一线服务实践经验，对物流基层运营、客户体验提升与一线团队管理有清晰认知；熟练运用多种 AI 与数字效率工具，认同京东「客户为先、担当、创新」价值观。</div>
+
+      <div class="pv-section">
+        <div class="pv-sec-title">基本信息</div>
+        <div class="pv-item"><div class="pv-item-sub">姓名：宋创创　|　出生年月：2003.11　|　籍贯：河南周口　|　电话：17629836263　|　邮箱：2985232063@qq.com</div></div>
+        <div class="pv-item"><div class="pv-item-sub">求职意向：京东物流基层运营 / 培训生　|　到岗：随时　|　期望城市：全国可调</div></div>
+      </div>
+
+      <div class="pv-section">
+        <div class="pv-sec-title">教育背景</div>
+        <div class="pv-item">
+          <div class="pv-item-head"><span class="pv-item-title">黄河交通学院 · 能源与动力工程（本科）</span><span class="pv-period">2025.09 – 2027.07</span></div>
+          <div class="pv-item-sub">主修：传热学、工程热力学、汽车理论、内燃机原理、新能源汽车技术、自动控制原理、机械设计基础</div>
+        </div>
+      </div>
+
+      <div class="pv-section">
+        <div class="pv-sec-title">工作经历</div>
+        <div class="pv-item">
+          <div class="pv-item-head"><span class="pv-item-title">奇瑞汽车 4S 店 · 机电维修 / 电气技术岗（一线服务）</span><span class="pv-period">2024.03 – 2024.11</span></div>
+          <div class="pv-item-sub">一线服务车主，负责车辆故障诊断、机电维修及电气系统排查，直接对接客户需求并提升客户体验</div>
+          <ul class="pv-bullets">
+            <li>结合低压电工专业知识，参与店内电气系统故障排查与新能源汽车高压安全辅助工作。</li>
+            <li>在一线梳理常见故障处理流程，辅助优化维修响应效率，积累基层运营与用户洞察经验。</li>
+          </ul>
+        </div>
+        <div class="pv-item">
+          <div class="pv-item-head"><span class="pv-item-title">一帆传媒有限公司 · 自媒体内容运营</span><span class="pv-period">2025.03 – 2025.09</span></div>
+          <div class="pv-item-sub">负责公司 YouTube 等平台账号日常运营与内容策划，单条视频最高播放量突破 1.2 亿</div>
+          <ul class="pv-bullets">
+            <li>独立完成视频拍摄、剪辑、特效、调色及字幕包装全流程，熟练运用 PR、AE、达芬奇、剪映。</li>
+            <li>基于数据反馈持续迭代内容结构与发布策略，锻炼结果导向与多任务执行能力。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pv-section">
+        <div class="pv-sec-title">技能专长</div>
+        <div class="pv-skill-cat"><b>内容制作</b></div>
+        <div class="pv-skill-tags">
+          <span class="pv-tag">PR</span><span class="pv-tag">AE</span><span class="pv-tag">达芬奇</span><span class="pv-tag">剪映</span>
+        </div>
+        <div class="pv-skill-cat" style="margin-top:8px;"><b>AI 工具</b></div>
+        <div class="pv-skill-tags">
+          <span class="pv-tag">Claude Code</span><span class="pv-tag">ChatGPT</span><span class="pv-tag">WorkBuddy</span>
+        </div>
+        <div class="pv-skill-cat" style="margin-top:8px;"><b>行业资质 / 工程基础</b></div>
+        <div class="pv-skill-tags">
+          <span class="pv-tag">高级汽车维修工</span><span class="pv-tag">低压电工证</span><span class="pv-tag">驾驶证</span><span class="pv-tag">普通话证</span>
+          <span class="pv-tag">汽车构造</span><span class="pv-tag">新能源汽车技术</span><span class="pv-tag">电气系统</span>
+        </div>
+      </div>
+
+      <div class="pv-section">
+        <div class="pv-sec-title">自我评价</div>
+        <div class="pv-item"><div class="pv-item-sub">理工类本科背景，兼具汽车工程技术与一线服务实践经验，对物流基层运营、客户体验提升和一线团队管理有清晰认知。具备基层团队管理、活动组织与跨部门沟通经验，善于在一线发现问题、梳理流程并推动执行。熟练使用多种 AI 与数字效率工具，能运用 AI 辅助现场问题发现与流程优化建议，学习能力强，能够快速适应轮岗培养与多业务模块挑战。认同京东「客户为先、担当、创新」的价值观，愿意从基层岗位做起，长期深耕物流行业。</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
