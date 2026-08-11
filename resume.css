@@ -141,6 +141,70 @@ body {
 .t-table .pv-skill-cat { display: grid; grid-template-columns: 34% 1fr; gap: 2px 14px; }
 .t-table .pv-skill-tags { grid-column: 2 / 3; }
 .t-table .pv-section { border-left: 3px solid var(--accent); padding-left: 10px; }
+/* standard: 全站统一模板——清爽单栏，板块标题左侧色条+底部细线，结构一致、便于复用 */
+.t-standard .pv-name { font-size: 30px; font-weight: 800; letter-spacing: .5px; }
+.t-standard .pv-ptitle { font-size: 15px; color: #374151; margin: 4px 0 10px; font-weight: 600; }
+.t-standard .pv-contact {
+  border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 16px;
+  font-size: 12.5px; color: #475569; gap: 4px 14px;
+}
+.t-standard .pv-contact span:not(:last-child)::after { content: "·"; margin-left: 14px; color: #cbd5e1; }
+.t-standard .pv-summary {
+  background: var(--soft); border-left: 3px solid var(--accent); padding: 10px 12px;
+  border-radius: 0 6px 6px 0; font-size: 13px; color: #374151; margin-bottom: 18px;
+}
+.t-standard .pv-section { margin-bottom: 18px; }
+.t-standard .pv-sec-title {
+  display: flex; align-items: center; gap: 8px;
+  border: none; border-bottom: 2px solid var(--accent);
+  color: #111827; font-size: 15px; padding: 0 0 5px; margin: 0 0 10px; letter-spacing: .5px;
+}
+.t-standard .pv-sec-title::before {
+  content: ""; width: 6px; height: 16px; border-radius: 2px; background: var(--accent); display: inline-block;
+}
+.t-standard .pv-item { margin-bottom: 12px; }
+.t-standard .pv-item-head { align-items: baseline; }
+.t-standard .pv-item-title { font-size: 13.5px; }
+.t-standard .pv-item-sub { margin-top: 1px; }
+.t-standard .pv-bullets { margin-top: 5px; }
+.t-standard .pv-bullets li { margin-bottom: 3px; }
+.t-standard .pv-skill-cat { margin: 2px 0 6px; }
+.t-standard .pv-skill-cat b { color: #111827; }
+.t-standard .pv-skill-tags { gap: 6px; }
+.t-standard .pv-tag { padding: 2px 10px; font-size: 12px; border-radius: 999px; }
+/* magic: Magic Resume 风格——清爽卡片式，姓名用强调色，标题左侧竖条+底部彩线 */
+.t-magic { background: #fff; }
+.t-magic .pv-name { font-size: 32px; font-weight: 800; color: var(--accent); letter-spacing: .5px; margin-bottom: 2px; }
+.t-magic .pv-ptitle { font-size: 14px; color: #475569; margin-bottom: 8px; font-weight: 500; }
+.t-magic .pv-contact {
+  font-size: 13px; color: #64748b; margin-bottom: 18px; gap: 4px 12px;
+}
+.t-magic .pv-contact span:not(:last-child)::after { content: "·"; margin-left: 12px; color: #cbd5e1; }
+.t-magic .pv-summary {
+  background: #f8fafc; border-left: 3px solid var(--accent); padding: 9px 12px;
+  border-radius: 0 6px 6px 0; font-size: 12.5px; color: #475569; margin-bottom: 18px;
+}
+.t-magic .pv-section { margin-bottom: 16px; }
+.t-magic .pv-sec-title {
+  display: flex; align-items: center; gap: 8px;
+  color: #111827; font-size: 15px; font-weight: 700;
+  border-bottom: 1.5px solid var(--accent);
+  padding: 0 0 6px; margin: 0 0 10px; letter-spacing: .3px;
+}
+.t-magic .pv-sec-title::before {
+  content: ""; width: 5px; height: 16px; border-radius: 2px; background: var(--accent); display: inline-block;
+}
+.t-magic .pv-item { margin-bottom: 12px; }
+.t-magic .pv-item-head { align-items: baseline; margin-bottom: 3px; }
+.t-magic .pv-item-title { font-size: 13.5px; font-weight: 700; color: #111827; }
+.t-magic .pv-period { font-size: 12px; color: #64748b; }
+.t-magic .pv-item-sub { font-size: 12.5px; color: #475569; margin-top: 1px; }
+.t-magic .pv-bullets { margin-top: 4px; padding-left: 18px; }
+.t-magic .pv-bullets li { margin-bottom: 2px; font-size: 12.5px; color: #334155; }
+.t-magic .pv-skill-cat { margin: 2px 0 6px; font-size: 12.5px; color: #475569; }
+.t-magic .pv-skill-cat b { color: #111827; }
+.t-magic .pv-skill-tags { gap: 6px; }
+.t-magic .pv-tag { padding: 2px 10px; font-size: 12px; border-radius: 999px; background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
 /* ---------- ATS / JD result ---------- */
 .ats-score { font-size: 13px; margin: 8px 0; }
 .ats-bar { height: 9px; background: #e5e7eb; border-radius: 6px; overflow: hidden; margin: 4px 0 8px; }
@@ -163,7 +227,7 @@ body {
   body, .layout { display: block; height: auto; padding: 0; background: #fff; }
   .preview-panel { border: 0; overflow: visible; background: #fff; max-height: none; }
   .resume-preview { padding: 0; }
-  .resume-preview.t-classic, .resume-preview.t-cn, .resume-preview.t-sidebar, .resume-preview.t-energy, .resume-preview.t-cover, .resume-preview.t-table { all: unset; display: block; padding: 0; color: #000; }
+  .resume-preview.t-classic, .resume-preview.t-cn, .resume-preview.t-sidebar, .resume-preview.t-energy, .resume-preview.t-cover, .resume-preview.t-table, .resume-preview.t-standard, .resume-preview.t-magic { all: unset; display: block; padding: 0; color: #000; }
   .resume-preview .pv-grid { grid-template-columns: 1fr !important; }
   .resume-preview .pv-aside { display: none !important; }
   .resume-preview .pv-cover-head { background: #fff !important; color: #000 !important; padding: 0 !important; }
