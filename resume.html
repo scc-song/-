@@ -47,6 +47,19 @@
         <div id="matchTags" class="tags"></div>
         <p class="hint" id="reorderHint"></p>
       </section>
+
+      <section class="card" id="auxCard">
+        <h2>④ 求职辅助（AI 方法论）</h2>
+        <p class="hint">基于你粘贴的 JD 与当前简历，本地生成求职信、分析技能差距。全部在浏览器完成，不联网、不上传。</p>
+        <div class="btn-row">
+          <button id="genCover" class="btn primary">✉️ 生成求职信</button>
+          <button id="genGap" class="btn">📊 技能差距分析</button>
+        </div>
+        <div id="gapResult" class="gap-result" hidden></div>
+        <label class="hint" for="coverOut" style="margin-top:14px;display:block">求职信（可编辑后复制）</label>
+        <textarea id="coverOut" class="cover-out" placeholder="点「生成求职信」后在此显示，可修改后复制。"></textarea>
+        <button id="copyCover" class="btn ghost" style="margin-top:8px">复制求职信</button>
+      </section>
     </aside>
 
     <!-- 右侧：简历编辑 + 导出 -->
