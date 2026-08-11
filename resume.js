@@ -355,6 +355,103 @@
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   }
 
+  /* ---------- ai-job-search 方法论（纯前端）：求职信 + 技能差距 ---------- */
+  // 把整份简历压成一段小写文本，便于做关键词命中判断
+  function resumeBlob() {
+    var s = state, parts = [];
+    if (s.summary) parts.push(s.summary);
+    s.sections.forEach(function (sec) {
+      sec.items.forEach(function (it) {
+        if (sec.type === 'skills') parts.push(it.text);
+        else parts.push([it.title, it.meta, it.desc].filter(Boolean).join(' '));
+      });
+    });
+    return (s.basics.name + ' ' + s.basics.location + ' ' + parts.join(' ')).toLowerCase();
+  }
+  // 从 JD 里尽量提取岗位名（招 X 工程师 / X 运维 等）
+  function extractPosition(jd) {
+    var m = jd.match(/(?:招聘|诚聘|招募|招)\s*([\u4e00-\u9fa5A-Za-z]{2,12}?)(工程师|专员|经理|主管|助理|技术员|运维|分析师|设计师|顾问)/);
+    if (m) return m[1] + m[2];
+    var m2 = jd.match(/([\u4e00-\u9fa5A-Za-z]{2,12}?(?:工程师|专员|经理|主管|运维|分析师))/);
+    if (m2) return m2[1];
+    return state.basics.direction || '相关岗位';
+  }
+  // 生成求职信（基于 JD + 当前简历，客户端拼装，可再编辑）
+  function generateCoverLetter() {
+    var jd = state.jd || ((document.getElementById('jdInput') || {}).value || '');
+    jd = (jd || '').trim();
+    if (!jd) { flash('请先在左侧粘贴岗位 JD'); return; }
+    var pos = extractPosition(jd);
+    var parsed = parseJD(jd);
+    var s = state;
+    var name = s.basics.name || '（你的姓名）';
+    var contact = [s.basics.phone, s.basics.email].filter(Boolean).join(' / ');
+    var mySkills = [];
+    var sk = s.sections.find(function (x) { return x.type === 'skills'; });
+    if (sk) sk.items.forEach(function (it) { mySkills.push(it.text); });
+    var matched = mySkills.filter(function (t) {
+      var tl = t.toLowerCase();
+      return parsed.keywords.some(function (k) { return tl.indexOf(k) >= 0 || k.indexOf(tl) >= 0; });
+    });
+    var skillLine = (matched.length ? matched : parsed.keywords).slice(0, 6).join('、');
+    var expSec = s.sections.find(function (x) { return x.type === 'experience' || x.type === 'projects'; });
+    var highlight = '';
+    if (expSec && expSec.items.length) {
+      var top = expSec.items[0];
+      highlight = (top.title ? ('曾参与/负责「' + top.title + '」') : '在校期间') +
+        (top.desc ? ('，' + top.desc.replace(/\n/g, ' ').slice(0, 70)) : '') + '。';
+    } else {
+      highlight = '在校期间担任学生干部并参与新能源汽车高压安全相关实践，具备良好的执行力与团队协作意识。';
+    }
+    var cl = '';
+    cl += '尊敬的人力资源经理：\n\n';
+    cl += '您好！我是' + name + '，关注到贵公司「' + pos + '」岗位的招聘信息，特此投递简历。\n\n';
+    cl += '在过往学习与实践中，我积累了与岗位高度相关的能力，尤其在' + skillLine + '等方面具备扎实基础；' +
+      '结合岗位要求，我能够快速胜任' + pos + '相关工作，并为团队创造价值。\n\n';
+    cl += highlight + '我注重结果导向与持续学习，期望在' + pos + '方向长期深耕。\n\n';
+    cl += '如方便，期待有机会与您进一步沟通。感谢您的时间与审阅！\n\n';
+    cl += '此致\n敬礼\n\n' + name + (contact ? ('\n' + contact) : '') + '\n';
+    var ta = document.getElementById('coverOut');
+    if (ta) { ta.value = cl; ta.classList.add('filled'); }
+    flash('已生成求职信，可编辑后复制');
+  }
+  // 技能差距分析：把 JD 关键词与简历做命中比对
+  function skillGapAnalysis() {
+    var jd = state.jd || ((document.getElementById('jdInput') || {}).value || '');
+    jd = (jd || '').trim();
+    if (!jd) { flash('请先粘贴岗位 JD'); return; }
+    var parsed = parseJD(jd);
+    var blob = resumeBlob();
+    var sk = state.sections.find(function (x) { return x.type === 'skills'; });
+    var mySkills = sk ? sk.items.map(function (it) { return it.text.toLowerCase(); }) : [];
+    var matched = [], missing = [];
+    parsed.keywords.forEach(function (k) {
+      var kl = k.toLowerCase();
+      var hit = mySkills.some(function (t) { return t.indexOf(kl) >= 0 || kl.indexOf(t) >= 0; }) || blob.indexOf(kl) >= 0;
+      (hit ? matched : missing).push(k);
+    });
+    var score = parsed.keywords.length ? Math.round(matched.length / parsed.keywords.length * 100) : 0;
+    renderGap(matched, missing, score, parsed.keywords.length);
+    flash('技能差距分析完成');
+  }
+  function renderGap(matched, missing, score, total) {
+    var box = document.getElementById('gapResult');
+    if (!box) return;
+    box.hidden = false;
+    var html = '';
+    html += '<div class="gap-score">岗位匹配度 <b>' + score + '%</b> <span class="muted">（命中 ' + matched.length + ' / ' + total + ' 个关键技能词）</span></div>';
+    html += '<div class="gap-bar"><span style="width:' + score + '%"></span></div>';
+    html += '<div class="gap-cols">';
+    html += '<div class="gap-col ok"><h4>✅ 已具备</h4>' + (matched.length ? matched.map(function (k) { return '<span class="gtag ok">' + k + '</span>'; }).join('') : '<span class="muted">暂无匹配</span>') + '</div>';
+    html += '<div class="gap-col miss"><h4>⚠️ 待补足</h4>' + (missing.length ? missing.map(function (k) { return '<span class="gtag miss">' + k + '</span>'; }).join('') : '<span class="muted">无明显缺口 🎉</span>') + '</div>';
+    html += '</div>';
+    if (missing.length) {
+      html += '<div class="gap-tip"><b>优化建议：</b>在简历的「技能 / 项目 / 经历」中补充与 ' +
+        missing.slice(0, 6).join('、') + ' 相关的具体经历、工具或成果，可显著提升匹配度；若确实缺乏，可优先学习并在「证书」栏体现。</div>';
+    }
+    box.innerHTML = html;
+  }
+
   var saveT;
   function debouncedSave() { clearTimeout(saveT); saveT = setTimeout(save, 600); }
 
@@ -408,6 +505,21 @@
     document.getElementById('resetBtn').onclick = function () {
       if (confirm('确定清空当前简历？此操作不可撤销。')) {
         state = emptyState(); save(); render(); flash('已重置');
+      }
+    };
+    // 求职辅助：求职信 + 技能差距（ai-job-search 方法论纯前端移植）
+    document.getElementById('genCover').onclick = generateCoverLetter;
+    document.getElementById('genGap').onclick = skillGapAnalysis;
+    var copyBtn = document.getElementById('copyCover');
+    if (copyBtn) copyBtn.onclick = function () {
+      var ta = document.getElementById('coverOut');
+      if (!ta || !ta.value) { flash('请先生成求职信'); return; }
+      ta.select();
+      var done = function () { flash('求职信已复制到剪贴板'); };
+      try { document.execCommand('copy'); done(); }
+      catch (e) {
+        if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(done, function () { flash('复制失败，请手动选择文本复制'); });
+        else flash('复制失败，请手动选择文本复制');
       }
     };
     // 自动保存（离开前）
