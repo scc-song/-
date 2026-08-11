@@ -154,3 +154,17 @@ body {
   .resume-preview .pv-sec-title { color: #000 !important; border-color: #000 !important; }
   .resume-preview .pv-tag { color: #000 !important; border-color: #999 !important; background: #fff !important; }
 }
+
+/* ---------- drag handle + AI card ---------- */
+.drag-handle { cursor: grab; color: var(--muted); user-select: none; font-size: 15px; line-height: 1; padding: 0 2px; }
+.drag-handle:active { cursor: grabbing; }
+.sec.dragging { opacity: .45; border: 1px dashed var(--accent); }
+.sec[draggable="true"] { cursor: grab; }
+.sec[draggable="true"] .sec-head { background: var(--soft); }
+.ai-card .field { margin-top: 8px; }
+.ai-card .field input { width: 100%; }
+#aiPolish.accent { background: var(--accent); color: #fff; border-color: transparent; }
+#aiPolish.accent:hover { filter: brightness(1.05); }
+#aiPolish:disabled { opacity: .6; cursor: wait; }
+#aiSettings { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+#aiStatus { color: var(--accent); }
