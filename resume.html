@@ -8,33 +8,17 @@
 <link rel="stylesheet" href="resume.css" />
 </head>
 <body>
-<header class="topbar">
+<header class="wb-topbar">
   <div class="brand">⚡ ResumeAuto <span class="sub">简历编辑器</span></div>
-  <nav style="margin-left:18px;display:flex;gap:14px;font-size:14px;color:#64748b">
-    <a href="index.html" style="color:inherit;text-decoration:none">首页</a>
-    <a href="templates.html" style="color:inherit;text-decoration:none">模板库</a>
+  <nav class="wb-nav">
+    <a href="index.html">首页</a>
+    <a href="templates.html">模板库</a>
   </nav>
-  <div class="tools">
-    <label class="tctl">模板
-      <select id="tplSel" title="切换版式（内容不丢）">
-        <option value="magic" selected>Magic Resume 风 · 推荐</option>
-        <option value="standard">统一标准模板</option>
-        <option value="classic">经典单栏 · ATS</option>
-        <option value="cn">清爽中文单栏</option>
-        <option value="sidebar">双栏侧边</option>
-        <option value="energy">新能源商务</option>
-        <option value="cover">封面头图风</option>
-        <option value="table">表格简历风</option>
-      </select>
-    </label>
-    <label class="tctl">主题色
-      <input type="color" id="accent" value="#E1251B" title="主题色" />
-    </label>
-    <span class="sep"></span>
+  <div class="wb-tools">
     <label class="tctl">简历
       <select id="resumeSel" title="切换/管理多份简历"></select>
     </label>
-    <button id="newResume" class="btn ghost" title="基于当前另存为新简历">＋新简历</button>
+    <button id="newResume" class="btn ghost">＋新简历</button>
     <button id="delResume" class="btn ghost" title="删除当前简历">🗑</button>
     <span class="sep"></span>
     <button id="saveResume" class="btn">💾 保存</button>
@@ -47,70 +31,150 @@
   </div>
 </header>
 
-<main class="layout">
-  <!-- 左：结构化表单 -->
-  <section class="panel form-panel">
-    <div id="basicsForm" class="card"></div>
-    <div id="sections"></div>
-    <div class="add-row">
-      <select id="addType">
-        <option value="experience">＋ 工作经历</option>
-        <option value="education">＋ 教育背景</option>
-        <option value="projects">＋ 项目经历</option>
-        <option value="skills">＋ 技能特长</option>
-        <option value="certificates">＋ 证书/资质</option>
-        <option value="custom">＋ 自定义模块</option>
-      </select>
-      <button id="addSection" class="btn">添加模块</button>
+<main class="wb">
+  <!-- 左侧：模板 / 内容 / 设计 -->
+  <aside class="wb-side">
+    <div class="wb-tabs">
+      <button class="wb-tab active" data-tab="template">模板</button>
+      <button class="wb-tab" data-tab="content">内容</button>
+      <button class="wb-tab" data-tab="design">设计</button>
     </div>
 
-    <div class="card jd-card">
-      <h2>① 岗位 JD 匹配</h2>
-      <textarea id="jdInput" rows="5" placeholder="粘贴目标岗位的 JD / 招聘要求，自动计算匹配度并给出补充建议…"></textarea>
-      <div class="row">
-        <button id="analyzeJd" class="btn">分析匹配度</button>
-        <span id="jdHint" class="hint"></span>
-      </div>
-      <div id="jdResult"></div>
+    <!-- 模板画廊 -->
+    <div class="wb-pane" id="pane-template">
+      <div class="pane-hint">点击模板即可套用到右侧预览（内容保留，仅换样式与配色）。</div>
+      <div class="tpl-gallery" id="tplGallery"></div>
     </div>
 
-    <div class="card aux-card" id="auxCard">
-      <h2>② 求职辅助</h2>
-      <div class="row">
-        <button id="genCover" class="btn">✉️ 生成求职信</button>
-        <button id="genGap" class="btn ghost">📊 技能差距分析</button>
-        <button id="copyCover" class="btn ghost" hidden>复制求职信</button>
+    <!-- 内容编辑 -->
+    <div class="wb-pane" id="pane-content" hidden>
+      <div id="basicsForm" class="card"></div>
+      <div id="sections"></div>
+      <div class="add-row">
+        <select id="addType">
+          <option value="experience">＋ 工作经历</option>
+          <option value="education">＋ 教育背景</option>
+          <option value="projects">＋ 项目经历</option>
+          <option value="skills">＋ 技能特长</option>
+          <option value="certificates">＋ 证书/资质</option>
+          <option value="custom">＋ 自定义模块</option>
+        </select>
+        <button id="addSection" class="btn">添加模块</button>
       </div>
-      <textarea id="coverOut" rows="8" placeholder="点击「生成求职信」自动按 JD + 当前简历拼装，可手动修改…"></textarea>
-      <div id="gapResult"></div>
+
+      <div class="card jd-card">
+        <h2>① 岗位 JD 匹配</h2>
+        <textarea id="jdInput" rows="5" placeholder="粘贴目标岗位的 JD / 招聘要求，自动计算匹配度并给出补充建议…"></textarea>
+        <div class="row">
+          <button id="analyzeJd" class="btn">分析匹配度</button>
+          <span id="jdHint" class="hint"></span>
+        </div>
+        <div id="jdResult"></div>
+      </div>
+
+      <div class="card aux-card" id="auxCard">
+        <h2>② 求职辅助</h2>
+        <div class="row">
+          <button id="genCover" class="btn">✉️ 生成求职信</button>
+          <button id="genGap" class="btn ghost">📊 技能差距分析</button>
+          <button id="copyCover" class="btn ghost" hidden>复制求职信</button>
+        </div>
+        <textarea id="coverOut" rows="8" placeholder="点击「生成求职信」自动按 JD + 当前简历拼装，可手动修改…"></textarea>
+        <div id="gapResult"></div>
+      </div>
+
+      <div class="card ai-card" id="aiCard">
+        <h2>③ AI 润色 <span class="hint">（用你自己的模型 Key，直连厂商、不经过中转）</span></h2>
+        <div class="row">
+          <button id="aiPolish" class="btn accent">✨ 按 JD 润色</button>
+          <button id="aiSettingsBtn" class="btn ghost" title="配置 API">⚙️ 设置</button>
+          <span id="aiStatus" class="hint"></span>
+        </div>
+        <div id="aiSettings" hidden>
+          <div class="field"><label>API 地址（OpenAI 兼容）</label>
+            <input id="aiBase" value="https://api.openai.com/v1" placeholder="https://api.openai.com/v1" /></div>
+          <div class="field"><label>API Key</label>
+            <input id="aiKey" type="password" placeholder="sk-... / 你的厂商密钥" autocomplete="off" /></div>
+          <div class="field"><label>模型名</label>
+            <input id="aiModel" value="gpt-4o-mini" placeholder="gpt-4o-mini / deepseek-chat" /></div>
+          <p class="hint">浏览器直接请求模型厂商，不经过任何中转服务器；密钥仅存本机浏览器。建议在可信设备使用，并注意用量与费用。</p>
+        </div>
+      </div>
     </div>
 
-    <div class="card ai-card" id="aiCard">
-      <h2>③ AI 润色 <span class="hint">（用你自己的模型 Key，直连厂商、不经过中转）</span></h2>
-      <div class="row">
-        <button id="aiPolish" class="btn accent">✨ 按 JD 润色</button>
-        <button id="aiSettingsBtn" class="btn ghost" title="配置 API">⚙️ 设置</button>
-        <span id="aiStatus" class="hint"></span>
+    <!-- 设计微调 -->
+    <div class="wb-pane" id="pane-design" hidden>
+      <div class="card">
+        <h2>当前模板</h2>
+        <select id="tplSel" title="切换版式（内容不丢）">
+          <option value="magic">Magic Resume 风</option>
+          <option value="standard">统一标准模板</option>
+          <option value="classic">经典单栏 · ATS</option>
+          <option value="cn">清爽中文单栏</option>
+          <option value="sidebar">双栏侧边</option>
+          <option value="energy">新能源商务</option>
+          <option value="cover">封面头图风</option>
+          <option value="table">表格简历风</option>
+        </select>
       </div>
-      <div id="aiSettings" hidden>
-        <div class="field"><label>API 地址（OpenAI 兼容）</label>
-          <input id="aiBase" value="https://api.openai.com/v1" placeholder="https://api.openai.com/v1" /></div>
-        <div class="field"><label>API Key</label>
-          <input id="aiKey" type="password" placeholder="sk-... / 你的厂商密钥" autocomplete="off" /></div>
-        <div class="field"><label>模型名</label>
-          <input id="aiModel" value="gpt-4o-mini" placeholder="gpt-4o-mini / deepseek-chat" /></div>
-        <p class="hint">浏览器直接请求模型厂商，不经过任何中转服务器；密钥仅存本机浏览器。建议在可信设备使用，并注意用量与费用。</p>
+      <div class="card">
+        <h2>主题色</h2>
+        <div class="design-row">
+          <input type="color" id="accent" value="#E1251B" title="主题色" />
+          <div class="theme-swatches" id="themeSwatches"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>排版</h2>
+        <div class="design-field"><label>字体</label>
+          <select id="rsFont">
+            <option value="">系统默认</option>
+            <option value='"Microsoft YaHei","PingFang SC",sans-serif'>微软雅黑</option>
+            <option value='"SimSun","Songti SC",serif'>宋体（衬线）</option>
+            <option value='"Source Han Sans SC","Noto Sans SC",sans-serif'>思源黑体</option>
+            <option value='Georgia,"Times New Roman",serif'>Georgia（英文）</option>
+          </select>
+        </div>
+        <div class="design-field"><label>行高 <span class="val" id="rsLhVal"></span></label>
+          <input type="range" id="rsLh" min="1.2" max="2" step="0.05" />
+        </div>
+        <div class="design-field"><label>基础字号 <span class="val" id="rsBaseVal"></span></label>
+          <input type="range" id="rsBase" min="12" max="16" step="0.5" />
+        </div>
+        <div class="design-field"><label>模块标题字号 <span class="val" id="rsSecVal"></span></label>
+          <input type="range" id="rsSec" min="13" max="20" step="0.5" />
+        </div>
+      </div>
+      <div class="card">
+        <h2>间距</h2>
+        <div class="design-field"><label>页边距 <span class="val" id="rsMarginVal"></span></label>
+          <input type="range" id="rsMargin" min="16" max="48" step="2" />
+        </div>
+        <div class="design-field"><label>模块间距 <span class="val" id="rsGapVal"></span></label>
+          <input type="range" id="rsGap" min="8" max="32" step="2" />
+        </div>
+        <div class="design-field"><label>段落间距 <span class="val" id="rsParaVal"></span></label>
+          <input type="range" id="rsPara" min="1" max="10" step="1" />
+        </div>
+      </div>
+      <div class="card">
+        <h2>模式</h2>
+        <label class="design-check"><input type="checkbox" id="mIcon" /> 图标模式（标题前加竖条/圆点）</label>
+        <label class="design-check"><input type="checkbox" id="mSubCenter" /> 副标题居中</label>
+        <label class="design-check"><input type="checkbox" id="mLongTitle" /> 长标题模式（标题紧凑）</label>
       </div>
     </div>
-  </section>
+  </aside>
 
-  <!-- 右：实时预览 -->
-  <section class="panel preview-panel">
+  <!-- 右侧：实时预览 -->
+  <section class="wb-preview">
     <div class="preview-bar">
       <span class="pv-title">实时预览</span>
       <span id="atsBadge" class="ats-badge" title="ATS 匹配度">—</span>
     </div>
-    <div id="preview" class="resume-preview t-magic"></div>
+    <div class="pv-scroll">
+      <div id="preview" class="resume-preview t-magic"></div>
+    </div>
   </section>
 </main>
 
