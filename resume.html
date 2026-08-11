@@ -75,6 +75,24 @@
       <textarea id="coverOut" rows="8" placeholder="点击「生成求职信」自动按 JD + 当前简历拼装，可手动修改…"></textarea>
       <div id="gapResult"></div>
     </div>
+
+    <div class="card ai-card" id="aiCard">
+      <h2>③ AI 润色 <span class="hint">（用你自己的模型 Key，直连厂商、不经过中转）</span></h2>
+      <div class="row">
+        <button id="aiPolish" class="btn accent">✨ 按 JD 润色</button>
+        <button id="aiSettingsBtn" class="btn ghost" title="配置 API">⚙️ 设置</button>
+        <span id="aiStatus" class="hint"></span>
+      </div>
+      <div id="aiSettings" hidden>
+        <div class="field"><label>API 地址（OpenAI 兼容）</label>
+          <input id="aiBase" value="https://api.openai.com/v1" placeholder="https://api.openai.com/v1" /></div>
+        <div class="field"><label>API Key</label>
+          <input id="aiKey" type="password" placeholder="sk-... / 你的厂商密钥" autocomplete="off" /></div>
+        <div class="field"><label>模型名</label>
+          <input id="aiModel" value="gpt-4o-mini" placeholder="gpt-4o-mini / deepseek-chat" /></div>
+        <p class="hint">浏览器直接请求模型厂商，不经过任何中转服务器；密钥仅存本机浏览器。建议在可信设备使用，并注意用量与费用。</p>
+      </div>
+    </div>
   </section>
 
   <!-- 右：实时预览 -->
