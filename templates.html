@@ -46,12 +46,10 @@
   .cat-item.active{background:var(--brand-soft);color:var(--brand);font-weight:600}
   .cat-item .dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.6}
   .cat-item .count{margin-left:auto;font-size:12px;color:inherit;opacity:.7}
-
   .theme-row{display:flex;flex-wrap:wrap;gap:8px}
   .theme{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.15s;position:relative}
   .theme:hover{transform:scale(1.1)}
   .theme.active{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--brand)}
-
   .resume-list{display:flex;flex-direction:column;gap:6px}
   .resume-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--muted);transition:.15s}
   .resume-item:hover{background:#f3f4f6;color:var(--text)}
@@ -61,14 +59,30 @@
 
   /* ---------- main ---------- */
   .main{min-width:0}
-  .main-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
-  .main-head h2{margin:0;font-size:20px}
-  .main-head .count{color:var(--muted);font-size:14px}
-  .sort{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+  .section-head{display:flex;align-items:baseline;gap:12px;margin:2px 0 14px}
+  .section-head h2{margin:0;font-size:20px}
+  .section-head .count{color:var(--muted);font-size:14px}
+  .tip{color:var(--muted);font-size:13px;margin:-8px 0 14px}
+  .divider{display:flex;align-items:center;gap:12px;margin:26px 0 16px;color:var(--muted);font-size:13px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
   @media (max-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}}
 
+  /* built-in template card (live rendered, no external image) */
+  .bcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s;position:relative}
+  .bcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .bcard .thumb2{aspect-ratio:3/4;overflow:hidden;background:#f8fafc;display:flex;align-items:flex-start;justify-content:center;border-bottom:1px solid var(--line)}
+  .bcard .thumb2 .sheet{width:452px;transform:scale(.40);transform-origin:top center;flex:0 0 auto;box-shadow:0 0 0 1px rgba(0,0,0,.04)}
+  .bcard .info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .bcard .badge{align-self:flex-start;font-size:11px;color:var(--brand-d);background:var(--brand-soft);border-radius:6px;padding:2px 7px}
+  .bcard .name{font-size:14px;font-weight:700;line-height:1.35}
+  .bcard .desc{font-size:12px;color:var(--muted);flex:1}
+  .bcard .acts{display:flex;gap:8px;margin-top:4px}
+  .bcard .acts a{flex:1;text-align:center;text-decoration:none;font-size:12px;padding:8px 4px;border-radius:7px;border:1px solid var(--line);color:var(--text);background:#fff}
+  .bcard .acts a.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+
+  /* word library card (external preview, graceful fallback) */
   .tcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s;position:relative;cursor:pointer}
   .tcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
   .tcard .thumb{aspect-ratio:3/4;background:#f9fafb;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
@@ -85,8 +99,10 @@
   .tcard .acts{display:flex;gap:8px;margin-top:4px}
   .tcard .acts a{flex:1;text-align:center;text-decoration:none;font-size:12px;padding:7px 4px;border-radius:7px;border:1px solid var(--line);color:var(--text);background:#fff}
   .tcard .acts a.primary{background:var(--brand);border-color:var(--brand);color:#fff}
-
-  .ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:13px;text-align:center;padding:20px}
+  .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:12px;text-align:center;padding:16px;gap:4px;background:#f8fafc}
+  .ph .ph-name{font-size:14px;font-weight:700;color:var(--text);line-height:1.35}
+  .ph .ph-cat{font-size:11px;color:var(--brand-d);background:var(--brand-soft);border-radius:6px;padding:2px 7px}
+  .ph small{color:var(--muted)}
 
   .empty-main{text-align:center;color:var(--muted);padding:60px 20px}
   .empty-main h3{margin:0 0 6px;font-size:16px;color:var(--text)}
@@ -98,6 +114,7 @@
   @media (max-width:760px){.modal-box{grid-template-columns:1fr;max-height:95vh}}
   .modal-preview{background:#f3f4f6;display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}
   .modal-preview img{max-width:100%;max-height:76vh;object-fit:contain;border-radius:8px;box-shadow:var(--shadow)}
+  .modal-preview .ph{background:#fff;border-radius:8px;padding:40px}
   .modal-info{padding:24px;display:flex;flex-direction:column;gap:12px;overflow:auto}
   .modal-info h3{margin:0;font-size:20px}
   .modal-info .meta{color:var(--muted);font-size:13px}
@@ -126,7 +143,7 @@
     <div class="spacer"></div>
     <div class="search-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-      <input class="search" id="search" placeholder="搜索模板，如 商务 / 应届生 / 研究生…" />
+      <input class="search" id="search" placeholder="搜索 Word 模板，如 商务 / 应届生 / 研究生…" />
     </div>
     <a class="btn-new" href="resume.html">＋ 新建简历</a>
   </div>
@@ -139,22 +156,29 @@
       <div class="resume-list" id="resumeList"><div class="empty-side">暂无保存的简历</div></div>
     </div>
     <div class="card">
-      <h3>模板分类</h3>
+      <h3>Word 模板分类</h3>
       <div class="cat-list" id="catList"></div>
     </div>
     <div class="card">
-      <h3>主题色</h3>
+      <h3>主题色（内置模板）</h3>
       <div class="theme-row" id="themeRow"></div>
     </div>
   </aside>
 
   <main class="main">
-    <div class="main-head">
-      <div>
-        <h2 id="mainTitle">全部模板</h2>
-        <div class="count" id="count">加载中…</div>
-      </div>
-      <div class="sort">按热度排序</div>
+    <!-- 网站内置简历模板：真实渲染，永不空白 -->
+    <div class="section-head">
+      <h2>简历模板</h2>
+      <span class="count">网站内置 8 套样式 · 所见即所得</span>
+    </div>
+    <p class="tip">下面就是可直接使用的简历模板样式（左侧编辑、右侧实时预览，来自「简历编辑器」）。点击「使用模板」即带该样式与主题色进入编辑器。</p>
+    <div class="grid" id="builtinGrid"></div>
+
+    <div class="divider"><span>更多模板 · 来自开源 ResumeCollection（661 套 Word 可下载）</span></div>
+
+    <div class="section-head" style="margin-top:4px">
+      <h2 id="mainTitle">全部模板</h2>
+      <span class="count" id="count">加载中…</span>
     </div>
     <div class="grid" id="grid"></div>
     <div class="empty-main" id="empty" hidden>
@@ -165,12 +189,12 @@
 </div>
 
 <footer>
-  所有模板版权归原作者所有，仅作格式参考与下载。ResumeAuto 不存储这些文件，预览与下载经 jsDelivr 从源仓库加载。
+  内置模板样式由本站实时渲染；更多 Word 模板版权归原作者所有，仅作格式参考与下载，预览与下载经 jsDelivr 从源仓库加载。
 </footer>
 
 <div class="modal" id="modal">
   <div class="modal-box">
-    <div class="modal-preview"><img id="modalImg" src="" alt=""/></div>
+    <div class="modal-preview" id="modalPrev"><img id="modalImg" src="" alt=""/></div>
     <div class="modal-info">
       <h3 id="modalName">模板名称</h3>
       <div class="meta" id="modalMeta"></div>
@@ -197,9 +221,82 @@ var TPL_MAP = {
   "简单表格简历": "table"
 };
 var THEMES = ['#E1251B','#f97316','#16a34a','#2563eb','#7c3aed','#db2777','#0891b2','#475569','#111827'];
+var BUILTIN = [
+  {tpl:'magic',    name:'Magic Resume 风', desc:'清爽卡片 · 姓名强调色 · 竖条标题'},
+  {tpl:'standard', name:'统一标准模板',     desc:'京东红 · 色条标题 · 结构统一'},
+  {tpl:'classic',  name:'经典单栏',         desc:'ATS 友好 · 简洁单栏'},
+  {tpl:'cn',       name:'清爽中文单栏',     desc:'左侧色条标题 · 留白舒适'},
+  {tpl:'sidebar',  name:'双栏侧边',         desc:'左栏信息 · 右栏正文'},
+  {tpl:'energy',   name:'新能源商务',       desc:'强调色侧边 · 专业大气'},
+  {tpl:'cover',    name:'封面头图风',       desc:'彩色头图 · 个性封面'},
+  {tpl:'table',    name:'表格简历风',       desc:'表格化排版 · 条理清晰'}
+];
 var manifest = null, activeCat = 'all', kw = '', accent = '#E1251B';
 
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+
+/* ---------- 内置模板：用真实简历数据渲染样式 ---------- */
+var SAMPLE = {
+  basics:{name:'宋创创', title:'京东物流 · 运营管培生', phone:'138-0000-0000', email:'sc@example.com', location:'河南 · 郑州',
+    summary:'能源与动力工程背景，具备 4S 店销售与新媒体运营实习经验，执行力强、善于沟通。'},
+  sections:[
+    {type:'education',  title:'教育背景', hidden:false, items:[{school:'黄河交通学院', degree:'能源与动力工程 本科', period:'2018 – 2022', location:'河南', bullets:[]}]},
+    {type:'experience', title:'工作经历', items:[{role:'销售助理', company:'奇瑞汽车 4S 店', period:'2021 – 2022', location:'郑州', bullets:['负责客户接待与需求分析','协助完成月度销售目标']}]},
+    {type:'skills',     title:'技能专长', items:[{category:'专业技能', items:'销售沟通，新媒体运营，客户服务'},{category:'工具', items:'Excel，PPT，剪映'}]}
+  ]
+};
+function secHTML(sec){
+  var title = sec.title || '', body = '';
+  if(sec.type==='skills'){
+    sec.items.forEach(function(it){
+      var tags=(it.items||'').split(/[,，\n]/).map(function(s){return s.trim();}).filter(Boolean);
+      if(tags.length) body+='<div class="pv-skill-cat"><b>'+esc(it.category||'技能')+'</b></div><div class="pv-skill-tags">'+tags.map(function(t){return '<span class="pv-tag">'+esc(t)+'</span>';}).join('')+'</div>';
+    });
+  } else if(sec.type==='custom'){
+    sec.items.forEach(function(it){(it.body||[]).filter(Boolean).forEach(function(l){body+='<li>'+esc(l)+'</li>';}); if(body) body='<ul class="pv-bullets">'+body+'</ul>';});
+  } else if(sec.type==='certificates'){
+    sec.items.forEach(function(it){var h=[it.name,it.issuer].filter(Boolean).join(' · ');body+='<div class="pv-item"><div class="pv-item-head"><span class="pv-item-title">'+esc(h)+'</span>'+(it.date?'<span class="pv-period">'+esc(it.date)+'</span>':'')+'</div></div>';});
+  } else {
+    sec.items.forEach(function(it){
+      var t=it.role||it.name||it.school||'';
+      var sub=[sec.type==='education'?it.degree:(it.company||it.role),it.location].filter(Boolean).join(' · ');
+      var bl=(it.bullets||[]).filter(Boolean);
+      body+='<div class="pv-item"><div class="pv-item-head"><span class="pv-item-title">'+esc(t)+'</span>'+(it.period?'<span class="pv-period">'+esc(it.period)+'</span>':'')+'</div>'+(sub?'<div class="pv-item-sub">'+esc(sub)+'</div>':'')+(bl.length?'<ul class="pv-bullets">'+bl.map(function(b){return '<li>'+esc(b)+'</li>';}).join('')+'</ul>':'')+'</div>';
+    });
+  }
+  return '<div class="pv-section"><div class="pv-sec-title">'+esc(title)+'</div>'+body+'</div>';
+}
+function genPreview(tpl, acc){
+  var b=SAMPLE.basics;
+  var contact=[];['phone','email','location','links'].forEach(function(f){if(b[f])contact.push(esc(b[f]));});
+  var contactHtml=contact.length?'<div class="pv-contact">'+contact.map(function(c){return '<span>'+c+'</span>';}).join('')+'</div>':'';
+  var asideTypes={skills:1,certificates:1};
+  var single=['classic','cn','cover','standard','magic'].indexOf(tpl)>=0;
+  var aside='',main='';
+  if(b.summary) main+='<div class="pv-summary">'+esc(b.summary)+'</div>';
+  SAMPLE.sections.forEach(function(sec){if(sec.hidden)return;var h=secHTML(sec);if(!single&&asideTypes[sec.type])aside+=h;else main+=h;});
+  var head='<h1 class="pv-name">'+esc(b.name)+'</h1>'+(b.title?'<div class="pv-ptitle">'+esc(b.title)+'</div>':'');
+  var inner;
+  if(tpl==='cover') inner='<div class="pv-cover-head">'+head+contactHtml+'</div><div class="pv-cover-body">'+main+'</div>';
+  else if(single) inner=head+contactHtml+main;
+  else inner=head+'<div class="pv-grid"><div class="pv-aside">'+contactHtml+aside+'</div><div class="pv-main">'+main+'</div></div>';
+  return '<div class="resume-preview t-'+tpl+'" style="--accent:'+acc+'">'+inner+'</div>';
+}
+function renderBuiltin(){
+  var grid=document.getElementById('builtinGrid'); grid.innerHTML='';
+  BUILTIN.forEach(function(t){
+    var card=document.createElement('div'); card.className='bcard';
+    card.innerHTML=
+      '<div class="thumb2"><div class="sheet">'+genPreview(t.tpl,accent)+'</div></div>'+
+      '<div class="info">'+
+        '<span class="badge">内置模板</span>'+
+        '<div class="name">'+esc(t.name)+'</div>'+
+        '<div class="desc">'+esc(t.desc)+'</div>'+
+        '<div class="acts"><a class="primary" href="resume.html?tpl='+encodeURIComponent(t.tpl)+'&accent='+encodeURIComponent(accent)+'">使用模板</a></div>'+
+      '</div>';
+    grid.appendChild(card);
+  });
+}
 
 function loadResumes(){
   var list = document.getElementById('resumeList');
@@ -244,7 +341,7 @@ function buildThemes(){
     b.className='theme'+(c===accent?' active':'');
     b.style.background=c;
     b.title=c;
-    b.onclick = function(){ accent=c; buildThemes(); };
+    b.onclick = function(){ accent=c; buildThemes(); renderBuiltin(); };
     row.appendChild(b);
   });
 }
@@ -280,10 +377,11 @@ function render(){
     var card = document.createElement('div'); card.className='tcard';
     var previewUrl = esc(it.preview||'');
     var docUrl = esc(it.doc||'');
+    var phHtml = '<div class="ph"><div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>预览图暂不可用 · 可下载 Word 查看</small></div>';
     card.innerHTML =
       '<div class="thumb">'+
-        (previewUrl?'<img loading="lazy" src="'+previewUrl+'" alt="'+esc(it.name)+'" onerror="this.style.display=\'none\';this.parentNode.querySelector(\'.ph\').style.display=\'flex\'">':'')+
-        '<div class="ph" style="'+(previewUrl?'display:none':'')+'">预览加载失败<br><small>点击下载原文件查看</small></div>'+
+        (previewUrl?'<img loading="lazy" src="'+previewUrl+'" alt="'+esc(it.name)+'" onerror="this.style.display=\'none\';var p=this.parentNode.querySelector(\'.ph\');if(p)p.style.display=\'flex\'">':'')+
+        '<div class="ph" style="'+(previewUrl?'display:none':'')+'">'+'<div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>预览图暂不可用 · 可下载 Word 查看</small></div>'+
         '<div class="overlay">'+
           '<button class="btn-prev" onclick="event.stopPropagation();openModal(\''+esc(it.id)+'\')">预览</button>'+
           '<button class="btn-use" onclick="event.stopPropagation();location.href=\'resume.html?tpl='+encodeURIComponent(tpl)+'&accent='+encodeURIComponent(accent)+'\'">使用</button>'+
@@ -310,8 +408,10 @@ function openModal(id){
   document.getElementById('modalName').textContent = it.name;
   document.getElementById('modalTag').textContent = it.catLabel;
   document.getElementById('modalMeta').textContent = '编号 '+it.id+' · '+it.catLabel;
-  document.getElementById('modalImg').src = it.preview || '';
-  document.getElementById('modalImg').alt = it.name;
+  var img=document.getElementById('modalImg'); img.src=it.preview||''; img.alt=it.name; img.style.display=it.preview?'block':'none';
+  var prev=document.getElementById('modalPrev');
+  var old=prev.querySelector('.ph'); if(old) old.remove();
+  if(!it.preview){ prev.insertAdjacentHTML('beforeend','<div class="ph"><div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>该模板暂无预览图，可下载 Word 查看</small></div>'); }
   var tpl = TPL_MAP[it.catKey] || 'magic';
   document.getElementById('modalUse').href = 'resume.html?tpl='+encodeURIComponent(tpl)+'&accent='+encodeURIComponent(accent);
   document.getElementById('modalDown').href = it.doc || '#';
@@ -323,6 +423,7 @@ document.getElementById('search').addEventListener('input', function(e){ kw=e.ta
 document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
 
+renderBuiltin();
 fetch('templates/manifest.json',{cache:'no-cache'})
   .then(function(r){return r.json();})
   .then(function(d){
