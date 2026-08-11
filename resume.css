@@ -131,6 +131,29 @@ textarea#jdInput {
 }
 .resume .del-btn:hover { color: #dc2626; }
 
+/* 求职辅助（求职信 + 技能差距） */
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.gap-result { margin-top: 16px; }
+.gap-score { font-size: 14px; margin-bottom: 8px; }
+.gap-score b { color: var(--brand-d); font-size: 18px; }
+.gap-score .muted, .muted { color: var(--muted); font-size: 12.5px; font-weight: 400; }
+.gap-bar { height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
+.gap-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--brand), #22c55e); }
+.gap-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.gap-col h4 { margin: 0 0 8px; font-size: 13px; }
+.gap-col.ok h4 { color: var(--brand-d); }
+.gap-col.miss h4 { color: var(--warn); }
+.gtag { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 12.5px; margin: 0 6px 6px 0; }
+.gtag.ok { background: var(--brand-bg); color: var(--brand-d); border: 1px solid #bbf7d0; }
+.gtag.miss { background: #fff7ed; color: var(--warn); border: 1px solid #fed7aa; }
+.gap-tip { margin-top: 12px; font-size: 13px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; line-height: 1.7; }
+.cover-out {
+  width: 100%; min-height: 200px; margin-top: 6px; resize: vertical;
+  border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px;
+  font-family: inherit; font-size: 13.5px; line-height: 1.7; color: var(--ink); background: var(--card);
+}
+.cover-out:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(22,163,74,.12); }
+
 /* Responsive */
 @media (max-width: 860px) {
   .layout { grid-template-columns: 1fr; }
