@@ -1,0 +1,147 @@
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --ink: #1f2a37;
+  --muted: #6b7785;
+  --line: #e3e8ee;
+  --brand: #16a34a;
+  --brand-d: #15803d;
+  --brand-bg: #ecfdf3;
+  --accent: #2563eb;
+  --warn: #d97706;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(16, 24, 40, .08), 0 1px 2px rgba(16, 24, 40, .04);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* Header */
+.site-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px; background: var(--card); border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 20;
+}
+.brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; }
+.brand .logo { font-size: 20px; }
+.topnav { display: flex; gap: 6px; flex-wrap: wrap; }
+.topnav a {
+  text-decoration: none; color: var(--muted); padding: 6px 12px; border-radius: 8px; font-size: 14px;
+}
+.topnav a:hover { background: var(--bg); color: var(--ink); }
+.topnav a.active { background: var(--brand-bg); color: var(--brand-d); font-weight: 600; }
+
+/* Layout */
+.layout {
+  display: grid; grid-template-columns: 360px 1fr; gap: 18px;
+  max-width: 1280px; margin: 18px auto; padding: 0 18px; align-items: start;
+}
+.panel-left { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 72px; }
+.panel-right { min-width: 0; }
+
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px; box-shadow: var(--shadow);
+}
+.card h2 { margin: 0 0 8px; font-size: 15px; }
+.hint { color: var(--muted); font-size: 12.5px; margin: 0 0 10px; }
+
+textarea#jdInput {
+  width: 100%; min-height: 120px; resize: vertical; padding: 10px;
+  border: 1px solid var(--line); border-radius: 8px; font: inherit; color: var(--ink);
+}
+
+.btn {
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  padding: 9px 14px; border-radius: 8px; cursor: pointer; font: inherit; font-size: 14px;
+  transition: .15s;
+}
+.btn:hover { border-color: var(--brand); color: var(--brand-d); }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn.primary:hover { background: var(--brand-d); color: #fff; }
+.btn.ghost { color: var(--muted); }
+.btn:active { transform: translateY(1px); }
+#genBtn { width: 100%; margin-top: 10px; }
+
+.dropzone {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  border: 2px dashed var(--line); border-radius: 10px; padding: 22px 12px;
+  color: var(--muted); cursor: pointer; font-size: 13.5px; transition: .15s;
+}
+.dropzone:hover, .dropzone.drag { border-color: var(--brand); background: var(--brand-bg); color: var(--brand-d); }
+.status { font-size: 12.5px; margin-top: 8px; color: var(--muted); }
+.status.err { color: #dc2626; }
+.status.ok { color: var(--brand-d); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: var(--brand-bg); color: var(--brand-d); border: 1px solid #bbf7d0;
+  padding: 3px 9px; border-radius: 999px; font-size: 12.5px;
+}
+.tag.miss { background: #fef3c7; color: var(--warn); border-color: #fde68a; }
+
+/* Toolbar */
+.toolbar {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 10px 12px; box-shadow: var(--shadow);
+}
+.save-state { margin-left: auto; font-size: 12.5px; color: var(--muted); }
+
+/* Resume document */
+.resume {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 32px 36px; box-shadow: var(--shadow); min-height: 400px;
+}
+.resume h1.name { margin: 0 0 4px; font-size: 26px; }
+.resume .contact { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; }
+.resume section.block { margin-bottom: 20px; }
+.resume .block > h2 {
+  font-size: 15px; color: var(--brand-d); border-bottom: 2px solid var(--brand-bg);
+  padding-bottom: 5px; margin: 0 0 10px; letter-spacing: .5px;
+}
+.resume [contenteditable="true"] { outline: none; border-radius: 4px; padding: 1px 3px; }
+.resume [contenteditable="true"]:hover { background: #f8fafc; box-shadow: inset 0 0 0 1px var(--line); }
+.resume [contenteditable="true"]:focus { background: #fffbeb; box-shadow: inset 0 0 0 2px var(--warn); }
+.resume ul.items { list-style: none; padding: 0; margin: 0; }
+.resume li.item { margin-bottom: 12px; }
+.resume .item .row1 { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.resume .item .title { font-weight: 600; }
+.resume .item .meta { color: var(--muted); font-size: 13px; }
+.resume .item .desc { font-size: 13.5px; color: #374151; white-space: pre-wrap; }
+.resume .skills-line .chip {
+  display: inline-block; background: var(--bg); border: 1px solid var(--line);
+  padding: 2px 9px; border-radius: 6px; margin: 2px 4px 2px 0; font-size: 13px;
+}
+.resume .skills-line .chip.hit { background: var(--brand-bg); border-color: #bbf7d0; color: var(--brand-d); font-weight: 600; }
+.resume .add-btn {
+  border: 1px dashed var(--line); background: transparent; color: var(--muted);
+  border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 12.5px; margin-top: 6px;
+}
+.resume .add-btn:hover { border-color: var(--brand); color: var(--brand-d); }
+.resume .del-btn {
+  border: none; background: transparent; color: #cbd5e1; cursor: pointer; font-size: 13px; margin-left: 6px;
+}
+.resume .del-btn:hover { color: #dc2626; }
+
+/* Responsive */
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .panel-left { position: static; }
+  .resume { padding: 22px 18px; }
+  .topnav a { padding: 6px 9px; font-size: 13px; }
+}
+@media print {
+  .site-header, .panel-left, .toolbar { display: none !important; }
+  body { background: #fff; }
+  .layout { display: block; margin: 0; padding: 0; }
+  .resume { border: none; box-shadow: none; padding: 0; }
+  .resume [contenteditable="true"]:hover, .resume [contenteditable="true"]:focus { background: none; box-shadow: none; }
+}
