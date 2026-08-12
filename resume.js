@@ -327,12 +327,59 @@
     r.onload = function (e) {
       mammoth.extractRawText({ arrayBuffer: e.target.result }).then(function (res) {
         var st = parseDocxToState(res.value || '');
-        state.sections = st.sections;
-        if (st.basics.name) state.basics.name = st.basics.name;
-        if (st.basics.phone) state.basics.phone = st.basics.phone;
-        if (st.basics.email) state.basics.email = st.basics.email;
-        save(); renderForm(); renderPreview(); flash('已从 .docx 导入并解析，可继续编辑');
+        mergeImported(st);
       }).catch(function (err) { alert('解析失败：' + (err && err.message ? err.message : err)); });
+    };
+    r.readAsArrayBuffer(file);
+  }
+
+  /* 把 PDF 文本片段按 y 坐标重组成行（pdf.js 返回的是零散文本块，需重建换行） */
+  function pdfItemsToText(items) {
+    var lines = {};
+    (items || []).forEach(function (it) {
+      var y = Math.round((it.transform && it.transform[5]) || 0);
+      if (!lines[y]) lines[y] = [];
+      lines[y].push(it.str);
+    });
+    var ys = Object.keys(lines).map(Number).sort(function (a, b) { return b - a; });
+    return ys.map(function (y) { return lines[y].join(' '); }).join('\n');
+  }
+
+  /* 把解析结果并入当前简历：仅覆盖非空字段，保留模板/配色/设计等 meta */
+  function mergeImported(st) {
+    if (st.basics) {
+      Object.keys(state.basics).forEach(function (k) {
+        if (st.basics[k] != null && String(st.basics[k]).trim() !== '') state.basics[k] = st.basics[k];
+      });
+    }
+    if (st.sections && st.sections.length) state.sections = st.sections;
+    save(); renderForm(); renderPreview();
+    flash('已导入并解析简历，可继续编辑');
+  }
+
+  /* ---------- .pdf 导入 ---------- */
+  function handlePdf(file) {
+    if (!window.pdfjsLib) { alert('PDF 解析库未加载，请刷新后重试'); return; }
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+    var r = new FileReader();
+    r.onload = function (e) {
+      pdfjsLib.getDocument({ data: e.target.result }).promise.then(function (pdf) {
+        var texts = [];
+        function next(i) {
+          if (i > pdf.numPages) {
+            var st = parseDocxToState(texts.join('\n'));
+            mergeImported(st);
+            return;
+          }
+          pdf.getPage(i).then(function (page) {
+            page.getTextContent().then(function (tc) {
+              texts.push(pdfItemsToText(tc.items));
+              next(i + 1);
+            }).catch(function (err) { alert('PDF 解析失败：' + (err && err.message ? err.message : err)); });
+          }).catch(function (err) { alert('PDF 解析失败：' + (err && err.message ? err.message : err)); });
+        }
+        next(1);
+      }).catch(function (err) { alert('无法读取 PDF：' + (err && err.message ? err.message : err)); });
     };
     r.readAsArrayBuffer(file);
   }
@@ -726,6 +773,10 @@
     document.getElementById('importJson').addEventListener('click', function () { document.getElementById('importFile').click(); });
     document.getElementById('importFile').addEventListener('change', function (e) {
       var f = e.target.files[0]; if (!f) return;
+      var name = f.name.toLowerCase();
+      if (/\.docx$/i.test(name) || /\.doc$/i.test(name)) { handleDocx(f); e.target.value = ''; return; }
+      if (/\.pdf$/i.test(name)) { handlePdf(f); e.target.value = ''; return; }
+      // 默认按 JSON 处理
       var r = new FileReader();
       r.onload = function (ev) {
         try {
@@ -742,8 +793,10 @@
     form.addEventListener('drop', function (e) {
       e.preventDefault();
       var f = e.dataTransfer.files && e.dataTransfer.files[0];
-      if (f && /\.docx$/i.test(f.name)) handleDocx(f);
-      else if (f) flash('仅支持 .docx 简历导入');
+      if (!f) return;
+      if (/\.docx$/i.test(f.name) || /\.doc$/i.test(f.name)) handleDocx(f);
+      else if (/\.pdf$/i.test(f.name)) handlePdf(f);
+      else flash('仅支持 .docx / .pdf 简历导入');
     });
     // 模板画廊在 renderAll 已渲染；绑定 tab 切换与设计面板控件
     Array.prototype.forEach.call(document.querySelectorAll('.wb-tab'), function (btn) {
