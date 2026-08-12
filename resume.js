@@ -300,6 +300,7 @@
   function parseDocxToState(text) {
     text = text.replace(/\r/g, '');
     var rawLines = text.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l.length; });
+    rawLines = mergeWrappedFragments(rawLines);
     var st = DEFAULT_STATE();
 
     // 姓名：在所有行里找第一个像中文名的短词
@@ -315,6 +316,7 @@
       if (e) st.basics.email = e[1];
       var b = l.match(/(?:生日|出生|出生年月)[:：\s]*(\d{4}[.\-/]\d{1,2}(?:[.\-/]\d{1,2})?)/);
       if (b) st.basics.birthday = b[1];
+      else if (e && !st.basics.birthday) { var ym = l.match(/(\d{4}[.\/]\d{1,2})(?:[.\/]\d{1,2})?/); if (ym) st.basics.birthday = ym[1]; }
       var loc = l.match(/(?:地址|所在地|城市)[:：\s]*(\S{2,20})/);
       if (loc) st.basics.location = loc[1];
     });
@@ -384,38 +386,53 @@
       }
     });
 
-    // 按常规简历顺序重排模块
-    var order = { experience: 1, education: 2, projects: 3, skills: 4, certificates: 5, custom: 6 };
-    sections.sort(function (a, b) { return (order[a.type] || 99) - (order[b.type] || 99); });
+    // 保留文档原始顺序（与用户导出的简历排版一致），不再强制重排
 
     // 转换 sections 到标准结构
     var outSections = [];
     sections.forEach(function (sec) {
       var body = sec.items.filter(function (l) { return !isContactLine(l); });
       if (sec.type === 'skills') {
-        outSections.push({ type: 'skills', title: sec.title, items: [{ category: sec.title || '技能', items: body.join('，') }] });
+        var skillCats = [];
+        body.forEach(function (l) {
+          var mm = l.match(/^(.+?)[:：]\s*(.+)$/);
+          if (mm && mm[2].trim()) skillCats.push({ category: mm[1].trim(), items: mm[2].split(/[、，,，\s]+/).filter(Boolean).join('，') });
+          else if (l.trim()) skillCats.push({ category: sec.title || '技能', items: l.trim() });
+        });
+        if (skillCats.length) outSections.push({ type: 'skills', title: sec.title, items: skillCats });
       } else if (sec.type === 'certificates') {
         outSections.push({ type: 'certificates', title: sec.title, items: body.map(function (l) { return { name: l, issuer: '', date: '' }; }) });
       } else if (sec.type === 'experience') {
-        var expItems = [];
+        var expItems = [], pendingRole = [], last = null;
         body.forEach(function (l) {
-          var m = l.match(/^(\d{4}[.\-/]\d{1,2}\s*[-~至]\s*(?:\d{4}[.\-/]\d{1,2}|至今|现在|今))\s*(.*)$/);
-          if (m) expItems.push({ role: '', company: '', period: m[1], bullets: [m[2]] });
-          else expItems.push({ role: l, company: '', period: '', bullets: [] });
+          var e = parseEntryLine(l);
+          if (e.isEntry) { var role = pendingRole.join('') + (e.role || ''); last = { company: e.company, role: role, period: e.period, bullets: [] }; expItems.push(last); pendingRole = []; }
+          else if (!last) pendingRole.push(l);
+          else if (isRoleContinuation(last, l)) last.role = (last.role || '') + l;
+          else last.bullets.push(l);
         });
         if (expItems.length) outSections.push({ type: 'experience', title: sec.title, items: expItems });
       } else if (sec.type === 'projects') {
-        var projItems = [];
+        var projItems = [], pendingRoleP = [], lastP = null;
         body.forEach(function (l) {
-          var m = l.match(/^(\d{4}[.\-/]\d{1,2}\s*[-~至]\s*(?:\d{4}[.\-/]\d{1,2}|至今|现在|今))\s*(.*)$/);
-          if (m) projItems.push({ name: '', role: '', period: m[1], bullets: [m[2]] });
-          else projItems.push({ name: l, role: '', period: '', bullets: [] });
+          var e = parseEntryLine(l);
+          if (e.isEntry) { var roleP = pendingRoleP.join('') + (e.role || ''); lastP = { name: e.company, role: roleP, period: e.period, bullets: [] }; projItems.push(lastP); pendingRoleP = []; }
+          else if (!lastP) pendingRoleP.push(l);
+          else if (isRoleContinuation(lastP, l)) lastP.role = (lastP.role || '') + l;
+          else lastP.bullets.push(l);
         });
         if (projItems.length) outSections.push({ type: 'projects', title: sec.title, items: projItems });
       } else if (sec.type === 'education') {
-        outSections.push({ type: 'education', title: sec.title, items: [{ school: body[0] || '', degree: body[1] || '', period: '', note: body.slice(2).join(' ') }] });
+        var eduItems = [], pendingRoleE = [], lastE = null;
+        body.forEach(function (l) {
+          var e = parseEntryLine(l);
+          if (e.isEntry) { var deg = pendingRoleE.join('') + (e.role || ''); lastE = { school: e.company, degree: deg, period: e.period, note: '' }; eduItems.push(lastE); pendingRoleE = []; }
+          else if (!lastE) pendingRoleE.push(l);
+          else lastE.note = (lastE.note ? lastE.note + ' ' : '') + l;
+        });
+        if (eduItems.length) outSections.push({ type: 'education', title: sec.title, items: eduItems });
       } else {
-        outSections.push({ type: 'custom', title: sec.title, items: [{ heading: sec.title || '其他', body: body }] });
+        outSections.push({ type: 'custom', title: sec.title, items: [{ heading: sec.title || '其他', body: joinParagraph(body) }] });
       }
     });
 
@@ -434,55 +451,102 @@
     r.readAsArrayBuffer(file);
   }
 
-  /* 把 PDF 文本片段按视觉阅读顺序重组成行（pdf.js 返回的是零散文本块，需重建换行） */
-  function itemsToLines(items) {
-    var sorted = (items || []).slice().sort(function (a, b) {
+  /* 把 PDF 文本片段按视觉阅读顺序重组成行（pdf.js 返回的是零散文本块，需重建换行）
+     注意：很多简历 PDF 把每个汉字拆成独立文本块，直接按空格拼接会把“教育经历”变成“教 育 经 历”，
+     导致后续正则识别不到标题。这里按 y 从上到下、x 从左到右排序，同一行内仅当相邻文本块水平间距较大时才加空格。 */
+  function joinLine(items) {
+    var out = '';
+    items.forEach(function (it, i) {
+      var s = (it.str || '').replace(/\s+/g, ' ');
+      if (!s) return;
+      if (i > 0) {
+        var prev = items[i - 1];
+        var prevEnd = ((prev.transform && prev.transform[4]) || 0) + (prev.width || 0);
+        var curStart = (it.transform && it.transform[4]) || 0;
+        if (curStart - prevEnd > 3) out += ' ';
+      }
+      out += s;
+    });
+    return out;
+  }
+  function pdfItemsToText(items) {
+    var its = (items || []).filter(function (it) { return it && it.str != null; });
+    var sorted = its.slice().sort(function (a, b) {
       var ya = (a.transform && a.transform[5]) || 0;
       var yb = (b.transform && b.transform[5]) || 0;
       if (Math.abs(ya - yb) > 2) return yb - ya; // 不同行：y 大的在上
-      var xa = (a.transform && a.transform[4]) || 0;
-      var xb = (b.transform && b.transform[4]) || 0;
-      return xa - xb; // 同一行：从左到右
+      return ((a.transform && a.transform[4]) || 0) - ((b.transform && b.transform[4]) || 0); // 同行：从左到右
     });
-    var lines = [], curY = null, curLine = [];
+    var lines = [], curY = null, cur = [];
     sorted.forEach(function (it) {
       var y = (it.transform && it.transform[5]) || 0;
       if (curY === null || Math.abs(y - curY) > 2) {
-        if (curLine.length) lines.push(curLine.join(' '));
-        curY = y; curLine = [it.str];
-      } else {
-        curLine.push(it.str);
-      }
+        if (cur.length) lines.push(joinLine(cur));
+        curY = y; cur = [it];
+      } else cur.push(it);
     });
-    if (curLine.length) lines.push(curLine.join(' '));
-    return lines;
+    if (cur.length) lines.push(joinLine(cur));
+    return lines.join('\n');
   }
-  function detectColumns(items) {
-    // 根据 x 坐标分布检测是否左右分栏（常见于简历 PDF）
-    var xs = (items || []).map(function (it) { return (it.transform && it.transform[4]) || 0; }).filter(function (x) { return x > 0; }).sort(function (a, b) { return a - b; });
-    if (xs.length < 6) return { count: 1 };
-    var maxGap = 0, gapIdx = -1;
-    for (var i = 1; i < xs.length; i++) {
-      var gap = xs[i] - xs[i - 1];
-      if (gap > maxGap) { maxGap = gap; gapIdx = i; }
+  /* 解析一条「机构/公司 岗位 日期」式条目行，拆出公司、岗位、时间 */
+  function parseEntryLine(l) {
+    var dm = l.match(/(\d{4}[.\/]\d{1,2}\s*[-~至]\s*(?:\d{4}[.\/]\d{1,2}|至今|现在|今))/);
+    if (dm) {
+      var period = dm[1];
+      var rest = (l.slice(0, dm.index) + l.slice(dm.index + period.length)).replace(/\s+/g, ' ').trim();
+      var parts = rest.split(/\s+/).filter(Boolean);
+      var company = parts.shift() || '';
+      var role = parts.join(' ');
+      return { isEntry: true, company: company, role: role, period: period };
     }
-    var minGap = 55; // pt
-    if (maxGap < minGap || gapIdx <= 1 || gapIdx >= xs.length - 2) return { count: 1 };
-    var splitX = (xs[gapIdx] + xs[gapIdx - 1]) / 2;
-    return { count: 2, splitX: splitX };
+    return { isEntry: false, bullet: l };
   }
-  function pdfItemsToText(items) {
-    var cols = detectColumns(items);
-    if (cols.count === 2) {
-      // 双栏简历：先读左栏，再读右栏（更符合中文简历阅读习惯）
-      var left = [], right = [];
-      items.forEach(function (it) {
-        var x = (it.transform && it.transform[4]) || 0;
-        if (x < cols.splitX) left.push(it); else right.push(it);
-      });
-      return itemsToLines(left).concat(itemsToLines(right)).join('\n');
+
+  /* 合并 PDF 换行导致的「行尾碎片」：上一行以汉字/字母/数字结尾（句中截断）且本行极短（≤3 字），
+     说明本行是上一行的换行续行，应合并回去。例如“奠定技术”+“基础” → “奠定技术基础”。 */
+  function mergeWrappedFragments(lines) {
+    var out = [];
+    lines.forEach(function (l) {
+      if (out.length) {
+        var prev = out[out.length - 1];
+        var lastCh = prev.charAt(prev.length - 1);
+        var prevMidWord = /[一-龥a-zA-Z0-9]/.test(lastCh);
+        if (prevMidWord && l.length <= 3 && !/[，。；：！？!?、]/.test(l)) {
+          var raw = l.replace(/\s+/g, '');
+          if (isChineseName(raw)) { out.push(l); return; }            // 不合并姓名
+          if (/1[3-9]\d{9}/.test(l) || /@/.test(l)) { out.push(l); return; } // 不合并电话/邮箱
+          out[out.length - 1] = prev + l;
+          return;
+        }
+      }
+      out.push(l);
+    });
+    return out;
+  }
+  /* 判断 l 是否为上一条目 role/degree 的换行续行（如被括号拆开的“（一线服” + “务岗）”） */
+  function isRoleContinuation(cur, l) {
+    if (!cur || !cur.role) return false;
+    var open = (cur.role.match(/（/g) || []).length;
+    var close = (cur.role.match(/）/g) || []).length;
+    if (open > close) {
+      if (/^[）)]/.test(l)) return true;
+      if (l.length <= 8 && !/[，。；：！？!?、]/.test(l)) return true;
     }
-    return itemsToLines(items).join('\n');
+    return false;
+  }
+  /* 合并自述类（custom）段落的换行续行：上一行未以句末标点结束且本行不是新要点时，合并为同一段 */
+  function joinParagraph(lines) {
+    var out = [];
+    lines.forEach(function (l) {
+      if (out.length) {
+        var prev = out[out.length - 1];
+        var prevEndsSentence = /[。！？.!?]$/.test(prev);
+        var looksNew = /^[0-9（(【\[•·\-*]/.test(l) || /^[0-9]+\./.test(l);
+        if (!prevEndsSentence && !looksNew) { out[out.length - 1] = prev + l; return; }
+      }
+      out.push(l);
+    });
+    return out;
   }
 
   /* 把解析结果并入当前简历：仅覆盖非空字段，保留模板/配色/设计等 meta */
