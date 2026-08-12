@@ -45,6 +45,7 @@
     { k: 'title', label: '求职方向', type: 'text', ex: '新能源 · 光伏/风电运维' },
     { k: 'phone', label: '电话', type: 'text' },
     { k: 'email', label: '邮箱', type: 'text' },
+    { k: 'birthday', label: '出生年月', type: 'text', ex: '2002.11' },
     { k: 'location', label: '所在城市', type: 'text', ex: '江苏 · 盐城' },
     { k: 'links', label: '其他（官网/领英/GitHub 等）', type: 'text' },
     { k: 'summary', label: '自我评价 / 摘要', type: 'lines', ex: '电气工程背景，熟悉光伏电站运维与并网流程，具备现场故障排查与数据分析能力。' }
@@ -65,7 +66,7 @@
   function DEFAULT_STATE() {
     return {
       meta: { template: 'magic', accent: '#E1251B', design: defaultDesign() },
-      basics: { name: '', title: '', phone: '', email: '', location: '', links: '', summary: '' },
+      basics: { name: '', title: '', phone: '', email: '', birthday: '', location: '', links: '', summary: '' },
       sections: [
         { type: 'experience', title: '', items: [emptyItem('experience')] },
         { type: 'education', title: '', items: [emptyItem('education')] },
@@ -286,38 +287,74 @@
     box.innerHTML = html;
   }
 
-  /* ---------- .docx 导入 ---------- */
+  /* ---------- 文本解析（.docx / .pdf 共用）---------- */
+  var SURNAMES = '赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎鲁韦昌马苗凤花方俞任袁柳酆鲍史唐费廉岑薛雷贺倪汤滕殷罗毕郝邬安常乐于时傅皮卞齐康伍余元卜顾孟平黄和穆萧尹姚邵湛汪祁毛禹狄米贝明臧计伏成戴谈宋茅庞熊纪舒屈项祝董梁杜阮蓝闵席季麻强贾路娄危江童颜郭梅盛林刁钟徐邱骆高夏蔡田樊胡凌霍万柯卢莫房缪干解应宗丁宣邓郁单杭洪包诸左石崔吉钮龚程嵇邢滑裴陆荣翁荀羊於惠甄麴家封芮羿储靳汲邴糜松井段富巫乌焦巴弓牧隗山谷车侯宓蓬全郗班仰秋仲伊宫宁仇栾暴甘钭厉戎祖武符刘景詹束龙叶幸司韶郜黎蓟薄印宿白怀蒲邰从鄂索咸籍赖卓蔺屠蒙池乔阴郁胥能苍双闻莘党翟谭贡劳逄姬申扶堵冉宰郦雍舄璩桑桂濮牛寿通边扈燕冀郏浦尚农温别庄晏柴瞿阎充慕连茹习宦艾鱼容向古易慎戈廖庾终暨居衡步都耿满弘匡国文寇广禄阙东欧殳沃利蔚越夔隆师巩厍聂晁勾敖融冷訾辛阚那简饶空曾毋沙乜养鞠须丰巢关蒯相查后荆红游竺权逯盖益桓公';
+  function isChineseName(s) {
+    if (!/[\u4e00-\u9fa5]{2,4}/.test(s) || s.length < 2 || s.length > 4) return false;
+    if (!/[\u4e00-\u9fa5]/.test(s)) return false;
+    return SURNAMES.indexOf(s.charAt(0)) !== -1;
+  }
+  function isContactLine(l) {
+    return /^(生日|出生|出生年月|地址|所在地|城市|电话|手机|邮箱|邮件|Email|E-mail|联系|基本信息|联系方式)[:：\s]/.test(l);
+  }
   function parseDocxToState(text) {
     text = text.replace(/\r/g, '');
     var lines = text.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l.length; });
     var st = DEFAULT_STATE();
+
+    // 姓名：在所有行里找第一个像中文名的短词
     for (var i = 0; i < lines.length; i++) {
-      if (lines[i].length <= 5 && !/教育|工作|项目|技能|经历|证书|基本|信息|评价|求职|自我|获奖|语言|联系/.test(lines[i])) { st.basics.name = lines[i]; break; }
+      var raw = lines[i].replace(/\s+/g, '');
+      if (isChineseName(raw)) { st.basics.name = raw; break; }
     }
+    // 电话 / 邮箱 / 生日 / 地址：支持“电话：138...”或裸号
     lines.forEach(function (l) {
-      var m = l.match(/(1[3-9]\d{9})/); if (m) st.basics.phone = m[1];
-      var e = l.match(/([\w.]+@[\w.]+)/); if (e) st.basics.email = e[1];
+      var p = l.match(/(?:电话|手机|Tel|Phone)[:：\s]*(1[3-9]\d{9})/i) || l.match(/(1[3-9]\d{9})/);
+      if (p) st.basics.phone = p[1];
+      var e = l.match(/(?:邮箱|邮件|Email|E-mail)[:：\s]*([\w.\-]+@[\w.\-]+)/i) || l.match(/([\w.\-]+@[\w.\-]+)/);
+      if (e) st.basics.email = e[1];
+      var b = l.match(/(?:生日|出生|出生年月)[:：\s]*(\d{4}[.\-/]\d{1,2}(?:[.\-/]\d{1,2})?)/);
+      if (b) st.basics.birthday = b[1];
+      var loc = l.match(/(?:地址|所在地|城市)[:：\s]*(\S{2,20})/);
+      if (loc) st.basics.location = loc[1];
     });
-    var map = [['教育', 'education'], ['工作', 'experience'], ['实习', 'experience'], ['项目', 'projects'], ['技能', 'skills'], ['证书', 'certificates'], ['获奖', 'custom'], ['自我', 'custom'], ['评价', 'custom']];
-    var cur = null, buf = [], sections = [];
+
+    var map = [
+      ['教育', 'education'], ['学校', 'education'], ['学历', 'education'],
+      ['工作', 'experience'], ['职业', 'experience'], ['经验', 'experience'], ['实习', 'experience'],
+      ['项目', 'projects'],
+      ['技能', 'skills'], ['特长', 'skills'], ['优势', 'skills'],
+      ['证书', 'certificates'], ['资质', 'certificates'],
+      ['校园', 'experience'],
+      ['获奖', 'custom'], ['荣誉', 'custom'], ['个人', 'custom'], ['实践', 'custom'], ['志愿', 'custom'], ['自我', 'custom'], ['评价', 'custom']
+    ];
+    var cur = null, curTitle = '', buf = [], sections = [];
     function flush() {
       if (cur && buf.length) {
-        if (cur === 'skills') sections.push({ type: 'skills', title: '', items: [{ category: '技能', items: buf.join('，') }] });
-        else if (cur === 'certificates') sections.push({ type: 'certificates', title: '', items: buf.map(function (l) { return { name: l, issuer: '', date: '' }; }) });
-        else if (cur === 'experience') sections.push({ type: 'experience', title: '', items: [{ role: buf[0] || '', company: '', period: '', bullets: buf.slice(1) }] });
-        else if (cur === 'projects') sections.push({ type: 'projects', title: '', items: [{ name: buf[0] || '', role: '', period: '', bullets: buf.slice(1) }] });
-        else if (cur === 'education') sections.push({ type: 'education', title: '', items: [{ school: buf[0] || '', degree: buf[1] || '', period: '', note: buf.slice(2).join(' ') }] });
-        else sections.push({ type: 'custom', title: '', items: [{ heading: '自我评价', body: buf }] });
+        // 过滤掉联系方式行，避免把“电话：xxx”当模块正文
+        var body = buf.filter(function (l) { return !isContactLine(l); });
+        if (cur === 'skills') sections.push({ type: 'skills', title: curTitle, items: [{ category: curTitle || '技能', items: body.join('，') }] });
+        else if (cur === 'certificates') sections.push({ type: 'certificates', title: curTitle, items: body.map(function (l) { return { name: l, issuer: '', date: '' }; }) });
+        else if (cur === 'experience') sections.push({ type: 'experience', title: curTitle, items: [{ role: body[0] || '', company: '', period: '', bullets: body.slice(1) }] });
+        else if (cur === 'projects') sections.push({ type: 'projects', title: curTitle, items: [{ name: body[0] || '', role: '', period: '', bullets: body.slice(1) }] });
+        else if (cur === 'education') sections.push({ type: 'education', title: curTitle, items: [{ school: body[0] || '', degree: body[1] || '', period: '', note: body.slice(2).join(' ') }] });
+        else sections.push({ type: 'custom', title: curTitle, items: [{ heading: curTitle || '其他', body: body }] });
       }
-      cur = null; buf = [];
+      cur = null; curTitle = ''; buf = [];
     }
     lines.forEach(function (l) {
-      var hit = null;
-      map.forEach(function (p) { if (new RegExp(p[0]).test(l) && l.length < 16) hit = p[1]; });
-      if (hit) { flush(); cur = hit; }
+      if (isContactLine(l)) return; // 跳过联系方式行，不进任何模块
+      var hit = null, title = '';
+      map.forEach(function (p) { if (!hit && new RegExp(p[0]).test(l) && l.length < 20) { hit = p[1]; title = l; } });
+      if (hit) { flush(); cur = hit; curTitle = title; }
       else if (cur) buf.push(l);
     });
     flush();
+
+    // 按常规简历顺序重排模块，避免 PDF 流顺序导致版面错乱
+    var order = { experience: 1, education: 2, projects: 3, skills: 4, certificates: 5, custom: 6 };
+    sections.sort(function (a, b) { return (order[a.type] || 99) - (order[b.type] || 99); });
+
     if (sections.length) st.sections = sections;
     return st;
   }
@@ -333,16 +370,30 @@
     r.readAsArrayBuffer(file);
   }
 
-  /* 把 PDF 文本片段按 y 坐标重组成行（pdf.js 返回的是零散文本块，需重建换行） */
+  /* 把 PDF 文本片段按视觉阅读顺序重组成行（pdf.js 返回的是零散文本块，需重建换行） */
   function pdfItemsToText(items) {
-    var lines = {};
-    (items || []).forEach(function (it) {
-      var y = Math.round((it.transform && it.transform[5]) || 0);
-      if (!lines[y]) lines[y] = [];
-      lines[y].push(it.str);
+    // 先按 y（从上到下）、再按 x（从左到右）排序
+    var sorted = (items || []).slice().sort(function (a, b) {
+      var ya = (a.transform && a.transform[5]) || 0;
+      var yb = (b.transform && b.transform[5]) || 0;
+      if (Math.abs(ya - yb) > 2) return yb - ya; // 不同行：y 大的在上
+      var xa = (a.transform && a.transform[4]) || 0;
+      var xb = (b.transform && b.transform[4]) || 0;
+      return xa - xb; // 同一行：从左到右
     });
-    var ys = Object.keys(lines).map(Number).sort(function (a, b) { return b - a; });
-    return ys.map(function (y) { return lines[y].join(' '); }).join('\n');
+    // 按 y 相近性合并成行
+    var lines = [], curY = null, curLine = [];
+    sorted.forEach(function (it) {
+      var y = (it.transform && it.transform[5]) || 0;
+      if (curY === null || Math.abs(y - curY) > 2) {
+        if (curLine.length) lines.push(curLine.join(' '));
+        curY = y; curLine = [it.str];
+      } else {
+        curLine.push(it.str);
+      }
+    });
+    if (curLine.length) lines.push(curLine.join(' '));
+    return lines.join('\n');
   }
 
   /* 把解析结果并入当前简历：仅覆盖非空字段，保留模板/配色/设计等 meta */
