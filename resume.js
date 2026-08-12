@@ -660,9 +660,11 @@
     var acc = (state.meta && state.meta.accent) || '#E1251B';
     BUILTIN.forEach(function (t) {
       var card = document.createElement('div');
-      card.className = 'tpl-thumb' + (state.meta.template === t.tpl ? ' active' : '');
+      var active = state.meta.template === t.tpl;
+      card.className = 'tpl-thumb' + (active ? ' active' : '');
+      card.title = '点击应用「' + t.name + '」模板';
       card.innerHTML = '<div class="shot"><div class="sheet">' + genPreview(t.tpl, acc) + '</div></div>'
-        + '<div class="meta"><div class="nm">' + esc(t.name) + '</div><div class="ds">' + esc(t.desc) + '</div></div>';
+        + '<div class="meta"><div class="nm">' + esc(t.name) + '</div><div class="ds">' + esc(t.desc) + '</div>' + (active ? '<div class="applied">当前使用</div>' : '') + '</div>';
       card.onclick = function () { setTemplate(t.tpl); };
       grid.appendChild(card);
     });
@@ -670,7 +672,9 @@
   function setTemplate(tpl) {
     state.meta.template = tpl;
     var sel = document.getElementById('tplSel'); if (sel) sel.value = tpl;
-    save(); renderTemplateGallery(); renderPreview();
+    save(); renderTemplateGallery(); renderDesign(); renderPreview();
+    var names = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风' };
+    flash('已切换模板：' + (names[tpl] || tpl));
   }
   function applyDesignVars(pv) {
     var d = state.meta.design || defaultDesign();
@@ -728,11 +732,15 @@
       var tp = qp.get('tpl');
       var ac = qp.get('accent');
       var VALID = ['magic', 'standard', 'classic', 'cn', 'sidebar', 'energy', 'cover', 'table'];
+      var changed = false, tplNames = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风' };
       if (tp && VALID.indexOf(tp) >= 0 && state.meta.template !== tp) {
-        state.meta.template = tp; save();
+        state.meta.template = tp; save(); changed = true;
       }
       if (ac && /^#[0-9A-Fa-f]{6}$/.test(ac) && state.meta.accent !== ac) {
-        state.meta.accent = ac; save();
+        state.meta.accent = ac; save(); changed = true;
+      }
+      if (changed) {
+        setTimeout(function () { flash('已从模板库载入：' + (tplNames[state.meta.template] || state.meta.template) + ' · ' + state.meta.accent); }, 200);
       }
     } catch (e) {}
     renderAll();
