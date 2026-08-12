@@ -829,7 +829,7 @@
         state.meta.accent = ac; save(); changed = true;
       }
       if (changed) {
-        setTimeout(function () { flash('已从模板库载入：' + (tplNames[state.meta.template] || state.meta.template) + ' · ' + state.meta.accent); }, 200);
+        setTimeout(function () { flash('已套用模板：' + (tplNames[state.meta.template] || state.meta.template) + ' · 在左侧填写内容，右侧实时预览'); }, 200);
       }
     } catch (e) {}
     renderAll();
