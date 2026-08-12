@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12 13:19",
+  "generatedAt": "2026-08-12 17:46",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -35,15 +35,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/y0W9udQQ8PTr32q9xzMcvQ",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE044",
-      "title": "中国电信人工智能研究院（TeleAI）2027级联培博士招生正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/l-N22o2AEWx8m1Wfjo-3yw",
       "status": "open",
       "updatedAt": "2026-08-04"
     },
@@ -156,6 +147,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE090",
+      "title": "国家能源集团海南公司2026年社会招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/n1BledmHwiOSvKjFCJXiQQ",
+      "status": "open",
+      "updatedAt": "2026-08-12"
+    },
+    {
       "id": "SOE083",
       "title": "数智驱动 开创人社信息化发展...",
       "tag": "招聘公告",
@@ -219,13 +219,13 @@
       "updatedAt": "2026-08-06"
     },
     {
-      "id": "SOE078",
-      "title": "我国上半年城镇新增就业695万人",
+      "id": "SOE091",
+      "title": "劳务品牌“金名片”拓宽就业新...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s?__biz=MjM5NzMyOTY2OA==&mid=2650819076&idx=1&sn=a16b6639350f0e2704a5e79e1327dc8f&chksm=bd2f446f8a58cd79e374d2128ee9a568d591368e0c11df730131419345cabb059bca554f88a0#rd",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581875.html",
       "status": "open",
-      "updatedAt": "2026-08-05"
+      "updatedAt": "2026-08-12"
     },
     {
       "id": "SOE087",
@@ -235,15 +235,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581830.html",
       "status": "open",
       "updatedAt": "2026-08-11"
-    },
-    {
-      "id": "SOE079",
-      "title": "百日千万招聘专项行动推出人工...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "http://www.job.mohrss.gov.cn:80/rdzx/171946.jhtml",
-      "status": "open",
-      "updatedAt": "2026-08-05"
     },
     {
       "id": "SOE088",
@@ -271,6 +262,42 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581828.html",
       "status": "open",
       "updatedAt": "2026-08-11"
+    },
+    {
+      "id": "SOE092",
+      "title": "跨省联动 云端送岗——“就业...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581902.html",
+      "status": "open",
+      "updatedAt": "2026-08-12"
+    },
+    {
+      "id": "SOE044",
+      "title": "中国电信人工智能研究院（TeleAI）2027级联培博士招生正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/l-N22o2AEWx8m1Wfjo-3yw",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE078",
+      "title": "我国上半年城镇新增就业695万人",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s?__biz=MjM5NzMyOTY2OA==&mid=2650819076&idx=1&sn=a16b6639350f0e2704a5e79e1327dc8f&chksm=bd2f446f8a58cd79e374d2128ee9a568d591368e0c11df730131419345cabb059bca554f88a0#rd",
+      "status": "open",
+      "updatedAt": "2026-08-05"
+    },
+    {
+      "id": "SOE079",
+      "title": "百日千万招聘专项行动推出人工...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "http://www.job.mohrss.gov.cn:80/rdzx/171946.jhtml",
+      "status": "open",
+      "updatedAt": "2026-08-05"
     },
     {
       "id": "SOE074",
@@ -422,33 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260729_581158.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE050",
-      "title": "中国长城2026年全球博士人才招聘启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/O85pIJb51Zkmxp_OdxIMgA",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE062",
-      "title": "抓好“四化”建设推进调解仲裁...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260727_580998.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE065",
-      "title": "新就业形态劳动者社保覆盖将扩大",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260724_580839.html",
       "status": "open",
       "updatedAt": "2026-08-04"
     }
