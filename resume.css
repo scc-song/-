@@ -84,6 +84,9 @@ body {
 .tpl-thumb .meta { padding: 10px 12px; }
 .tpl-thumb .meta .nm { font-size: 13px; font-weight: 700; color: var(--ink); }
 .tpl-thumb .meta .ds { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+.tpl-thumb .meta .applied { font-size: 10px; color: var(--accent); font-weight: 700; margin-top: 4px; display: inline-block; padding: 1px 6px; border-radius: 4px; background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.tpl-thumb.active .shot { position: relative; }
+.tpl-thumb.active .shot::after { content: "✓"; position: absolute; top: 6px; right: 6px; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
 
 /* 设计面板 */
 .design-row { display: flex; align-items: center; gap: 12px; }
