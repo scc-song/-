@@ -295,20 +295,20 @@
     return SURNAMES.indexOf(s.charAt(0)) !== -1;
   }
   function isContactLine(l) {
-    return /^(生日|出生|出生年月|地址|所在地|城市|电话|手机|邮箱|邮件|Email|E-mail|联系|基本信息|联系方式)[:：\s]/.test(l);
+    return /^(生日|出生|出生年月|地址|所在地|城市|电话|手机|邮箱|邮件|Email|E-mail|联系|联系方式)[:：\s]/.test(l) || /^(基本信息|联系方式)$/.test(l);
   }
   function parseDocxToState(text) {
     text = text.replace(/\r/g, '');
-    var lines = text.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l.length; });
+    var rawLines = text.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l.length; });
     var st = DEFAULT_STATE();
 
     // 姓名：在所有行里找第一个像中文名的短词
-    for (var i = 0; i < lines.length; i++) {
-      var raw = lines[i].replace(/\s+/g, '');
+    for (var i = 0; i < rawLines.length; i++) {
+      var raw = rawLines[i].replace(/\s+/g, '');
       if (isChineseName(raw)) { st.basics.name = raw; break; }
     }
     // 电话 / 邮箱 / 生日 / 地址：支持“电话：138...”或裸号
-    lines.forEach(function (l) {
+    rawLines.forEach(function (l) {
       var p = l.match(/(?:电话|手机|Tel|Phone)[:：\s]*(1[3-9]\d{9})/i) || l.match(/(1[3-9]\d{9})/);
       if (p) st.basics.phone = p[1];
       var e = l.match(/(?:邮箱|邮件|Email|E-mail)[:：\s]*([\w.\-]+@[\w.\-]+)/i) || l.match(/([\w.\-]+@[\w.\-]+)/);
@@ -328,34 +328,98 @@
       ['校园', 'experience'],
       ['获奖', 'custom'], ['荣誉', 'custom'], ['个人', 'custom'], ['实践', 'custom'], ['志愿', 'custom'], ['自我', 'custom'], ['评价', 'custom']
     ];
-    var cur = null, curTitle = '', buf = [], sections = [];
-    function flush() {
-      if (cur && buf.length) {
-        // 过滤掉联系方式行，避免把“电话：xxx”当模块正文
-        var body = buf.filter(function (l) { return !isContactLine(l); });
-        if (cur === 'skills') sections.push({ type: 'skills', title: curTitle, items: [{ category: curTitle || '技能', items: body.join('，') }] });
-        else if (cur === 'certificates') sections.push({ type: 'certificates', title: curTitle, items: body.map(function (l) { return { name: l, issuer: '', date: '' }; }) });
-        else if (cur === 'experience') sections.push({ type: 'experience', title: curTitle, items: [{ role: body[0] || '', company: '', period: '', bullets: body.slice(1) }] });
-        else if (cur === 'projects') sections.push({ type: 'projects', title: curTitle, items: [{ name: body[0] || '', role: '', period: '', bullets: body.slice(1) }] });
-        else if (cur === 'education') sections.push({ type: 'education', title: curTitle, items: [{ school: body[0] || '', degree: body[1] || '', period: '', note: body.slice(2).join(' ') }] });
-        else sections.push({ type: 'custom', title: curTitle, items: [{ heading: curTitle || '其他', body: body }] });
-      }
-      cur = null; curTitle = ''; buf = [];
-    }
-    lines.forEach(function (l) {
-      if (isContactLine(l)) return; // 跳过联系方式行，不进任何模块
-      var hit = null, title = '';
-      map.forEach(function (p) { if (!hit && new RegExp(p[0]).test(l) && l.length < 20) { hit = p[1]; title = l; } });
-      if (hit) { flush(); cur = hit; curTitle = title; }
-      else if (cur) buf.push(l);
-    });
-    flush();
 
-    // 按常规简历顺序重排模块，避免 PDF 流顺序导致版面错乱
+    function detectTitle(l) {
+      for (var i = 0; i < map.length; i++) {
+        if (new RegExp(map[i][0]).test(l) && l.length < 20) return { type: map[i][1], title: l };
+      }
+      return null;
+    }
+    function isDatedExperience(l) {
+      // 形如 "2025.03 -2025.09 负责..." 或 "2024.3 -2024.11 负责..."
+      return /^\d{4}[.\-/]\d{1,2}\s*[-~至]\s*(?:\d{4}[.\-/]\d{1,2}|至今|现在|今)/.test(l) && l.length > 15;
+    }
+    function isSkillTag(l) {
+      return /^[A-Z][A-Z0-9\s\+#\.\-/]{2,}$/.test(l) || /^[\u4e00-\u9fa5]{1,3}$/.test(l) && !/[。，；！？]/g.test(l);
+    }
+    function findOrCreate(sections, type, defaultTitle) {
+      for (var i = 0; i < sections.length; i++) if (sections[i].type === type) return sections[i];
+      var s = { type: type, title: defaultTitle, items: [] };
+      sections.push(s);
+      return s;
+    }
+
+    // 先扫描并分组；跳过联系方式和姓名
+    var sections = [];
+    var cur = null, curTitle = '';
+    rawLines.forEach(function (l) {
+      if (isContactLine(l)) return;
+      if (isChineseName(l.replace(/\s+/g, ''))) return; // 姓名已提取
+      var t = detectTitle(l);
+      if (t) {
+        cur = t; curTitle = t.title;
+        // 合并同名/同类 section，避免双栏布局重复创建
+        var exist = null;
+        for (var i = 0; i < sections.length; i++) if (sections[i].type === cur.type) { exist = sections[i]; break; }
+        if (!exist) sections.push({ type: cur.type, title: curTitle, items: [] });
+        return;
+      }
+      // 无标题但带日期 -> 工作经历
+      if (isDatedExperience(l)) {
+        var exp = findOrCreate(sections, 'experience', '工作经历');
+        exp.items.push(l);
+        cur = { type: 'experience', title: exp.title };
+        return;
+      }
+      // 技能标签：若当前无 section，先暂存；遇到 skills 再并入
+      if (isSkillTag(l)) {
+        var sk = findOrCreate(sections, 'skills', '技能专长');
+        sk.items.push(l);
+        return;
+      }
+      if (cur) {
+        var target = null;
+        for (var i = 0; i < sections.length; i++) if (sections[i].type === cur.type) { target = sections[i]; break; }
+        if (target) target.items.push(l);
+      }
+    });
+
+    // 按常规简历顺序重排模块
     var order = { experience: 1, education: 2, projects: 3, skills: 4, certificates: 5, custom: 6 };
     sections.sort(function (a, b) { return (order[a.type] || 99) - (order[b.type] || 99); });
 
-    if (sections.length) st.sections = sections;
+    // 转换 sections 到标准结构
+    var outSections = [];
+    sections.forEach(function (sec) {
+      var body = sec.items.filter(function (l) { return !isContactLine(l); });
+      if (sec.type === 'skills') {
+        outSections.push({ type: 'skills', title: sec.title, items: [{ category: sec.title || '技能', items: body.join('，') }] });
+      } else if (sec.type === 'certificates') {
+        outSections.push({ type: 'certificates', title: sec.title, items: body.map(function (l) { return { name: l, issuer: '', date: '' }; }) });
+      } else if (sec.type === 'experience') {
+        var expItems = [];
+        body.forEach(function (l) {
+          var m = l.match(/^(\d{4}[.\-/]\d{1,2}\s*[-~至]\s*(?:\d{4}[.\-/]\d{1,2}|至今|现在|今))\s*(.*)$/);
+          if (m) expItems.push({ role: '', company: '', period: m[1], bullets: [m[2]] });
+          else expItems.push({ role: l, company: '', period: '', bullets: [] });
+        });
+        if (expItems.length) outSections.push({ type: 'experience', title: sec.title, items: expItems });
+      } else if (sec.type === 'projects') {
+        var projItems = [];
+        body.forEach(function (l) {
+          var m = l.match(/^(\d{4}[.\-/]\d{1,2}\s*[-~至]\s*(?:\d{4}[.\-/]\d{1,2}|至今|现在|今))\s*(.*)$/);
+          if (m) projItems.push({ name: '', role: '', period: m[1], bullets: [m[2]] });
+          else projItems.push({ name: l, role: '', period: '', bullets: [] });
+        });
+        if (projItems.length) outSections.push({ type: 'projects', title: sec.title, items: projItems });
+      } else if (sec.type === 'education') {
+        outSections.push({ type: 'education', title: sec.title, items: [{ school: body[0] || '', degree: body[1] || '', period: '', note: body.slice(2).join(' ') }] });
+      } else {
+        outSections.push({ type: 'custom', title: sec.title, items: [{ heading: sec.title || '其他', body: body }] });
+      }
+    });
+
+    if (outSections.length) st.sections = outSections;
     return st;
   }
   function handleDocx(file) {
@@ -371,8 +435,7 @@
   }
 
   /* 把 PDF 文本片段按视觉阅读顺序重组成行（pdf.js 返回的是零散文本块，需重建换行） */
-  function pdfItemsToText(items) {
-    // 先按 y（从上到下）、再按 x（从左到右）排序
+  function itemsToLines(items) {
     var sorted = (items || []).slice().sort(function (a, b) {
       var ya = (a.transform && a.transform[5]) || 0;
       var yb = (b.transform && b.transform[5]) || 0;
@@ -381,7 +444,6 @@
       var xb = (b.transform && b.transform[4]) || 0;
       return xa - xb; // 同一行：从左到右
     });
-    // 按 y 相近性合并成行
     var lines = [], curY = null, curLine = [];
     sorted.forEach(function (it) {
       var y = (it.transform && it.transform[5]) || 0;
@@ -393,7 +455,34 @@
       }
     });
     if (curLine.length) lines.push(curLine.join(' '));
-    return lines.join('\n');
+    return lines;
+  }
+  function detectColumns(items) {
+    // 根据 x 坐标分布检测是否左右分栏（常见于简历 PDF）
+    var xs = (items || []).map(function (it) { return (it.transform && it.transform[4]) || 0; }).filter(function (x) { return x > 0; }).sort(function (a, b) { return a - b; });
+    if (xs.length < 6) return { count: 1 };
+    var maxGap = 0, gapIdx = -1;
+    for (var i = 1; i < xs.length; i++) {
+      var gap = xs[i] - xs[i - 1];
+      if (gap > maxGap) { maxGap = gap; gapIdx = i; }
+    }
+    var minGap = 55; // pt
+    if (maxGap < minGap || gapIdx <= 1 || gapIdx >= xs.length - 2) return { count: 1 };
+    var splitX = (xs[gapIdx] + xs[gapIdx - 1]) / 2;
+    return { count: 2, splitX: splitX };
+  }
+  function pdfItemsToText(items) {
+    var cols = detectColumns(items);
+    if (cols.count === 2) {
+      // 双栏简历：先读左栏，再读右栏（更符合中文简历阅读习惯）
+      var left = [], right = [];
+      items.forEach(function (it) {
+        var x = (it.transform && it.transform[4]) || 0;
+        if (x < cols.splitX) left.push(it); else right.push(it);
+      });
+      return itemsToLines(left).concat(itemsToLines(right)).join('\n');
+    }
+    return itemsToLines(items).join('\n');
   }
 
   /* 把解析结果并入当前简历：仅覆盖非空字段，保留模板/配色/设计等 meta */
@@ -880,7 +969,16 @@
     document.getElementById('mLongTitle').addEventListener('change', function (e) { state.meta.design.modes.longTitle = e.target.checked; save(); renderPreview(); });
 
     // expose for testing
-    window.__ra = { state: function () { return state; }, computeAts: computeAts, parseDocxToState: parseDocxToState, applyAiResults: applyAiResults, loadAI: loadAI };
+    window.__ra = {
+      state: function () { return state; },
+      computeAts: computeAts,
+      parseDocxToState: parseDocxToState,
+      pdfItemsToText: pdfItemsToText,
+      itemsToLines: itemsToLines,
+      detectColumns: detectColumns,
+      applyAiResults: applyAiResults,
+      loadAI: loadAI
+    };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
