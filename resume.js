@@ -1038,8 +1038,8 @@
       computeAts: computeAts,
       parseDocxToState: parseDocxToState,
       pdfItemsToText: pdfItemsToText,
-      itemsToLines: itemsToLines,
-      detectColumns: detectColumns,
+      parseEntryLine: parseEntryLine,
+      mergeWrappedFragments: mergeWrappedFragments,
       applyAiResults: applyAiResults,
       loadAI: loadAI
     };
