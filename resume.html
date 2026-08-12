@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ResumeAuto · 简历编辑器</title>
 <link rel="stylesheet" href="resume.css" />
@@ -25,8 +26,8 @@
     <button id="exportPdf" class="btn">📄 导出PDF</button>
     <button id="exportJson" class="btn ghost">JSON</button>
     <button id="exportMd" class="btn ghost">MD</button>
-    <button id="importJson" class="btn ghost">导入</button>
-    <input type="file" id="importFile" accept="application/json" hidden />
+    <button id="importJson" class="btn ghost" title="导入简历：支持 JSON / .docx / .pdf">导入</button>
+    <input type="file" id="importFile" accept=".json,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf" hidden />
     <button id="resetBtn" class="btn ghost">重置</button>
   </div>
 </header>
