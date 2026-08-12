@@ -168,19 +168,19 @@
   <main class="main">
     <!-- 网站内置简历模板：真实渲染，永不空白 -->
     <div class="section-head">
-      <h2>简历模板</h2>
+      <h2>✅ 可直接在线使用的简历模板</h2>
       <span class="count">网站内置 8 套样式 · 所见即所得</span>
     </div>
-    <p class="tip">下面就是可直接使用的简历模板样式（左侧编辑、右侧实时预览，来自「简历编辑器」）。点击「使用模板」即带该样式与主题色进入编辑器。</p>
+    <p class="tip">这些模板可在本网站直接编辑：点击「使用模板」会带着该样式进入简历编辑器（左侧填内容、右侧实时预览）。想在线做简历，用这里最快。</p>
     <div class="grid" id="builtinGrid"></div>
 
     <div class="divider"><span>更多模板 · 来自开源 ResumeCollection（661 套 Word 可下载参考）</span></div>
 
     <div class="section-head" style="margin-top:4px">
-      <h2 id="mainTitle">全部模板</h2>
+      <h2 id="mainTitle">Word 参考模板</h2>
       <span class="count" id="count">加载中…</span>
     </div>
-    <p class="tip">Word 模板为参考文件，点击「用此风格编辑」会套用相近的在线样式进入编辑器；点击「下载 Word」可获取原文件在本地编辑。</p>
+    <p class="tip">下方是 Word 参考模板（.docx 原文件，共 661 套）：点「下载 Word」获取文件后在 Word / WPS 中编辑。在线编辑器暂不支持 1:1 套用这些版式，想在线做简历请用上方 8 套内置模板。</p>
     <div class="grid" id="grid">
       <div class="empty-main" id="loading"><h3>正在加载模板清单…</h3></div>
     </div>
@@ -203,11 +203,11 @@
       <div class="meta" id="modalMeta"></div>
       <div class="desc">
         <span class="tag" id="modalTag">分类</span>
-        点击下方按钮即可使用该模板风格新建简历，或下载 Word 原文件到本地编辑。
+        在右侧查看模板样式。可「套用相近在线风格」进入编辑器（套用与之相近的在线模板），或「下载 Word」获取原文件在本地编辑。
       </div>
       <div class="btns">
-        <a class="use" id="modalUse" href="resume.html">立即使用</a>
-        <a class="down" id="modalDown" href="#" target="_blank" rel="noopener" download>下载 Word</a>
+        <a class="use" id="modalUse" href="resume.html">套用相近在线风格</a>
+        <a class="down" id="modalDown" href="#" target="_blank" rel="noopener">下载 Word</a>
         <button class="close" onclick="closeModal()">关闭</button>
       </div>
     </div>
@@ -389,21 +389,21 @@ function render(){
           '<div class="ph" style="'+(previewUrl?'display:none':'')+'">'+'<div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>预览图暂不可用 · 可下载 Word 查看</small></div>'+
           '<div class="overlay">'+
             '<button class="btn-prev" data-action="prev" data-id="'+esc(it.id)+'">预览</button>'+
-            '<button class="btn-use" data-action="use" data-href="'+useHref+'">用此风格编辑</button>'+
           '</div>'+
         '</div>'+
         '<div class="info">'+
           '<span class="badge">'+esc(it.catLabel)+'</span>'+
           '<div class="name">'+esc(it.name)+'</div>'+
           '<div class="acts">'+
-            '<a class="primary" href="'+useHref+'">用此风格编辑</a>'+
-            '<a href="'+docUrl+'" target="_blank" rel="noopener" download>下载 Word</a>'+
+            '<a class="primary" href="'+docUrl+'" target="_blank" rel="noopener">下载 Word</a>'+
           '</div>'+
         '</div>';
       card.onclick = function(e){
         var t = e.target, ds = t && t.dataset ? t.dataset : {};
         if (ds.action === 'prev') { e.stopPropagation(); openModal(it.id); return; }
         if (ds.action === 'use') { e.stopPropagation(); location.href = useHref; return; }
+        // 点到「下载 Word」链接时交给浏览器处理，不要弹预览
+        if (t && t.closest && t.closest('a')) return;
         openModal(it.id);
       };
       grid.appendChild(card);
