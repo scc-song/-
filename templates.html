@@ -93,6 +93,7 @@
   .tcard .overlay button{border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer}
   .tcard .overlay .btn-use{background:var(--brand);color:#fff}
   .tcard .overlay .btn-prev{background:#fff;color:var(--text)}
+  .tcard .overlay .btn-dl{background:#0f172a;color:#fff}
   .tcard .info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
   .tcard .badge{align-self:flex-start;font-size:11px;color:var(--brand-d);background:var(--brand-soft);border-radius:6px;padding:2px 7px}
   .tcard .name{font-size:14px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
@@ -169,18 +170,18 @@
     <!-- 网站内置简历模板：真实渲染，永不空白 -->
     <div class="section-head">
       <h2>✅ 可直接在线使用的简历模板</h2>
-      <span class="count">网站内置 8 套样式 · 所见即所得</span>
+      <span class="count">网站内置 20 套样式 · 所见即所得 · 点「使用模板」即套用</span>
     </div>
-    <p class="tip">这些模板可在本网站直接编辑：点击「使用模板」会带着该样式进入简历编辑器（左侧填内容、右侧实时预览）。想在线做简历，用这里最快。</p>
+    <p class="tip">这些模板可在本网站直接编辑：点任意卡片的「使用模板」会带着该样式进入简历编辑器（左侧填内容、右侧实时预览）。想在线做简历，用这里最快。</p>
     <div class="grid" id="builtinGrid"></div>
 
     <div class="divider"><span>更多模板 · 来自开源 ResumeCollection（661 套 Word 可下载参考）</span></div>
 
     <div class="section-head" style="margin-top:4px">
-      <h2 id="mainTitle">Word 参考模板</h2>
+      <h2 id="mainTitle">Word 参考模板（下载后在编辑器导入）</h2>
       <span class="count" id="count">加载中…</span>
     </div>
-    <p class="tip">下方是 Word 参考模板（.docx 原文件，共 661 套）：点「下载 Word」获取文件后在 Word / WPS 中编辑。在线编辑器暂不支持 1:1 套用这些版式，想在线做简历请用上方 8 套内置模板。</p>
+    <p class="tip">下方是 Word 参考模板（.docx 原文件，共 661 套）：点「下载 Word」保存到本地；然后打开「简历编辑器」顶部的「导入」，上传该 .docx 即可自动解析成可编辑简历，在本站继续修改。在线编辑器不保证 1:1 还原版式，想直接在线做简历请用上方 20 套内置模板。</p>
     <div class="grid" id="grid">
       <div class="empty-main" id="loading"><h3>正在加载模板清单…</h3></div>
     </div>
@@ -203,11 +204,11 @@
       <div class="meta" id="modalMeta"></div>
       <div class="desc">
         <span class="tag" id="modalTag">分类</span>
-        在右侧查看模板样式。可「套用相近在线风格」进入编辑器（套用与之相近的在线模板），或「下载 Word」获取原文件在本地编辑。
+        在左侧查看模板样式。这是 Word 原文件（.docx），点「下载 Word」保存到本地；随后打开「简历编辑器」顶部的「导入」，上传该 .docx 即可自动解析成可编辑简历，在本站继续修改。
       </div>
       <div class="btns">
-        <a class="use" id="modalUse" href="resume.html">套用相近在线风格</a>
         <a class="down" id="modalDown" href="#" target="_blank" rel="noopener">下载 Word</a>
+        <a class="use" id="modalUse" href="resume.html">去编辑器导入</a>
         <button class="close" onclick="closeModal()">关闭</button>
       </div>
     </div>
@@ -232,7 +233,19 @@ var BUILTIN = [
   {tpl:'sidebar',  name:'双栏侧边',         desc:'左栏信息 · 右栏正文'},
   {tpl:'energy',   name:'新能源商务',       desc:'强调色侧边 · 专业大气'},
   {tpl:'cover',    name:'封面头图风',       desc:'彩色头图 · 个性封面'},
-  {tpl:'table',    name:'表格简历风',       desc:'表格化排版 · 条理清晰'}
+  {tpl:'table',    name:'表格简历风',       desc:'表格化排版 · 条理清晰'},
+  {tpl:'minimal',  name:'单色极简',         desc:'发丝线 · 大量留白 · 极简高级'},
+  {tpl:'exec',     name:'商务衬线',         desc:'居中衬线 · 正式庄重'},
+  {tpl:'bold',     name:'色块标题',         desc:'实底色块标题 · 视觉冲击'},
+  {tpl:'card',     name:'卡片模块',         desc:'每区块独立白卡 · 条理分明'},
+  {tpl:'timeline', name:'时间轴',           desc:'左轨圆点 · 经历一目了然'},
+  {tpl:'grid',     name:'网格技能',         desc:'方角描边标签 · 技能突出'},
+  {tpl:'soft',     name:'柔和圆角',         desc:'淡彩圆角 · 亲和友好'},
+  {tpl:'compact',  name:'紧凑 ATS',         desc:'小字号紧排 · ATS 友好'},
+  {tpl:'stripe',   name:'斑马分区',         desc:'奇偶交替底色 · 易读'},
+  {tpl:'corner',   name:'角标强调',         desc:'右上角标 · 双线姓名'},
+  {tpl:'aside-light', name:'浅灰双栏',      desc:'浅灰信息侧栏 · 清爽'},
+  {tpl:'aside-dark',  name:'深色双栏',      desc:'深色信息侧栏 · 沉稳'}
 ];
 var manifest = null, activeCat = 'all', kw = '', accent = '#E1251B';
 
@@ -274,7 +287,7 @@ function genPreview(tpl, acc){
   var contact=[];['phone','email','location','links'].forEach(function(f){if(b[f])contact.push(esc(b[f]));});
   var contactHtml=contact.length?'<div class="pv-contact">'+contact.map(function(c){return '<span>'+c+'</span>';}).join('')+'</div>':'';
   var asideTypes={skills:1,certificates:1};
-  var single=['classic','cn','cover','standard','magic'].indexOf(tpl)>=0;
+  var single=['classic','cn','cover','standard','magic','minimal','exec','bold','card','timeline','grid','soft','compact','stripe','corner'].indexOf(tpl)>=0;
   var aside='',main='';
   if(b.summary) main+='<div class="pv-summary">'+esc(b.summary)+'</div>';
   SAMPLE.sections.forEach(function(sec){if(sec.hidden)return;var h=secHTML(sec);if(!single&&asideTypes[sec.type])aside+=h;else main+=h;});
@@ -389,6 +402,7 @@ function render(){
           '<div class="ph" style="'+(previewUrl?'display:none':'')+'">'+'<div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>预览图暂不可用 · 可下载 Word 查看</small></div>'+
           '<div class="overlay">'+
             '<button class="btn-prev" data-action="prev" data-id="'+esc(it.id)+'">预览</button>'+
+            '<button class="btn-dl" data-action="dl" data-id="'+esc(it.id)+'">下载</button>'+
           '</div>'+
         '</div>'+
         '<div class="info">'+
@@ -401,6 +415,7 @@ function render(){
       card.onclick = function(e){
         var t = e.target, ds = t && t.dataset ? t.dataset : {};
         if (ds.action === 'prev') { e.stopPropagation(); openModal(it.id); return; }
+        if (ds.action === 'dl') { e.stopPropagation(); if (it.doc) window.open(it.doc, '_blank', 'noopener'); return; }
         if (ds.action === 'use') { e.stopPropagation(); location.href = useHref; return; }
         // 点到「下载 Word」链接时交给浏览器处理，不要弹预览
         if (t && t.closest && t.closest('a')) return;
@@ -424,7 +439,7 @@ function openModal(id){
   var old=prev.querySelector('.ph'); if(old) old.remove();
   if(!it.preview){ prev.insertAdjacentHTML('beforeend','<div class="ph"><div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>该模板暂无预览图，可下载 Word 查看</small></div>'); }
   var tpl = TPL_MAP[it.catKey] || 'magic';
-  document.getElementById('modalUse').href = 'resume.html?tpl='+encodeURIComponent(tpl)+'&accent='+encodeURIComponent(accent);
+  document.getElementById('modalUse').href = 'resume.html';
   document.getElementById('modalDown').href = it.doc || '#';
   document.getElementById('modal').classList.add('on');
 }
