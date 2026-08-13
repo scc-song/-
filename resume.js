@@ -564,7 +564,7 @@
   /* ---------- .pdf 导入 ---------- */
   function handlePdf(file) {
     if (!window.pdfjsLib) { alert('PDF 解析库未加载，请刷新后重试'); return; }
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
     var r = new FileReader();
     r.onload = function (e) {
       pdfjsLib.getDocument({ data: e.target.result }).promise.then(function (pdf) {
