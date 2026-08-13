@@ -65,7 +65,7 @@
   }
   function DEFAULT_STATE() {
     return {
-      meta: { template: 'magic', accent: '#E1251B', design: defaultDesign() },
+      meta: { template: 'magicv', accent: '#1B1B18', design: defaultDesign() },
       basics: { name: '', title: '', phone: '', email: '', birthday: '', location: '', links: '', summary: '' },
       sections: [
         { type: 'experience', title: '', items: [emptyItem('experience')] },
@@ -187,10 +187,15 @@
     if (b.location) contact.push(esc(b.location));
     if (b.links) contact.push(esc(b.links));
     var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
-    var asideTypes = { skills: 1, certificates: 1 };
-    var single = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover' || state.meta.template === 'standard' || state.meta.template === 'magic' || state.meta.template === 'minimal' || state.meta.template === 'exec' || state.meta.template === 'bold' || state.meta.template === 'card' || state.meta.template === 'timeline' || state.meta.template === 'grid' || state.meta.template === 'soft' || state.meta.template === 'compact' || state.meta.template === 'stripe' || state.meta.template === 'corner');
+    var asideTypes = { skills: 1, certificates: 1, summary: 1 };
+    var single = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover' || state.meta.template === 'standard' || state.meta.template === 'magic' || state.meta.template === 'minimal' || state.meta.template === 'exec' || state.meta.template === 'bold' || state.meta.template === 'card' || state.meta.template === 'timeline' || state.meta.template === 'grid' || state.meta.template === 'soft' || state.meta.template === 'compact' || state.meta.template === 'stripe' || state.meta.template === 'corner' || state.meta.template === 'table' || state.meta.template === 'magicv');
+    var hasAside = !!b.summary || state.sections.some(function (s) { return !s.hidden && asideTypes[s.type] && s.items && s.items.length; });
+    var effSingle = single || !hasAside;
     var aside = '', main = '';
-    if (b.summary) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
+    if (b.summary) {
+      if (effSingle) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
+      else aside += '<div class="pv-summary">' + esc(b.summary) + '</div>';
+    }
     state.sections.forEach(function (sec) {
       if (sec.hidden) return;
       var h = renderSectionHtml(sec);
@@ -200,7 +205,7 @@
       + (b.title ? '<div class="pv-ptitle">' + esc(b.title) + '</div>' : '');
     var inner;
     if (state.meta.template === 'cover') inner = '<div class="pv-cover-head">' + head + contactHtml + '</div><div class="pv-cover-body">' + main + '</div>';
-    else if (single) inner = head + contactHtml + main;
+    else if (effSingle) inner = head + contactHtml + main;
     else inner = head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + aside + '</div><div class="pv-main">' + main + '</div></div>';
     var pv = document.getElementById('preview');
     pv.className = 'resume-preview t-' + state.meta.template;
@@ -779,7 +784,8 @@
     { tpl: 'stripe', name: '斑马分区', desc: '奇偶交替底色 · 易读' },
     { tpl: 'corner', name: '角标强调', desc: '右上角标 · 双线姓名' },
     { tpl: 'aside-light', name: '浅灰双栏', desc: '浅灰信息侧栏 · 清爽' },
-    { tpl: 'aside-dark', name: '深色双栏', desc: '深色信息侧栏 · 沉稳' }
+    { tpl: 'aside-dark', name: '深色双栏', desc: '深色信息侧栏 · 沉稳' },
+    { tpl: 'magicv', name: '魔方时间轴', desc: '米白底·炭黑字·大写细线标题' }
   ];
   var SAMPLE = {
     basics: { name: '宋创创', title: '京东物流 · 运营管培生', phone: '138-0000-0000', email: 'sc@example.com', location: '河南 · 郑州', summary: '能源与动力工程背景，具备 4S 店销售与新媒体运营实习经验，执行力强、善于沟通。' },
@@ -810,13 +816,19 @@
     var b = SAMPLE.basics;
     var contact = []; ['phone', 'email', 'location'].forEach(function (f) { if (b[f]) contact.push(esc(b[f])); });
     var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
-    var single = ['classic', 'cn', 'cover', 'standard', 'magic', 'minimal', 'exec', 'bold', 'card', 'timeline', 'grid', 'soft', 'compact', 'stripe', 'corner'].indexOf(tpl) >= 0;
-    var main = '';
-    if (b.summary) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
-    SAMPLE.sections.forEach(function (sec) { if (!single && sec.type === 'skills') return; main += sampleSecHTML(sec); });
+    var single = ['classic', 'cn', 'cover', 'standard', 'magic', 'minimal', 'exec', 'bold', 'card', 'timeline', 'grid', 'soft', 'compact', 'stripe', 'corner', 'table', 'magicv'].indexOf(tpl) >= 0;
+    var asideTypes = { skills: 1, certificates: 1, summary: 1 };
+    var hasAside = !!b.summary || SAMPLE.sections.some(function (s) { return asideTypes[s.type] && s.items && s.items.length; });
+    var effSingle = single || !hasAside;
+    var aside = '', main = '';
+    if (b.summary) {
+      if (effSingle) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
+      else aside += '<div class="pv-summary">' + esc(b.summary) + '</div>';
+    }
+    SAMPLE.sections.forEach(function (sec) { if (!effSingle && asideTypes[sec.type]) aside += sampleSecHTML(sec); else main += sampleSecHTML(sec); });
     var head = '<h1 class="pv-name">' + esc(b.name) + '</h1>' + (b.title ? '<div class="pv-ptitle">' + esc(b.title) + '</div>' : '');
     var inner = (tpl === 'cover') ? ('<div class="pv-cover-head">' + head + contactHtml + '</div><div class="pv-cover-body">' + main + '</div>')
-      : (single ? (head + contactHtml + main) : (head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + sampleSecHTML(SAMPLE.sections[2]) + '</div><div class="pv-main">' + main + '</div></div>'));
+      : (effSingle ? (head + contactHtml + main) : (head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + aside + '</div><div class="pv-main">' + main + '</div></div>'));
     return '<div class="resume-preview t-' + tpl + '" style="--accent:' + acc + '">' + inner + '</div>';
   }
   function renderTemplateGallery() {
@@ -889,14 +901,14 @@
 
   function init() {
     load();
-    if (!state.meta) state.meta = { template: 'magic', accent: '#E1251B', design: defaultDesign() };
+    if (!state.meta) state.meta = { template: 'magicv', accent: '#1B1B18', design: defaultDesign() };
     if (!state.meta.design) state.meta.design = defaultDesign();
     // 支持 ?tpl= 预选模板、?accent= 预选主题色（来自模板库）
     try {
       var qp = new URLSearchParams(location.search);
       var tp = qp.get('tpl');
       var ac = qp.get('accent');
-      var VALID = ['magic', 'standard', 'classic', 'cn', 'sidebar', 'energy', 'cover', 'table', 'minimal', 'exec', 'bold', 'card', 'timeline', 'grid', 'soft', 'compact', 'stripe', 'corner', 'aside-light', 'aside-dark'];
+      var VALID = ['magic', 'standard', 'classic', 'cn', 'sidebar', 'energy', 'cover', 'table', 'minimal', 'exec', 'bold', 'card', 'timeline', 'grid', 'soft', 'compact', 'stripe', 'corner', 'aside-light', 'aside-dark', 'magicv'];
       var changed = false, tplNames = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风' };
       if (tp && VALID.indexOf(tp) >= 0 && state.meta.template !== tp) {
         state.meta.template = tp; save(); changed = true;
