@@ -960,6 +960,11 @@
       });
     });
     document.getElementById('aiPolish').addEventListener('click', aiPolish);
+    var aiTop = document.getElementById('aiPolishTop');
+    if (aiTop) aiTop.addEventListener('click', function () {
+      document.getElementById('aiPolish').click();
+      var c = document.querySelector('.wb-tab[data-tab="content"]'); if (c) c.click();
+    });
     // 模块拖拽排序（手柄 + HTML5 DnD，箭头按钮仍可用作兜底）
     var sectionsEl = document.getElementById('sections'), dragSi = null;
     sectionsEl.addEventListener('mousedown', function (e) {
