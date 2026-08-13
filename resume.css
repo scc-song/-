@@ -185,6 +185,7 @@ body {
 .t-energy .pv-aside .pv-skill-cat b { color: #fff; }
 .t-energy .pv-aside .pv-skill-tags .pv-tag { background: rgba(255,255,255,.18); color: #fff; border-color: rgba(255,255,255,.4); }
 .t-energy .pv-aside .pv-contact, .t-energy .pv-aside .pv-note { color: rgba(255,255,255,.92); }
+.t-energy .pv-aside .pv-summary { color: #fff; background: rgba(255,255,255,.12); border-left-color: rgba(255,255,255,.55); }
 .t-sidebar .pv-main, .t-energy .pv-main { padding: 22px 20px; }
 /* cn: clean single column, accent left-border titles */
 .t-cn .pv-sec-title { border-bottom: none; border-left: 4px solid var(--accent); padding: 1px 0 1px 9px; margin-bottom: 6px; }
@@ -266,6 +267,32 @@ body {
 .t-magic .pv-skill-cat b { color: #111827; }
 .t-magic .pv-skill-tags { gap: 6px; }
 .t-magic .pv-tag { padding: 2px 10px; font-size: .857em; border-radius: 999px; background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
+
+/* magicv：参考 magicv.art（魔方简历）时间轴版——米白底 + 炭黑字 + 衬线大标题 + 大写加宽字距的细线标题 + 圆角 pill 技能 */
+.t-magicv { background: #F9F9F7; color: #1B1B18; }
+.t-magicv .pv-name { font-family: "Newsreader", "Songti SC", "Source Han Serif SC", Georgia, "Times New Roman", serif; font-size: 2.4em; font-weight: 800; color: #1B1B18; letter-spacing: .4px; margin-bottom: 2px; }
+.t-magicv .pv-ptitle { color: #91918E; font-weight: 500; font-size: 1em; margin-bottom: 8px; }
+.t-magicv .pv-contact { color: #91918E; font-size: .9em; gap: 4px 12px; margin-bottom: 14px; }
+.t-magicv .pv-contact span:not(:last-child)::after { content: "·"; margin-left: 12px; color: #C9C9C6; }
+.t-magicv .pv-summary { color: #4A4A47; font-size: .93em; line-height: 1.65; margin-bottom: 18px; }
+.t-magicv .pv-section { margin-bottom: calc(var(--rs-gap, 16px) + 4px); }
+.t-magicv .pv-sec-title {
+  text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+  font-size: var(--rs-sec, 14px); color: var(--accent);
+  border: none; border-bottom: 1px solid var(--accent);
+  padding: 0 0 6px; margin: 0 0 10px;
+}
+.t-magicv .pv-item { margin-bottom: 12px; }
+.t-magicv .pv-item-head { align-items: baseline; }
+.t-magicv .pv-item-title { font-weight: 700; font-size: .96em; color: #1B1B18; }
+.t-magicv .pv-period { color: #91918E; font-size: .85em; }
+.t-magicv .pv-item-sub { color: #6B6B68; font-size: .9em; margin-top: 1px; }
+.t-magicv .pv-bullets { margin-top: 4px; }
+.t-magicv .pv-bullets li { font-size: .9em; color: #4A4A47; margin-bottom: var(--rs-para, 2px); }
+.t-magicv .pv-skill-cat { margin: 2px 0 6px; font-size: .9em; color: #6B6B68; }
+.t-magicv .pv-skill-cat b { color: #1B1B18; }
+.t-magicv .pv-skill-tags { gap: 6px; }
+.t-magicv .pv-tag { background: #F2F0E9; color: #1B1B18; border: 1px solid #E6E6E3; border-radius: 999px; padding: 3px 12px; font-size: .85em; }
 
 /* ===================================================================
    新增模板风格（纯 CSS 变体，基于同一套 .pv-* 结构，编辑器与缩略图一致）
@@ -355,6 +382,7 @@ body {
 .t-aside-dark .pv-aside .pv-contact, .t-aside-dark .pv-aside .pv-note { color: rgba(255,255,255,.85); }
 .t-aside-dark .pv-main { padding: 22px 20px; }
 .t-aside-dark .pv-sec-title { color: var(--accent); border-bottom: 2px solid var(--accent); }
+.t-aside-dark .pv-aside .pv-summary { color: rgba(255,255,255,.9); background: rgba(255,255,255,.08); border-left-color: rgba(255,255,255,.45); }
 
 /* ---------- 模式类（设计面板开关） ---------- */
 .icon-mode .pv-sec-title { display: flex; align-items: center; gap: 8px; border-bottom: 2px solid var(--accent); }
@@ -403,7 +431,7 @@ body {
   #preview { width: auto; max-width: 100%; box-shadow: none; }
   .resume-preview { padding: 0 !important; }
   .resume-preview.t-classic, .resume-preview.t-cn, .resume-preview.t-sidebar, .resume-preview.t-energy, .resume-preview.t-cover, .resume-preview.t-table, .resume-preview.t-standard, .resume-preview.t-magic,
-  .resume-preview.t-minimal, .resume-preview.t-exec, .resume-preview.t-bold, .resume-preview.t-card, .resume-preview.t-timeline, .resume-preview.t-grid, .resume-preview.t-soft, .resume-preview.t-compact, .resume-preview.t-stripe, .resume-preview.t-corner, .resume-preview.t-aside-light, .resume-preview.t-aside-dark { all: unset; display: block; padding: 0; color: #000; }
+  .resume-preview.t-minimal, .resume-preview.t-exec, .resume-preview.t-bold, .resume-preview.t-card, .resume-preview.t-timeline, .resume-preview.t-grid, .resume-preview.t-soft, .resume-preview.t-compact, .resume-preview.t-stripe, .resume-preview.t-corner, .resume-preview.t-aside-light, .resume-preview.t-aside-dark, .resume-preview.t-magicv { all: unset; display: block; padding: 0; color: #000; }
   .resume-preview .pv-grid { grid-template-columns: 1fr !important; }
   .resume-preview .pv-aside { display: none !important; }
   .resume-preview .pv-cover-head { background: #fff !important; color: #000 !important; padding: 0 !important; }
