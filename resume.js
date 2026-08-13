@@ -188,7 +188,7 @@
     if (b.links) contact.push(esc(b.links));
     var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
     var asideTypes = { skills: 1, certificates: 1 };
-    var single = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover' || state.meta.template === 'standard' || state.meta.template === 'magic');
+    var single = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover' || state.meta.template === 'standard' || state.meta.template === 'magic' || state.meta.template === 'minimal' || state.meta.template === 'exec' || state.meta.template === 'bold' || state.meta.template === 'card' || state.meta.template === 'timeline' || state.meta.template === 'grid' || state.meta.template === 'soft' || state.meta.template === 'compact' || state.meta.template === 'stripe' || state.meta.template === 'corner');
     var aside = '', main = '';
     if (b.summary) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
     state.sections.forEach(function (sec) {
@@ -767,7 +767,19 @@
     { tpl: 'sidebar', name: '双栏侧边', desc: '左栏信息 · 右栏正文' },
     { tpl: 'energy', name: '新能源商务', desc: '强调色侧边 · 专业大气' },
     { tpl: 'cover', name: '封面头图风', desc: '彩色头图 · 个性封面' },
-    { tpl: 'table', name: '表格简历风', desc: '表格化排版 · 条理清晰' }
+    { tpl: 'table', name: '表格简历风', desc: '表格化排版 · 条理清晰' },
+    { tpl: 'minimal', name: '单色极简', desc: '发丝线 · 大量留白 · 极简高级' },
+    { tpl: 'exec', name: '商务衬线', desc: '居中衬线 · 正式庄重' },
+    { tpl: 'bold', name: '色块标题', desc: '实底色块标题 · 视觉冲击' },
+    { tpl: 'card', name: '卡片模块', desc: '每区块独立白卡 · 条理分明' },
+    { tpl: 'timeline', name: '时间轴', desc: '左轨圆点 · 经历一目了然' },
+    { tpl: 'grid', name: '网格技能', desc: '方角描边标签 · 技能突出' },
+    { tpl: 'soft', name: '柔和圆角', desc: '淡彩圆角 · 亲和友好' },
+    { tpl: 'compact', name: '紧凑 ATS', desc: '小字号紧排 · ATS 友好' },
+    { tpl: 'stripe', name: '斑马分区', desc: '奇偶交替底色 · 易读' },
+    { tpl: 'corner', name: '角标强调', desc: '右上角标 · 双线姓名' },
+    { tpl: 'aside-light', name: '浅灰双栏', desc: '浅灰信息侧栏 · 清爽' },
+    { tpl: 'aside-dark', name: '深色双栏', desc: '深色信息侧栏 · 沉稳' }
   ];
   var SAMPLE = {
     basics: { name: '宋创创', title: '京东物流 · 运营管培生', phone: '138-0000-0000', email: 'sc@example.com', location: '河南 · 郑州', summary: '能源与动力工程背景，具备 4S 店销售与新媒体运营实习经验，执行力强、善于沟通。' },
@@ -798,7 +810,7 @@
     var b = SAMPLE.basics;
     var contact = []; ['phone', 'email', 'location'].forEach(function (f) { if (b[f]) contact.push(esc(b[f])); });
     var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
-    var single = ['classic', 'cn', 'cover', 'standard', 'magic'].indexOf(tpl) >= 0;
+    var single = ['classic', 'cn', 'cover', 'standard', 'magic', 'minimal', 'exec', 'bold', 'card', 'timeline', 'grid', 'soft', 'compact', 'stripe', 'corner'].indexOf(tpl) >= 0;
     var main = '';
     if (b.summary) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
     SAMPLE.sections.forEach(function (sec) { if (!single && sec.type === 'skills') return; main += sampleSecHTML(sec); });
@@ -826,7 +838,7 @@
     state.meta.template = tpl;
     var sel = document.getElementById('tplSel'); if (sel) sel.value = tpl;
     save(); renderTemplateGallery(); renderDesign(); renderPreview();
-    var names = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风' };
+    var names = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风', minimal: '单色极简', exec: '商务衬线', bold: '色块标题', card: '卡片模块', timeline: '时间轴', grid: '网格技能', soft: '柔和圆角', compact: '紧凑 ATS', stripe: '斑马分区', corner: '角标强调', 'aside-light': '浅灰双栏', 'aside-dark': '深色双栏' };
     flash('已切换模板：' + (names[tpl] || tpl));
   }
   function applyDesignVars(pv) {
@@ -884,7 +896,7 @@
       var qp = new URLSearchParams(location.search);
       var tp = qp.get('tpl');
       var ac = qp.get('accent');
-      var VALID = ['magic', 'standard', 'classic', 'cn', 'sidebar', 'energy', 'cover', 'table'];
+      var VALID = ['magic', 'standard', 'classic', 'cn', 'sidebar', 'energy', 'cover', 'table', 'minimal', 'exec', 'bold', 'card', 'timeline', 'grid', 'soft', 'compact', 'stripe', 'corner', 'aside-light', 'aside-dark'];
       var changed = false, tplNames = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风' };
       if (tp && VALID.indexOf(tp) >= 0 && state.meta.template !== tp) {
         state.meta.template = tp; save(); changed = true;
