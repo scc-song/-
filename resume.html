@@ -6,6 +6,10 @@
 <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ResumeAuto · 简历编辑器</title>
+<!-- 中文渲染：Noto Sans SC（阿里普惠体风格的最佳免费替代，经 jsDelivr 加载，国内可达）；失败自动回退系统字体 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5.0.13/400.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5.0.13/500.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5.0.13/700.css" />
 <link rel="stylesheet" href="resume.css" />
 </head>
 <body>
@@ -23,6 +27,7 @@
     <button id="delResume" class="btn ghost" title="删除当前简历">🗑</button>
     <span class="sep"></span>
     <button id="saveResume" class="btn">💾 保存</button>
+    <button id="aiPolishTop" class="btn accent" title="按 JD 一键润色（需在「内容→AI 润色」中配置 Key）">✨ AI 润色</button>
     <button id="exportPdf" class="btn">📄 导出PDF</button>
     <button id="exportJson" class="btn ghost">JSON</button>
     <button id="exportMd" class="btn ghost">MD</button>
