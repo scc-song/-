@@ -147,6 +147,23 @@
     if (sec.type === 'custom') return (sec.items[0] && sec.items[0].heading) || '自定义模块';
     return sec.title || SCHEMA[sec.type].label;
   }
+  function isSummaryLike(sec) {
+    if (sec.type === 'summary') return true;
+    var t = (secTitle(sec) || '').toLowerCase();
+    return /自我评价|个人总结|自我总结|个人评价|自我鉴定|个人简介|个人说明|summary|profile|about/.test(t);
+  }
+  function renderAsideSummary(sec) {
+    var title = secTitle(sec);
+    var lines = [];
+    sec.items.forEach(function (it) {
+      if (it.body && Array.isArray(it.body)) lines.push.apply(lines, it.body.filter(Boolean));
+      if (it.bullets && Array.isArray(it.bullets)) lines.push.apply(lines, it.bullets.filter(Boolean));
+      if (typeof it.text === 'string' && it.text) lines.push(it.text);
+    });
+    lines = lines.filter(Boolean);
+    if (!lines.length) return '';
+    return '<div class="pv-summary"><div class="pv-sum-title">' + esc(title) + '</div><ul class="pv-sum-list">' + lines.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul></div>';
+  }
   function renderSectionHtml(sec) {
     var title = secTitle(sec), body = '';
     if (sec.type === 'skills') {
@@ -187,20 +204,25 @@
     if (b.location) contact.push(esc(b.location));
     if (b.links) contact.push(esc(b.links));
     var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
-    var asideTypes = { skills: 1, certificates: 1, summary: 1 };
     var single = (state.meta.template === 'classic' || state.meta.template === 'cn' || state.meta.template === 'cover' || state.meta.template === 'standard' || state.meta.template === 'magic' || state.meta.template === 'minimal' || state.meta.template === 'exec' || state.meta.template === 'bold' || state.meta.template === 'card' || state.meta.template === 'timeline' || state.meta.template === 'grid' || state.meta.template === 'soft' || state.meta.template === 'compact' || state.meta.template === 'stripe' || state.meta.template === 'corner' || state.meta.template === 'table' || state.meta.template === 'magicv');
-    var hasAside = !!b.summary || state.sections.some(function (s) { return !s.hidden && asideTypes[s.type] && s.items && s.items.length; });
+    var asideSecs = [], mainSecs = [];
+    state.sections.forEach(function (sec) {
+      if (sec.hidden) return;
+      if (!single && (sec.type === 'skills' || sec.type === 'certificates' || isSummaryLike(sec))) asideSecs.push(sec);
+      else mainSecs.push(sec);
+    });
+    var hasAside = !!b.summary || asideSecs.length > 0;
     var effSingle = single || !hasAside;
     var aside = '', main = '';
     if (b.summary) {
       if (effSingle) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
       else aside += '<div class="pv-summary">' + esc(b.summary) + '</div>';
     }
-    state.sections.forEach(function (sec) {
-      if (sec.hidden) return;
-      var h = renderSectionHtml(sec);
-      if (!single && asideTypes[sec.type]) aside += h; else main += h;
+    asideSecs.forEach(function (sec) {
+      if (sec.type === 'skills' || sec.type === 'certificates') aside += renderSectionHtml(sec);
+      else aside += renderAsideSummary(sec);
     });
+    mainSecs.forEach(function (sec) { main += renderSectionHtml(sec); });
     var head = '<h1 class="pv-name">' + esc(b.name || '你的名字') + '</h1>'
       + (b.title ? '<div class="pv-ptitle">' + esc(b.title) + '</div>' : '');
     var inner;
@@ -817,15 +839,23 @@
     var contact = []; ['phone', 'email', 'location'].forEach(function (f) { if (b[f]) contact.push(esc(b[f])); });
     var contactHtml = contact.length ? '<div class="pv-contact">' + contact.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '';
     var single = ['classic', 'cn', 'cover', 'standard', 'magic', 'minimal', 'exec', 'bold', 'card', 'timeline', 'grid', 'soft', 'compact', 'stripe', 'corner', 'table', 'magicv'].indexOf(tpl) >= 0;
-    var asideTypes = { skills: 1, certificates: 1, summary: 1 };
-    var hasAside = !!b.summary || SAMPLE.sections.some(function (s) { return asideTypes[s.type] && s.items && s.items.length; });
+    var asideSecs = [], mainSecs = [];
+    SAMPLE.sections.forEach(function (sec) {
+      if (!single && (sec.type === 'skills' || sec.type === 'certificates' || isSummaryLike(sec))) asideSecs.push(sec);
+      else mainSecs.push(sec);
+    });
+    var hasAside = !!b.summary || asideSecs.length > 0;
     var effSingle = single || !hasAside;
     var aside = '', main = '';
     if (b.summary) {
       if (effSingle) main += '<div class="pv-summary">' + esc(b.summary) + '</div>';
       else aside += '<div class="pv-summary">' + esc(b.summary) + '</div>';
     }
-    SAMPLE.sections.forEach(function (sec) { if (!effSingle && asideTypes[sec.type]) aside += sampleSecHTML(sec); else main += sampleSecHTML(sec); });
+    asideSecs.forEach(function (sec) {
+      if (sec.type === 'skills' || sec.type === 'certificates') aside += sampleSecHTML(sec);
+      else aside += renderAsideSummary(sec);
+    });
+    mainSecs.forEach(function (sec) { main += sampleSecHTML(sec); });
     var head = '<h1 class="pv-name">' + esc(b.name) + '</h1>' + (b.title ? '<div class="pv-ptitle">' + esc(b.title) + '</div>' : '');
     var inner = (tpl === 'cover') ? ('<div class="pv-cover-head">' + head + contactHtml + '</div><div class="pv-cover-body">' + main + '</div>')
       : (effSingle ? (head + contactHtml + main) : (head + '<div class="pv-grid"><div class="pv-aside">' + contactHtml + aside + '</div><div class="pv-main">' + main + '</div></div>'));
@@ -850,7 +880,7 @@
     state.meta.template = tpl;
     var sel = document.getElementById('tplSel'); if (sel) sel.value = tpl;
     save(); renderTemplateGallery(); renderDesign(); renderPreview();
-    var names = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风', minimal: '单色极简', exec: '商务衬线', bold: '色块标题', card: '卡片模块', timeline: '时间轴', grid: '网格技能', soft: '柔和圆角', compact: '紧凑 ATS', stripe: '斑马分区', corner: '角标强调', 'aside-light': '浅灰双栏', 'aside-dark': '深色双栏' };
+    var names = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风', minimal: '单色极简', exec: '商务衬线', bold: '色块标题', card: '卡片模块', timeline: '时间轴', grid: '网格技能', soft: '柔和圆角', compact: '紧凑 ATS', stripe: '斑马分区', corner: '角标强调', 'aside-light': '浅灰双栏', 'aside-dark': '深色双栏', magicv: '魔方时间轴' };
     flash('已切换模板：' + (names[tpl] || tpl));
   }
   function applyDesignVars(pv) {
