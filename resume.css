@@ -154,6 +154,10 @@ body {
 .pv-contact { font-size: .857em; color: #4b5563; display: flex; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 12px; }
 .pv-contact span::after { content: ""; }
 .pv-summary { font-size: .929em; color: #374151; margin-bottom: 14px; }
+.pv-aside .pv-summary { border-left: 3px solid var(--accent); padding: 10px 12px; background: rgba(0,0,0,.04); margin-bottom: 16px; }
+.pv-aside .pv-summary .pv-sum-title { font-size: .95em; font-weight: 700; margin-bottom: 6px; color: inherit; }
+.pv-aside .pv-summary .pv-sum-list { margin: 0; padding-left: 16px; font-size: .9em; line-height: 1.55; }
+.pv-aside .pv-summary .pv-sum-list li { margin-bottom: 4px; }
 .pv-grid { display: grid; }
 .pv-aside { padding: 0; }
 .pv-main { padding: 0; }
@@ -186,6 +190,7 @@ body {
 .t-energy .pv-aside .pv-skill-tags .pv-tag { background: rgba(255,255,255,.18); color: #fff; border-color: rgba(255,255,255,.4); }
 .t-energy .pv-aside .pv-contact, .t-energy .pv-aside .pv-note { color: rgba(255,255,255,.92); }
 .t-energy .pv-aside .pv-summary { color: #fff; background: rgba(255,255,255,.12); border-left-color: rgba(255,255,255,.55); }
+.t-energy .pv-aside .pv-summary .pv-sum-title { color: #fff; }
 .t-sidebar .pv-main, .t-energy .pv-main { padding: 22px 20px; }
 /* cn: clean single column, accent left-border titles */
 .t-cn .pv-sec-title { border-bottom: none; border-left: 4px solid var(--accent); padding: 1px 0 1px 9px; margin-bottom: 6px; }
@@ -383,6 +388,7 @@ body {
 .t-aside-dark .pv-main { padding: 22px 20px; }
 .t-aside-dark .pv-sec-title { color: var(--accent); border-bottom: 2px solid var(--accent); }
 .t-aside-dark .pv-aside .pv-summary { color: rgba(255,255,255,.9); background: rgba(255,255,255,.08); border-left-color: rgba(255,255,255,.45); }
+.t-aside-dark .pv-aside .pv-summary .pv-sum-title { color: #fff; }
 
 /* ---------- 模式类（设计面板开关） ---------- */
 .icon-mode .pv-sec-title { display: flex; align-items: center; gap: 8px; border-bottom: 2px solid var(--accent); }
