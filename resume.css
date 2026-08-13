@@ -265,6 +265,95 @@ body {
 .t-magic .pv-skill-tags { gap: 6px; }
 .t-magic .pv-tag { padding: 2px 10px; font-size: .857em; border-radius: 999px; background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
 
+/* ===================================================================
+   新增模板风格（纯 CSS 变体，基于同一套 .pv-* 结构，编辑器与缩略图一致）
+   =================================================================== */
+
+/* minimal：单色极简 · 发丝线 · 大量留白 */
+.t-minimal .pv-name { color: #111827; }
+.t-minimal .pv-ptitle { color: #475569; }
+.t-minimal .pv-contact { color: #6b7280; }
+.t-minimal .pv-sec-title { color: #111827; border: none; border-bottom: 1px solid #111827; padding-bottom: 4px; letter-spacing: 1px; }
+.t-minimal .pv-summary { background: #f9fafb; border-left: 2px solid #9ca3af; }
+.t-minimal .pv-tag { background: #fff; color: #374151; border: 1px solid #d1d5db; border-radius: 4px; }
+.t-minimal .pv-item-title { color: #111827; }
+
+/* exec：商务衬线 · 居中 · 正式 */
+.t-exec { font-family: "Songti SC", "SimSun", Georgia, "Times New Roman", serif; }
+.t-exec .pv-name { text-align: center; color: #111827; font-size: 2.4em; letter-spacing: 3px; }
+.t-exec .pv-ptitle { text-align: center; color: #475569; letter-spacing: 1px; }
+.t-exec .pv-contact { justify-content: center; color: #6b7280; }
+.t-exec .pv-sec-title { text-align: center; color: #111827; border: none; border-top: 1px solid #111827; border-bottom: 1px solid #111827; padding: 5px 0; letter-spacing: 3px; }
+.t-exec .pv-tag { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; border-radius: 2px; }
+.t-exec .pv-item-title { color: #111827; }
+
+/* bold：色块标题 · 白字实底 · 视觉冲击 */
+.t-bold .pv-name { color: #111827; font-size: 2.2em; }
+.t-bold .pv-ptitle { color: #475569; }
+.t-bold .pv-sec-title { background: var(--accent); color: #fff; padding: 5px 10px; border: none; border-radius: 5px; letter-spacing: 1px; }
+.t-bold .pv-tag { background: var(--accent); color: #fff; border: none; border-radius: 4px; padding: 2px 10px; }
+.t-bold .pv-summary { border-left: 3px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, #fff); }
+
+/* card：卡片模块 · 每区块独立白卡 + 阴影 */
+.t-card { background: #f8fafc; }
+.t-card .pv-section { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+.t-card .pv-sec-title { color: var(--accent); border-bottom: 2px solid var(--accent); }
+.t-card .pv-tag { background: color-mix(in srgb, var(--accent) 12%, #fff); color: color-mix(in srgb, var(--accent) 75%, #000); border: 1px solid color-mix(in srgb, var(--accent) 30%, #fff); }
+
+/* timeline：时间轴 · 条目左轨 + 圆点 */
+.t-timeline .pv-sec-title { border-left: 4px solid var(--accent); padding-left: 8px; color: var(--accent); border-bottom: 1px solid var(--line); }
+.t-timeline .pv-item { position: relative; padding-left: 18px; margin-left: 5px; border-left: 2px solid color-mix(in srgb, var(--accent) 40%, #e5e7eb); }
+.t-timeline .pv-item::before { content: ""; position: absolute; left: -7px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 0 0 1px var(--accent); }
+.t-timeline .pv-name { color: #111827; }
+
+/* grid：网格技能 · 方角描边标签 · 标题左条 */
+.t-grid .pv-sec-title { border-left: 4px solid var(--accent); padding-left: 9px; color: #111827; border-bottom: 1px solid var(--line); }
+.t-grid .pv-item-title { color: var(--accent); }
+.t-grid .pv-skill-tags { gap: 6px; }
+.t-grid .pv-tag { background: #fff; color: #334155; border: 1px solid var(--accent); border-radius: 6px; padding: 4px 10px; font-weight: 600; }
+
+/* soft：柔和圆角 · 友好淡彩 */
+.t-soft .pv-sec-title { color: var(--accent); border-bottom: 2px solid color-mix(in srgb, var(--accent) 30%, #fff); padding-bottom: 5px; }
+.t-soft .pv-summary { background: color-mix(in srgb, var(--accent) 6%, #fff); border-radius: 10px; padding: 10px 14px; }
+.t-soft .pv-tag { background: color-mix(in srgb, var(--accent) 12%, #fff); color: color-mix(in srgb, var(--accent) 80%, #000); border: 1px solid color-mix(in srgb, var(--accent) 25%, #fff); border-radius: 999px; padding: 3px 12px; }
+
+/* compact：紧凑 ATS · 小字号 · 紧间距 */
+.t-compact { font-size: 12.5px; line-height: 1.42; padding: 22px; }
+.t-compact .pv-name { font-size: 1.8em; color: #111827; }
+.t-compact .pv-ptitle { color: #475569; }
+.t-compact .pv-sec-title { font-size: 13px; color: #111827; border: none; border-bottom: 1px solid #111827; padding-bottom: 2px; margin-bottom: 6px; letter-spacing: .5px; }
+.t-compact .pv-item { margin-bottom: 6px; }
+.t-compact .pv-bullets li { margin-bottom: 1px; }
+.t-compact .pv-tag { padding: 1px 7px; font-size: .82em; border-radius: 3px; background: #f3f4f6; color: #374151; border: 1px solid #e5e7eb; }
+
+/* stripe：斑马分区 · 奇偶交替底色 */
+.t-stripe .pv-name { color: #111827; }
+.t-stripe .pv-sec-title { color: var(--accent); border-bottom: 2px solid var(--accent); }
+.t-stripe .pv-section:nth-child(odd) { background: #f8fafc; border-radius: 8px; padding: 10px 12px; }
+
+/* corner：角标强调 · 双线姓名下划线 */
+.t-corner { position: relative; overflow: hidden; }
+.t-corner::before { content: ""; position: absolute; top: 0; right: 0; border-width: 0 42px 42px 0; border-style: solid; border-color: transparent var(--accent) transparent transparent; }
+.t-corner .pv-name { color: #111827; border-bottom: 3px double var(--accent); display: inline-block; padding-bottom: 4px; }
+.t-corner .pv-sec-title { color: var(--accent); letter-spacing: 1px; border-bottom: 1px solid var(--accent); }
+.t-corner .pv-tag { background: color-mix(in srgb, var(--accent) 12%, #fff); color: color-mix(in srgb, var(--accent) 75%, #000); border: 1px solid color-mix(in srgb, var(--accent) 30%, #fff); }
+
+/* aside-light：双栏 · 浅灰侧边（信息栏） */
+.t-aside-light .pv-grid { grid-template-columns: 32% 1fr; gap: 0; }
+.t-aside-light .pv-aside { background: #f1f5f9; padding: 22px 16px; border-right: 1px solid var(--line); }
+.t-aside-light .pv-main { padding: 22px 20px; }
+.t-aside-light .pv-sec-title { color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+/* aside-dark：双栏 · 深色侧边（信息栏） */
+.t-aside-dark .pv-grid { grid-template-columns: 32% 1fr; gap: 0; }
+.t-aside-dark .pv-aside { background: #0f172a; color: #e5e7eb; padding: 22px 16px; }
+.t-aside-dark .pv-aside .pv-sec-title { color: #fff; border-bottom: 1px solid rgba(255,255,255,.3); }
+.t-aside-dark .pv-aside .pv-skill-cat b { color: #fff; }
+.t-aside-dark .pv-aside .pv-tag { background: rgba(255,255,255,.15); color: #fff; border-color: rgba(255,255,255,.3); }
+.t-aside-dark .pv-aside .pv-contact, .t-aside-dark .pv-aside .pv-note { color: rgba(255,255,255,.85); }
+.t-aside-dark .pv-main { padding: 22px 20px; }
+.t-aside-dark .pv-sec-title { color: var(--accent); border-bottom: 2px solid var(--accent); }
+
 /* ---------- 模式类（设计面板开关） ---------- */
 .icon-mode .pv-sec-title { display: flex; align-items: center; gap: 8px; border-bottom: 2px solid var(--accent); }
 .icon-mode .pv-sec-title::before { content: ""; width: 6px; height: 15px; border-radius: 2px; background: var(--accent); display: inline-block; flex: 0 0 auto; }
@@ -311,7 +400,8 @@ body {
   .pv-scroll { padding: 0; display: block; }
   #preview { width: auto; max-width: 100%; box-shadow: none; }
   .resume-preview { padding: 0 !important; }
-  .resume-preview.t-classic, .resume-preview.t-cn, .resume-preview.t-sidebar, .resume-preview.t-energy, .resume-preview.t-cover, .resume-preview.t-table, .resume-preview.t-standard, .resume-preview.t-magic { all: unset; display: block; padding: 0; color: #000; }
+  .resume-preview.t-classic, .resume-preview.t-cn, .resume-preview.t-sidebar, .resume-preview.t-energy, .resume-preview.t-cover, .resume-preview.t-table, .resume-preview.t-standard, .resume-preview.t-magic,
+  .resume-preview.t-minimal, .resume-preview.t-exec, .resume-preview.t-bold, .resume-preview.t-card, .resume-preview.t-timeline, .resume-preview.t-grid, .resume-preview.t-soft, .resume-preview.t-compact, .resume-preview.t-stripe, .resume-preview.t-corner, .resume-preview.t-aside-light, .resume-preview.t-aside-dark { all: unset; display: block; padding: 0; color: #000; }
   .resume-preview .pv-grid { grid-template-columns: 1fr !important; }
   .resume-preview .pv-aside { display: none !important; }
   .resume-preview .pv-cover-head { background: #fff !important; color: #000 !important; padding: 0 !important; }
