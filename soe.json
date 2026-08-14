@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14 13:44",
+  "generatedAt": "2026-08-14 17:39",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -201,13 +201,13 @@
       "updatedAt": "2026-08-04"
     },
     {
-      "id": "SOE085",
-      "title": "一份图鉴带你看懂第48届世界技...",
+      "id": "SOE095",
+      "title": "企业年金实现“随身携带”",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260806_581636.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260813_582066.html",
       "status": "open",
-      "updatedAt": "2026-08-07"
+      "updatedAt": "2026-08-14"
     },
     {
       "id": "SOE091",
@@ -271,6 +271,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581902.html",
       "status": "open",
       "updatedAt": "2026-08-12"
+    },
+    {
+      "id": "SOE085",
+      "title": "一份图鉴带你看懂第48届世界技...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260806_581636.html",
+      "status": "open",
+      "updatedAt": "2026-08-07"
     },
     {
       "id": "SOE081",
@@ -440,15 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260729_581162.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE066",
-      "title": "电子社保卡4.0全新来袭！高效...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260728_581036.html",
       "status": "open",
       "updatedAt": "2026-08-04"
     }
