@@ -933,13 +933,16 @@
     load();
     if (!state.meta) state.meta = { template: 'magicv', accent: '#1B1B18', design: defaultDesign() };
     if (!state.meta.design) state.meta.design = defaultDesign();
-    // 支持 ?tpl= 预选模板、?accent= 预选主题色（来自模板库）
+    // 支持 ?tpl= 预选模板、?accent= 预选主题色（来自模板库）、?key= 打开指定简历（来自模板库「我的简历」）
     try {
       var qp = new URLSearchParams(location.search);
       var tp = qp.get('tpl');
       var ac = qp.get('accent');
       var VALID = ['magic', 'standard', 'classic', 'cn', 'sidebar', 'energy', 'cover', 'table', 'minimal', 'exec', 'bold', 'card', 'timeline', 'grid', 'soft', 'compact', 'stripe', 'corner', 'aside-light', 'aside-dark', 'magicv'];
-      var changed = false, tplNames = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风' };
+      var tplNames = { magic: 'Magic Resume 风', standard: '统一标准模板', classic: '经典单栏', cn: '清爽中文单栏', sidebar: '双栏侧边', energy: '新能源商务', cover: '封面头图风', table: '表格简历风' };
+      var key = qp.get('key');
+      if (key && data.resumes[key]) { data.current = key; state = data.resumes[key]; save(); }
+      var changed = false;
       if (tp && VALID.indexOf(tp) >= 0 && state.meta.template !== tp) {
         state.meta.template = tp; save(); changed = true;
       }
