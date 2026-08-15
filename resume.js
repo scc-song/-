@@ -234,6 +234,30 @@
     applyDesignVars(pv);
     pv.innerHTML = inner;
     renderAtsBadge();
+    requestAnimationFrame(fitPreview);
+  }
+
+  /* 当简历内容高度超过预览区可视高度时，自动等比缩放 #preview，让整份简历完整显示。
+     通过 margin-bottom 负值抵消 transform 后多出的布局空间，避免下方出现大量空白。 */
+  function fitPreview() {
+    var scroll = document.querySelector('.pv-scroll');
+    var pv = document.getElementById('preview');
+    var badge = document.getElementById('pvScale');
+    if (!scroll || !pv) return;
+    // 重置 transform 以读取自然高度
+    pv.style.transform = '';
+    pv.style.marginBottom = '';
+    var ph = pv.scrollHeight;
+    var ch = scroll.clientHeight - 32; // 留一些上下呼吸空间
+    if (ch <= 0 || ph <= 0) return;
+    var scale = Math.min(1, Math.max(0.35, ch / ph));
+    if (scale < 0.999) {
+      pv.style.transform = 'scale(' + scale.toFixed(4) + ')';
+      pv.style.marginBottom = '-' + Math.round(ph * (1 - scale)) + 'px';
+      if (badge) badge.textContent = Math.round(scale * 100) + '%';
+    } else {
+      if (badge) badge.textContent = '100%';
+    }
   }
 
   /* ---------- ATS / JD ---------- */
@@ -1093,6 +1117,12 @@
     document.getElementById('mIcon').addEventListener('change', function (e) { state.meta.design.modes.icon = e.target.checked; save(); renderPreview(); });
     document.getElementById('mSubCenter').addEventListener('change', function (e) { state.meta.design.modes.subCenter = e.target.checked; save(); renderPreview(); });
     document.getElementById('mLongTitle').addEventListener('change', function (e) { state.meta.design.modes.longTitle = e.target.checked; save(); renderPreview(); });
+    // 窗口大小变化时重新计算预览缩放
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fitPreview, 80);
+    });
 
     // expose for testing
     window.__ra = {
