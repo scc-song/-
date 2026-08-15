@@ -227,6 +227,7 @@ var TPL_MAP = {
 var THEMES = ['#E1251B','#f97316','#16a34a','#2563eb','#7c3aed','#db2777','#0891b2','#475569','#111827'];
 var BUILTIN = [
   {tpl:'magic',    name:'Magic Resume 风', desc:'清爽卡片 · 姓名强调色 · 竖条标题'},
+  {tpl:'magicv',   name:'魔方时间轴',       desc:'米白底 · 炭黑衬线标题 · 细线模块'},
   {tpl:'standard', name:'统一标准模板',     desc:'京东红 · 色条标题 · 结构统一'},
   {tpl:'classic',  name:'经典单栏',         desc:'ATS 友好 · 简洁单栏'},
   {tpl:'cn',       name:'清爽中文单栏',     desc:'左侧色条标题 · 留白舒适'},
@@ -251,16 +252,26 @@ var manifest = null, activeCat = 'all', kw = '', accent = '#E1251B';
 
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
 
-/* 把 jsDelivr 的 gh 链接转为「国内可访问镜像 → GitHub 原站 → jsDelivr」候选列表。
-   jsDelivr 在大陆常被墙，导致 661 套 Word 模板预览空白、下载打不开；优先走 ghproxy 镜像（已验证可用）。 */
+/* 把 jsDelivr 的 gh 链接转为「国内镜像 → GitHub 原站 → jsDelivr」候选列表。
+   jsDelivr 在大陆常被墙，导致 661 套 Word 模板预览空白、下载打不开；
+   优先 ghproxy，再加 ghproxy.com 与 GitHub raw 作为兜底。 */
 function cdnCandidates(url){
   try{
-    var m = String(url).match(/cdn\.jsdelivr\.net\/gh\/([^\/]+)\/([^\/]+)@([^\/]+)\/(.*)$/);
-    if(!m) return [url];
+    var s = String(url);
+    var m = s.match(/cdn\.jsdelivr\.net\/gh\/([^\/]+)\/([^\/]+)@([^\/]+)\/(.*)$/);
+    if(!m){
+      // 已是 raw 或 ghproxy 链接则直接返回，避免重复包装
+      if(s.indexOf('raw.githubusercontent.com')>=0 || s.indexOf('ghproxy')>=0) return [s];
+      return [s];
+    }
     var repo = m[1]+'/'+m[2], branch = m[3], path = m[4];
-    var ghproxy = 'https://ghproxy.net/https://raw.githubusercontent.com/'+repo+'/'+branch+'/'+path;
     var raw = 'https://raw.githubusercontent.com/'+repo+'/'+branch+'/'+path;
-    return [ghproxy, raw, url];
+    return [
+      'https://ghproxy.net/'+raw,
+      'https://ghproxy.com/'+raw,
+      raw,
+      url
+    ];
   }catch(e){ return [url]; }
 }
 /* 给 <img> 设置带兜底切换的 src：依次尝试候选源，全部失败则显示占位说明 */
@@ -444,7 +455,7 @@ function render(){
       card.onclick = function(e){
         var t = e.target, ds = t && t.dataset ? t.dataset : {};
         if (ds.action === 'prev') { e.stopPropagation(); openModal(it.id); return; }
-        if (ds.action === 'dl') { e.stopPropagation(); if (it.doc) window.open(cdnCandidates(it.doc)[0], '_blank', 'noopener'); return; }
+        if (ds.action === 'dl') { e.stopPropagation(); if (it.doc) { var a = card.querySelector('.acts a.primary'); if (a) a.click(); } else { alert('该模板暂无下载链接'); } return; }
         if (ds.action === 'use') { e.stopPropagation(); location.href = useHref; return; }
         // 点到「下载 Word」链接时交给浏览器处理，不要弹预览
         if (t && t.closest && t.closest('a')) return;
