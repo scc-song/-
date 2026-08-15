@@ -237,9 +237,9 @@
     requestAnimationFrame(fitPreview);
   }
 
-  /* 当简历内容超过预览区时，按「可用宽/高」等比缩放 #preview，让整份简历完整显示在一屏内。
-     关键：在外层 .pv-scaler 上设置缩放后的真实尺寸（width=794*s, height=ph*s），
-     避免 transform 只改视觉不改布局导致的裁切/空白（reactive-resume 同款稳健做法）。
+  /* 预览缩放：只按「可用宽度」等比缩放，让 A4 页宽度完整显示在预览区内；
+     高度不做压缩，简历按真实 A4 高度自然撑开，超出预览区时垂直滚动查看。
+     关键：在外层 .pv-scaler 上设置缩放后的真实宽度，#preview 用 transform:scale；
      导出/打印走真实 A4，不受此 transform 影响（@media print 已重置）。 */
   function fitPreview() {
     var scroll = document.querySelector('.pv-scroll');
@@ -247,21 +247,17 @@
     var pv = document.getElementById('preview');
     var badge = document.getElementById('pvScale');
     if (!scroll || !scaler || !pv) return;
-    // 先重置，读取自然尺寸
     pv.style.transform = '';
     scaler.style.width = '';
     scaler.style.height = '';
-    var ph = pv.scrollHeight;
     var pw = pv.offsetWidth;
-    var availH = scroll.clientHeight - 32;
     var availW = scroll.clientWidth - 48;
-    if (availH <= 0 || availW <= 0 || ph <= 0 || pw <= 0) return;
-    var s = Math.min(availW / pw, availH / ph, 1);
-    s = Math.max(0.3, Math.min(1, s));
+    if (availW <= 0 || pw <= 0) return;
+    var s = Math.min(1, availW / pw);
+    s = Math.max(0.35, Math.min(1, s));
     pv.style.transform = 'scale(' + s.toFixed(4) + ')';
     pv.style.transformOrigin = 'top left';
     scaler.style.width = Math.round(pw * s) + 'px';
-    scaler.style.height = Math.round(ph * s) + 'px';
     if (badge) badge.textContent = Math.round(s * 100) + '%';
   }
 
