@@ -72,8 +72,8 @@
   /* built-in template card (live rendered, no external image) */
   .bcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s;position:relative}
   .bcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-  .bcard .thumb2{aspect-ratio:3/4;overflow:hidden;background:#f8fafc;display:flex;align-items:flex-start;justify-content:center;border-bottom:1px solid var(--line)}
-  .bcard .thumb2 .sheet{width:452px;transform:scale(.40);transform-origin:top center;flex:0 0 auto;box-shadow:0 0 0 1px rgba(0,0,0,.04)}
+  .bcard .thumb2{aspect-ratio:3/4;overflow:hidden;background:#eef2f7;display:flex;align-items:flex-start;justify-content:center;border-bottom:1px solid var(--line)}
+  .bcard .thumb2 .sheet{width:794px;height:1123px;transform:scale(.27);transform-origin:top center;flex:0 0 auto;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.08)}
   .bcard .info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
   .bcard .badge{align-self:flex-start;font-size:11px;color:var(--brand-d);background:var(--brand-soft);border-radius:6px;padding:2px 7px}
   .bcard .name{font-size:14px;font-weight:700;line-height:1.35}
@@ -207,7 +207,8 @@
         在左侧查看模板样式。这是 Word 原文件（.docx），点「下载 Word」保存到本地；随后打开「简历编辑器」顶部的「导入」，上传该 .docx 即可自动解析成可编辑简历，在本站继续修改。
       </div>
       <div class="btns">
-        <a class="down" id="modalDown" href="#" target="_blank" rel="noopener">下载 Word</a>
+        <a class="down" id="modalDown" href="#" target="_blank" rel="noopener">下载 Word（镜像）</a>
+        <a class="down" id="modalDownAlt" href="#" target="_blank" rel="noopener" style="background:#fff;border:1px solid var(--line)">源站备用</a>
         <a class="use" id="modalUse" href="resume.html">去编辑器导入</a>
         <button class="close" onclick="closeModal()">关闭</button>
       </div>
@@ -482,7 +483,9 @@ function openModal(id){
   else { img.style.display='none'; prev.insertAdjacentHTML('beforeend','<div class="ph"><div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>该模板暂无预览图，可下载 Word 查看</small></div>'); }
   var tpl = TPL_MAP[it.catKey] || 'magic';
   document.getElementById('modalUse').href = 'resume.html';
-  document.getElementById('modalDown').href = cdnCandidates(it.doc||'')[0] || '#';
+  var cands = cdnCandidates(it.doc||'');
+  document.getElementById('modalDown').href = cands[0] || '#';
+  document.getElementById('modalDownAlt').href = cands[2] || cands[cands.length-1] || '#';
   document.getElementById('modal').classList.add('on');
 }
 function closeModal(){ document.getElementById('modal').classList.remove('on'); }
