@@ -193,7 +193,7 @@
 </div>
 
 <footer>
-  内置模板样式由本站实时渲染；更多 Word 模板版权归原作者所有，仅作格式参考与下载，预览与下载经 jsDelivr 从源仓库加载。
+  内置模板样式由本站实时渲染；更多 Word 模板版权归原作者所有，仅作格式参考与下载。预览图与 Word 下载经国内可访问的 GitHub 镜像（ghproxy.net）从源仓库 mmmlllnnn/ResumeCollection 加载；若镜像偶发不稳，可手动前往源仓库下载。
 </footer>
 
 <div class="modal" id="modal">
@@ -250,6 +250,36 @@ var BUILTIN = [
 var manifest = null, activeCat = 'all', kw = '', accent = '#E1251B';
 
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+
+/* 把 jsDelivr 的 gh 链接转为「国内可访问镜像 → GitHub 原站 → jsDelivr」候选列表。
+   jsDelivr 在大陆常被墙，导致 661 套 Word 模板预览空白、下载打不开；优先走 ghproxy 镜像（已验证可用）。 */
+function cdnCandidates(url){
+  try{
+    var m = String(url).match(/cdn\.jsdelivr\.net\/gh\/([^\/]+)\/([^\/]+)@([^\/]+)\/(.*)$/);
+    if(!m) return [url];
+    var repo = m[1]+'/'+m[2], branch = m[3], path = m[4];
+    var ghproxy = 'https://ghproxy.net/https://raw.githubusercontent.com/'+repo+'/'+branch+'/'+path;
+    var raw = 'https://raw.githubusercontent.com/'+repo+'/'+branch+'/'+path;
+    return [ghproxy, raw, url];
+  }catch(e){ return [url]; }
+}
+/* 给 <img> 设置带兜底切换的 src：依次尝试候选源，全部失败则显示占位说明 */
+function attachImg(img, url){
+  var list = cdnCandidates(url), i = 0;
+  img.onerror = function(){
+    i++;
+    if(i < list.length){ img.src = list[i]; }
+    else {
+      img.style.display = 'none';
+      var box = img.parentNode; if(!box) return;
+      var p = box.querySelector('.ph');
+      if(!p){ p = document.createElement('div'); p.className = 'ph'; box.appendChild(p); }
+      p.style.display = 'flex';
+      if(!p.dataset.fallback){ p.dataset.fallback = '1'; p.innerHTML = '<div class="ph-name">预览图暂不可用</div><small>网络受限，请点「下载 Word」查看</small>'; }
+    }
+  };
+  img.src = list[0];
+}
 
 /* ---------- 内置模板：用真实简历数据渲染样式 ---------- */
 var SAMPLE = {
@@ -392,14 +422,13 @@ function render(){
     try {
       var tpl = TPL_MAP[it.catKey] || 'magic';
       var card = document.createElement('div'); card.className='tcard';
-      var previewUrl = esc(it.preview||'');
-      var docUrl = esc(it.doc||'');
+      var hasPreview = !!it.preview;
+      var dlUrl = esc(cdnCandidates(it.doc||'')[0]);
       var useHref = 'resume.html?tpl='+encodeURIComponent(tpl)+'&accent='+encodeURIComponent(accent);
-      var phHtml = '<div class="ph"><div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>预览图暂不可用 · 可下载 Word 查看</small></div>';
       card.innerHTML =
         '<div class="thumb" data-id="'+esc(it.id)+'">'+
-          (previewUrl?'<img loading="lazy" src="'+previewUrl+'" alt="'+esc(it.name)+'" onerror="this.style.display=\'none\';var p=this.parentNode.querySelector(\'.ph\');if(p)p.style.display=\'flex\'">':'')+
-          '<div class="ph" style="'+(previewUrl?'display:none':'')+'">'+'<div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>预览图暂不可用 · 可下载 Word 查看</small></div>'+
+          (hasPreview?'<img loading="lazy" alt="'+esc(it.name)+'">':'')+
+          '<div class="ph" style="'+(hasPreview?'display:none':'')+'">'+'<div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>预览图加载中…如长时间空白可下载 Word 查看</small></div>'+
           '<div class="overlay">'+
             '<button class="btn-prev" data-action="prev" data-id="'+esc(it.id)+'">预览</button>'+
             '<button class="btn-dl" data-action="dl" data-id="'+esc(it.id)+'">下载</button>'+
@@ -409,19 +438,20 @@ function render(){
           '<span class="badge">'+esc(it.catLabel)+'</span>'+
           '<div class="name">'+esc(it.name)+'</div>'+
           '<div class="acts">'+
-            '<a class="primary" href="'+docUrl+'" target="_blank" rel="noopener">下载 Word</a>'+
+            '<a class="primary" href="'+dlUrl+'" target="_blank" rel="noopener">下载 Word</a>'+
           '</div>'+
         '</div>';
       card.onclick = function(e){
         var t = e.target, ds = t && t.dataset ? t.dataset : {};
         if (ds.action === 'prev') { e.stopPropagation(); openModal(it.id); return; }
-        if (ds.action === 'dl') { e.stopPropagation(); if (it.doc) window.open(it.doc, '_blank', 'noopener'); return; }
+        if (ds.action === 'dl') { e.stopPropagation(); if (it.doc) window.open(cdnCandidates(it.doc)[0], '_blank', 'noopener'); return; }
         if (ds.action === 'use') { e.stopPropagation(); location.href = useHref; return; }
         // 点到「下载 Word」链接时交给浏览器处理，不要弹预览
         if (t && t.closest && t.closest('a')) return;
         openModal(it.id);
       };
       grid.appendChild(card);
+      if (hasPreview) { var im = card.querySelector('.thumb img'); if (im) attachImg(im, it.preview); }
     } catch (err) { console.error('render card error', it && it.id, err); }
   });
 }
@@ -434,13 +464,14 @@ function openModal(id){
   document.getElementById('modalName').textContent = it.name;
   document.getElementById('modalTag').textContent = it.catLabel;
   document.getElementById('modalMeta').textContent = '编号 '+it.id+' · '+it.catLabel;
-  var img=document.getElementById('modalImg'); img.src=it.preview||''; img.alt=it.name; img.style.display=it.preview?'block':'none';
+  var img=document.getElementById('modalImg'); img.alt=it.name;
   var prev=document.getElementById('modalPrev');
   var old=prev.querySelector('.ph'); if(old) old.remove();
-  if(!it.preview){ prev.insertAdjacentHTML('beforeend','<div class="ph"><div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>该模板暂无预览图，可下载 Word 查看</small></div>'); }
+  if(it.preview){ img.style.display='block'; attachImg(img, it.preview); }
+  else { img.style.display='none'; prev.insertAdjacentHTML('beforeend','<div class="ph"><div class="ph-name">'+esc(it.name)+'</div><div class="ph-cat">'+esc(it.catLabel)+'</div><small>该模板暂无预览图，可下载 Word 查看</small></div>'); }
   var tpl = TPL_MAP[it.catKey] || 'magic';
   document.getElementById('modalUse').href = 'resume.html';
-  document.getElementById('modalDown').href = it.doc || '#';
+  document.getElementById('modalDown').href = cdnCandidates(it.doc||'')[0] || '#';
   document.getElementById('modal').classList.add('on');
 }
 function closeModal(){ document.getElementById('modal').classList.remove('on'); }
@@ -460,7 +491,7 @@ function loadManifest(){
       loadResumes(); buildCats(); buildThemes(); render();
     })
     .catch(function(e){
-      document.getElementById('grid').innerHTML='<div class="empty-main"><h3>清单加载失败</h3><p>'+esc(e.message)+'<br>请确认网络可访问 jsDelivr / GitHub Pages。</p><button class="btn-new" onclick="loadManifest()" style="margin-top:12px;border:none;cursor:pointer">重新加载</button></div>';
+      document.getElementById('grid').innerHTML='<div class="empty-main"><h3>清单加载失败</h3><p>'+esc(e.message)+'<br>请确认网络可访问本站（GitHub Pages）。</p><button class="btn-new" onclick="loadManifest()" style="margin-top:12px;border:none;cursor:pointer">重新加载</button></div>';
     });
 }
 loadManifest();
