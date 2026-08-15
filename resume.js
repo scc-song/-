@@ -237,27 +237,32 @@
     requestAnimationFrame(fitPreview);
   }
 
-  /* 当简历内容高度超过预览区可视高度时，自动等比缩放 #preview，让整份简历完整显示。
-     通过 margin-bottom 负值抵消 transform 后多出的布局空间，避免下方出现大量空白。 */
+  /* 当简历内容超过预览区时，按「可用宽/高」等比缩放 #preview，让整份简历完整显示在一屏内。
+     关键：在外层 .pv-scaler 上设置缩放后的真实尺寸（width=794*s, height=ph*s），
+     避免 transform 只改视觉不改布局导致的裁切/空白（reactive-resume 同款稳健做法）。
+     导出/打印走真实 A4，不受此 transform 影响（@media print 已重置）。 */
   function fitPreview() {
     var scroll = document.querySelector('.pv-scroll');
+    var scaler = document.getElementById('pvScaler');
     var pv = document.getElementById('preview');
     var badge = document.getElementById('pvScale');
-    if (!scroll || !pv) return;
-    // 重置 transform 以读取自然高度
+    if (!scroll || !scaler || !pv) return;
+    // 先重置，读取自然尺寸
     pv.style.transform = '';
-    pv.style.marginBottom = '';
+    scaler.style.width = '';
+    scaler.style.height = '';
     var ph = pv.scrollHeight;
-    var ch = scroll.clientHeight - 32; // 留一些上下呼吸空间
-    if (ch <= 0 || ph <= 0) return;
-    var scale = Math.min(1, Math.max(0.35, ch / ph));
-    if (scale < 0.999) {
-      pv.style.transform = 'scale(' + scale.toFixed(4) + ')';
-      pv.style.marginBottom = '-' + Math.round(ph * (1 - scale)) + 'px';
-      if (badge) badge.textContent = Math.round(scale * 100) + '%';
-    } else {
-      if (badge) badge.textContent = '100%';
-    }
+    var pw = pv.offsetWidth;
+    var availH = scroll.clientHeight - 32;
+    var availW = scroll.clientWidth - 48;
+    if (availH <= 0 || availW <= 0 || ph <= 0 || pw <= 0) return;
+    var s = Math.min(availW / pw, availH / ph, 1);
+    s = Math.max(0.3, Math.min(1, s));
+    pv.style.transform = 'scale(' + s.toFixed(4) + ')';
+    pv.style.transformOrigin = 'top left';
+    scaler.style.width = Math.round(pw * s) + 'px';
+    scaler.style.height = Math.round(ph * s) + 'px';
+    if (badge) badge.textContent = Math.round(s * 100) + '%';
   }
 
   /* ---------- ATS / JD ---------- */
