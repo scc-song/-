@@ -109,12 +109,11 @@ body {
 .preview-bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between;
   padding: 9px 16px; background: #fff; color: #475569; font-size: 13px; border-bottom: 1px solid var(--line); }
 .ats-badge { background: #0f172a; color: #fff; border-radius: 20px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
-.pv-scroll { flex: 1; overflow: auto; padding: 24px; display: flex; justify-content: center; }
+.pv-scroll { flex: 1; overflow: auto; padding: 24px; display: flex; align-items: flex-start; justify-content: center; }
+.pv-scaler { margin: 0 auto; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.12); border: 1px solid rgba(0,0,0,.06); border-radius: 2px; }
 #preview {
   width: 794px; max-width: 100%;
-  box-shadow: 0 4px 24px rgba(0,0,0,.12);
-  border: 1px solid rgba(0,0,0,.06); border-radius: 2px;
-  transform-origin: top center;
+  transform-origin: top left;
   transition: transform .15s ease;
 }
 .pv-scale {
@@ -452,7 +451,8 @@ body.editor .wb { height: auto; flex: 1 1 auto; min-height: 0; }
   body, .wb { display: block; height: auto; padding: 0; background: #fff; }
   .wb-preview { background: #fff; }
   .pv-scroll { padding: 0; display: block; }
-  #preview { width: auto; max-width: 100%; box-shadow: none; }
+  .pv-scaler { width: auto !important; height: auto !important; margin: 0 !important; overflow: visible !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; }
+  #preview { width: auto; max-width: 100%; height: auto !important; box-shadow: none; }
   .resume-preview { padding: 0 !important; }
   .resume-preview.t-classic, .resume-preview.t-cn, .resume-preview.t-sidebar, .resume-preview.t-energy, .resume-preview.t-cover, .resume-preview.t-table, .resume-preview.t-standard, .resume-preview.t-magic,
   .resume-preview.t-minimal, .resume-preview.t-exec, .resume-preview.t-bold, .resume-preview.t-card, .resume-preview.t-timeline, .resume-preview.t-grid, .resume-preview.t-soft, .resume-preview.t-compact, .resume-preview.t-stripe, .resume-preview.t-corner, .resume-preview.t-aside-light, .resume-preview.t-aside-dark, .resume-preview.t-magicv { all: unset; display: block; padding: 0; color: #000; transform: none !important; margin-bottom: 0 !important; }
