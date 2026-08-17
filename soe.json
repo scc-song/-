@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17 14:32",
+  "generatedAt": "2026-08-17 20:21",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -37,6 +37,15 @@
       "url": "https://mp.weixin.qq.com/s/y0W9udQQ8PTr32q9xzMcvQ",
       "status": "open",
       "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE096",
+      "title": "中国电气装备集团国际电力有限公司招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/NeVszsBrBexMkpWngFsw7g",
+      "status": "open",
+      "updatedAt": "2026-08-17"
     },
     {
       "id": "SOE045",
@@ -138,15 +147,6 @@
       "updatedAt": "2026-08-10"
     },
     {
-      "id": "SOE054",
-      "title": "华润集团2026年博士后招聘",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/lB6wMt-AXwpGw2aAOp_y9w",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
       "id": "SOE090",
       "title": "国家能源集团海南公司2026年社会招聘",
       "tag": "国企·央企",
@@ -154,15 +154,6 @@
       "url": "https://mp.weixin.qq.com/s/n1BledmHwiOSvKjFCJXiQQ",
       "status": "open",
       "updatedAt": "2026-08-12"
-    },
-    {
-      "id": "SOE083",
-      "title": "数智驱动 开创人社信息化发展...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/9nUsLy-gIkdBb-gXjNxJqQ",
-      "status": "open",
-      "updatedAt": "2026-08-07"
     },
     {
       "id": "SOE057",
@@ -246,6 +237,15 @@
       "updatedAt": "2026-08-11"
     },
     {
+      "id": "SOE097",
+      "title": "深入推进人力资源和社会保障系...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260814_582142.html",
+      "status": "open",
+      "updatedAt": "2026-08-17"
+    },
+    {
       "id": "SOE088",
       "title": "百日千万招聘专项行动推出电力...",
       "tag": "招聘公告",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581902.html",
       "status": "open",
       "updatedAt": "2026-08-12"
+    },
+    {
+      "id": "SOE054",
+      "title": "华润集团2026年博士后招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/lB6wMt-AXwpGw2aAOp_y9w",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE083",
+      "title": "数智驱动 开创人社信息化发展...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/9nUsLy-gIkdBb-gXjNxJqQ",
+      "status": "open",
+      "updatedAt": "2026-08-07"
     },
     {
       "id": "SOE085",
@@ -431,24 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260731_581292.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE063",
-      "title": "推进人力资源服务业优质高效发...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260731_581297.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE064",
-      "title": "提升农民工服务保障质效——《...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260729_581162.html",
       "status": "open",
       "updatedAt": "2026-08-04"
     }
