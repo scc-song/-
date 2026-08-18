@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18 14:24",
+  "generatedAt": "2026-08-18 20:22",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -165,6 +165,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE098",
+      "title": "百日千万招聘专项行动推出人工...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/xjijF_tmDEPdRkZI_0Z27A",
+      "status": "open",
+      "updatedAt": "2026-08-18"
+    },
+    {
       "id": "SOE058",
       "title": "航天科工资产管理有限公司公开招聘启事",
       "tag": "国企·央企",
@@ -172,15 +181,6 @@
       "url": "https://mp.weixin.qq.com/s/vdl4AUn9Qv3SFjYM6UskOw",
       "status": "open",
       "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE084",
-      "title": "赋能技能成才！全力推进“职业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/6xwjBmFNEMntkVUh85zrbw",
-      "status": "open",
-      "updatedAt": "2026-08-07"
     },
     {
       "id": "SOE060",
@@ -237,6 +237,15 @@
       "updatedAt": "2026-08-11"
     },
     {
+      "id": "SOE099",
+      "title": "推进事业单位工资制度改革——...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260817_582252.html",
+      "status": "open",
+      "updatedAt": "2026-08-18"
+    },
+    {
       "id": "SOE097",
       "title": "深入推进人力资源和社会保障系...",
       "tag": "招聘公告",
@@ -255,15 +264,6 @@
       "updatedAt": "2026-08-11"
     },
     {
-      "id": "SOE089",
-      "title": "积极推进工伤保险高质量发展—...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581828.html",
-      "status": "open",
-      "updatedAt": "2026-08-11"
-    },
-    {
       "id": "SOE092",
       "title": "跨省联动 云端送岗——“就业...",
       "tag": "招聘公告",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581902.html",
       "status": "open",
       "updatedAt": "2026-08-12"
+    },
+    {
+      "id": "SOE084",
+      "title": "赋能技能成才！全力推进“职业...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/6xwjBmFNEMntkVUh85zrbw",
+      "status": "open",
+      "updatedAt": "2026-08-07"
+    },
+    {
+      "id": "SOE089",
+      "title": "积极推进工伤保险高质量发展—...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581828.html",
+      "status": "open",
+      "updatedAt": "2026-08-11"
     },
     {
       "id": "SOE054",
@@ -431,24 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/r9Nosyd9gXMX5qRIWov2Qg",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE059",
-      "title": "航天科工集团科技保障中心有限公司2026年招聘启事",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/v3XT6tr6Z3ntCMfrvsAUpw",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE061",
-      "title": "技能强企，产教评技能生态链如...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202607/t20260731_581292.html",
       "status": "open",
       "updatedAt": "2026-08-04"
     }
