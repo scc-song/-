@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-08-20 14:26",
+  "generatedAt": "2026-08-20 20:25",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
+    {
+      "id": "SOE101",
+      "title": "一生一次的巅峰对决？一图看懂...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/EA5Is60-kcFUOY_x-fWYXQ",
+      "status": "open",
+      "updatedAt": "2026-08-20"
+    },
     {
       "id": "SOE040",
       "title": "三峡集团2026年博士后招聘全面启动",
@@ -19,6 +28,15 @@
       "url": "https://mp.weixin.qq.com/s/KprQJbzyK6pIORADrtKhdA",
       "status": "open",
       "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE102",
+      "title": "中国国新资产管理有限公司相关岗位招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/y2r2rle1nfDk1jHb1OHn2A",
+      "status": "open",
+      "updatedAt": "2026-08-20"
     },
     {
       "id": "SOE042",
@@ -174,15 +192,6 @@
       "updatedAt": "2026-08-18"
     },
     {
-      "id": "SOE058",
-      "title": "航天科工资产管理有限公司公开招聘启事",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/vdl4AUn9Qv3SFjYM6UskOw",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
       "id": "SOE060",
       "title": "通用技术资产公司相关岗位招聘",
       "tag": "国企·央企",
@@ -255,15 +264,6 @@
       "updatedAt": "2026-08-17"
     },
     {
-      "id": "SOE088",
-      "title": "百日千万招聘专项行动推出电力...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581842.html",
-      "status": "open",
-      "updatedAt": "2026-08-11"
-    },
-    {
       "id": "SOE092",
       "title": "跨省联动 云端送岗——“就业...",
       "tag": "招聘公告",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581902.html",
       "status": "open",
       "updatedAt": "2026-08-12"
+    },
+    {
+      "id": "SOE058",
+      "title": "航天科工资产管理有限公司公开招聘启事",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/vdl4AUn9Qv3SFjYM6UskOw",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE088",
+      "title": "百日千万招聘专项行动推出电力...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581842.html",
+      "status": "open",
+      "updatedAt": "2026-08-11"
     },
     {
       "id": "SOE087",
@@ -431,24 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/dKUcmwTTo03SLhz1lxTysA",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE071",
-      "title": "大规模开展职业技能培训 为高...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260803_581450.html",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE039",
-      "title": "“创赢未来”创业大赛全国赛在...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/_4eZmtJ6w3krEzS8Uu5NNA",
       "status": "open",
       "updatedAt": "2026-08-04"
     }
