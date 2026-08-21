@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21 14:27",
+  "generatedAt": "2026-08-21 20:24",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -219,13 +219,13 @@
       "updatedAt": "2026-08-14"
     },
     {
-      "id": "SOE091",
-      "title": "劳务品牌“金名片”拓宽就业新...",
+      "id": "SOE103",
+      "title": "健全为民办实事长效机制 人社...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581875.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260820_582499.html",
       "status": "open",
-      "updatedAt": "2026-08-12"
+      "updatedAt": "2026-08-21"
     },
     {
       "id": "SOE093",
@@ -255,6 +255,15 @@
       "updatedAt": "2026-08-18"
     },
     {
+      "id": "SOE104",
+      "title": "搭平台、建语料……人社领域人...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260820_582495.html",
+      "status": "open",
+      "updatedAt": "2026-08-21"
+    },
+    {
       "id": "SOE097",
       "title": "深入推进人力资源和社会保障系...",
       "tag": "招聘公告",
@@ -262,6 +271,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260814_582142.html",
       "status": "open",
       "updatedAt": "2026-08-17"
+    },
+    {
+      "id": "SOE091",
+      "title": "劳务品牌“金名片”拓宽就业新...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581875.html",
+      "status": "open",
+      "updatedAt": "2026-08-12"
     },
     {
       "id": "SOE092",
@@ -433,24 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202606/t20260604_577705.html",
       "status": "open",
       "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE080",
-      "title": "跨省联动 云端送岗——“就业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260804_581512.html",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE069",
-      "title": "50天后，世界的脉搏将和上海一...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/dKUcmwTTo03SLhz1lxTysA",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     }
   ]
 }
