@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-08-24 14:35",
+  "generatedAt": "2026-08-24 20:25",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
+    {
+      "id": "SOE105",
+      "title": "一座城，万千“技”遇",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/LG_mfshBOZYGle-nAjEKtg",
+      "status": "open",
+      "updatedAt": "2026-08-24"
+    },
     {
       "id": "SOE101",
       "title": "一生一次的巅峰对决？一图看懂...",
@@ -21,6 +30,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE106",
+      "title": "中化数智2026社会招聘持续开放",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/t66D2qse6QWma4jcB2lTVA",
+      "status": "open",
+      "updatedAt": "2026-08-24"
+    },
+    {
       "id": "SOE041",
       "title": "中国一汽2026夏季校园招聘火热进行中",
       "tag": "招聘公告",
@@ -37,15 +55,6 @@
       "url": "https://mp.weixin.qq.com/s/y2r2rle1nfDk1jHb1OHn2A",
       "status": "open",
       "updatedAt": "2026-08-20"
-    },
-    {
-      "id": "SOE042",
-      "title": "中国机械科学研究总院集团2026届春季校园招聘",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/oKXl7GB7wJiqdV6WfebYeg",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     },
     {
       "id": "SOE043",
@@ -174,6 +183,15 @@
       "updatedAt": "2026-08-12"
     },
     {
+      "id": "SOE107",
+      "title": "水墨为媒，千年匠心与世界技能...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/kDMBut9-kb01b2mBkYsr3w",
+      "status": "open",
+      "updatedAt": "2026-08-24"
+    },
+    {
       "id": "SOE057",
       "title": "电科思仪2026届校园招聘开启",
       "tag": "招聘公告",
@@ -210,15 +228,6 @@
       "updatedAt": "2026-08-19"
     },
     {
-      "id": "SOE095",
-      "title": "企业年金实现“随身携带”",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260813_582066.html",
-      "status": "open",
-      "updatedAt": "2026-08-14"
-    },
-    {
       "id": "SOE103",
       "title": "健全为民办实事长效机制 人社...",
       "tag": "招聘公告",
@@ -226,24 +235,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260820_582499.html",
       "status": "open",
       "updatedAt": "2026-08-21"
-    },
-    {
-      "id": "SOE093",
-      "title": "实施高质量参保行动——《人力...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260812_581985.html",
-      "status": "open",
-      "updatedAt": "2026-08-13"
-    },
-    {
-      "id": "SOE094",
-      "title": "年均服务劳动者三亿多人次——...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260812_581980.html",
-      "status": "open",
-      "updatedAt": "2026-08-13"
     },
     {
       "id": "SOE099",
@@ -262,6 +253,51 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260820_582495.html",
       "status": "open",
       "updatedAt": "2026-08-21"
+    },
+    {
+      "id": "SOE108",
+      "title": "第48届世界技能大赛中国代表团...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260823_582639.html",
+      "status": "open",
+      "updatedAt": "2026-08-24"
+    },
+    {
+      "id": "SOE042",
+      "title": "中国机械科学研究总院集团2026届春季校园招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/oKXl7GB7wJiqdV6WfebYeg",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE095",
+      "title": "企业年金实现“随身携带”",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260813_582066.html",
+      "status": "open",
+      "updatedAt": "2026-08-14"
+    },
+    {
+      "id": "SOE093",
+      "title": "实施高质量参保行动——《人力...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260812_581985.html",
+      "status": "open",
+      "updatedAt": "2026-08-13"
+    },
+    {
+      "id": "SOE094",
+      "title": "年均服务劳动者三亿多人次——...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260812_581980.html",
+      "status": "open",
+      "updatedAt": "2026-08-13"
     },
     {
       "id": "SOE097",
@@ -413,42 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/kjix9tMxPxb_ljIE9sd81w",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE075",
-      "title": "拓宽就业门路！服务业多业态同...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/XWXHCFExCRrJhgRmvcqkdQ",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE077",
-      "title": "全国专业技术人才总量超8000...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260804_581487.html",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE056",
-      "title": "正元地理信息集团股份有限公司校园招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/quIumbjt7DWRf6WFEN8v-g",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE076",
-      "title": "世赛“云探营”",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202606/t20260604_577705.html",
       "status": "open",
       "updatedAt": "2026-08-05"
     }
