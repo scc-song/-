@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25 14:26",
+  "generatedAt": "2026-08-25 20:26",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -66,6 +66,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE109",
+      "title": "中国电信天翼物联2027届“优才计划”校园招聘启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/dmJLQOzn4TV5KmD5DyA1eQ",
+      "status": "open",
+      "updatedAt": "2026-08-25"
+    },
+    {
       "id": "SOE096",
       "title": "中国电气装备集团国际电力有限公司招聘公告",
       "tag": "国企·央企",
@@ -80,15 +89,6 @@
       "tag": "国企·央企",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/ejkschmQlLJMVY-TziM2Wg",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE046",
-      "title": "中国电科12所2026届校园招聘开启",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/7Cmz_QFqjKsFGbnGsmJ0Mg",
       "status": "open",
       "updatedAt": "2026-08-04"
     },
@@ -201,15 +201,6 @@
       "updatedAt": "2026-08-04"
     },
     {
-      "id": "SOE098",
-      "title": "百日千万招聘专项行动推出人工...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/xjijF_tmDEPdRkZI_0Z27A",
-      "status": "open",
-      "updatedAt": "2026-08-18"
-    },
-    {
       "id": "SOE060",
       "title": "通用技术资产公司相关岗位招聘",
       "tag": "国企·央企",
@@ -217,6 +208,15 @@
       "url": "https://mp.weixin.qq.com/s/9h9utubZ13a-dq3iag_Sog",
       "status": "open",
       "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE110",
+      "title": "“走技能成才、技能报国之路”",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260824_582678.html",
+      "status": "open",
+      "updatedAt": "2026-08-25"
     },
     {
       "id": "SOE100",
@@ -237,15 +237,6 @@
       "updatedAt": "2026-08-21"
     },
     {
-      "id": "SOE099",
-      "title": "推进事业单位工资制度改革——...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260817_582252.html",
-      "status": "open",
-      "updatedAt": "2026-08-18"
-    },
-    {
       "id": "SOE104",
       "title": "搭平台、建语料……人社领域人...",
       "tag": "招聘公告",
@@ -255,6 +246,15 @@
       "updatedAt": "2026-08-21"
     },
     {
+      "id": "SOE111",
+      "title": "百日千万招聘专项行动推出新能...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260824_582725.html",
+      "status": "open",
+      "updatedAt": "2026-08-25"
+    },
+    {
       "id": "SOE108",
       "title": "第48届世界技能大赛中国代表团...",
       "tag": "招聘公告",
@@ -262,6 +262,33 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260823_582639.html",
       "status": "open",
       "updatedAt": "2026-08-24"
+    },
+    {
+      "id": "SOE046",
+      "title": "中国电科12所2026届校园招聘开启",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/7Cmz_QFqjKsFGbnGsmJ0Mg",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE098",
+      "title": "百日千万招聘专项行动推出人工...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/xjijF_tmDEPdRkZI_0Z27A",
+      "status": "open",
+      "updatedAt": "2026-08-18"
+    },
+    {
+      "id": "SOE099",
+      "title": "推进事业单位工资制度改革——...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260817_582252.html",
+      "status": "open",
+      "updatedAt": "2026-08-18"
     },
     {
       "id": "SOE042",
@@ -424,33 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/l-N22o2AEWx8m1Wfjo-3yw",
       "status": "open",
       "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE078",
-      "title": "我国上半年城镇新增就业695万人",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s?__biz=MjM5NzMyOTY2OA==&mid=2650819076&idx=1&sn=a16b6639350f0e2704a5e79e1327dc8f&chksm=bd2f446f8a58cd79e374d2128ee9a568d591368e0c11df730131419345cabb059bca554f88a0#rd",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE079",
-      "title": "百日千万招聘专项行动推出人工...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "http://www.job.mohrss.gov.cn:80/rdzx/171946.jhtml",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE074",
-      "title": "多措并举护航灵活就业、新就业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/kjix9tMxPxb_ljIE9sd81w",
-      "status": "open",
-      "updatedAt": "2026-08-05"
     }
   ]
 }
