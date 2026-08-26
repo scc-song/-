@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26 14:29",
+  "generatedAt": "2026-08-26 20:29",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -10,15 +10,6 @@
       "url": "https://mp.weixin.qq.com/s/LG_mfshBOZYGle-nAjEKtg",
       "status": "open",
       "updatedAt": "2026-08-24"
-    },
-    {
-      "id": "SOE101",
-      "title": "一生一次的巅峰对决？一图看懂...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/EA5Is60-kcFUOY_x-fWYXQ",
-      "status": "open",
-      "updatedAt": "2026-08-20"
     },
     {
       "id": "SOE040",
@@ -73,6 +64,15 @@
       "url": "https://mp.weixin.qq.com/s/dmJLQOzn4TV5KmD5DyA1eQ",
       "status": "open",
       "updatedAt": "2026-08-25"
+    },
+    {
+      "id": "SOE112",
+      "title": "中国电子旗下飞腾公司2027届提前批秋季校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/PkK4gXV12ybLmi0qJ321yg",
+      "status": "open",
+      "updatedAt": "2026-08-26"
     },
     {
       "id": "SOE096",
@@ -134,15 +134,6 @@
       "tag": "国企·央企",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/s6uZIK6OulOchIQulyYOtg",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE051",
-      "title": "中汽中心2027届提前批校园招聘正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/A-PV4xUARKetaWicZRGL-A",
       "status": "open",
       "updatedAt": "2026-08-04"
     },
@@ -210,6 +201,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE113",
+      "title": "@高校毕业生：城乡社区大有可...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260825_582756.html",
+      "status": "open",
+      "updatedAt": "2026-08-26"
+    },
+    {
       "id": "SOE110",
       "title": "“走技能成才、技能报国之路”",
       "tag": "招聘公告",
@@ -217,15 +217,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260824_582678.html",
       "status": "open",
       "updatedAt": "2026-08-25"
-    },
-    {
-      "id": "SOE100",
-      "title": "人力资源社会保障部 中央社会...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260818_582361.html",
-      "status": "open",
-      "updatedAt": "2026-08-19"
     },
     {
       "id": "SOE103",
@@ -262,6 +253,42 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260823_582639.html",
       "status": "open",
       "updatedAt": "2026-08-24"
+    },
+    {
+      "id": "SOE114",
+      "title": "跨省联动 云端送岗“就业在线...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260825_582772.html",
+      "status": "open",
+      "updatedAt": "2026-08-26"
+    },
+    {
+      "id": "SOE101",
+      "title": "一生一次的巅峰对决？一图看懂...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/EA5Is60-kcFUOY_x-fWYXQ",
+      "status": "open",
+      "updatedAt": "2026-08-20"
+    },
+    {
+      "id": "SOE051",
+      "title": "中汽中心2027届提前批校园招聘正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/A-PV4xUARKetaWicZRGL-A",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE100",
+      "title": "人力资源社会保障部 中央社会...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260818_582361.html",
+      "status": "open",
+      "updatedAt": "2026-08-19"
     },
     {
       "id": "SOE046",
@@ -424,33 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260806_581636.html",
       "status": "open",
       "updatedAt": "2026-08-07"
-    },
-    {
-      "id": "SOE081",
-      "title": "人力资源社会保障部面向社会公...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260805_581603.html",
-      "status": "open",
-      "updatedAt": "2026-08-06"
-    },
-    {
-      "id": "SOE082",
-      "title": "百日千万招聘专项行动推出线上...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.workercn.cn/c/2026-08-05/8863593.shtml",
-      "status": "open",
-      "updatedAt": "2026-08-06"
-    },
-    {
-      "id": "SOE044",
-      "title": "中国电信人工智能研究院（TeleAI）2027级联培博士招生正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/l-N22o2AEWx8m1Wfjo-3yw",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     }
   ]
 }
