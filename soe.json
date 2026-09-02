@@ -1,16 +1,7 @@
 {
-  "generatedAt": "2026-09-02 09:55",
+  "generatedAt": "2026-09-02 18:09",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
-    {
-      "id": "SOE105",
-      "title": "一座城，万千“技”遇",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/LG_mfshBOZYGle-nAjEKtg",
-      "status": "open",
-      "updatedAt": "2026-08-24"
-    },
     {
       "id": "SOE040",
       "title": "三峡集团2026年博士后招聘全面启动",
@@ -174,15 +165,6 @@
       "updatedAt": "2026-08-12"
     },
     {
-      "id": "SOE107",
-      "title": "水墨为媒，千年匠心与世界技能...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/kDMBut9-kb01b2mBkYsr3w",
-      "status": "open",
-      "updatedAt": "2026-08-24"
-    },
-    {
       "id": "SOE057",
       "title": "电科思仪2026届校园招聘开启",
       "tag": "招聘公告",
@@ -237,6 +219,15 @@
       "updatedAt": "2026-08-25"
     },
     {
+      "id": "SOE119",
+      "title": "以高质量职业技能培训破解结构...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583112.html",
+      "status": "open",
+      "updatedAt": "2026-09-02"
+    },
+    {
       "id": "SOE111",
       "title": "百日千万招聘专项行动推出新能...",
       "tag": "招聘公告",
@@ -244,6 +235,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260824_582725.html",
       "status": "open",
       "updatedAt": "2026-08-25"
+    },
+    {
+      "id": "SOE120",
+      "title": "百日千万招聘专项行动推出能源...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583163.html",
+      "status": "open",
+      "updatedAt": "2026-09-02"
     },
     {
       "id": "SOE108",
@@ -255,6 +255,15 @@
       "updatedAt": "2026-08-24"
     },
     {
+      "id": "SOE121",
+      "title": "跨省联动 云端送岗 “就业在线...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583154.html",
+      "status": "open",
+      "updatedAt": "2026-09-02"
+    },
+    {
       "id": "SOE114",
       "title": "跨省联动 云端送岗“就业在线...",
       "tag": "招聘公告",
@@ -262,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260825_582772.html",
       "status": "open",
       "updatedAt": "2026-08-26"
+    },
+    {
+      "id": "SOE105",
+      "title": "一座城，万千“技”遇",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/LG_mfshBOZYGle-nAjEKtg",
+      "status": "open",
+      "updatedAt": "2026-08-24"
+    },
+    {
+      "id": "SOE107",
+      "title": "水墨为媒，千年匠心与世界技能...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/kDMBut9-kb01b2mBkYsr3w",
+      "status": "open",
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "SOE047",
@@ -424,33 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/vdl4AUn9Qv3SFjYM6UskOw",
       "status": "open",
       "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE088",
-      "title": "百日千万招聘专项行动推出电力...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581842.html",
-      "status": "open",
-      "updatedAt": "2026-08-11"
-    },
-    {
-      "id": "SOE087",
-      "title": "推动高质量充分就业取得新进展",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260810_581830.html",
-      "status": "open",
-      "updatedAt": "2026-08-11"
-    },
-    {
-      "id": "SOE084",
-      "title": "赋能技能成才！全力推进“职业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/6xwjBmFNEMntkVUh85zrbw",
-      "status": "open",
-      "updatedAt": "2026-08-07"
     }
   ]
 }
