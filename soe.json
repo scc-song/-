@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03 10:00",
+  "generatedAt": "2026-09-03 18:21",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -84,6 +84,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE122",
+      "title": "中国能建2027届全球校园招聘正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/DsFR2PzMvd0Xf7RLD4txZA",
+      "status": "open",
+      "updatedAt": "2026-09-03"
+    },
+    {
       "id": "SOE073",
       "title": "中国能建葛洲坝国际公司成熟人才公开招聘公告（第二批）",
       "tag": "国企·央企",
@@ -91,15 +100,6 @@
       "url": "https://mp.weixin.qq.com/s/gpfPk8yE16PfenGA94rmmQ",
       "status": "open",
       "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE049",
-      "title": "中国航天科工2027届校园招聘全面启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/N2Fqujyh6JDdRIKIqTm8Jw",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     },
     {
       "id": "SOE070",
@@ -273,6 +273,15 @@
       "updatedAt": "2026-08-26"
     },
     {
+      "id": "SOE049",
+      "title": "中国航天科工2027届校园招聘全面启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/N2Fqujyh6JDdRIKIqTm8Jw",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
       "id": "SOE105",
       "title": "一座城，万千“技”遇",
       "tag": "招聘公告",
@@ -442,15 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581902.html",
       "status": "open",
       "updatedAt": "2026-08-12"
-    },
-    {
-      "id": "SOE058",
-      "title": "航天科工资产管理有限公司公开招聘启事",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/vdl4AUn9Qv3SFjYM6UskOw",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     }
   ]
 }
