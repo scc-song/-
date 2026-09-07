@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07 09:49",
+  "generatedAt": "2026-09-07 19:00",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -165,13 +165,13 @@
       "updatedAt": "2026-08-12"
     },
     {
-      "id": "SOE057",
-      "title": "电科思仪2026届校园招聘开启",
-      "tag": "招聘公告",
+      "id": "SOE123",
+      "title": "招商局集团招收2026年度博士后",
+      "tag": "国企·央企",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/iCfhb9Y7KSq40yJfJ5bn9Q",
+      "url": "https://mp.weixin.qq.com/s/waZpjFHraSYpTawUNMRZlQ",
       "status": "open",
-      "updatedAt": "2026-08-04"
+      "updatedAt": "2026-09-07"
     },
     {
       "id": "SOE060",
@@ -271,6 +271,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260825_582772.html",
       "status": "open",
       "updatedAt": "2026-08-26"
+    },
+    {
+      "id": "SOE057",
+      "title": "电科思仪2026届校园招聘开启",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/iCfhb9Y7KSq40yJfJ5bn9Q",
+      "status": "open",
+      "updatedAt": "2026-08-04"
     },
     {
       "id": "SOE049",
@@ -440,15 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581875.html",
-      "status": "open",
-      "updatedAt": "2026-08-12"
-    },
-    {
-      "id": "SOE092",
-      "title": "跨省联动 云端送岗——“就业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581902.html",
       "status": "open",
       "updatedAt": "2026-08-12"
     }
