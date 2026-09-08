@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08 10:00",
+  "generatedAt": "2026-09-08 18:15",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -228,13 +228,13 @@
       "updatedAt": "2026-09-02"
     },
     {
-      "id": "SOE111",
-      "title": "百日千万招聘专项行动推出新能...",
+      "id": "SOE124",
+      "title": "百日千万招聘专项行动推出智能...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260824_582725.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260907_583490.html",
       "status": "open",
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-09-08"
     },
     {
       "id": "SOE120",
@@ -246,13 +246,13 @@
       "updatedAt": "2026-09-02"
     },
     {
-      "id": "SOE108",
-      "title": "第48届世界技能大赛中国代表团...",
+      "id": "SOE125",
+      "title": "聚焦重点群体稳就业——推动经...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260823_582639.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260907_583446.html",
       "status": "open",
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-09-08"
     },
     {
       "id": "SOE121",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260825_582772.html",
       "status": "open",
       "updatedAt": "2026-08-26"
+    },
+    {
+      "id": "SOE111",
+      "title": "百日千万招聘专项行动推出新能...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260824_582725.html",
+      "status": "open",
+      "updatedAt": "2026-08-25"
+    },
+    {
+      "id": "SOE108",
+      "title": "第48届世界技能大赛中国代表团...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260823_582639.html",
+      "status": "open",
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "SOE057",
@@ -433,24 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260812_581980.html",
       "status": "open",
       "updatedAt": "2026-08-13"
-    },
-    {
-      "id": "SOE097",
-      "title": "深入推进人力资源和社会保障系...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260814_582142.html",
-      "status": "open",
-      "updatedAt": "2026-08-17"
-    },
-    {
-      "id": "SOE091",
-      "title": "劳务品牌“金名片”拓宽就业新...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260811_581875.html",
-      "status": "open",
-      "updatedAt": "2026-08-12"
     }
   ]
 }
