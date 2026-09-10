@@ -1,16 +1,7 @@
 {
-  "generatedAt": "2026-09-10 10:01",
+  "generatedAt": "2026-09-10 18:13",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
-    {
-      "id": "SOE040",
-      "title": "三峡集团2026年博士后招聘全面启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/E8ThQvzpjT5xgsnHcwf8kQ",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
     {
       "id": "SOE106",
       "title": "中化数智2026社会招聘持续开放",
@@ -28,6 +19,15 @@
       "url": "https://mp.weixin.qq.com/s/KprQJbzyK6pIORADrtKhdA",
       "status": "open",
       "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE132",
+      "title": "中国国新2027届校园招聘正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/mnjTZc5qYiULBNuxE3lW1g",
+      "status": "open",
+      "updatedAt": "2026-09-10"
     },
     {
       "id": "SOE102",
@@ -192,6 +192,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE133",
+      "title": "@高校毕业生：到城乡社区就业...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260909_583619.html",
+      "status": "open",
+      "updatedAt": "2026-09-10"
+    },
+    {
       "id": "SOE128",
       "title": "“人力资源服务+”融合发展行...",
       "tag": "招聘公告",
@@ -219,6 +228,15 @@
       "updatedAt": "2026-09-02"
     },
     {
+      "id": "SOE134",
+      "title": "数字引领 绿色赋能 服务升级：...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260909_583608.html",
+      "status": "open",
+      "updatedAt": "2026-09-10"
+    },
+    {
       "id": "SOE124",
       "title": "百日千万招聘专项行动推出智能...",
       "tag": "招聘公告",
@@ -226,15 +244,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260907_583490.html",
       "status": "open",
       "updatedAt": "2026-09-08"
-    },
-    {
-      "id": "SOE120",
-      "title": "百日千万招聘专项行动推出能源...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583163.html",
-      "status": "open",
-      "updatedAt": "2026-09-02"
     },
     {
       "id": "SOE125",
@@ -255,15 +264,6 @@
       "updatedAt": "2026-09-09"
     },
     {
-      "id": "SOE121",
-      "title": "跨省联动 云端送岗 “就业在线...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583154.html",
-      "status": "open",
-      "updatedAt": "2026-09-02"
-    },
-    {
       "id": "SOE131",
       "title": "跨省联动 云端送岗——“就业...",
       "tag": "招聘公告",
@@ -271,6 +271,33 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260908_583567.html",
       "status": "open",
       "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "SOE040",
+      "title": "三峡集团2026年博士后招聘全面启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/E8ThQvzpjT5xgsnHcwf8kQ",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE120",
+      "title": "百日千万招聘专项行动推出能源...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583163.html",
+      "status": "open",
+      "updatedAt": "2026-09-02"
+    },
+    {
+      "id": "SOE121",
+      "title": "跨省联动 云端送岗 “就业在线...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583154.html",
+      "status": "open",
+      "updatedAt": "2026-09-02"
     },
     {
       "id": "SOE052",
@@ -424,33 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/EA5Is60-kcFUOY_x-fWYXQ",
       "status": "open",
       "updatedAt": "2026-08-20"
-    },
-    {
-      "id": "SOE051",
-      "title": "中汽中心2027届提前批校园招聘正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/A-PV4xUARKetaWicZRGL-A",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE100",
-      "title": "人力资源社会保障部 中央社会...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260818_582361.html",
-      "status": "open",
-      "updatedAt": "2026-08-19"
-    },
-    {
-      "id": "SOE046",
-      "title": "中国电科12所2026届校园招聘开启",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/7Cmz_QFqjKsFGbnGsmJ0Mg",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     }
   ]
 }
