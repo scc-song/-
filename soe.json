@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11 09:59",
+  "generatedAt": "2026-09-11 18:11",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -192,6 +192,15 @@
       "updatedAt": "2026-08-04"
     },
     {
+      "id": "SOE135",
+      "title": "11个新职业发布 开辟就业新空间",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583721.html",
+      "status": "open",
+      "updatedAt": "2026-09-11"
+    },
+    {
       "id": "SOE133",
       "title": "@高校毕业生：到城乡社区就业...",
       "tag": "招聘公告",
@@ -219,15 +228,6 @@
       "updatedAt": "2026-09-09"
     },
     {
-      "id": "SOE119",
-      "title": "以高质量职业技能培训破解结构...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583112.html",
-      "status": "open",
-      "updatedAt": "2026-09-02"
-    },
-    {
       "id": "SOE134",
       "title": "数字引领 绿色赋能 服务升级：...",
       "tag": "招聘公告",
@@ -237,20 +237,20 @@
       "updatedAt": "2026-09-10"
     },
     {
+      "id": "SOE136",
+      "title": "新职业来了：新机遇和新课题！",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583720.html",
+      "status": "open",
+      "updatedAt": "2026-09-11"
+    },
+    {
       "id": "SOE124",
       "title": "百日千万招聘专项行动推出智能...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260907_583490.html",
-      "status": "open",
-      "updatedAt": "2026-09-08"
-    },
-    {
-      "id": "SOE125",
-      "title": "聚焦重点群体稳就业——推动经...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260907_583446.html",
       "status": "open",
       "updatedAt": "2026-09-08"
     },
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260908_583567.html",
       "status": "open",
       "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "SOE119",
+      "title": "以高质量职业技能培训破解结构...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583112.html",
+      "status": "open",
+      "updatedAt": "2026-09-02"
+    },
+    {
+      "id": "SOE125",
+      "title": "聚焦重点群体稳就业——推动经...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260907_583446.html",
+      "status": "open",
+      "updatedAt": "2026-09-08"
     },
     {
       "id": "SOE040",
@@ -433,24 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/prD0sZvHOSTTt2bP9N4oXg",
       "status": "open",
       "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE103",
-      "title": "健全为民办实事长效机制 人社...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260820_582499.html",
-      "status": "open",
-      "updatedAt": "2026-08-21"
-    },
-    {
-      "id": "SOE101",
-      "title": "一生一次的巅峰对决？一图看懂...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/EA5Is60-kcFUOY_x-fWYXQ",
-      "status": "open",
-      "updatedAt": "2026-08-20"
     }
   ]
 }
