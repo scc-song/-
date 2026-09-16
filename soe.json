@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16 10:16",
+  "generatedAt": "2026-09-16 18:27",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -10,15 +10,6 @@
       "url": "https://mp.weixin.qq.com/s/t66D2qse6QWma4jcB2lTVA",
       "status": "open",
       "updatedAt": "2026-08-24"
-    },
-    {
-      "id": "SOE041",
-      "title": "中国一汽2026夏季校园招聘火热进行中",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/KprQJbzyK6pIORADrtKhdA",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     },
     {
       "id": "SOE137",
@@ -192,6 +183,15 @@
       "updatedAt": "2026-09-15"
     },
     {
+      "id": "SOE146",
+      "title": "青岛国际投资有限公司社会招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/hFaL11FJSSCy7Mm7Q08cHQ",
+      "status": "open",
+      "updatedAt": "2026-09-16"
+    },
+    {
       "id": "SOE135",
       "title": "11个新职业发布 开辟就业新空间",
       "tag": "招聘公告",
@@ -199,15 +199,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583721.html",
       "status": "open",
       "updatedAt": "2026-09-11"
-    },
-    {
-      "id": "SOE133",
-      "title": "@高校毕业生：到城乡社区就业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260909_583619.html",
-      "status": "open",
-      "updatedAt": "2026-09-10"
     },
     {
       "id": "SOE139",
@@ -237,15 +228,6 @@
       "updatedAt": "2026-09-15"
     },
     {
-      "id": "SOE134",
-      "title": "数字引领 绿色赋能 服务升级：...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260909_583608.html",
-      "status": "open",
-      "updatedAt": "2026-09-10"
-    },
-    {
       "id": "SOE144",
       "title": "数字新职业激活就业新潜力",
       "tag": "招聘公告",
@@ -255,15 +237,6 @@
       "updatedAt": "2026-09-15"
     },
     {
-      "id": "SOE136",
-      "title": "新职业来了：新机遇和新课题！",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583720.html",
-      "status": "open",
-      "updatedAt": "2026-09-11"
-    },
-    {
       "id": "SOE145",
       "title": "百日千万招聘专项行动推出人工...",
       "tag": "招聘公告",
@@ -271,6 +244,69 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583920.html",
       "status": "open",
       "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "SOE147",
+      "title": "第48届世界技能大赛比什么？64...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583959.html",
+      "status": "open",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "SOE148",
+      "title": "跨省联动 云端送岗 “就业在线...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583945.html",
+      "status": "open",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "SOE149",
+      "title": "锚定“未来” 链接全球——20...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583960.html",
+      "status": "open",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "SOE041",
+      "title": "中国一汽2026夏季校园招聘火热进行中",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/KprQJbzyK6pIORADrtKhdA",
+      "status": "open",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "SOE133",
+      "title": "@高校毕业生：到城乡社区就业...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260909_583619.html",
+      "status": "open",
+      "updatedAt": "2026-09-10"
+    },
+    {
+      "id": "SOE134",
+      "title": "数字引领 绿色赋能 服务升级：...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260909_583608.html",
+      "status": "open",
+      "updatedAt": "2026-09-10"
+    },
+    {
+      "id": "SOE136",
+      "title": "新职业来了：新机遇和新课题！",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583720.html",
+      "status": "open",
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "SOE043",
@@ -415,42 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/bGV3jAOJ73M5mTbFniflVA",
       "status": "open",
       "updatedAt": "2026-08-31"
-    },
-    {
-      "id": "SOE113",
-      "title": "@高校毕业生：城乡社区大有可...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260825_582756.html",
-      "status": "open",
-      "updatedAt": "2026-08-26"
-    },
-    {
-      "id": "SOE118",
-      "title": "“十五五”，如何培养更多大国...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260831_583072.html",
-      "status": "open",
-      "updatedAt": "2026-09-01"
-    },
-    {
-      "id": "SOE110",
-      "title": "“走技能成才、技能报国之路”",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260824_582678.html",
-      "status": "open",
-      "updatedAt": "2026-08-25"
-    },
-    {
-      "id": "SOE114",
-      "title": "跨省联动 云端送岗“就业在线...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202608/t20260825_582772.html",
-      "status": "open",
-      "updatedAt": "2026-08-26"
     }
   ]
 }
