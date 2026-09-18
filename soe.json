@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18 10:06",
+  "generatedAt": "2026-09-18 18:13",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -192,22 +192,13 @@
       "updatedAt": "2026-09-16"
     },
     {
-      "id": "SOE142",
-      "title": "中国人力资源服务业发展向新向优",
+      "id": "SOE154",
+      "title": "“数智赋能产业 零碳引领未来...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583876.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584083.html",
       "status": "open",
-      "updatedAt": "2026-09-15"
-    },
-    {
-      "id": "SOE143",
-      "title": "带你了解这11个新职业",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583893.html",
-      "status": "open",
-      "updatedAt": "2026-09-15"
+      "updatedAt": "2026-09-18"
     },
     {
       "id": "SOE152",
@@ -219,13 +210,22 @@
       "updatedAt": "2026-09-17"
     },
     {
-      "id": "SOE144",
-      "title": "数字新职业激活就业新潜力",
+      "id": "SOE155",
+      "title": "提升新就业群体获得感幸福感安...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583902.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584085.html",
       "status": "open",
-      "updatedAt": "2026-09-15"
+      "updatedAt": "2026-09-18"
+    },
+    {
+      "id": "SOE156",
+      "title": "未来，有哪些新职业？《新职业...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584084.html",
+      "status": "open",
+      "updatedAt": "2026-09-18"
     },
     {
       "id": "SOE153",
@@ -237,13 +237,13 @@
       "updatedAt": "2026-09-17"
     },
     {
-      "id": "SOE145",
-      "title": "百日千万招聘专项行动推出人工...",
+      "id": "SOE157",
+      "title": "李强将出席第48届世界技能大赛...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583920.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584052.html",
       "status": "open",
-      "updatedAt": "2026-09-15"
+      "updatedAt": "2026-09-18"
     },
     {
       "id": "SOE147",
@@ -271,6 +271,42 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583960.html",
       "status": "open",
       "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "SOE142",
+      "title": "中国人力资源服务业发展向新向优",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583876.html",
+      "status": "open",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "SOE143",
+      "title": "带你了解这11个新职业",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583893.html",
+      "status": "open",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "SOE144",
+      "title": "数字新职业激活就业新潜力",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583902.html",
+      "status": "open",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "SOE145",
+      "title": "百日千万招聘专项行动推出人工...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583920.html",
+      "status": "open",
+      "updatedAt": "2026-09-15"
     },
     {
       "id": "SOE070",
@@ -413,42 +449,6 @@
       "tag": "国企·央企",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/9h9utubZ13a-dq3iag_Sog",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE124",
-      "title": "百日千万招聘专项行动推出智能...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260907_583490.html",
-      "status": "open",
-      "updatedAt": "2026-09-08"
-    },
-    {
-      "id": "SOE119",
-      "title": "以高质量职业技能培训破解结构...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260901_583112.html",
-      "status": "open",
-      "updatedAt": "2026-09-02"
-    },
-    {
-      "id": "SOE125",
-      "title": "聚焦重点群体稳就业——推动经...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260907_583446.html",
-      "status": "open",
-      "updatedAt": "2026-09-08"
-    },
-    {
-      "id": "SOE040",
-      "title": "三峡集团2026年博士后招聘全面启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/E8ThQvzpjT5xgsnHcwf8kQ",
       "status": "open",
       "updatedAt": "2026-08-04"
     }
