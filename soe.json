@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-09-20 18:16",
+  "generatedAt": "2026-09-20 23:04",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
+    {
+      "id": "SOE158",
+      "title": "东方电气集团2027届校园招聘正式启动！",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/46iEoC7X8i9Ys7cjqXWxfQ",
+      "status": "open",
+      "updatedAt": "2026-09-20"
+    },
     {
       "id": "SOE106",
       "title": "中化数智2026社会招聘持续开放",
@@ -93,15 +102,6 @@
       "updatedAt": "2026-09-17"
     },
     {
-      "id": "SOE073",
-      "title": "中国能建葛洲坝国际公司成熟人才公开招聘公告（第二批）",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/gpfPk8yE16PfenGA94rmmQ",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
       "id": "SOE138",
       "title": "中国铁建2027校园招聘",
       "tag": "招聘公告",
@@ -174,13 +174,13 @@
       "updatedAt": "2026-09-07"
     },
     {
-      "id": "SOE141",
-      "title": "送政策、优服务、促就业！就业...",
+      "id": "SOE159",
+      "title": "科技—产业—技能—民生，四大...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/mQPL9ZGqDs5t0_UDkm9ZgQ",
+      "url": "https://mp.weixin.qq.com/s/8mFaZMcuFsrTE_qJQ32rIA",
       "status": "open",
-      "updatedAt": "2026-09-15"
+      "updatedAt": "2026-09-20"
     },
     {
       "id": "SOE146",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583960.html",
       "status": "open",
       "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "SOE073",
+      "title": "中国能建葛洲坝国际公司成熟人才公开招聘公告（第二批）",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/gpfPk8yE16PfenGA94rmmQ",
+      "status": "open",
+      "updatedAt": "2026-08-05"
+    },
+    {
+      "id": "SOE141",
+      "title": "送政策、优服务、促就业！就业...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/mQPL9ZGqDs5t0_UDkm9ZgQ",
+      "status": "open",
+      "updatedAt": "2026-09-15"
     },
     {
       "id": "SOE142",
@@ -433,24 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260908_583567.html",
       "status": "open",
       "updatedAt": "2026-09-09"
-    },
-    {
-      "id": "SOE045",
-      "title": "中国电气装备集团数字科技有限公司招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/ejkschmQlLJMVY-TziM2Wg",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE060",
-      "title": "通用技术资产公司相关岗位招聘",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/9h9utubZ13a-dq3iag_Sog",
-      "status": "open",
-      "updatedAt": "2026-08-04"
     }
   ]
 }
