@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21 10:17",
+  "generatedAt": "2026-09-21 19:23",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -84,6 +84,15 @@
       "updatedAt": "2026-08-17"
     },
     {
+      "id": "SOE160",
+      "title": "中国石油启动2026年秋季高校毕业生招聘",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/R8PfTNLpKzHqYIGRloo48A",
+      "status": "open",
+      "updatedAt": "2026-09-21"
+    },
+    {
       "id": "SOE122",
       "title": "中国能建2027届全球校园招聘正式启动",
       "tag": "招聘公告",
@@ -118,15 +127,6 @@
       "url": "https://mp.weixin.qq.com/s/Kkrn8KhcI6r0xGV7lDJa2g",
       "status": "open",
       "updatedAt": "2026-08-31"
-    },
-    {
-      "id": "SOE086",
-      "title": "华侨城集团总部及所属企业法律类岗位招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/eZnsk5phaKZeAHq-9PefVw",
-      "status": "open",
-      "updatedAt": "2026-08-10"
     },
     {
       "id": "SOE117",
@@ -201,6 +201,24 @@
       "updatedAt": "2026-09-18"
     },
     {
+      "id": "SOE161",
+      "title": "人社部启动2026年全国城市联合...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584260.html",
+      "status": "open",
+      "updatedAt": "2026-09-21"
+    },
+    {
+      "id": "SOE162",
+      "title": "投资于人 共赢亚太——写在第...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584251.html",
+      "status": "open",
+      "updatedAt": "2026-09-21"
+    },
+    {
       "id": "SOE152",
       "title": "探营上海世赛：场地施工紧锣密鼓",
       "tag": "招聘公告",
@@ -246,6 +264,24 @@
       "updatedAt": "2026-09-18"
     },
     {
+      "id": "SOE149",
+      "title": "锚定“未来” 链接全球——20...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583960.html",
+      "status": "open",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "SOE086",
+      "title": "华侨城集团总部及所属企业法律类岗位招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/eZnsk5phaKZeAHq-9PefVw",
+      "status": "open",
+      "updatedAt": "2026-08-10"
+    },
+    {
       "id": "SOE147",
       "title": "第48届世界技能大赛比什么？64...",
       "tag": "招聘公告",
@@ -260,15 +296,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583945.html",
-      "status": "open",
-      "updatedAt": "2026-09-16"
-    },
-    {
-      "id": "SOE149",
-      "title": "锚定“未来” 链接全球——20...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583960.html",
       "status": "open",
       "updatedAt": "2026-09-16"
     },
@@ -422,33 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260908_583568.html",
-      "status": "open",
-      "updatedAt": "2026-09-09"
-    },
-    {
-      "id": "SOE129",
-      "title": "人力资源社会保障部部署开展20...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260908_583535.html",
-      "status": "open",
-      "updatedAt": "2026-09-09"
-    },
-    {
-      "id": "SOE130",
-      "title": "请查收一封世赛邀请函——第48...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260908_583571.html",
-      "status": "open",
-      "updatedAt": "2026-09-09"
-    },
-    {
-      "id": "SOE131",
-      "title": "跨省联动 云端送岗——“就业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260908_583567.html",
       "status": "open",
       "updatedAt": "2026-09-09"
     }
