@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22 05:22",
+  "generatedAt": "2026-09-22 10:21",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -120,6 +120,15 @@
       "updatedAt": "2026-09-14"
     },
     {
+      "id": "SOE163",
+      "title": "中汽中心2027届校园招聘正式启动！",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/db7gxva9YHFzWcrEJFUumQ",
+      "status": "open",
+      "updatedAt": "2026-09-22"
+    },
+    {
       "id": "SOE115",
       "title": "中电信量子集团2027校园招聘正式启动",
       "tag": "国企·央企",
@@ -136,15 +145,6 @@
       "url": "https://mp.weixin.qq.com/s/g-03fwfiY6ujjk65wQ-GRA",
       "status": "open",
       "updatedAt": "2026-09-01"
-    },
-    {
-      "id": "SOE090",
-      "title": "国家能源集团海南公司2026年社会招聘",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/n1BledmHwiOSvKjFCJXiQQ",
-      "status": "open",
-      "updatedAt": "2026-08-12"
     },
     {
       "id": "SOE140",
@@ -210,6 +210,15 @@
       "updatedAt": "2026-09-21"
     },
     {
+      "id": "SOE164",
+      "title": "技能改变世界 技能照亮前程—...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260921_584333.html",
+      "status": "open",
+      "updatedAt": "2026-09-22"
+    },
+    {
       "id": "SOE162",
       "title": "投资于人 共赢亚太——写在第...",
       "tag": "招聘公告",
@@ -246,15 +255,6 @@
       "updatedAt": "2026-09-18"
     },
     {
-      "id": "SOE153",
-      "title": "李子柒发来上海世赛邀约：上海...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260916_584011.html",
-      "status": "open",
-      "updatedAt": "2026-09-17"
-    },
-    {
       "id": "SOE157",
       "title": "李强将出席第48届世界技能大赛...",
       "tag": "招聘公告",
@@ -262,6 +262,33 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584052.html",
       "status": "open",
       "updatedAt": "2026-09-18"
+    },
+    {
+      "id": "SOE165",
+      "title": "谌贻琴出席第八届亚太经合组织...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260921_584350.html",
+      "status": "open",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "SOE090",
+      "title": "国家能源集团海南公司2026年社会招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/n1BledmHwiOSvKjFCJXiQQ",
+      "status": "open",
+      "updatedAt": "2026-08-12"
+    },
+    {
+      "id": "SOE153",
+      "title": "李子柒发来上海世赛邀约：上海...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260916_584011.html",
+      "status": "open",
+      "updatedAt": "2026-09-17"
     },
     {
       "id": "SOE149",
@@ -424,33 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583720.html",
       "status": "open",
       "updatedAt": "2026-09-11"
-    },
-    {
-      "id": "SOE043",
-      "title": "中国物流2026届夏季校园招聘正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/y0W9udQQ8PTr32q9xzMcvQ",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE127",
-      "title": "赋能海洋经济高质量发展，拓宽...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/iH-KcLdxVU9Wywzdf20-VQ",
-      "status": "open",
-      "updatedAt": "2026-09-09"
-    },
-    {
-      "id": "SOE128",
-      "title": "“人力资源服务+”融合发展行...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260908_583568.html",
-      "status": "open",
-      "updatedAt": "2026-09-09"
     }
   ]
 }
