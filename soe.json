@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23 10:21",
+  "generatedAt": "2026-09-23 18:26",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -75,15 +75,6 @@
       "updatedAt": "2026-08-26"
     },
     {
-      "id": "SOE096",
-      "title": "中国电气装备集团国际电力有限公司招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/NeVszsBrBexMkpWngFsw7g",
-      "status": "open",
-      "updatedAt": "2026-08-17"
-    },
-    {
       "id": "SOE160",
       "title": "中国石油启动2026年秋季高校毕业生招聘",
       "tag": "招聘公告",
@@ -109,6 +100,15 @@
       "url": "https://mp.weixin.qq.com/s/WmoZ6rocA2p6FZ8lHhn9nw",
       "status": "open",
       "updatedAt": "2026-09-17"
+    },
+    {
+      "id": "SOE166",
+      "title": "中国远洋海运集团2027全球校园招聘开启！",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/edulga-oqAnyzXn8RGbn3w",
+      "status": "open",
+      "updatedAt": "2026-09-23"
     },
     {
       "id": "SOE138",
@@ -174,6 +174,15 @@
       "updatedAt": "2026-09-07"
     },
     {
+      "id": "SOE167",
+      "title": "此夜，注定载入史册",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/OBNgJYiAIPpnQ_znLLu8BA",
+      "status": "open",
+      "updatedAt": "2026-09-23"
+    },
+    {
       "id": "SOE159",
       "title": "科技—产业—技能—民生，四大...",
       "tag": "招聘公告",
@@ -192,15 +201,6 @@
       "updatedAt": "2026-09-16"
     },
     {
-      "id": "SOE154",
-      "title": "“数智赋能产业 零碳引领未来...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584083.html",
-      "status": "open",
-      "updatedAt": "2026-09-18"
-    },
-    {
       "id": "SOE161",
       "title": "人社部启动2026年全国城市联合...",
       "tag": "招聘公告",
@@ -208,6 +208,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584260.html",
       "status": "open",
       "updatedAt": "2026-09-21"
+    },
+    {
+      "id": "SOE168",
+      "title": "以现代化人力资源激活亚太新动...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260922_584377.html",
+      "status": "open",
+      "updatedAt": "2026-09-23"
     },
     {
       "id": "SOE164",
@@ -226,6 +235,60 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584251.html",
       "status": "open",
       "updatedAt": "2026-09-21"
+    },
+    {
+      "id": "SOE169",
+      "title": "携手塑造现代化人力资源——第...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260922_584390.html",
+      "status": "open",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "SOE157",
+      "title": "李强将出席第48届世界技能大赛...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584052.html",
+      "status": "open",
+      "updatedAt": "2026-09-18"
+    },
+    {
+      "id": "SOE170",
+      "title": "第八届亚太经合组织人力资源开...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260922_584379.html",
+      "status": "open",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "SOE165",
+      "title": "谌贻琴出席第八届亚太经合组织...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260921_584350.html",
+      "status": "open",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "SOE096",
+      "title": "中国电气装备集团国际电力有限公司招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/NeVszsBrBexMkpWngFsw7g",
+      "status": "open",
+      "updatedAt": "2026-08-17"
+    },
+    {
+      "id": "SOE154",
+      "title": "“数智赋能产业 零碳引领未来...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584083.html",
+      "status": "open",
+      "updatedAt": "2026-09-18"
     },
     {
       "id": "SOE152",
@@ -253,24 +316,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584084.html",
       "status": "open",
       "updatedAt": "2026-09-18"
-    },
-    {
-      "id": "SOE157",
-      "title": "李强将出席第48届世界技能大赛...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584052.html",
-      "status": "open",
-      "updatedAt": "2026-09-18"
-    },
-    {
-      "id": "SOE165",
-      "title": "谌贻琴出席第八届亚太经合组织...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260921_584350.html",
-      "status": "open",
-      "updatedAt": "2026-09-22"
     },
     {
       "id": "SOE090",
@@ -404,51 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583721.html",
-      "status": "open",
-      "updatedAt": "2026-09-11"
-    },
-    {
-      "id": "SOE139",
-      "title": "《匠声》——技能改变世界，技...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260912_583806.html",
-      "status": "open",
-      "updatedAt": "2026-09-14"
-    },
-    {
-      "id": "SOE041",
-      "title": "中国一汽2026夏季校园招聘火热进行中",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/KprQJbzyK6pIORADrtKhdA",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE133",
-      "title": "@高校毕业生：到城乡社区就业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260909_583619.html",
-      "status": "open",
-      "updatedAt": "2026-09-10"
-    },
-    {
-      "id": "SOE134",
-      "title": "数字引领 绿色赋能 服务升级：...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260909_583608.html",
-      "status": "open",
-      "updatedAt": "2026-09-10"
-    },
-    {
-      "id": "SOE136",
-      "title": "新职业来了：新机遇和新课题！",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583720.html",
       "status": "open",
       "updatedAt": "2026-09-11"
     }
