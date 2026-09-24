@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24 10:09",
+  "generatedAt": "2026-09-24 18:43",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -12,15 +12,6 @@
       "updatedAt": "2026-09-20"
     },
     {
-      "id": "SOE106",
-      "title": "中化数智2026社会招聘持续开放",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/t66D2qse6QWma4jcB2lTVA",
-      "status": "open",
-      "updatedAt": "2026-08-24"
-    },
-    {
       "id": "SOE137",
       "title": "中国中车2027届校园招聘",
       "tag": "招聘公告",
@@ -28,6 +19,15 @@
       "url": "https://mp.weixin.qq.com/s/Ju0MADtqbWnxw_-sedeJ6Q",
       "status": "open",
       "updatedAt": "2026-09-14"
+    },
+    {
+      "id": "SOE171",
+      "title": "中国化学工程2027届全球校园招聘正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/djKxOoS3Mwc5NMQBC_j4zQ",
+      "status": "open",
+      "updatedAt": "2026-09-24"
     },
     {
       "id": "SOE150",
@@ -46,15 +46,6 @@
       "url": "https://mp.weixin.qq.com/s/mnjTZc5qYiULBNuxE3lW1g",
       "status": "open",
       "updatedAt": "2026-09-10"
-    },
-    {
-      "id": "SOE102",
-      "title": "中国国新资产管理有限公司相关岗位招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/y2r2rle1nfDk1jHb1OHn2A",
-      "status": "open",
-      "updatedAt": "2026-08-20"
     },
     {
       "id": "SOE109",
@@ -138,6 +129,15 @@
       "updatedAt": "2026-08-31"
     },
     {
+      "id": "SOE172",
+      "title": "先正达集团中国2027校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/zue6f3lQKIYCFEfolaehHA",
+      "status": "open",
+      "updatedAt": "2026-09-24"
+    },
+    {
       "id": "SOE117",
       "title": "国家电投集团法务中心选聘公告",
       "tag": "国企·央企",
@@ -183,15 +183,6 @@
       "updatedAt": "2026-09-23"
     },
     {
-      "id": "SOE159",
-      "title": "科技—产业—技能—民生，四大...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/8mFaZMcuFsrTE_qJQ32rIA",
-      "status": "open",
-      "updatedAt": "2026-09-20"
-    },
-    {
       "id": "SOE146",
       "title": "青岛国际投资有限公司社会招聘公告",
       "tag": "国企·央企",
@@ -199,6 +190,15 @@
       "url": "https://mp.weixin.qq.com/s/hFaL11FJSSCy7Mm7Q08cHQ",
       "status": "open",
       "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "SOE173",
+      "title": "习近平向第48届世界技能大赛致...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260923_584440.html",
+      "status": "open",
+      "updatedAt": "2026-09-24"
     },
     {
       "id": "SOE161",
@@ -246,13 +246,13 @@
       "updatedAt": "2026-09-23"
     },
     {
-      "id": "SOE157",
-      "title": "李强将出席第48届世界技能大赛...",
+      "id": "SOE174",
+      "title": "第48届世界技能大赛在上海隆重...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584052.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260923_584439.html",
       "status": "open",
-      "updatedAt": "2026-09-18"
+      "updatedAt": "2026-09-24"
     },
     {
       "id": "SOE170",
@@ -271,6 +271,42 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260921_584350.html",
       "status": "open",
       "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "SOE106",
+      "title": "中化数智2026社会招聘持续开放",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/t66D2qse6QWma4jcB2lTVA",
+      "status": "open",
+      "updatedAt": "2026-08-24"
+    },
+    {
+      "id": "SOE102",
+      "title": "中国国新资产管理有限公司相关岗位招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/y2r2rle1nfDk1jHb1OHn2A",
+      "status": "open",
+      "updatedAt": "2026-08-20"
+    },
+    {
+      "id": "SOE159",
+      "title": "科技—产业—技能—民生，四大...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/8mFaZMcuFsrTE_qJQ32rIA",
+      "status": "open",
+      "updatedAt": "2026-09-20"
+    },
+    {
+      "id": "SOE157",
+      "title": "李强将出席第48届世界技能大赛...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260917_584052.html",
+      "status": "open",
+      "updatedAt": "2026-09-18"
     },
     {
       "id": "SOE096",
@@ -415,42 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583902.html",
       "status": "open",
       "updatedAt": "2026-09-15"
-    },
-    {
-      "id": "SOE145",
-      "title": "百日千万招聘专项行动推出人工...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583920.html",
-      "status": "open",
-      "updatedAt": "2026-09-15"
-    },
-    {
-      "id": "SOE070",
-      "title": "中国融通集团2026届夏季校园招聘",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/s6uZIK6OulOchIQulyYOtg",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE053",
-      "title": "中粮集团下属企业社会招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/p9WGTK1rM-5saXSdihpk6g",
-      "status": "open",
-      "updatedAt": "2026-08-04"
-    },
-    {
-      "id": "SOE135",
-      "title": "11个新职业发布 开辟就业新空间",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260910_583721.html",
-      "status": "open",
-      "updatedAt": "2026-09-11"
     }
   ]
 }
