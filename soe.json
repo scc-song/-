@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28 10:30",
+  "generatedAt": "2026-09-28 20:19",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -10,6 +10,15 @@
       "url": "https://mp.weixin.qq.com/s/46iEoC7X8i9Ys7cjqXWxfQ",
       "status": "open",
       "updatedAt": "2026-09-20"
+    },
+    {
+      "id": "SOE175",
+      "title": "中化资本2027年校园招聘正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/wQRBjoHvuGl20sFG3uABiQ",
+      "status": "open",
+      "updatedAt": "2026-09-28"
     },
     {
       "id": "SOE137",
@@ -48,22 +57,13 @@
       "updatedAt": "2026-09-10"
     },
     {
-      "id": "SOE109",
-      "title": "中国电信天翼物联2027届“优才计划”校园招聘启动",
+      "id": "SOE176",
+      "title": "中国石化2027年度毕业生招聘启动",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/dmJLQOzn4TV5KmD5DyA1eQ",
+      "url": "https://mp.weixin.qq.com/s/gSdHHqL97WviGxDshwecSw",
       "status": "open",
-      "updatedAt": "2026-08-25"
-    },
-    {
-      "id": "SOE112",
-      "title": "中国电子旗下飞腾公司2027届提前批秋季校园招聘正式启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/PkK4gXV12ybLmi0qJ321yg",
-      "status": "open",
-      "updatedAt": "2026-08-26"
+      "updatedAt": "2026-09-28"
     },
     {
       "id": "SOE160",
@@ -120,15 +120,6 @@
       "updatedAt": "2026-09-22"
     },
     {
-      "id": "SOE115",
-      "title": "中电信量子集团2027校园招聘正式启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/Kkrn8KhcI6r0xGV7lDJa2g",
-      "status": "open",
-      "updatedAt": "2026-08-31"
-    },
-    {
       "id": "SOE172",
       "title": "先正达集团中国2027校园招聘正式启动",
       "tag": "国企·央企",
@@ -183,6 +174,15 @@
       "updatedAt": "2026-09-23"
     },
     {
+      "id": "SOE177",
+      "title": "海南控股2027校园招聘全面启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/UPSjtkD55vK78W8j4lX2SA",
+      "status": "open",
+      "updatedAt": "2026-09-28"
+    },
+    {
       "id": "SOE146",
       "title": "青岛国际投资有限公司社会招聘公告",
       "tag": "国企·央企",
@@ -192,6 +192,15 @@
       "updatedAt": "2026-09-16"
     },
     {
+      "id": "SOE178",
+      "title": "一技之长铸青春之光",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260927_584661.html",
+      "status": "open",
+      "updatedAt": "2026-09-28"
+    },
+    {
       "id": "SOE173",
       "title": "习近平向第48届世界技能大赛致...",
       "tag": "招聘公告",
@@ -199,15 +208,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260923_584440.html",
       "status": "open",
       "updatedAt": "2026-09-24"
-    },
-    {
-      "id": "SOE161",
-      "title": "人社部启动2026年全国城市联合...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584260.html",
-      "status": "open",
-      "updatedAt": "2026-09-21"
     },
     {
       "id": "SOE168",
@@ -228,13 +228,13 @@
       "updatedAt": "2026-09-22"
     },
     {
-      "id": "SOE162",
-      "title": "投资于人 共赢亚太——写在第...",
+      "id": "SOE179",
+      "title": "技能点亮赛场 匠心托举未来（...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584251.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260927_584663.html",
       "status": "open",
-      "updatedAt": "2026-09-21"
+      "updatedAt": "2026-09-28"
     },
     {
       "id": "SOE169",
@@ -271,6 +271,51 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260921_584350.html",
       "status": "open",
       "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "SOE109",
+      "title": "中国电信天翼物联2027届“优才计划”校园招聘启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/dmJLQOzn4TV5KmD5DyA1eQ",
+      "status": "open",
+      "updatedAt": "2026-08-25"
+    },
+    {
+      "id": "SOE112",
+      "title": "中国电子旗下飞腾公司2027届提前批秋季校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/PkK4gXV12ybLmi0qJ321yg",
+      "status": "open",
+      "updatedAt": "2026-08-26"
+    },
+    {
+      "id": "SOE115",
+      "title": "中电信量子集团2027校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/Kkrn8KhcI6r0xGV7lDJa2g",
+      "status": "open",
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "SOE161",
+      "title": "人社部启动2026年全国城市联合...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584260.html",
+      "status": "open",
+      "updatedAt": "2026-09-21"
+    },
+    {
+      "id": "SOE162",
+      "title": "投资于人 共赢亚太——写在第...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584251.html",
+      "status": "open",
+      "updatedAt": "2026-09-21"
     },
     {
       "id": "SOE106",
@@ -406,51 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583945.html",
       "status": "open",
       "updatedAt": "2026-09-16"
-    },
-    {
-      "id": "SOE073",
-      "title": "中国能建葛洲坝国际公司成熟人才公开招聘公告（第二批）",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/gpfPk8yE16PfenGA94rmmQ",
-      "status": "open",
-      "updatedAt": "2026-08-05"
-    },
-    {
-      "id": "SOE141",
-      "title": "送政策、优服务、促就业！就业...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/mQPL9ZGqDs5t0_UDkm9ZgQ",
-      "status": "open",
-      "updatedAt": "2026-09-15"
-    },
-    {
-      "id": "SOE142",
-      "title": "中国人力资源服务业发展向新向优",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583876.html",
-      "status": "open",
-      "updatedAt": "2026-09-15"
-    },
-    {
-      "id": "SOE143",
-      "title": "带你了解这11个新职业",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583893.html",
-      "status": "open",
-      "updatedAt": "2026-09-15"
-    },
-    {
-      "id": "SOE144",
-      "title": "数字新职业激活就业新潜力",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260914_583902.html",
-      "status": "open",
-      "updatedAt": "2026-09-15"
     }
   ]
 }
