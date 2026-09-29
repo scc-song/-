@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-09-29 11:13",
+  "generatedAt": "2026-09-29 19:46",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
+    {
+      "id": "SOE180",
+      "title": "一图读懂｜“两延续一优化” ...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/lI82KpvbZNdnBc4XcKUhCQ",
+      "status": "open",
+      "updatedAt": "2026-09-29"
+    },
     {
       "id": "SOE158",
       "title": "东方电气集团2027届校园招聘正式启动！",
@@ -165,15 +174,6 @@
       "updatedAt": "2026-09-07"
     },
     {
-      "id": "SOE167",
-      "title": "此夜，注定载入史册",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/OBNgJYiAIPpnQ_znLLu8BA",
-      "status": "open",
-      "updatedAt": "2026-09-23"
-    },
-    {
       "id": "SOE177",
       "title": "海南控股2027校园招聘全面启动",
       "tag": "招聘公告",
@@ -192,6 +192,15 @@
       "updatedAt": "2026-09-16"
     },
     {
+      "id": "SOE181",
+      "title": "一场富有新意、影响广泛的技能...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584705.html",
+      "status": "open",
+      "updatedAt": "2026-09-29"
+    },
+    {
       "id": "SOE178",
       "title": "一技之长铸青春之光",
       "tag": "招聘公告",
@@ -201,6 +210,15 @@
       "updatedAt": "2026-09-28"
     },
     {
+      "id": "SOE182",
+      "title": "为有技能梦想的青年搭建成长成...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584706.html",
+      "status": "open",
+      "updatedAt": "2026-09-29"
+    },
+    {
       "id": "SOE173",
       "title": "习近平向第48届世界技能大赛致...",
       "tag": "招聘公告",
@@ -208,24 +226,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260923_584440.html",
       "status": "open",
       "updatedAt": "2026-09-24"
-    },
-    {
-      "id": "SOE168",
-      "title": "以现代化人力资源激活亚太新动...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260922_584377.html",
-      "status": "open",
-      "updatedAt": "2026-09-23"
-    },
-    {
-      "id": "SOE164",
-      "title": "技能改变世界 技能照亮前程—...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260921_584333.html",
-      "status": "open",
-      "updatedAt": "2026-09-22"
     },
     {
       "id": "SOE179",
@@ -246,6 +246,24 @@
       "updatedAt": "2026-09-23"
     },
     {
+      "id": "SOE183",
+      "title": "有“技”者事竟成",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584707.html",
+      "status": "open",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "SOE184",
+      "title": "第48届世界技能大赛在上海圆满...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584680.html",
+      "status": "open",
+      "updatedAt": "2026-09-29"
+    },
+    {
       "id": "SOE174",
       "title": "第48届世界技能大赛在上海隆重...",
       "tag": "招聘公告",
@@ -253,6 +271,33 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260923_584439.html",
       "status": "open",
       "updatedAt": "2026-09-24"
+    },
+    {
+      "id": "SOE167",
+      "title": "此夜，注定载入史册",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/OBNgJYiAIPpnQ_znLLu8BA",
+      "status": "open",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "SOE168",
+      "title": "以现代化人力资源激活亚太新动...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260922_584377.html",
+      "status": "open",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "SOE164",
+      "title": "技能改变世界 技能照亮前程—...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260921_584333.html",
+      "status": "open",
+      "updatedAt": "2026-09-22"
     },
     {
       "id": "SOE170",
@@ -406,51 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/n1BledmHwiOSvKjFCJXiQQ",
       "status": "open",
       "updatedAt": "2026-08-12"
-    },
-    {
-      "id": "SOE153",
-      "title": "李子柒发来上海世赛邀约：上海...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260916_584011.html",
-      "status": "open",
-      "updatedAt": "2026-09-17"
-    },
-    {
-      "id": "SOE149",
-      "title": "锚定“未来” 链接全球——20...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583960.html",
-      "status": "open",
-      "updatedAt": "2026-09-16"
-    },
-    {
-      "id": "SOE086",
-      "title": "华侨城集团总部及所属企业法律类岗位招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/eZnsk5phaKZeAHq-9PefVw",
-      "status": "open",
-      "updatedAt": "2026-08-10"
-    },
-    {
-      "id": "SOE147",
-      "title": "第48届世界技能大赛比什么？64...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583959.html",
-      "status": "open",
-      "updatedAt": "2026-09-16"
-    },
-    {
-      "id": "SOE148",
-      "title": "跨省联动 云端送岗 “就业在线...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260915_583945.html",
-      "status": "open",
-      "updatedAt": "2026-09-16"
     }
   ]
 }
