@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10 11:16",
+  "generatedAt": "2026-10-10 19:33",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -192,22 +192,13 @@
       "updatedAt": "2026-09-16"
     },
     {
-      "id": "SOE181",
-      "title": "一场富有新意、影响广泛的技能...",
+      "id": "SOE192",
+      "title": "《新就业形态劳动者权益保障办...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584705.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261008_585194.html",
       "status": "open",
-      "updatedAt": "2026-09-29"
-    },
-    {
-      "id": "SOE178",
-      "title": "一技之长铸青春之光",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260927_584661.html",
-      "status": "open",
-      "updatedAt": "2026-09-28"
+      "updatedAt": "2026-10-10"
     },
     {
       "id": "SOE185",
@@ -219,15 +210,6 @@
       "updatedAt": "2026-09-30"
     },
     {
-      "id": "SOE182",
-      "title": "为有技能梦想的青年搭建成长成...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584706.html",
-      "status": "open",
-      "updatedAt": "2026-09-29"
-    },
-    {
       "id": "SOE186",
       "title": "以技能为翼 让梦想起飞",
       "tag": "招聘公告",
@@ -237,6 +219,15 @@
       "updatedAt": "2026-09-30"
     },
     {
+      "id": "SOE193",
+      "title": "促进新就业形态规范健康持续发...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261009_588005.html",
+      "status": "open",
+      "updatedAt": "2026-10-10"
+    },
+    {
       "id": "SOE187",
       "title": "我国就业创业发展现状研究",
       "tag": "招聘公告",
@@ -244,6 +235,15 @@
       "url": "http://www.job.mohrss.gov.cn:80/rdzx/172764.jhtml",
       "status": "open",
       "updatedAt": "2026-09-30"
+    },
+    {
+      "id": "SOE194",
+      "title": "新就业形态劳动者权益保障新规...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261009_587984.html",
+      "status": "open",
+      "updatedAt": "2026-10-10"
     },
     {
       "id": "SOE183",
@@ -262,6 +262,42 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261006_585097.html",
       "status": "open",
       "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "SOE195",
+      "title": "锻造高素质技能人才队伍",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261008_585259.html",
+      "status": "open",
+      "updatedAt": "2026-10-10"
+    },
+    {
+      "id": "SOE181",
+      "title": "一场富有新意、影响广泛的技能...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584705.html",
+      "status": "open",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "SOE178",
+      "title": "一技之长铸青春之光",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260927_584661.html",
+      "status": "open",
+      "updatedAt": "2026-09-28"
+    },
+    {
+      "id": "SOE182",
+      "title": "为有技能梦想的青年搭建成长成...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584706.html",
+      "status": "open",
+      "updatedAt": "2026-09-29"
     },
     {
       "id": "SOE184",
@@ -415,42 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584260.html",
       "status": "open",
       "updatedAt": "2026-09-21"
-    },
-    {
-      "id": "SOE162",
-      "title": "投资于人 共赢亚太——写在第...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260920_584251.html",
-      "status": "open",
-      "updatedAt": "2026-09-21"
-    },
-    {
-      "id": "SOE106",
-      "title": "中化数智2026社会招聘持续开放",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/t66D2qse6QWma4jcB2lTVA",
-      "status": "open",
-      "updatedAt": "2026-08-24"
-    },
-    {
-      "id": "SOE102",
-      "title": "中国国新资产管理有限公司相关岗位招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/y2r2rle1nfDk1jHb1OHn2A",
-      "status": "open",
-      "updatedAt": "2026-08-20"
-    },
-    {
-      "id": "SOE159",
-      "title": "科技—产业—技能—民生，四大...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/8mFaZMcuFsrTE_qJQ32rIA",
-      "status": "open",
-      "updatedAt": "2026-09-20"
     }
   ]
 }
