@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23 10:29",
+  "generatedAt": "2026-10-23 18:41",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -165,6 +165,15 @@
       "updatedAt": "2026-10-22"
     },
     {
+      "id": "SOE208",
+      "title": "指尖办、就近办！“五个化”打...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/mEYPrTT_9DIwuS43DxsQXQ",
+      "status": "open",
+      "updatedAt": "2026-10-23"
+    },
+    {
       "id": "SOE177",
       "title": "海南控股2027校园招聘全面启动",
       "tag": "招聘公告",
@@ -172,6 +181,15 @@
       "url": "https://mp.weixin.qq.com/s/UPSjtkD55vK78W8j4lX2SA",
       "status": "open",
       "updatedAt": "2026-09-28"
+    },
+    {
+      "id": "SOE209",
+      "title": "第48届世界技能大赛官方纪录片...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/xSYqJmHhkCOihWvuFQ7XAg",
+      "status": "open",
+      "updatedAt": "2026-10-23"
     },
     {
       "id": "SOE198",
@@ -433,24 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/g-03fwfiY6ujjk65wQ-GRA",
       "status": "open",
       "updatedAt": "2026-09-01"
-    },
-    {
-      "id": "SOE123",
-      "title": "招商局集团招收2026年度博士后",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/waZpjFHraSYpTawUNMRZlQ",
-      "status": "open",
-      "updatedAt": "2026-09-07"
-    },
-    {
-      "id": "SOE179",
-      "title": "技能点亮赛场 匠心托举未来（...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260927_584663.html",
-      "status": "open",
-      "updatedAt": "2026-09-28"
     }
   ]
 }
