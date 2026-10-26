@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26 10:14",
+  "generatedAt": "2026-10-26 19:50",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -147,6 +147,15 @@
       "updatedAt": "2026-09-24"
     },
     {
+      "id": "SOE210",
+      "title": "华润集团2027届校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/f8j44KAJuTkcQa93Q1yysQ",
+      "status": "open",
+      "updatedAt": "2026-10-26"
+    },
+    {
       "id": "SOE190",
       "title": "国家管网集团2027届校园招聘启动",
       "tag": "国企·央企",
@@ -201,15 +210,6 @@
       "updatedAt": "2026-10-14"
     },
     {
-      "id": "SOE146",
-      "title": "青岛国际投资有限公司社会招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/hFaL11FJSSCy7Mm7Q08cHQ",
-      "status": "open",
-      "updatedAt": "2026-09-16"
-    },
-    {
       "id": "SOE206",
       "title": "从“一技之长”到“一专多能”...",
       "tag": "招聘公告",
@@ -226,15 +226,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261013_592794.html",
       "status": "open",
       "updatedAt": "2026-10-14"
-    },
-    {
-      "id": "SOE193",
-      "title": "促进新就业形态规范健康持续发...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261009_588005.html",
-      "status": "open",
-      "updatedAt": "2026-10-10"
     },
     {
       "id": "SOE200",
@@ -255,6 +246,15 @@
       "updatedAt": "2026-10-14"
     },
     {
+      "id": "SOE211",
+      "title": "国务院办公厅印发《关于适应人...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261023_596043.html",
+      "status": "open",
+      "updatedAt": "2026-10-26"
+    },
+    {
       "id": "SOE207",
       "title": "夺冠前传——第48届世界技能大...",
       "tag": "招聘公告",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261012_592200.html",
       "status": "open",
       "updatedAt": "2026-10-14"
+    },
+    {
+      "id": "SOE146",
+      "title": "青岛国际投资有限公司社会招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/hFaL11FJSSCy7Mm7Q08cHQ",
+      "status": "open",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "SOE193",
+      "title": "促进新就业形态规范健康持续发...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261009_588005.html",
+      "status": "open",
+      "updatedAt": "2026-10-10"
     },
     {
       "id": "SOE194",
@@ -433,24 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584680.html",
       "status": "open",
       "updatedAt": "2026-09-29"
-    },
-    {
-      "id": "SOE122",
-      "title": "中国能建2027届全球校园招聘正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/DsFR2PzMvd0Xf7RLD4txZA",
-      "status": "open",
-      "updatedAt": "2026-09-03"
-    },
-    {
-      "id": "SOE117",
-      "title": "国家电投集团法务中心选聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/g-03fwfiY6ujjk65wQ-GRA",
-      "status": "open",
-      "updatedAt": "2026-09-01"
     }
   ]
 }
