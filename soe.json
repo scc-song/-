@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-10-27 10:51",
+  "generatedAt": "2026-10-27 19:14",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
+    {
+      "id": "SOE212",
+      "title": "1个目标、3个重点、2项保障！...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/bDy-YnxdAzxeZdq1SHWtBg",
+      "status": "open",
+      "updatedAt": "2026-10-27"
+    },
     {
       "id": "SOE158",
       "title": "东方电气集团2027届校园招聘正式启动！",
@@ -28,15 +37,6 @@
       "url": "https://mp.weixin.qq.com/s/djKxOoS3Mwc5NMQBC_j4zQ",
       "status": "open",
       "updatedAt": "2026-09-24"
-    },
-    {
-      "id": "SOE150",
-      "title": "中国华能集团有限公司2027年校园招聘正式启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/GHHtUMelWMYVWWjDmaLTjg",
-      "status": "open",
-      "updatedAt": "2026-09-17"
     },
     {
       "id": "SOE203",
@@ -118,6 +118,15 @@
       "url": "https://mp.weixin.qq.com/s/db7gxva9YHFzWcrEJFUumQ",
       "status": "open",
       "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "SOE213",
+      "title": "中航集团2027届校园招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/_OIWBvIAhEm4gbA4q9LzPA",
+      "status": "open",
+      "updatedAt": "2026-10-27"
     },
     {
       "id": "SOE188",
@@ -262,6 +271,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261021_595334.html",
       "status": "open",
       "updatedAt": "2026-10-22"
+    },
+    {
+      "id": "SOE150",
+      "title": "中国华能集团有限公司2027年校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/GHHtUMelWMYVWWjDmaLTjg",
+      "status": "open",
+      "updatedAt": "2026-09-17"
     },
     {
       "id": "SOE202",
@@ -433,24 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260927_584661.html",
       "status": "open",
       "updatedAt": "2026-09-28"
-    },
-    {
-      "id": "SOE182",
-      "title": "为有技能梦想的青年搭建成长成...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584706.html",
-      "status": "open",
-      "updatedAt": "2026-09-29"
-    },
-    {
-      "id": "SOE184",
-      "title": "第48届世界技能大赛在上海圆满...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260928_584680.html",
-      "status": "open",
-      "updatedAt": "2026-09-29"
     }
   ]
 }
