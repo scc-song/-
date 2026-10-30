@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30 11:27",
+  "generatedAt": "2026-10-30 19:50",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -174,6 +174,15 @@
       "updatedAt": "2026-10-08"
     },
     {
+      "id": "SOE218",
+      "title": "基层就业、科研助理……@高校...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/bDZ23Lr1-IU0gi4T17bCJg",
+      "status": "open",
+      "updatedAt": "2026-10-30"
+    },
+    {
       "id": "SOE205",
       "title": "好消息！就业服务更便捷可及，...",
       "tag": "招聘公告",
@@ -237,15 +246,6 @@
       "updatedAt": "2026-10-22"
     },
     {
-      "id": "SOE200",
-      "title": "加强政策服务高品质供给 推动...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261013_592826.html",
-      "status": "open",
-      "updatedAt": "2026-10-14"
-    },
-    {
       "id": "SOE211",
       "title": "国务院办公厅印发《关于适应人...",
       "tag": "招聘公告",
@@ -271,6 +271,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261027_596536.html",
       "status": "open",
       "updatedAt": "2026-10-28"
+    },
+    {
+      "id": "SOE200",
+      "title": "加强政策服务高品质供给 推动...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261013_592826.html",
+      "status": "open",
+      "updatedAt": "2026-10-14"
     },
     {
       "id": "SOE158",
@@ -442,15 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/30oqzMHSWfdYq7mRSwHIsw",
       "status": "open",
       "updatedAt": "2026-09-09"
-    },
-    {
-      "id": "SOE185",
-      "title": "世赛，让技能之光照亮强国之路",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202609/t20260929_584821.html",
-      "status": "open",
-      "updatedAt": "2026-09-30"
     }
   ]
 }
