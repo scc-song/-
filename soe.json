@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03 08:11",
+  "generatedAt": "2026-11-03 21:14",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -19,6 +19,15 @@
       "url": "https://mp.weixin.qq.com/s/wQRBjoHvuGl20sFG3uABiQ",
       "status": "open",
       "updatedAt": "2026-09-28"
+    },
+    {
+      "id": "SOE221",
+      "title": "中国农业发展集团有限公司2027届校园招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/rkcpZAt-AafGz6pX9NiflQ",
+      "status": "open",
+      "updatedAt": "2026-11-03"
     },
     {
       "id": "SOE171",
@@ -93,24 +102,6 @@
       "updatedAt": "2026-10-14"
     },
     {
-      "id": "SOE166",
-      "title": "中国远洋海运集团2027全球校园招聘开启！",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/edulga-oqAnyzXn8RGbn3w",
-      "status": "open",
-      "updatedAt": "2026-09-23"
-    },
-    {
-      "id": "SOE163",
-      "title": "中汽中心2027届校园招聘正式启动！",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/db7gxva9YHFzWcrEJFUumQ",
-      "status": "open",
-      "updatedAt": "2026-09-22"
-    },
-    {
       "id": "SOE213",
       "title": "中航集团2027届校园招聘",
       "tag": "国企·央企",
@@ -163,6 +154,15 @@
       "url": "https://mp.weixin.qq.com/s/f8j44KAJuTkcQa93Q1yysQ",
       "status": "open",
       "updatedAt": "2026-10-26"
+    },
+    {
+      "id": "SOE222",
+      "title": "国家数据集团2027届秋季校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/KJ-LBuAeWFTDt5QgIh_h4Q",
+      "status": "open",
+      "updatedAt": "2026-11-03"
     },
     {
       "id": "SOE190",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261027_596536.html",
       "status": "open",
       "updatedAt": "2026-10-28"
+    },
+    {
+      "id": "SOE166",
+      "title": "中国远洋海运集团2027全球校园招聘开启！",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/edulga-oqAnyzXn8RGbn3w",
+      "status": "open",
+      "updatedAt": "2026-09-23"
+    },
+    {
+      "id": "SOE163",
+      "title": "中汽中心2027届校园招聘正式启动！",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/db7gxva9YHFzWcrEJFUumQ",
+      "status": "open",
+      "updatedAt": "2026-09-22"
     },
     {
       "id": "SOE160",
@@ -433,24 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/5m7wuKuxrS-VO5L3Ttf1xA",
       "status": "open",
       "updatedAt": "2026-09-15"
-    },
-    {
-      "id": "SOE180",
-      "title": "一图读懂｜“两延续一优化” ...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/lI82KpvbZNdnBc4XcKUhCQ",
-      "status": "open",
-      "updatedAt": "2026-09-29"
-    },
-    {
-      "id": "SOE132",
-      "title": "中国国新2027届校园招聘正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/mnjTZc5qYiULBNuxE3lW1g",
-      "status": "open",
-      "updatedAt": "2026-09-10"
     }
   ]
 }
