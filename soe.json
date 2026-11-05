@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05 06:58",
+  "generatedAt": "2026-11-05 12:10",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -19,6 +19,15 @@
       "url": "https://mp.weixin.qq.com/s/wQRBjoHvuGl20sFG3uABiQ",
       "status": "open",
       "updatedAt": "2026-09-28"
+    },
+    {
+      "id": "SOE227",
+      "title": "中国储备粮管理集团有限公司2027年度校园招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/oJt-TI3D8EU-Yj8mZeWqKQ",
+      "status": "open",
+      "updatedAt": "2026-11-05"
     },
     {
       "id": "SOE221",
@@ -192,15 +201,6 @@
       "updatedAt": "2026-10-23"
     },
     {
-      "id": "SOE177",
-      "title": "海南控股2027校园招聘全面启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/UPSjtkD55vK78W8j4lX2SA",
-      "status": "open",
-      "updatedAt": "2026-09-28"
-    },
-    {
       "id": "SOE225",
       "title": "甘肃电投集团2027届秋季校园招聘",
       "tag": "国企·央企",
@@ -208,15 +208,6 @@
       "url": "https://mp.weixin.qq.com/s/Wj4MbUFr3THDlgyg4hd1Ww",
       "status": "open",
       "updatedAt": "2026-11-04"
-    },
-    {
-      "id": "SOE209",
-      "title": "第48届世界技能大赛官方纪录片...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/xSYqJmHhkCOihWvuFQ7XAg",
-      "status": "open",
-      "updatedAt": "2026-10-23"
     },
     {
       "id": "SOE198",
@@ -264,6 +255,15 @@
       "updatedAt": "2026-10-26"
     },
     {
+      "id": "SOE228",
+      "title": "我国将不断凝聚稳就业工作合力",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261104_597571.html",
+      "status": "open",
+      "updatedAt": "2026-11-05"
+    },
+    {
       "id": "SOE215",
       "title": "民生为大 更好满足人民群众对...",
       "tag": "招聘公告",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261027_596536.html",
       "status": "open",
       "updatedAt": "2026-10-28"
+    },
+    {
+      "id": "SOE177",
+      "title": "海南控股2027校园招聘全面启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/UPSjtkD55vK78W8j4lX2SA",
+      "status": "open",
+      "updatedAt": "2026-09-28"
+    },
+    {
+      "id": "SOE209",
+      "title": "第48届世界技能大赛官方纪录片...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/xSYqJmHhkCOihWvuFQ7XAg",
+      "status": "open",
+      "updatedAt": "2026-10-23"
     },
     {
       "id": "SOE171",
@@ -431,24 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261009_587984.html",
-      "status": "open",
-      "updatedAt": "2026-10-10"
-    },
-    {
-      "id": "SOE195",
-      "title": "锻造高素质技能人才队伍",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261008_585259.html",
-      "status": "open",
-      "updatedAt": "2026-10-10"
-    },
-    {
-      "id": "SOE192",
-      "title": "《新就业形态劳动者权益保障办...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261008_585194.html",
       "status": "open",
       "updatedAt": "2026-10-10"
     }
