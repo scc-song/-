@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06 07:00",
+  "generatedAt": "2026-11-06 12:07",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -55,15 +55,6 @@
       "url": "https://mp.weixin.qq.com/s/ucHB5HLeHJRqgWcyQ5MvCg",
       "status": "open",
       "updatedAt": "2026-10-22"
-    },
-    {
-      "id": "SOE176",
-      "title": "中国石化2027年度毕业生招聘启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/gSdHHqL97WviGxDshwecSw",
-      "status": "open",
-      "updatedAt": "2026-09-28"
     },
     {
       "id": "SOE217",
@@ -192,15 +183,6 @@
       "updatedAt": "2026-10-30"
     },
     {
-      "id": "SOE208",
-      "title": "指尖办、就近办！“五个化”打...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/mEYPrTT_9DIwuS43DxsQXQ",
-      "status": "open",
-      "updatedAt": "2026-10-23"
-    },
-    {
       "id": "SOE225",
       "title": "甘肃电投集团2027届秋季校园招聘",
       "tag": "国企·央企",
@@ -217,6 +199,15 @@
       "url": "https://mp.weixin.qq.com/s/dLRcfHNin7feqe0_34XeEQ",
       "status": "open",
       "updatedAt": "2026-10-14"
+    },
+    {
+      "id": "SOE229",
+      "title": "青岛国信集团2027届校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/1QAIccDy4hFlW0wnGWGgfw",
+      "status": "open",
+      "updatedAt": "2026-11-06"
     },
     {
       "id": "SOE226",
@@ -271,6 +262,33 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261027_596536.html",
       "status": "open",
       "updatedAt": "2026-10-28"
+    },
+    {
+      "id": "SOE230",
+      "title": "驰而不息砺作风 矢志笃行践初...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261105_597909.html",
+      "status": "open",
+      "updatedAt": "2026-11-06"
+    },
+    {
+      "id": "SOE176",
+      "title": "中国石化2027年度毕业生招聘启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/gSdHHqL97WviGxDshwecSw",
+      "status": "open",
+      "updatedAt": "2026-09-28"
+    },
+    {
+      "id": "SOE208",
+      "title": "指尖办、就近办！“五个化”打...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/mEYPrTT_9DIwuS43DxsQXQ",
+      "status": "open",
+      "updatedAt": "2026-10-23"
     },
     {
       "id": "SOE177",
@@ -433,24 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/hFaL11FJSSCy7Mm7Q08cHQ",
       "status": "open",
       "updatedAt": "2026-09-16"
-    },
-    {
-      "id": "SOE193",
-      "title": "促进新就业形态规范健康持续发...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261009_588005.html",
-      "status": "open",
-      "updatedAt": "2026-10-10"
-    },
-    {
-      "id": "SOE194",
-      "title": "新就业形态劳动者权益保障新规...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261009_587984.html",
-      "status": "open",
-      "updatedAt": "2026-10-10"
     }
   ]
 }
