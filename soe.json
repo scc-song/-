@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10 08:57",
+  "generatedAt": "2026-11-10 21:56",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -37,6 +37,15 @@
       "url": "https://mp.weixin.qq.com/s/ucHB5HLeHJRqgWcyQ5MvCg",
       "status": "open",
       "updatedAt": "2026-10-22"
+    },
+    {
+      "id": "SOE234",
+      "title": "中国物流所属华贸物流总会计师公开招聘",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/t3PHu-QplNsL9FdhOY3upw",
+      "status": "open",
+      "updatedAt": "2026-11-10"
     },
     {
       "id": "SOE217",
@@ -145,15 +154,6 @@
       "url": "https://mp.weixin.qq.com/s/KJ-LBuAeWFTDt5QgIh_h4Q",
       "status": "open",
       "updatedAt": "2026-11-03"
-    },
-    {
-      "id": "SOE190",
-      "title": "国家管网集团2027届校园招聘启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/-b94umWY3mcPr1w1KxVZ_Q",
-      "status": "open",
-      "updatedAt": "2026-10-08"
     },
     {
       "id": "SOE218",
@@ -271,6 +271,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261105_597909.html",
       "status": "open",
       "updatedAt": "2026-11-06"
+    },
+    {
+      "id": "SOE190",
+      "title": "国家管网集团2027届校园招聘启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/-b94umWY3mcPr1w1KxVZ_Q",
+      "status": "open",
+      "updatedAt": "2026-10-08"
     },
     {
       "id": "SOE212",
@@ -440,15 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261013_592794.html",
-      "status": "open",
-      "updatedAt": "2026-10-14"
-    },
-    {
-      "id": "SOE201",
-      "title": "加快建设知识型、技能型、创新...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261012_592204.html",
       "status": "open",
       "updatedAt": "2026-10-14"
     }
