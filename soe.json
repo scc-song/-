@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11 11:42",
+  "generatedAt": "2026-11-11 21:10",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -84,6 +84,15 @@
       "updatedAt": "2026-10-14"
     },
     {
+      "id": "SOE235",
+      "title": "中建安装2027届校园招聘正式启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/tnNCmGAQKhtVJ0gL6NVJGQ",
+      "status": "open",
+      "updatedAt": "2026-11-11"
+    },
+    {
       "id": "SOE213",
       "title": "中航集团2027届校园招聘",
       "tag": "国企·央企",
@@ -109,15 +118,6 @@
       "url": "https://mp.weixin.qq.com/s/BjU4tzY7M38ipKhibZDyHw",
       "status": "open",
       "updatedAt": "2026-11-04"
-    },
-    {
-      "id": "SOE189",
-      "title": "保利集团2027届校园招聘暨管培生项目正式启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/t6iD1VN7z3UGV35bp-BZVw",
-      "status": "open",
-      "updatedAt": "2026-10-08"
     },
     {
       "id": "SOE219",
@@ -271,6 +271,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261105_597909.html",
       "status": "open",
       "updatedAt": "2026-11-06"
+    },
+    {
+      "id": "SOE189",
+      "title": "保利集团2027届校园招聘暨管培生项目正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/t6iD1VN7z3UGV35bp-BZVw",
+      "status": "open",
+      "updatedAt": "2026-10-08"
     },
     {
       "id": "SOE190",
@@ -442,15 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/WmoZ6rocA2p6FZ8lHhn9nw",
       "status": "open",
       "updatedAt": "2026-09-17"
-    },
-    {
-      "id": "SOE199",
-      "title": "以高品质供给促进就业社保高质...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261013_592794.html",
-      "status": "open",
-      "updatedAt": "2026-10-14"
     }
   ]
 }
