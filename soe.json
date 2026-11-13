@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13 06:57",
+  "generatedAt": "2026-11-13 12:01",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -111,13 +111,31 @@
       "updatedAt": "2026-10-08"
     },
     {
-      "id": "SOE223",
-      "title": "人力资源社会保障部召开深入实...",
+      "id": "SOE240",
+      "title": "以职业标准体系统领技能人才评...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/BjU4tzY7M38ipKhibZDyHw",
+      "url": "https://mp.weixin.qq.com/s/IJhGYZrPBgUFAyvKUFdooA",
       "status": "open",
-      "updatedAt": "2026-11-04"
+      "updatedAt": "2026-11-13"
+    },
+    {
+      "id": "SOE241",
+      "title": "健全法规制度体系 维护技能人...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/u9N7iXlk5cOnhIvEE4WRzA",
+      "status": "open",
+      "updatedAt": "2026-11-13"
+    },
+    {
+      "id": "SOE242",
+      "title": "加强技能人才评价立法 夯实人...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/C7bC9wLCuKc0YGZ5AOP24g",
+      "status": "open",
+      "updatedAt": "2026-11-13"
     },
     {
       "id": "SOE210",
@@ -165,6 +183,15 @@
       "updatedAt": "2026-11-04"
     },
     {
+      "id": "SOE243",
+      "title": "范评价机构管理 筑牢技能评价...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/prHNPJops2iju2RzyntE1A",
+      "status": "open",
+      "updatedAt": "2026-11-13"
+    },
+    {
       "id": "SOE198",
       "title": "通用技术集团2027届校园招聘正式启动",
       "tag": "国企·央企",
@@ -181,15 +208,6 @@
       "url": "https://mp.weixin.qq.com/s/1QAIccDy4hFlW0wnGWGgfw",
       "status": "open",
       "updatedAt": "2026-11-06"
-    },
-    {
-      "id": "SOE226",
-      "title": "1至9月全国城镇新增就业1052万人",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "http://www.job.mohrss.gov.cn:80/rdzx/173161.jhtml",
-      "status": "open",
-      "updatedAt": "2026-11-04"
     },
     {
       "id": "SOE236",
@@ -237,13 +255,13 @@
       "updatedAt": "2026-11-09"
     },
     {
-      "id": "SOE228",
-      "title": "我国将不断凝聚稳就业工作合力",
+      "id": "SOE244",
+      "title": "第24届中国国际人才交流大会在...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261104_597571.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261112_599103.html",
       "status": "open",
-      "updatedAt": "2026-11-05"
+      "updatedAt": "2026-11-13"
     },
     {
       "id": "SOE239",
@@ -253,6 +271,33 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_599073.html",
       "status": "open",
       "updatedAt": "2026-11-12"
+    },
+    {
+      "id": "SOE223",
+      "title": "人力资源社会保障部召开深入实...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/BjU4tzY7M38ipKhibZDyHw",
+      "status": "open",
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "SOE226",
+      "title": "1至9月全国城镇新增就业1052万人",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "http://www.job.mohrss.gov.cn:80/rdzx/173161.jhtml",
+      "status": "open",
+      "updatedAt": "2026-11-04"
+    },
+    {
+      "id": "SOE228",
+      "title": "我国将不断凝聚稳就业工作合力",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261104_597571.html",
+      "status": "open",
+      "updatedAt": "2026-11-05"
     },
     {
       "id": "SOE233",
@@ -406,51 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/zue6f3lQKIYCFEfolaehHA",
       "status": "open",
       "updatedAt": "2026-09-24"
-    },
-    {
-      "id": "SOE206",
-      "title": "从“一技之长”到“一专多能”...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261021_595347.html",
-      "status": "open",
-      "updatedAt": "2026-10-22"
-    },
-    {
-      "id": "SOE207",
-      "title": "夺冠前传——第48届世界技能大...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261021_595334.html",
-      "status": "open",
-      "updatedAt": "2026-10-22"
-    },
-    {
-      "id": "SOE166",
-      "title": "中国远洋海运集团2027全球校园招聘开启！",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/edulga-oqAnyzXn8RGbn3w",
-      "status": "open",
-      "updatedAt": "2026-09-23"
-    },
-    {
-      "id": "SOE163",
-      "title": "中汽中心2027届校园招聘正式启动！",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/db7gxva9YHFzWcrEJFUumQ",
-      "status": "open",
-      "updatedAt": "2026-09-22"
-    },
-    {
-      "id": "SOE160",
-      "title": "中国石油启动2026年秋季高校毕业生招聘",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/R8PfTNLpKzHqYIGRloo48A",
-      "status": "open",
-      "updatedAt": "2026-09-21"
     }
   ]
 }
