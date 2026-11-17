@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17 09:15",
+  "generatedAt": "2026-11-17 23:08",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -210,15 +210,6 @@
       "updatedAt": "2026-11-06"
     },
     {
-      "id": "SOE236",
-      "title": "严字当头强作风 实干为民促发...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_598975.html",
-      "status": "open",
-      "updatedAt": "2026-11-12"
-    },
-    {
       "id": "SOE220",
       "title": "中国稀土集团2027届秋季校园招聘",
       "tag": "国企·央企",
@@ -226,6 +217,15 @@
       "url": "http://www.job.mohrss.gov.cn:80/zdqyzpxx/173121.jhtml",
       "status": "open",
       "updatedAt": "2026-11-02"
+    },
+    {
+      "id": "SOE245",
+      "title": "为中奥友好战略伙伴关系注入民...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261116_599494.html",
+      "status": "open",
+      "updatedAt": "2026-11-17"
     },
     {
       "id": "SOE237",
@@ -246,13 +246,13 @@
       "updatedAt": "2026-11-12"
     },
     {
-      "id": "SOE232",
-      "title": "以全面从严治党引领人社事业高...",
+      "id": "SOE246",
+      "title": "新赛道催生新岗位，就业潜力加...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261106_598131.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261116_599525.html",
       "status": "open",
-      "updatedAt": "2026-11-09"
+      "updatedAt": "2026-11-17"
     },
     {
       "id": "SOE244",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_599073.html",
       "status": "open",
       "updatedAt": "2026-11-12"
+    },
+    {
+      "id": "SOE236",
+      "title": "严字当头强作风 实干为民促发...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_598975.html",
+      "status": "open",
+      "updatedAt": "2026-11-12"
+    },
+    {
+      "id": "SOE232",
+      "title": "以全面从严治党引领人社事业高...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261106_598131.html",
+      "status": "open",
+      "updatedAt": "2026-11-09"
     },
     {
       "id": "SOE223",
@@ -433,24 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/xSYqJmHhkCOihWvuFQ7XAg",
       "status": "open",
       "updatedAt": "2026-10-23"
-    },
-    {
-      "id": "SOE171",
-      "title": "中国化学工程2027届全球校园招聘正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/djKxOoS3Mwc5NMQBC_j4zQ",
-      "status": "open",
-      "updatedAt": "2026-09-24"
-    },
-    {
-      "id": "SOE172",
-      "title": "先正达集团中国2027校园招聘正式启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/zue6f3lQKIYCFEfolaehHA",
-      "status": "open",
-      "updatedAt": "2026-09-24"
     }
   ]
 }
