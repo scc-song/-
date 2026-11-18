@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18 08:10",
+  "generatedAt": "2026-11-18 22:46",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -192,6 +192,15 @@
       "updatedAt": "2026-11-13"
     },
     {
+      "id": "SOE247",
+      "title": "谌贻琴在陕西调研",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/WCW-2jzW6FqQJSQJUOk2LA",
+      "status": "open",
+      "updatedAt": "2026-11-18"
+    },
+    {
       "id": "SOE198",
       "title": "通用技术集团2027届校园招聘正式启动",
       "tag": "国企·央企",
@@ -228,22 +237,13 @@
       "updatedAt": "2026-11-17"
     },
     {
-      "id": "SOE237",
-      "title": "人力资源社会保障部有关司局负...",
+      "id": "SOE248",
+      "title": "技能人才评价先把规矩立起来",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_599063.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261117_599631.html",
       "status": "open",
-      "updatedAt": "2026-11-12"
-    },
-    {
-      "id": "SOE238",
-      "title": "人力资源社会保障部等7部门印...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_599065.html",
-      "status": "open",
-      "updatedAt": "2026-11-12"
+      "updatedAt": "2026-11-18"
     },
     {
       "id": "SOE246",
@@ -269,6 +269,24 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_599073.html",
+      "status": "open",
+      "updatedAt": "2026-11-12"
+    },
+    {
+      "id": "SOE237",
+      "title": "人力资源社会保障部有关司局负...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_599063.html",
+      "status": "open",
+      "updatedAt": "2026-11-12"
+    },
+    {
+      "id": "SOE238",
+      "title": "人力资源社会保障部等7部门印...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261111_599065.html",
       "status": "open",
       "updatedAt": "2026-11-12"
     },
@@ -431,24 +449,6 @@
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/mEYPrTT_9DIwuS43DxsQXQ",
-      "status": "open",
-      "updatedAt": "2026-10-23"
-    },
-    {
-      "id": "SOE177",
-      "title": "海南控股2027校园招聘全面启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/UPSjtkD55vK78W8j4lX2SA",
-      "status": "open",
-      "updatedAt": "2026-09-28"
-    },
-    {
-      "id": "SOE209",
-      "title": "第48届世界技能大赛官方纪录片...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/xSYqJmHhkCOihWvuFQ7XAg",
       "status": "open",
       "updatedAt": "2026-10-23"
     }
