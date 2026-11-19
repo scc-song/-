@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19 07:41",
+  "generatedAt": "2026-11-19 12:58",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -129,6 +129,15 @@
       "updatedAt": "2026-11-13"
     },
     {
+      "id": "SOE249",
+      "title": "全力稳定重点行业用工！多渠道...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/DA5R4VOf5Avzgjx-ojPIsQ",
+      "status": "open",
+      "updatedAt": "2026-11-19"
+    },
+    {
       "id": "SOE242",
       "title": "加强技能人才评价立法 夯实人...",
       "tag": "招聘公告",
@@ -253,6 +262,15 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261116_599525.html",
       "status": "open",
       "updatedAt": "2026-11-17"
+    },
+    {
+      "id": "SOE250",
+      "title": "稳岗返还、扩岗补助怎么便捷办...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261118_599778.html",
+      "status": "open",
+      "updatedAt": "2026-11-19"
     },
     {
       "id": "SOE244",
@@ -433,24 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261023_596043.html",
       "status": "open",
       "updatedAt": "2026-10-26"
-    },
-    {
-      "id": "SOE176",
-      "title": "中国石化2027年度毕业生招聘启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/gSdHHqL97WviGxDshwecSw",
-      "status": "open",
-      "updatedAt": "2026-09-28"
-    },
-    {
-      "id": "SOE208",
-      "title": "指尖办、就近办！“五个化”打...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/mEYPrTT_9DIwuS43DxsQXQ",
-      "status": "open",
-      "updatedAt": "2026-10-23"
     }
   ]
 }
