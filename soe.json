@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20 07:59",
+  "generatedAt": "2026-11-20 14:16",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -21,6 +21,15 @@
       "updatedAt": "2026-11-03"
     },
     {
+      "id": "SOE251",
+      "title": "中国南方航空2027届“明珠优才管培生计划”招聘",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/uMtpfG5HpPjzQKjyzAjm-A",
+      "status": "open",
+      "updatedAt": "2026-11-20"
+    },
+    {
       "id": "SOE203",
       "title": "中国建研院2027校园招聘启动",
       "tag": "招聘公告",
@@ -28,6 +37,15 @@
       "url": "https://mp.weixin.qq.com/s/D6vtx0ehlfKcgmqtiToK8Q",
       "status": "open",
       "updatedAt": "2026-10-22"
+    },
+    {
+      "id": "SOE252",
+      "title": "中国建研院总部社会招聘公告",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/H3Ayy4YfMOU-tMvatCjVBw",
+      "status": "open",
+      "updatedAt": "2026-11-20"
     },
     {
       "id": "SOE204",
@@ -57,15 +75,6 @@
       "updatedAt": "2026-10-30"
     },
     {
-      "id": "SOE196",
-      "title": "中国绿发2027年校园招聘火热启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/G8yyZiw9Qbgyg4JxRMKNyg",
-      "status": "open",
-      "updatedAt": "2026-10-14"
-    },
-    {
       "id": "SOE216",
       "title": "中国航空工业集团审计派出机构2026年社招、校招正式启动",
       "tag": "国企·央企",
@@ -73,15 +82,6 @@
       "url": "https://mp.weixin.qq.com/s/EMKGbem3gYUWO3M5yrCy_Q",
       "status": "open",
       "updatedAt": "2026-10-29"
-    },
-    {
-      "id": "SOE197",
-      "title": "中国航空工业集团法务中心招聘公告",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/CA4yM-j4BCGc4YZ8N64eEA",
-      "status": "open",
-      "updatedAt": "2026-10-14"
     },
     {
       "id": "SOE235",
@@ -100,15 +100,6 @@
       "url": "https://mp.weixin.qq.com/s/_OIWBvIAhEm4gbA4q9LzPA",
       "status": "open",
       "updatedAt": "2026-10-27"
-    },
-    {
-      "id": "SOE188",
-      "title": "中车制动系统有限公司2027届校园招聘",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/QtyDHgNN4I21i00-87qo_Q",
-      "status": "open",
-      "updatedAt": "2026-10-08"
     },
     {
       "id": "SOE240",
@@ -210,6 +201,15 @@
       "updatedAt": "2026-11-18"
     },
     {
+      "id": "SOE253",
+      "title": "通用技术资产公司纪检审计风控部公开招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/SPsKOxZQ_xw2cu71qoML8g",
+      "status": "open",
+      "updatedAt": "2026-11-20"
+    },
+    {
       "id": "SOE198",
       "title": "通用技术集团2027届校园招聘正式启动",
       "tag": "国企·央企",
@@ -271,6 +271,33 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261118_599778.html",
       "status": "open",
       "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "SOE196",
+      "title": "中国绿发2027年校园招聘火热启动",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/G8yyZiw9Qbgyg4JxRMKNyg",
+      "status": "open",
+      "updatedAt": "2026-10-14"
+    },
+    {
+      "id": "SOE197",
+      "title": "中国航空工业集团法务中心招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/CA4yM-j4BCGc4YZ8N64eEA",
+      "status": "open",
+      "updatedAt": "2026-10-14"
+    },
+    {
+      "id": "SOE188",
+      "title": "中车制动系统有限公司2027届校园招聘",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/QtyDHgNN4I21i00-87qo_Q",
+      "status": "open",
+      "updatedAt": "2026-10-08"
     },
     {
       "id": "SOE244",
@@ -424,33 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/-b94umWY3mcPr1w1KxVZ_Q",
       "status": "open",
       "updatedAt": "2026-10-08"
-    },
-    {
-      "id": "SOE212",
-      "title": "1个目标、3个重点、2项保障！...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/bDy-YnxdAzxeZdq1SHWtBg",
-      "status": "open",
-      "updatedAt": "2026-10-27"
-    },
-    {
-      "id": "SOE175",
-      "title": "中化资本2027年校园招聘正式启动",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/wQRBjoHvuGl20sFG3uABiQ",
-      "status": "open",
-      "updatedAt": "2026-09-28"
-    },
-    {
-      "id": "SOE211",
-      "title": "国务院办公厅印发《关于适应人...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261023_596043.html",
-      "status": "open",
-      "updatedAt": "2026-10-26"
     }
   ]
 }
