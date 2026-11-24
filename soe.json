@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24 00:48",
+  "generatedAt": "2026-11-24 11:35",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -102,20 +102,20 @@
       "updatedAt": "2026-10-27"
     },
     {
+      "id": "SOE254",
+      "title": "从消费、项目到新质生产力，全...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/3Av5NLibG-rhGQr-xyN8fg",
+      "status": "open",
+      "updatedAt": "2026-11-24"
+    },
+    {
       "id": "SOE240",
       "title": "以职业标准体系统领技能人才评...",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
       "url": "https://mp.weixin.qq.com/s/IJhGYZrPBgUFAyvKUFdooA",
-      "status": "open",
-      "updatedAt": "2026-11-13"
-    },
-    {
-      "id": "SOE241",
-      "title": "健全法规制度体系 维护技能人...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/u9N7iXlk5cOnhIvEE4WRzA",
       "status": "open",
       "updatedAt": "2026-11-13"
     },
@@ -127,15 +127,6 @@
       "url": "https://mp.weixin.qq.com/s/DA5R4VOf5Avzgjx-ojPIsQ",
       "status": "open",
       "updatedAt": "2026-11-19"
-    },
-    {
-      "id": "SOE242",
-      "title": "加强技能人才评价立法 夯实人...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/C7bC9wLCuKc0YGZ5AOP24g",
-      "status": "open",
-      "updatedAt": "2026-11-13"
     },
     {
       "id": "SOE210",
@@ -271,6 +262,33 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261118_599778.html",
       "status": "open",
       "updatedAt": "2026-11-19"
+    },
+    {
+      "id": "SOE255",
+      "title": "管理服务跟上 新就业群体安心...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261123_600203.html",
+      "status": "open",
+      "updatedAt": "2026-11-24"
+    },
+    {
+      "id": "SOE241",
+      "title": "健全法规制度体系 维护技能人...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/u9N7iXlk5cOnhIvEE4WRzA",
+      "status": "open",
+      "updatedAt": "2026-11-13"
+    },
+    {
+      "id": "SOE242",
+      "title": "加强技能人才评价立法 夯实人...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/C7bC9wLCuKc0YGZ5AOP24g",
+      "status": "open",
+      "updatedAt": "2026-11-13"
     },
     {
       "id": "SOE196",
@@ -433,24 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261027_596536.html",
       "status": "open",
       "updatedAt": "2026-10-28"
-    },
-    {
-      "id": "SOE189",
-      "title": "保利集团2027届校园招聘暨管培生项目正式启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/t6iD1VN7z3UGV35bp-BZVw",
-      "status": "open",
-      "updatedAt": "2026-10-08"
-    },
-    {
-      "id": "SOE190",
-      "title": "国家管网集团2027届校园招聘启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/-b94umWY3mcPr1w1KxVZ_Q",
-      "status": "open",
-      "updatedAt": "2026-10-08"
     }
   ]
 }
