@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25 09:43",
+  "generatedAt": "2026-11-26 00:25",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -28,6 +28,15 @@
       "url": "https://mp.weixin.qq.com/s/uMtpfG5HpPjzQKjyzAjm-A",
       "status": "open",
       "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "SOE256",
+      "title": "中国安能集团总部审计部审计岗位公开招聘公告",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/Uy0p7JCJDkqWIeB43yIlpg",
+      "status": "open",
+      "updatedAt": "2026-11-26"
     },
     {
       "id": "SOE203",
@@ -111,15 +120,6 @@
       "updatedAt": "2026-11-24"
     },
     {
-      "id": "SOE240",
-      "title": "以职业标准体系统领技能人才评...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/IJhGYZrPBgUFAyvKUFdooA",
-      "status": "open",
-      "updatedAt": "2026-11-13"
-    },
-    {
       "id": "SOE249",
       "title": "全力稳定重点行业用工！多渠道...",
       "tag": "招聘公告",
@@ -174,15 +174,6 @@
       "updatedAt": "2026-11-04"
     },
     {
-      "id": "SOE243",
-      "title": "范评价机构管理 筑牢技能评价...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/prHNPJops2iju2RzyntE1A",
-      "status": "open",
-      "updatedAt": "2026-11-13"
-    },
-    {
       "id": "SOE247",
       "title": "谌贻琴在陕西调研",
       "tag": "招聘公告",
@@ -201,15 +192,6 @@
       "updatedAt": "2026-11-20"
     },
     {
-      "id": "SOE198",
-      "title": "通用技术集团2027届校园招聘正式启动",
-      "tag": "国企·央企",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/dLRcfHNin7feqe0_34XeEQ",
-      "status": "open",
-      "updatedAt": "2026-10-14"
-    },
-    {
       "id": "SOE229",
       "title": "青岛国信集团2027届校园招聘正式启动",
       "tag": "国企·央企",
@@ -219,6 +201,15 @@
       "updatedAt": "2026-11-06"
     },
     {
+      "id": "SOE257",
+      "title": "“培养更多高技能人才和大国工...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261124_600678.html",
+      "status": "open",
+      "updatedAt": "2026-11-26"
+    },
+    {
       "id": "SOE220",
       "title": "中国稀土集团2027届秋季校园招聘",
       "tag": "国企·央企",
@@ -226,15 +217,6 @@
       "url": "http://www.job.mohrss.gov.cn:80/zdqyzpxx/173121.jhtml",
       "status": "open",
       "updatedAt": "2026-11-02"
-    },
-    {
-      "id": "SOE245",
-      "title": "为中奥友好战略伙伴关系注入民...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261116_599494.html",
-      "status": "open",
-      "updatedAt": "2026-11-17"
     },
     {
       "id": "SOE248",
@@ -255,6 +237,15 @@
       "updatedAt": "2026-11-17"
     },
     {
+      "id": "SOE258",
+      "title": "社保基金监督将形成完整链条—...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261124_600674.html",
+      "status": "open",
+      "updatedAt": "2026-11-26"
+    },
+    {
       "id": "SOE250",
       "title": "稳岗返还、扩岗补助怎么便捷办...",
       "tag": "招聘公告",
@@ -264,6 +255,15 @@
       "updatedAt": "2026-11-19"
     },
     {
+      "id": "SOE259",
+      "title": "立足四个聚焦 奋力推进高质量...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "http://www.job.mohrss.gov.cn:80/rdzx/173483.jhtml",
+      "status": "open",
+      "updatedAt": "2026-11-26"
+    },
+    {
       "id": "SOE255",
       "title": "管理服务跟上 新就业群体安心...",
       "tag": "招聘公告",
@@ -271,6 +271,42 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261123_600203.html",
       "status": "open",
       "updatedAt": "2026-11-24"
+    },
+    {
+      "id": "SOE240",
+      "title": "以职业标准体系统领技能人才评...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/IJhGYZrPBgUFAyvKUFdooA",
+      "status": "open",
+      "updatedAt": "2026-11-13"
+    },
+    {
+      "id": "SOE243",
+      "title": "范评价机构管理 筑牢技能评价...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/prHNPJops2iju2RzyntE1A",
+      "status": "open",
+      "updatedAt": "2026-11-13"
+    },
+    {
+      "id": "SOE198",
+      "title": "通用技术集团2027届校园招聘正式启动",
+      "tag": "国企·央企",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/dLRcfHNin7feqe0_34XeEQ",
+      "status": "open",
+      "updatedAt": "2026-10-14"
+    },
+    {
+      "id": "SOE245",
+      "title": "为中奥友好战略伙伴关系注入民...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261116_599494.html",
+      "status": "open",
+      "updatedAt": "2026-11-17"
     },
     {
       "id": "SOE241",
@@ -415,42 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261105_597909.html",
       "status": "open",
       "updatedAt": "2026-11-06"
-    },
-    {
-      "id": "SOE219",
-      "title": "全国城市联合招聘｜专场招聘、...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/0n7JGRBnUV92B-TQj14epw",
-      "status": "open",
-      "updatedAt": "2026-11-02"
-    },
-    {
-      "id": "SOE218",
-      "title": "基层就业、科研助理……@高校...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/bDZ23Lr1-IU0gi4T17bCJg",
-      "status": "open",
-      "updatedAt": "2026-10-30"
-    },
-    {
-      "id": "SOE214",
-      "title": "为更多新就业形态人员提供保障...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261027_596534.html",
-      "status": "open",
-      "updatedAt": "2026-10-28"
-    },
-    {
-      "id": "SOE215",
-      "title": "民生为大 更好满足人民群众对...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202610/t20261027_596536.html",
-      "status": "open",
-      "updatedAt": "2026-10-28"
     }
   ]
 }
