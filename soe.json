@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26 09:18",
+  "generatedAt": "2026-11-26 23:59",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -210,6 +210,15 @@
       "updatedAt": "2026-11-26"
     },
     {
+      "id": "SOE260",
+      "title": "【新思想引领新征程】为劳动者...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261125_600913.html",
+      "status": "open",
+      "updatedAt": "2026-11-26"
+    },
+    {
       "id": "SOE220",
       "title": "中国稀土集团2027届秋季校园招聘",
       "tag": "国企·央企",
@@ -219,22 +228,13 @@
       "updatedAt": "2026-11-02"
     },
     {
-      "id": "SOE248",
-      "title": "技能人才评价先把规矩立起来",
+      "id": "SOE261",
+      "title": "在形势变化中增强大就业观",
       "tag": "招聘公告",
       "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261117_599631.html",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261125_600912.html",
       "status": "open",
-      "updatedAt": "2026-11-18"
-    },
-    {
-      "id": "SOE246",
-      "title": "新赛道催生新岗位，就业潜力加...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261116_599525.html",
-      "status": "open",
-      "updatedAt": "2026-11-17"
+      "updatedAt": "2026-11-26"
     },
     {
       "id": "SOE258",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261123_600203.html",
       "status": "open",
       "updatedAt": "2026-11-24"
+    },
+    {
+      "id": "SOE248",
+      "title": "技能人才评价先把规矩立起来",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261117_599631.html",
+      "status": "open",
+      "updatedAt": "2026-11-18"
+    },
+    {
+      "id": "SOE246",
+      "title": "新赛道催生新岗位，就业潜力加...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261116_599525.html",
+      "status": "open",
+      "updatedAt": "2026-11-17"
     },
     {
       "id": "SOE240",
@@ -433,24 +451,6 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261104_597571.html",
       "status": "open",
       "updatedAt": "2026-11-05"
-    },
-    {
-      "id": "SOE233",
-      "title": "谌贻琴在甘肃调研时强调 扎实...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261106_598133.html",
-      "status": "open",
-      "updatedAt": "2026-11-09"
-    },
-    {
-      "id": "SOE230",
-      "title": "驰而不息砺作风 矢志笃行践初...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261105_597909.html",
-      "status": "open",
-      "updatedAt": "2026-11-06"
     }
   ]
 }
