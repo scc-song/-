@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27 09:15",
+  "generatedAt": "2026-11-27 23:48",
   "note": "自动抓取自中国公共招聘网·重点行业等官方渠道；url 均为官方公告页直达链接（点击无中间跳转）。status 默认 open（可投递），updatedAt 为抓取日期。后台定时任务每 6 小时重新抓取并更新本文件，访客 30 秒内自动看到最新公告。",
   "announcements": [
     {
@@ -174,15 +174,6 @@
       "updatedAt": "2026-11-04"
     },
     {
-      "id": "SOE247",
-      "title": "谌贻琴在陕西调研",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://mp.weixin.qq.com/s/WCW-2jzW6FqQJSQJUOk2LA",
-      "status": "open",
-      "updatedAt": "2026-11-18"
-    },
-    {
       "id": "SOE253",
       "title": "通用技术资产公司纪检审计风控部公开招聘",
       "tag": "国企·央企",
@@ -228,6 +219,24 @@
       "updatedAt": "2026-11-02"
     },
     {
+      "id": "SOE262",
+      "title": "人力资源社会保障部等5部门联...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261126_601260.html",
+      "status": "open",
+      "updatedAt": "2026-11-27"
+    },
+    {
+      "id": "SOE263",
+      "title": "人力资源社会保障部职业能力司...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261126_601255.html",
+      "status": "open",
+      "updatedAt": "2026-11-27"
+    },
+    {
       "id": "SOE261",
       "title": "在形势变化中增强大就业观",
       "tag": "招聘公告",
@@ -246,15 +255,6 @@
       "updatedAt": "2026-11-26"
     },
     {
-      "id": "SOE250",
-      "title": "稳岗返还、扩岗补助怎么便捷办...",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261118_599778.html",
-      "status": "open",
-      "updatedAt": "2026-11-19"
-    },
-    {
       "id": "SOE259",
       "title": "立足四个聚焦 奋力推进高质量...",
       "tag": "招聘公告",
@@ -271,6 +271,24 @@
       "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261123_600203.html",
       "status": "open",
       "updatedAt": "2026-11-24"
+    },
+    {
+      "id": "SOE247",
+      "title": "谌贻琴在陕西调研",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://mp.weixin.qq.com/s/WCW-2jzW6FqQJSQJUOk2LA",
+      "status": "open",
+      "updatedAt": "2026-11-18"
+    },
+    {
+      "id": "SOE250",
+      "title": "稳岗返还、扩岗补助怎么便捷办...",
+      "tag": "招聘公告",
+      "source": "中国公共招聘网·重点行业",
+      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261118_599778.html",
+      "status": "open",
+      "updatedAt": "2026-11-19"
     },
     {
       "id": "SOE248",
@@ -433,24 +451,6 @@
       "url": "https://mp.weixin.qq.com/s/BjU4tzY7M38ipKhibZDyHw",
       "status": "open",
       "updatedAt": "2026-11-04"
-    },
-    {
-      "id": "SOE226",
-      "title": "1至9月全国城镇新增就业1052万人",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "http://www.job.mohrss.gov.cn:80/rdzx/173161.jhtml",
-      "status": "open",
-      "updatedAt": "2026-11-04"
-    },
-    {
-      "id": "SOE228",
-      "title": "我国将不断凝聚稳就业工作合力",
-      "tag": "招聘公告",
-      "source": "中国公共招聘网·重点行业",
-      "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/dongtaixinwen/buneiyaowen/rsxw/202611/t20261104_597571.html",
-      "status": "open",
-      "updatedAt": "2026-11-05"
     }
   ]
 }
